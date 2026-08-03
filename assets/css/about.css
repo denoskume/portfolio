@@ -1,41 +1,40 @@
-.profile-about {
+.recruiter-about {
     padding: 2rem 0 4rem;
-    background: #f4f5f7;
+    background: #f3f5f8;
 }
 
-.profile-about-layout {
+.recruiter-about-layout {
     display: grid;
-    grid-template-columns: 300px minmax(0, 1fr);
+    grid-template-columns: 290px minmax(0, 1fr);
     max-width: 1160px;
     margin-inline: auto;
     overflow: hidden;
     background: #ffffff;
-    border: 1px solid #e0e3e8;
+    border: 1px solid #dfe3ea;
     box-shadow: 0 24px 70px rgba(17, 24, 39, 0.08);
 }
 
-.profile-about-sidebar {
+.recruiter-profile-card {
     padding: 2rem;
     color: #ffffff;
-    background: #111827;
+    background: #101722;
 }
 
-.profile-about-photo {
+.recruiter-photo {
     width: 100%;
     aspect-ratio: 4 / 5;
     overflow: hidden;
-    margin-bottom: 1.5rem;
     background: #283345;
 }
 
-.profile-about-photo img {
+.recruiter-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center top;
 }
 
-.profile-about-placeholder {
+.recruiter-photo-placeholder {
     width: 100%;
     height: 100%;
     display: grid;
@@ -46,60 +45,57 @@
     font-weight: 800;
 }
 
-.profile-about-name {
-    padding-bottom: 1.5rem;
+.recruiter-identity {
+    padding: 1.5rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
 
-.profile-about-name h1 {
-    margin-bottom: 0.35rem;
+.recruiter-identity h1 {
+    margin-bottom: 0.45rem;
     font-family: var(--font-heading);
     font-size: 2rem;
     line-height: 1;
     letter-spacing: -0.045em;
 }
 
-.profile-about-name p {
+.recruiter-identity p {
     color: #aeb7c5;
-    font-size: 0.82rem;
-    font-weight: 700;
+    font-size: 0.78rem;
+    line-height: 1.55;
 }
 
-.profile-about-meta {
-    margin-top: 1.25rem;
+.recruiter-profile-meta {
+    margin: 1rem 0 0;
 }
 
-.profile-about-meta div {
-    padding: 0.75rem 0;
+.recruiter-profile-meta div {
+    padding: 0.72rem 0;
     border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
 }
 
-.profile-about-meta span,
-.profile-about-meta strong {
-    display: block;
-}
-
-.profile-about-meta span {
-    margin-bottom: 0.15rem;
+.recruiter-profile-meta dt {
+    margin-bottom: 0.16rem;
     color: #7f8a9b;
-    font-size: 0.61rem;
+    font-size: 0.6rem;
     font-weight: 800;
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
-.profile-about-meta strong {
-    color: #e8edf4;
+.recruiter-profile-meta dd {
+    margin: 0;
+    color: #e6ebf2;
     font-size: 0.8rem;
-    line-height: 1.5;
+    font-weight: 700;
+    line-height: 1.45;
 }
 
-.profile-about-contact {
+.recruiter-contact-link {
     display: flex;
     align-items: center;
     justify-content: space-between;
     min-height: 46px;
-    margin-top: 1.8rem;
+    margin-top: 1.7rem;
     padding: 0.75rem 1rem;
     color: #ffffff;
     background: #3157ff;
@@ -107,181 +103,260 @@
     font-weight: 800;
 }
 
-.profile-about-contact:hover {
-    background: #2849da;
+.recruiter-contact-link:hover {
+    background: #2748d8;
 }
 
-.profile-about-main {
-    padding: 3.5rem 4rem;
+.recruiter-about-content {
+    padding: 3.2rem 3.6rem;
 }
 
-.profile-about-header {
-    max-width: 850px;
+.recruiter-about-header {
     padding-bottom: 2rem;
     border-bottom: 2px solid #111827;
 }
 
-.profile-about-label {
-    margin-bottom: 0.8rem;
+.recruiter-about-header > p {
+    margin-bottom: 0.75rem;
     color: #3157ff;
-    font-size: 0.68rem;
+    font-size: 0.66rem;
     font-weight: 800;
     letter-spacing: 0.15em;
     text-transform: uppercase;
 }
 
-.profile-about-header h2 {
-    margin: 0;
+.recruiter-about-header h2 {
+    max-width: 820px;
     font-family: var(--font-heading);
-    font-size: clamp(2.8rem, 5vw, 5rem);
-    line-height: 0.98;
-    letter-spacing: -0.065em;
+    font-size: clamp(2.7rem, 4.8vw, 4.8rem);
+    line-height: 1;
+    letter-spacing: -0.06em;
 }
 
-.profile-about-intro {
-    max-width: 760px;
-    margin-top: 1.4rem;
-    color: #5e6878;
-    font-size: 1.05rem;
+.recruiter-summary {
+    max-width: 780px;
+    margin-top: 1.3rem;
+    color: #596474;
+    font-size: 1.02rem;
     line-height: 1.75;
 }
 
-.profile-about-section {
-    padding: 1.8rem 0;
-    border-bottom: 1px solid #e1e4e9;
+.recruiter-value {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 2rem;
+    padding: 1.7rem 0;
+    border-bottom: 1px solid #e0e4e9;
 }
 
-.profile-about-section h3 {
-    margin-bottom: 0.8rem;
+.recruiter-value span {
+    display: block;
+    margin-bottom: 0.7rem;
+    color: #7c8593;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.recruiter-value strong {
+    display: block;
+    color: #172033;
+    font-size: 0.86rem;
+    line-height: 1.65;
+}
+
+.recruiter-value p {
+    color: #5e6978;
+    line-height: 1.75;
+}
+
+.recruiter-section {
+    padding: 1.8rem 0;
+    border-bottom: 1px solid #e0e4e9;
+}
+
+.recruiter-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.recruiter-section-heading span {
+    color: #3157ff;
+    font-size: 0.66rem;
+    font-weight: 800;
+}
+
+.recruiter-section-heading h3 {
     font-family: var(--font-heading);
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     letter-spacing: -0.025em;
 }
 
-.profile-about-section > p {
-    max-width: 820px;
-    color: #545f6f;
-    line-height: 1.8;
-}
-
-.profile-about-section > p + p {
-    margin-top: 0.7rem;
-}
-
-.profile-about-expertise {
+.recruiter-capability-grid,
+.recruiter-work-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
-    padding: 1.8rem 0;
-    border-bottom: 1px solid #e1e4e9;
 }
 
-.profile-about-expertise article {
-    min-height: 200px;
-    padding: 1.35rem;
+.recruiter-capability-grid article,
+.recruiter-work-grid article {
+    padding: 1.1rem;
     background: #f6f7f9;
     border-top: 3px solid #111827;
 }
 
-.profile-about-expertise article > span {
+.recruiter-capability-grid h4,
+.recruiter-work-grid strong {
     display: block;
-    margin-bottom: 2rem;
-    color: #3157ff;
-    font-size: 0.68rem;
-    font-weight: 800;
-}
-
-.profile-about-expertise h3 {
-    margin-bottom: 0.55rem;
+    margin-bottom: 0.4rem;
     font-family: var(--font-heading);
-    font-size: 1.05rem;
+    font-size: 0.9rem;
 }
 
-.profile-about-expertise p {
-    color: #687282;
-    font-size: 0.76rem;
-    line-height: 1.65;
-}
-
-.profile-about-principles {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.2rem;
-}
-
-.profile-about-principles strong,
-.profile-about-principles span {
-    display: block;
-}
-
-.profile-about-principles strong {
-    margin-bottom: 0.35rem;
-    color: #182234;
-    font-family: var(--font-heading);
-    font-size: 0.86rem;
-}
-
-.profile-about-principles span {
-    color: #6b7585;
-    font-size: 0.75rem;
+.recruiter-capability-grid p,
+.recruiter-work-grid p {
+    color: #677282;
+    font-size: 0.74rem;
     line-height: 1.6;
 }
 
-.profile-about-footer {
+.recruiter-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.recruiter-stack span {
+    padding: 0.46rem 0.72rem;
+    color: #27344a;
+    background: #edf0f4;
+    border: 1px solid #dce1e8;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 800;
+}
+
+.recruiter-evidence {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 1.4rem;
+    align-items: center;
+    padding: 1.25rem;
+    color: #ffffff;
+    background: #111827;
+}
+
+.recruiter-evidence-metric {
+    padding-right: 1.3rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.recruiter-evidence-metric strong,
+.recruiter-evidence-metric span {
+    display: block;
+}
+
+.recruiter-evidence-metric strong {
+    color: #8fa4ff;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    letter-spacing: -0.05em;
+}
+
+.recruiter-evidence-metric span {
+    color: #aeb7c5;
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.recruiter-evidence h4 {
+    margin-bottom: 0.45rem;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+}
+
+.recruiter-evidence p {
+    color: #bdc6d2;
+    font-size: 0.78rem;
+    line-height: 1.65;
+}
+
+.recruiter-evidence a {
+    display: inline-block;
+    margin-top: 0.8rem;
+    color: #9eb0ff;
+    font-size: 0.72rem;
+    font-weight: 800;
+}
+
+.recruiter-about-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-    padding-top: 2rem;
+    padding-top: 1.8rem;
 }
 
-.profile-about-footer p {
+.recruiter-about-footer p {
     color: #4f5968;
     font-family: var(--font-heading);
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
 }
 
-.profile-about-footer a {
+.recruiter-about-footer a {
     flex: 0 0 auto;
     color: #3157ff;
-    font-size: 0.76rem;
+    font-size: 0.75rem;
     font-weight: 800;
 }
 
 @media (max-width: 900px) {
-    .profile-about-layout {
-        grid-template-columns: 260px minmax(0, 1fr);
+    .recruiter-about-layout {
+        grid-template-columns: 250px minmax(0, 1fr);
     }
 
-    .profile-about-main {
-        padding: 2.8rem;
+    .recruiter-about-content {
+        padding: 2.6rem;
     }
 
-    .profile-about-expertise,
-    .profile-about-principles {
+    .recruiter-capability-grid,
+    .recruiter-work-grid {
         grid-template-columns: 1fr;
-    }
-
-    .profile-about-expertise article {
-        min-height: auto;
     }
 }
 
 @media (max-width: 700px) {
-    .profile-about-layout {
+    .recruiter-about-layout {
         grid-template-columns: 1fr;
     }
 
-    .profile-about-photo {
+    .recruiter-photo {
         max-width: 260px;
     }
 
-    .profile-about-main {
+    .recruiter-about-content {
         padding: 2rem 1.25rem;
     }
 
-    .profile-about-footer {
+    .recruiter-value,
+    .recruiter-evidence {
+        grid-template-columns: 1fr;
+    }
+
+    .recruiter-evidence-metric {
+        padding-right: 0;
+        padding-bottom: 1rem;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .recruiter-about-footer {
         align-items: flex-start;
         flex-direction: column;
     }
