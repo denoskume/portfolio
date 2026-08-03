@@ -1,329 +1,199 @@
 <?php
 
-$pageTitle = 'Professional Profile';
+$pageTitle = 'About';
 $currentPage = 'about';
 
 require BASE_PATH . '/includes/header.php';
 
-$photoPath = BASE_PATH . '/assets/images/profile/denos-formal.jpg';
+$photoPath = BASE_PATH
+    . '/assets/images/profile/denos-formal.jpg';
 ?>
 
-<section class="executive-profile">
+<section class="about-profile-page">
     <div class="container">
 
-        <article class="executive-sheet reveal">
+        <article class="about-profile-sheet reveal">
 
-            <aside class="executive-sidebar">
+            <aside class="about-profile-sidebar">
 
-                <div class="executive-photo">
+                <div class="about-profile-photo">
                     <?php if (is_file($photoPath)): ?>
                         <img
-                            src="<?= asset('images/profile/denos-formal.jpg') ?>"
+                            src="<?= asset(
+                                'images/profile/denos-formal.jpg'
+                            ) ?>"
                             alt="Formal portrait of Denos Kume"
                         >
                     <?php else: ?>
-                        <div class="executive-photo-placeholder">
-                            <strong>DK</strong>
-                            <span>Formal portrait</span>
+                        <div class="about-photo-placeholder">
+                            DK
                         </div>
                     <?php endif; ?>
                 </div>
 
-                <div class="executive-identity">
-                    <p class="executive-status">
-                        AI Engineering Profile
-                    </p>
-
+                <div class="about-profile-identity">
                     <h1>Denos Kume</h1>
 
-                    <p class="executive-role">
-                        Master's Student in Data Science,
-                        Signal and Image Processing
+                    <p>
+                        AI Engineering Profile
                     </p>
                 </div>
 
-                <section class="executive-sidebar-section">
-                    <h2>Professional Focus</h2>
+                <dl class="about-profile-details">
+                    <div>
+                        <dt>Programme</dt>
+                        <dd>
+                            Data Science, Signal and
+                            Image Processing
+                        </dd>
+                    </div>
 
-                    <ul class="executive-list">
-                        <li>Machine Learning Engineering</li>
-                        <li>Computer Vision Engineering</li>
-                        <li>Image Processing Engineering</li>
+                    <div>
+                        <dt>Institution</dt>
+                        <dd>École Centrale de Nantes</dd>
+                    </div>
+
+                    <div>
+                        <dt>Location</dt>
+                        <dd>France</dd>
+                    </div>
+
+                    <div>
+                        <dt>Languages</dt>
+                        <dd>French · English</dd>
+                    </div>
+                </dl>
+
+                <section class="about-sidebar-section">
+                    <h2>Target Roles</h2>
+
+                    <ul>
+                        <li>Machine Learning Engineer</li>
+                        <li>Computer Vision Engineer</li>
+                        <li>Image Processing Engineer</li>
                     </ul>
                 </section>
 
-                <section class="executive-sidebar-section">
-                    <h2>Profile Details</h2>
+                <section class="about-sidebar-section">
+                    <h2>Core Tools</h2>
 
-                    <dl class="executive-details">
-                        <div>
-                            <dt>Institution</dt>
-                            <dd>École Centrale de Nantes</dd>
-                        </div>
-
-                        <div>
-                            <dt>Programme</dt>
-                            <dd>
-                                Data Science, Signal and
-                                Image Processing
-                            </dd>
-                        </div>
-
-                        <div>
-                            <dt>Location</dt>
-                            <dd>France</dd>
-                        </div>
-
-                        <div>
-                            <dt>Languages</dt>
-                            <dd>French · English</dd>
-                        </div>
-                    </dl>
-                </section>
-
-                <section class="executive-sidebar-section">
-                    <h2>Technical Domains</h2>
-
-                    <div class="executive-tags">
-                        <span>Artificial Intelligence</span>
-                        <span>Machine Learning</span>
-                        <span>Computer Vision</span>
-                        <span>Image Processing</span>
-                        <span>Signal Processing</span>
-                        <span>Data Science</span>
+                    <div class="about-tools">
+                        <span>Python</span>
+                        <span>Git</span>
+                        <span>SQL</span>
+                        <span>OpenCV</span>
+                        <span>Jupyter</span>
                     </div>
                 </section>
-
-                <div class="executive-sidebar-actions">
-                    <a
-                        class="executive-primary-action"
-                        href="<?= page_url('projects') ?>"
-                    >
-                        View projects
-                    </a>
-
-                    <a
-                        class="executive-secondary-action"
-                        href="<?= page_url('contact') ?>"
-                    >
-                        Contact me
-                    </a>
-                </div>
 
             </aside>
 
-            <div class="executive-content">
+            <div class="about-profile-content">
 
-                <header class="executive-header">
-                    <div>
-                        <p class="executive-kicker">
-                            Professional Profile · 2026
-                        </p>
+                <header class="about-profile-header">
+                    <p>Professional Profile</p>
 
-                        <h2>
-                            Building intelligent systems from
-                            data, signals and images.
-                        </h2>
-                    </div>
-
-                    <div class="executive-availability">
-                        <span class="availability-indicator"></span>
-
-                        <div>
-                            <strong>Career Direction</strong>
-                            <span>
-                                AI engineering and intelligent products
-                            </span>
-                        </div>
-                    </div>
+                    <h2>
+                        Building practical intelligent systems
+                        from data, signals and images.
+                    </h2>
                 </header>
 
-                <section class="executive-introduction">
-                    <p class="executive-lead">
-                        I am developing a multidisciplinary engineering
-                        profile combining artificial intelligence,
-                        computer science, electronics, signal processing
-                        and image analysis.
+                <section class="about-content-block">
+                    <h3>Profile</h3>
+
+                    <p>
+                        I am a Master's student at École Centrale
+                        de Nantes, specializing in Data Science,
+                        Signal and Image Processing.
                     </p>
 
                     <p>
-                        My objective is to transform advanced technical
-                        knowledge into reliable, measurable and useful
-                        intelligent systems. I approach every project
-                        with a strong emphasis on problem definition,
-                        methodology, experimentation, documentation
-                        and clear communication.
+                        My background combines computer science,
+                        electronics, artificial intelligence,
+                        signal processing and image analysis.
                     </p>
                 </section>
 
-                <section class="executive-section">
-                    <div class="executive-section-number">01</div>
+                <section class="about-content-block">
+                    <h3>Technical Focus</h3>
 
-                    <div class="executive-section-content">
-                        <h3>Academic Foundation</h3>
+                    <div class="about-focus-grid">
+                        <article>
+                            <strong>Machine Learning</strong>
+                            <span>
+                                Classification, model evaluation,
+                                data analysis and applied AI.
+                            </span>
+                        </article>
 
-                        <p>
-                            I am completing a Master's programme in
-                            Data Science, Signal and Image Processing
-                            at École Centrale de Nantes.
-                        </p>
+                        <article>
+                            <strong>Computer Vision</strong>
+                            <span>
+                                Image understanding, features,
+                                segmentation and visual systems.
+                            </span>
+                        </article>
 
-                        <p>
-                            My coursework includes artificial
-                            intelligence, algorithmics, optimization,
-                            computer vision, image processing, signal
-                            filtering, spectral analysis and
-                            time-frequency methods.
-                        </p>
-
-                        <a
-                            class="executive-inline-link"
-                            href="<?= page_url('education') ?>"
-                        >
-                            Explore my education
-                            <span aria-hidden="true">↗</span>
-                        </a>
+                        <article>
+                            <strong>Signal & Image Processing</strong>
+                            <span>
+                                Filtering, spectral analysis and
+                                time-frequency methods.
+                            </span>
+                        </article>
                     </div>
                 </section>
 
-                <section class="executive-section">
-                    <div class="executive-section-number">02</div>
+                <section class="about-content-block">
+                    <h3>Professional Objective</h3>
 
-                    <div class="executive-section-content">
-                        <h3>Professional Direction</h3>
-
-                        <p>
-                            I am preparing for high-responsibility
-                            engineering roles in Machine Learning,
-                            Computer Vision and Image Processing.
-                        </p>
-
-                        <p>
-                            I want to work in an environment where
-                            technical excellence, experimentation and
-                            real-world impact are central to product
-                            development.
-                        </p>
-                    </div>
+                    <p>
+                        I am seeking a technically demanding
+                        engineering role where I can contribute to
+                        real AI projects, strengthen my expertise
+                        and work with experienced teams.
+                    </p>
                 </section>
 
-                <section class="executive-section">
-                    <div class="executive-section-number">03</div>
+                <section class="about-content-block">
+                    <h3>What I Bring</h3>
 
-                    <div class="executive-section-content">
-                        <h3>Engineering Method</h3>
+                    <ul class="about-value-list">
+                        <li>
+                            Structured problem solving and disciplined
+                            project organization
+                        </li>
 
-                        <div class="executive-principles">
-                            <article>
-                                <strong>Understand</strong>
-                                <p>
-                                    Define the real problem before
-                                    selecting a technical solution.
-                                </p>
-                            </article>
+                        <li>
+                            Ability to connect theory with practical
+                            implementation
+                        </li>
 
-                            <article>
-                                <strong>Build</strong>
-                                <p>
-                                    Develop clear, maintainable and
-                                    reproducible implementations.
-                                </p>
-                            </article>
+                        <li>
+                            Clear technical communication in French
+                            and English
+                        </li>
 
-                            <article>
-                                <strong>Measure</strong>
-                                <p>
-                                    Evaluate results using transparent
-                                    metrics and meaningful comparisons.
-                                </p>
-                            </article>
-
-                            <article>
-                                <strong>Communicate</strong>
-                                <p>
-                                    Present methods, decisions and
-                                    outcomes with precision.
-                                </p>
-                            </article>
-                        </div>
-                    </div>
+                        <li>
+                            Strong ambition, adaptability and
+                            continuous learning
+                        </li>
+                    </ul>
                 </section>
 
-                <section class="executive-section">
-                    <div class="executive-section-number">04</div>
-
-                    <div class="executive-section-content">
-                        <h3>Selected Achievement</h3>
-
-                        <div class="executive-achievement">
-                            <div class="executive-achievement-metric">
-                                <strong>91.15%</strong>
-                                <span>Top-1 accuracy</span>
-                            </div>
-
-                            <div>
-                                <h4>
-                                    Zero-Shot Audio Classification
-                                    Using CLAP
-                                </h4>
-
-                                <p>
-                                    Evaluated ten prompt strategies on
-                                    ESC-50 and improved the class-name
-                                    baseline from 83.05% to 91.15%.
-                                </p>
-
-                                <a
-                                    class="executive-inline-link"
-                                    href="<?= page_url('projects') ?>"
-                                >
-                                    View selected projects
-                                    <span aria-hidden="true">↗</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="executive-section">
-                    <div class="executive-section-number">05</div>
-
-                    <div class="executive-section-content">
-                        <h3>Long-Term Vision</h3>
-
-                        <p>
-                            My long-term ambition is to design and build
-                            useful AI platforms and products addressing
-                            concrete challenges in transport, industry,
-                            communication and intelligent automation.
-                        </p>
-
-                        <p>
-                            I aim to combine engineering expertise,
-                            product vision, leadership and
-                            entrepreneurship to create systems with
-                            durable value.
-                        </p>
-                    </div>
-                </section>
-
-                <footer class="executive-signature">
+                <section class="about-highlight">
                     <div>
-                        <p>
-                            “The greatest achievements are rarely
-                            the result of a single effort.”
-                        </p>
-
-                        <span>Denos Kume</span>
+                        <span>Selected Achievement</span>
+                        <strong>91.15%</strong>
                     </div>
 
-                    <a
-                        class="executive-contact-button"
-                        href="<?= page_url('contact') ?>"
-                    >
-                        Start a conversation
-                    </a>
-                </footer>
+                    <p>
+                        Top-1 accuracy achieved on ESC-50 through
+                        prompt engineering with CLAP, improving the
+                        class-only baseline by 8.10 percentage points.
+                    </p>
+                </section>
 
             </div>
 
