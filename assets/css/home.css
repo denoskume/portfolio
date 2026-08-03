@@ -1,9 +1,13 @@
 .banner-carousel {
     position: relative;
-    width: 100%;
+    width: min(1180px, calc(100% - 2rem));
+    max-height: 620px;
     aspect-ratio: 16 / 9;
+    margin: 1.5rem auto;
     overflow: hidden;
     background: #0b1220;
+    border-radius: 8px;
+    box-shadow: 0 24px 60px rgba(17, 24, 39, 0.16);
 }
 
 .banner-carousel-track,
@@ -129,5 +133,20 @@
 
     .banner-pagination {
         bottom: 0.75rem;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .banner-carousel {
+        max-height: 560px;
+    }
+}
+
+@media (max-width: 700px) {
+    .banner-carousel {
+        width: calc(100% - 1rem);
+        margin: 0.75rem auto;
+        border-radius: 4px;
     }
 }
