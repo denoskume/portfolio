@@ -1,0 +1,93 @@
+/* Home */
+
+.hero {
+    padding-block: var(--space-10);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.65fr);
+    gap: var(--space-8);
+    align-items: center;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+}
+
+.profile-card {
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.profile-avatar {
+    width: 86px;
+    height: 86px;
+    display: grid;
+    place-items: center;
+    margin-bottom: var(--space-5);
+    color: white;
+    background: var(--color-primary);
+    border-radius: 26px;
+    font-family: var(--font-heading);
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+}
+
+/* Projects */
+
+.project-list {
+    border-top: 1px solid var(--color-border);
+}
+
+.project-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: var(--space-6);
+    padding-block: var(--space-7);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.project-index {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    font-weight: 800;
+}
+
+.project-title {
+    max-width: 850px;
+    margin-bottom: var(--space-4);
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+}
+
+/* Contact */
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: var(--space-8);
+}
+
+.contact-information {
+    padding: var(--space-6);
+    color: white;
+    background: var(--color-primary);
+    border-radius: var(--radius-xl);
+}
+
+.contact-form {
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+}

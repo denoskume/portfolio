@@ -1,0 +1,74 @@
+:root {
+    /* Brand colors */
+    --color-primary: #3157ff;
+    --color-primary-dark: #1f3ed2;
+    --color-primary-light: #e8edff;
+
+    /* Neutral colors */
+    --color-background: #f6f7f9;
+    --color-surface: #ffffff;
+    --color-surface-soft: #eef1f5;
+    --color-text: #111827;
+    --color-text-muted: #667085;
+    --color-border: #dfe3ea;
+
+    /* Dark sections */
+    --color-dark: #0d1117;
+    --color-dark-soft: #161b22;
+    --color-dark-border: #30363d;
+    --color-dark-text: #f5f7fa;
+    --color-dark-muted: #a7b0bf;
+
+    /* Status colors */
+    --color-success: #168754;
+    --color-warning: #c97900;
+    --color-danger: #d92d20;
+
+    /* Typography */
+    --font-primary: "Inter", Arial, sans-serif;
+    --font-heading: "Space Grotesk", "Inter", Arial, sans-serif;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    --font-size-4xl: 2.75rem;
+    --font-size-5xl: 4rem;
+    --font-size-hero: clamp(3rem, 7vw, 6.4rem);
+
+    /* Spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4rem;
+    --space-9: 6rem;
+    --space-10: 8rem;
+
+    /* Layout */
+    --container-width: 1180px;
+    --header-height: 76px;
+
+    /* Radius */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --radius-xl: 30px;
+    --radius-pill: 999px;
+
+    /* Shadows */
+    --shadow-sm: 0 6px 20px rgba(17, 24, 39, 0.06);
+    --shadow-md: 0 18px 50px rgba(17, 24, 39, 0.10);
+    --shadow-lg: 0 28px 80px rgba(17, 24, 39, 0.14);
+
+    /* Motion */
+    --transition-fast: 160ms ease;
+    --transition-normal: 280ms ease;
+    --transition-slow: 600ms ease;
+}
