@@ -9,14 +9,14 @@ $photoPath = BASE_PATH
     . '/assets/images/profile/denos-formal.jpg';
 ?>
 
-<section class="about-profile-page">
+<section class="profile-about">
     <div class="container">
 
-        <article class="about-profile-sheet reveal">
+        <article class="profile-about-layout reveal">
 
-            <aside class="about-profile-sidebar">
+            <aside class="profile-about-sidebar">
 
-                <div class="about-profile-photo">
+                <div class="profile-about-photo">
                     <?php if (is_file($photoPath)): ?>
                         <img
                             src="<?= asset(
@@ -25,175 +25,174 @@ $photoPath = BASE_PATH
                             alt="Formal portrait of Denos Kume"
                         >
                     <?php else: ?>
-                        <div class="about-photo-placeholder">
+                        <div class="profile-about-placeholder">
                             DK
                         </div>
                     <?php endif; ?>
                 </div>
 
-                <div class="about-profile-identity">
+                <div class="profile-about-name">
                     <h1>Denos Kume</h1>
 
                     <p>
-                        AI Engineering Profile
+                        AI Engineer in development
                     </p>
                 </div>
 
-                <dl class="about-profile-details">
+                <div class="profile-about-meta">
                     <div>
-                        <dt>Programme</dt>
-                        <dd>
+                        <span>Based in</span>
+                        <strong>France</strong>
+                    </div>
+
+                    <div>
+                        <span>Languages</span>
+                        <strong>French · English</strong>
+                    </div>
+
+                    <div>
+                        <span>Current programme</span>
+                        <strong>
                             Data Science, Signal and
                             Image Processing
-                        </dd>
+                        </strong>
                     </div>
+                </div>
 
-                    <div>
-                        <dt>Institution</dt>
-                        <dd>École Centrale de Nantes</dd>
-                    </div>
-
-                    <div>
-                        <dt>Location</dt>
-                        <dd>France</dd>
-                    </div>
-
-                    <div>
-                        <dt>Languages</dt>
-                        <dd>French · English</dd>
-                    </div>
-                </dl>
-
-                <section class="about-sidebar-section">
-                    <h2>Target Roles</h2>
-
-                    <ul>
-                        <li>Machine Learning Engineer</li>
-                        <li>Computer Vision Engineer</li>
-                        <li>Image Processing Engineer</li>
-                    </ul>
-                </section>
-
-                <section class="about-sidebar-section">
-                    <h2>Core Tools</h2>
-
-                    <div class="about-tools">
-                        <span>Python</span>
-                        <span>Git</span>
-                        <span>SQL</span>
-                        <span>OpenCV</span>
-                        <span>Jupyter</span>
-                    </div>
-                </section>
+                <a
+                    class="profile-about-contact"
+                    href="<?= page_url('contact') ?>"
+                >
+                    Start a conversation
+                    <span aria-hidden="true">→</span>
+                </a>
 
             </aside>
 
-            <div class="about-profile-content">
+            <div class="profile-about-main">
 
-                <header class="about-profile-header">
-                    <p>Professional Profile</p>
+                <header class="profile-about-header">
+                    <p class="profile-about-label">
+                        Professional Profile
+                    </p>
 
                     <h2>
-                        Building practical intelligent systems
-                        from data, signals and images.
+                        I build practical intelligence from
+                        data, signals and images.
                     </h2>
+
+                    <p class="profile-about-intro">
+                        I am developing a multidisciplinary engineering
+                        profile combining artificial intelligence,
+                        computer vision, signal processing and software
+                        development.
+                    </p>
                 </header>
 
-                <section class="about-content-block">
-                    <h3>Profile</h3>
+                <section class="profile-about-section">
+                    <h3>What I do</h3>
 
                     <p>
-                        I am a Master's student at École Centrale
-                        de Nantes, specializing in Data Science,
-                        Signal and Image Processing.
+                        I work on problems where data must be transformed
+                        into useful decisions, predictions or visual
+                        understanding.
                     </p>
 
                     <p>
-                        My background combines computer science,
-                        electronics, artificial intelligence,
-                        signal processing and image analysis.
+                        My approach combines strong technical foundations,
+                        structured experimentation and clear communication.
                     </p>
                 </section>
 
-                <section class="about-content-block">
-                    <h3>Technical Focus</h3>
+                <section class="profile-about-expertise">
 
-                    <div class="about-focus-grid">
-                        <article>
-                            <strong>Machine Learning</strong>
-                            <span>
-                                Classification, model evaluation,
-                                data analysis and applied AI.
-                            </span>
-                        </article>
+                    <article>
+                        <span>01</span>
 
-                        <article>
-                            <strong>Computer Vision</strong>
-                            <span>
-                                Image understanding, features,
-                                segmentation and visual systems.
-                            </span>
-                        </article>
+                        <h3>Machine Learning</h3>
 
-                        <article>
-                            <strong>Signal & Image Processing</strong>
+                        <p>
+                            Model evaluation, classification,
+                            data analysis and applied AI systems.
+                        </p>
+                    </article>
+
+                    <article>
+                        <span>02</span>
+
+                        <h3>Computer Vision</h3>
+
+                        <p>
+                            Image understanding, feature analysis,
+                            segmentation and visual intelligence.
+                        </p>
+                    </article>
+
+                    <article>
+                        <span>03</span>
+
+                        <h3>Signal & Image Processing</h3>
+
+                        <p>
+                            Filtering, spectral analysis and
+                            time-frequency methods.
+                        </p>
+                    </article>
+
+                </section>
+
+                <section class="profile-about-section">
+                    <h3>How I work</h3>
+
+                    <div class="profile-about-principles">
+                        <div>
+                            <strong>Understand first</strong>
                             <span>
-                                Filtering, spectral analysis and
-                                time-frequency methods.
+                                Define the real problem before
+                                selecting the technology.
                             </span>
-                        </article>
+                        </div>
+
+                        <div>
+                            <strong>Build clearly</strong>
+                            <span>
+                                Produce maintainable and
+                                well-documented implementations.
+                            </span>
+                        </div>
+
+                        <div>
+                            <strong>Measure results</strong>
+                            <span>
+                                Compare methods using meaningful
+                                and transparent metrics.
+                            </span>
+                        </div>
                     </div>
                 </section>
 
-                <section class="about-content-block">
-                    <h3>Professional Objective</h3>
+                <section class="profile-about-section">
+                    <h3>Professional direction</h3>
 
                     <p>
-                        I am seeking a technically demanding
-                        engineering role where I can contribute to
-                        real AI projects, strengthen my expertise
-                        and work with experienced teams.
+                        I am preparing for roles in Machine Learning,
+                        Computer Vision and Image Processing where I can
+                        contribute to real products and ambitious
+                        engineering projects.
                     </p>
                 </section>
 
-                <section class="about-content-block">
-                    <h3>What I Bring</h3>
-
-                    <ul class="about-value-list">
-                        <li>
-                            Structured problem solving and disciplined
-                            project organization
-                        </li>
-
-                        <li>
-                            Ability to connect theory with practical
-                            implementation
-                        </li>
-
-                        <li>
-                            Clear technical communication in French
-                            and English
-                        </li>
-
-                        <li>
-                            Strong ambition, adaptability and
-                            continuous learning
-                        </li>
-                    </ul>
-                </section>
-
-                <section class="about-highlight">
-                    <div>
-                        <span>Selected Achievement</span>
-                        <strong>91.15%</strong>
-                    </div>
-
+                <footer class="profile-about-footer">
                     <p>
-                        Top-1 accuracy achieved on ESC-50 through
-                        prompt engineering with CLAP, improving the
-                        class-only baseline by 8.10 percentage points.
+                        Long-term objective:
+                        build useful AI products and platforms.
                     </p>
-                </section>
+
+                    <a href="<?= page_url('projects') ?>">
+                        Explore my projects
+                        <span aria-hidden="true">↗</span>
+                    </a>
+                </footer>
 
             </div>
 

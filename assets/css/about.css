@@ -1,325 +1,288 @@
-.about-profile-page {
+.profile-about {
     padding: 2rem 0 4rem;
-    background: #f1f3f6;
+    background: #f4f5f7;
 }
 
-.about-profile-sheet {
+.profile-about-layout {
     display: grid;
-    grid-template-columns: 280px minmax(0, 1fr);
-    max-width: 1150px;
+    grid-template-columns: 300px minmax(0, 1fr);
+    max-width: 1160px;
     margin-inline: auto;
     overflow: hidden;
     background: #ffffff;
-    border: 1px solid #dfe3ea;
-    box-shadow: 0 24px 65px rgba(17, 24, 39, 0.10);
+    border: 1px solid #e0e3e8;
+    box-shadow: 0 24px 70px rgba(17, 24, 39, 0.08);
 }
 
-.about-profile-sidebar {
-    padding: 2rem 1.7rem;
-    background: #f8f9fb;
-    border-right: 1px solid #dfe3ea;
+.profile-about-sidebar {
+    padding: 2rem;
+    color: #ffffff;
+    background: #111827;
 }
 
-.about-profile-photo {
+.profile-about-photo {
     width: 100%;
     aspect-ratio: 4 / 5;
     overflow: hidden;
-    margin-bottom: 1.4rem;
-    background: #e5e8ed;
-    border: 2px solid #3157ff;
+    margin-bottom: 1.5rem;
+    background: #283345;
 }
 
-.about-profile-photo img {
+.profile-about-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center top;
 }
 
-.about-photo-placeholder {
+.profile-about-placeholder {
     width: 100%;
     height: 100%;
     display: grid;
     place-items: center;
-    color: #3157ff;
+    color: #8fa4ff;
     font-family: var(--font-heading);
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 800;
 }
 
-.about-profile-identity {
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid #dfe3ea;
+.profile-about-name {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
 
-.about-profile-identity h1 {
-    margin-bottom: 0.3rem;
+.profile-about-name h1 {
+    margin-bottom: 0.35rem;
     font-family: var(--font-heading);
-    font-size: 1.75rem;
-    letter-spacing: -0.04em;
+    font-size: 2rem;
+    line-height: 1;
+    letter-spacing: -0.045em;
 }
 
-.about-profile-identity p {
-    color: #667085;
-    font-size: 0.8rem;
+.profile-about-name p {
+    color: #aeb7c5;
+    font-size: 0.82rem;
     font-weight: 700;
 }
 
-.about-profile-details {
-    margin: 1rem 0 0;
+.profile-about-meta {
+    margin-top: 1.25rem;
 }
 
-.about-profile-details div {
-    padding: 0.72rem 0;
-    border-bottom: 1px dotted #aeb5c0;
+.profile-about-meta div {
+    padding: 0.75rem 0;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
 }
 
-.about-profile-details dt {
+.profile-about-meta span,
+.profile-about-meta strong {
+    display: block;
+}
+
+.profile-about-meta span {
     margin-bottom: 0.15rem;
-    color: #7a8493;
-    font-size: 0.62rem;
+    color: #7f8a9b;
+    font-size: 0.61rem;
     font-weight: 800;
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
-.about-profile-details dd {
-    margin: 0;
-    color: #202938;
-    font-size: 0.82rem;
-    font-weight: 700;
-    line-height: 1.45;
+.profile-about-meta strong {
+    color: #e8edf4;
+    font-size: 0.8rem;
+    line-height: 1.5;
 }
 
-.about-sidebar-section {
-    margin-top: 1.4rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid #dfe3ea;
-}
-
-.about-sidebar-section h2 {
-    margin-bottom: 0.8rem;
-    color: #3157ff;
-    font-family: var(--font-heading);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
-.about-sidebar-section ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.about-sidebar-section li {
-    position: relative;
-    padding: 0.38rem 0 0.38rem 0.9rem;
-    color: #5d6675;
-    font-size: 0.78rem;
-}
-
-.about-sidebar-section li::before {
-    content: "";
-    position: absolute;
-    top: 0.85rem;
-    left: 0;
-    width: 5px;
-    height: 5px;
-    background: #3157ff;
-    border-radius: 50%;
-}
-
-.about-tools {
+.profile-about-contact {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-}
-
-.about-tools span {
-    padding: 0.36rem 0.58rem;
-    color: #3157ff;
-    background: #e9edff;
-    border-radius: 999px;
-    font-size: 0.63rem;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 46px;
+    margin-top: 1.8rem;
+    padding: 0.75rem 1rem;
+    color: #ffffff;
+    background: #3157ff;
+    font-size: 0.75rem;
     font-weight: 800;
 }
 
-.about-profile-content {
-    padding: 3rem 3.5rem;
+.profile-about-contact:hover {
+    background: #2849da;
 }
 
-.about-profile-header {
-    padding-bottom: 1.7rem;
+.profile-about-main {
+    padding: 3.5rem 4rem;
+}
+
+.profile-about-header {
+    max-width: 850px;
+    padding-bottom: 2rem;
     border-bottom: 2px solid #111827;
 }
 
-.about-profile-header > p {
-    margin-bottom: 0.65rem;
+.profile-about-label {
+    margin-bottom: 0.8rem;
     color: #3157ff;
     font-size: 0.68rem;
     font-weight: 800;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
 }
 
-.about-profile-header h2 {
+.profile-about-header h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    line-height: 0.98;
+    letter-spacing: -0.065em;
+}
+
+.profile-about-intro {
     max-width: 760px;
-    font-family: var(--font-heading);
-    font-size: clamp(2.3rem, 4.2vw, 4rem);
-    line-height: 1.02;
-    letter-spacing: -0.055em;
-}
-
-.about-content-block {
-    padding: 1.55rem 0;
-    border-bottom: 1px dotted #939ba8;
-}
-
-.about-content-block h3 {
-    margin-bottom: 0.8rem;
-    color: #3157ff;
-    font-family: var(--font-heading);
-    font-size: 0.78rem;
-    letter-spacing: 0.11em;
-    text-transform: uppercase;
-}
-
-.about-content-block > p {
-    max-width: 820px;
-    color: #4f5968;
+    margin-top: 1.4rem;
+    color: #5e6878;
+    font-size: 1.05rem;
     line-height: 1.75;
 }
 
-.about-content-block > p + p {
-    margin-top: 0.75rem;
+.profile-about-section {
+    padding: 1.8rem 0;
+    border-bottom: 1px solid #e1e4e9;
 }
 
-.about-focus-grid {
+.profile-about-section h3 {
+    margin-bottom: 0.8rem;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    letter-spacing: -0.025em;
+}
+
+.profile-about-section > p {
+    max-width: 820px;
+    color: #545f6f;
+    line-height: 1.8;
+}
+
+.profile-about-section > p + p {
+    margin-top: 0.7rem;
+}
+
+.profile-about-expertise {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.8rem;
+    gap: 1rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid #e1e4e9;
 }
 
-.about-focus-grid article {
-    padding: 1rem;
+.profile-about-expertise article {
+    min-height: 200px;
+    padding: 1.35rem;
     background: #f6f7f9;
-    border: 1px solid #e1e4e9;
+    border-top: 3px solid #111827;
 }
 
-.about-focus-grid strong,
-.about-focus-grid span {
+.profile-about-expertise article > span {
     display: block;
-}
-
-.about-focus-grid strong {
-    margin-bottom: 0.35rem;
-    font-family: var(--font-heading);
-    font-size: 0.88rem;
-}
-
-.about-focus-grid span {
-    color: #687282;
-    font-size: 0.72rem;
-    line-height: 1.55;
-}
-
-.about-value-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.55rem 1.5rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.about-value-list li {
-    position: relative;
-    padding-left: 1.1rem;
-    color: #566170;
-    font-size: 0.8rem;
-    line-height: 1.6;
-}
-
-.about-value-list li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
+    margin-bottom: 2rem;
     color: #3157ff;
-    font-weight: 900;
-}
-
-.about-highlight {
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 1.3rem;
-    align-items: center;
-    margin-top: 1.7rem;
-    padding: 1.25rem;
-    background: #111827;
-    color: #ffffff;
-}
-
-.about-highlight span,
-.about-highlight strong {
-    display: block;
-}
-
-.about-highlight span {
-    margin-bottom: 0.25rem;
-    color: #8fa4ff;
-    font-size: 0.58rem;
+    font-size: 0.68rem;
     font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
 }
 
-.about-highlight strong {
+.profile-about-expertise h3 {
+    margin-bottom: 0.55rem;
     font-family: var(--font-heading);
-    font-size: 2.4rem;
-    letter-spacing: -0.05em;
+    font-size: 1.05rem;
 }
 
-.about-highlight p {
-    color: #c2cad6;
-    font-size: 0.8rem;
+.profile-about-expertise p {
+    color: #687282;
+    font-size: 0.76rem;
     line-height: 1.65;
 }
 
+.profile-about-principles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2rem;
+}
+
+.profile-about-principles strong,
+.profile-about-principles span {
+    display: block;
+}
+
+.profile-about-principles strong {
+    margin-bottom: 0.35rem;
+    color: #182234;
+    font-family: var(--font-heading);
+    font-size: 0.86rem;
+}
+
+.profile-about-principles span {
+    color: #6b7585;
+    font-size: 0.75rem;
+    line-height: 1.6;
+}
+
+.profile-about-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-top: 2rem;
+}
+
+.profile-about-footer p {
+    color: #4f5968;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.profile-about-footer a {
+    flex: 0 0 auto;
+    color: #3157ff;
+    font-size: 0.76rem;
+    font-weight: 800;
+}
+
 @media (max-width: 900px) {
-    .about-profile-sheet {
-        grid-template-columns: 240px minmax(0, 1fr);
+    .profile-about-layout {
+        grid-template-columns: 260px minmax(0, 1fr);
     }
 
-    .about-profile-content {
-        padding: 2.4rem;
+    .profile-about-main {
+        padding: 2.8rem;
     }
 
-    .about-focus-grid {
+    .profile-about-expertise,
+    .profile-about-principles {
         grid-template-columns: 1fr;
+    }
+
+    .profile-about-expertise article {
+        min-height: auto;
     }
 }
 
 @media (max-width: 700px) {
-    .about-profile-sheet {
+    .profile-about-layout {
         grid-template-columns: 1fr;
     }
 
-    .about-profile-sidebar {
-        border-right: 0;
-        border-bottom: 1px solid #dfe3ea;
+    .profile-about-photo {
+        max-width: 260px;
     }
 
-    .about-profile-photo {
-        max-width: 250px;
-    }
-
-    .about-profile-content {
+    .profile-about-main {
         padding: 2rem 1.25rem;
     }
 
-    .about-value-list,
-    .about-highlight {
-        grid-template-columns: 1fr;
+    .profile-about-footer {
+        align-items: flex-start;
+        flex-direction: column;
     }
 }
