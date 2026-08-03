@@ -9,14 +9,14 @@ $photoPath = BASE_PATH
     . '/assets/images/profile/denos-formal.jpg';
 ?>
 
-<section class="recruiter-about">
+<section class="candidate-about">
     <div class="container">
 
-        <article class="recruiter-about-layout reveal">
+        <article class="candidate-about-layout reveal">
 
-            <aside class="recruiter-profile-card">
+            <aside class="candidate-about-sidebar">
 
-                <div class="recruiter-photo">
+                <div class="candidate-about-photo">
                     <?php if (is_file($photoPath)): ?>
                         <img
                             src="<?= asset(
@@ -25,147 +25,139 @@ $photoPath = BASE_PATH
                             alt="Formal portrait of Denos Kume"
                         >
                     <?php else: ?>
-                        <div class="recruiter-photo-placeholder">
+                        <div class="candidate-about-placeholder">
                             DK
                         </div>
                     <?php endif; ?>
                 </div>
 
-                <div class="recruiter-identity">
+                <div class="candidate-about-identity">
                     <h1>Denos Kume</h1>
 
                     <p>
-                        Machine Learning · Computer Vision ·
-                        Image Processing
+                        Master 2 Student in Data Science,
+                        Signal and Image Processing
                     </p>
                 </div>
 
-                <dl class="recruiter-profile-meta">
-                    <div>
-                        <dt>Location</dt>
-                        <dd>France</dd>
-                    </div>
-
-                    <div>
-                        <dt>Current level</dt>
-                        <dd>Master's student</dd>
-                    </div>
-
+                <dl class="candidate-about-details">
                     <div>
                         <dt>Institution</dt>
                         <dd>École Centrale de Nantes</dd>
                     </div>
 
                     <div>
+                        <dt>Location</dt>
+                        <dd>France</dd>
+                    </div>
+
+                    <div>
                         <dt>Languages</dt>
                         <dd>French · English</dd>
                     </div>
-                </dl>
 
-                <a
-                    href="<?= page_url('contact') ?>"
-                    class="recruiter-contact-link"
-                >
-                    Contact me
-                    <span aria-hidden="true">→</span>
-                </a>
+                    <div>
+                        <dt>Current Stage</dt>
+                        <dd>Final year of Master's programme</dd>
+                    </div>
+                </dl>
 
             </aside>
 
-            <div class="recruiter-about-content">
+            <div class="candidate-about-content">
 
-                <header class="recruiter-about-header">
-                    <p>Professional Profile</p>
+                <header class="candidate-about-header">
+                    <p>Professional Introduction</p>
 
                     <h2>
-                        AI engineering profile focused on
-                        practical systems and measurable results.
+                        A Master 2 student developing practical skills
+                        across data, signals and images.
                     </h2>
 
-                    <p class="recruiter-summary">
-                        I combine software, data, signal processing
-                        and visual computing to build reliable
-                        intelligent systems for real-world use cases.
+                    <p class="candidate-about-summary">
+                        I am completing a Master's programme at
+                        École Centrale de Nantes in Data Science,
+                        Signal and Image Processing.
+                    </p>
+
+                    <p class="candidate-about-summary">
+                        Through my coursework and projects, I am
+                        developing practical experience in machine
+                        learning, computer vision, image processing,
+                        signal processing and data analysis.
                     </p>
                 </header>
 
-                <section class="recruiter-value">
-                    <div>
-                        <span>Target roles</span>
+                <section class="candidate-about-section">
+                    <h3>Current Profile</h3>
 
-                        <strong>
-                            Machine Learning Engineer
-                        </strong>
-
-                        <strong>
-                            Computer Vision Engineer
-                        </strong>
-
-                        <strong>
-                            Image Processing Engineer
-                        </strong>
-                    </div>
-
-                    <div>
-                        <span>What I bring</span>
-
-                        <p>
-                            Structured problem solving, experimental
-                            discipline, clear documentation and the
-                            ability to translate theory into working
-                            implementations.
-                        </p>
-                    </div>
+                    <p>
+                        My academic background combines computer
+                        science, electronics and applied engineering.
+                        I am currently strengthening my ability to
+                        analyse technical problems, implement methods
+                        in code and evaluate results clearly.
+                    </p>
                 </section>
 
-                <section class="recruiter-section">
-                    <div class="recruiter-section-heading">
-                        <span>01</span>
-                        <h3>Core capability</h3>
-                    </div>
+                <section class="candidate-about-section">
+                    <h3>Areas of Specialization</h3>
 
-                    <div class="recruiter-capability-grid">
+                    <div class="candidate-specialization-grid">
 
                         <article>
-                            <h4>Machine Learning</h4>
+                            <strong>Machine Learning</strong>
 
                             <p>
                                 Classification, model evaluation,
-                                feature preparation, experimentation
-                                and performance comparison.
+                                data preparation and experimental
+                                comparison.
                             </p>
                         </article>
 
                         <article>
-                            <h4>Computer Vision</h4>
+                            <strong>Computer Vision</strong>
 
                             <p>
                                 Image analysis, feature extraction,
-                                segmentation and vision-oriented
-                                pipelines.
+                                segmentation and visual pipelines.
                             </p>
                         </article>
 
                         <article>
-                            <h4>Signal & Image Processing</h4>
+                            <strong>Image Processing</strong>
 
                             <p>
-                                Filtering, spectral analysis,
-                                time-frequency methods and
-                                signal-based interpretation.
+                                Filtering, transformation and
+                                analysis of digital images.
+                            </p>
+                        </article>
+
+                        <article>
+                            <strong>Signal Processing</strong>
+
+                            <p>
+                                Filtering, spectral analysis and
+                                time-frequency methods.
+                            </p>
+                        </article>
+
+                        <article>
+                            <strong>Data Science</strong>
+
+                            <p>
+                                Data exploration, statistical analysis
+                                and interpretation of results.
                             </p>
                         </article>
 
                     </div>
                 </section>
 
-                <section class="recruiter-section">
-                    <div class="recruiter-section-heading">
-                        <span>02</span>
-                        <h3>Technical stack</h3>
-                    </div>
+                <section class="candidate-about-section">
+                    <h3>Technical Skills</h3>
 
-                    <div class="recruiter-stack">
+                    <div class="candidate-skill-list">
                         <span>Python</span>
                         <span>NumPy</span>
                         <span>pandas</span>
@@ -178,89 +170,107 @@ $photoPath = BASE_PATH
                     </div>
                 </section>
 
-                <section class="recruiter-section">
-                    <div class="recruiter-section-heading">
-                        <span>03</span>
-                        <h3>Evidence</h3>
-                    </div>
+                <section class="candidate-about-section">
+                    <h3>Selected Projects</h3>
 
-                    <div class="recruiter-evidence">
-
-                        <div class="recruiter-evidence-metric">
-                            <strong>91.15%</strong>
-                            <span>Top-1 accuracy</span>
-                        </div>
-
-                        <div>
-                            <h4>
-                                Zero-Shot Audio Classification
-                                Using CLAP
-                            </h4>
-
-                            <p>
-                                Evaluated ten prompt strategies on
-                                ESC-50 and improved the class-name
-                                baseline by 8.10 percentage points.
-                            </p>
-
-                            <a href="<?= page_url('projects') ?>">
-                                View project
-                                <span aria-hidden="true">↗</span>
-                            </a>
-                        </div>
-
-                    </div>
-                </section>
-
-                <section class="recruiter-section">
-                    <div class="recruiter-section-heading">
-                        <span>04</span>
-                        <h3>How I work</h3>
-                    </div>
-
-                    <div class="recruiter-work-grid">
+                    <div class="candidate-project-list">
 
                         <article>
-                            <strong>Problem first</strong>
+                            <span>01</span>
 
-                            <p>
-                                Clarify the need, constraints and
-                                success criteria before implementation.
-                            </p>
+                            <div>
+                                <strong>
+                                    Zero-Shot Audio Classification
+                                    Using CLAP
+                                </strong>
+
+                                <p>
+                                    Evaluated prompt strategies on
+                                    ESC-50 and compared their impact
+                                    on classification performance.
+                                </p>
+                            </div>
                         </article>
 
                         <article>
-                            <strong>Evidence driven</strong>
+                            <span>02</span>
 
-                            <p>
-                                Compare approaches using meaningful
-                                metrics rather than intuition alone.
-                            </p>
+                            <div>
+                                <strong>
+                                    France Daily Temperature Analysis
+                                </strong>
+
+                                <p>
+                                    Applied decomposition,
+                                    stationarity analysis and ARIMA
+                                    modelling to time-series data.
+                                </p>
+                            </div>
                         </article>
 
                         <article>
-                            <strong>Clear delivery</strong>
+                            <span>03</span>
 
-                            <p>
-                                Keep code, documentation and results
-                                understandable and reproducible.
-                            </p>
+                            <div>
+                                <strong>Python for AI</strong>
+
+                                <p>
+                                    Structured exercises and
+                                    mini-projects focused on building
+                                    stronger Python foundations.
+                                </p>
+                            </div>
                         </article>
 
                     </div>
-                </section>
 
-                <footer class="recruiter-about-footer">
-                    <p>
-                        Currently preparing for industry opportunities
-                        in AI, computer vision and image processing.
-                    </p>
-
-                    <a href="<?= page_url('experience') ?>">
-                        View experience
+                    <a
+                        class="candidate-about-link"
+                        href="<?= page_url('projects') ?>"
+                    >
+                        View all projects
                         <span aria-hidden="true">↗</span>
                     </a>
-                </footer>
+                </section>
+
+                <section class="candidate-about-section">
+                    <h3>How I Work</h3>
+
+                    <ul class="candidate-work-list">
+                        <li>
+                            I prefer to understand the problem clearly
+                            before choosing a technical solution.
+                        </li>
+
+                        <li>
+                            I value structured, readable and
+                            reproducible work.
+                        </li>
+
+                        <li>
+                            I learn by combining coursework,
+                            experimentation and practical projects.
+                        </li>
+
+                        <li>
+                            I appreciate collaboration, feedback and
+                            clear technical communication.
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="candidate-about-section">
+                    <h3>Beyond Engineering</h3>
+
+                    <p>
+                        Alongside my technical studies, I have developed
+                        experience in customer service, teaching and
+                        international student coordination. These roles
+                        strengthened my communication, adaptability and
+                        ability to work with people from different
+                        backgrounds.
+                    </p>
+                </section>
 
             </div>
 
