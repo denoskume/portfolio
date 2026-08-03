@@ -5,105 +5,54 @@ $currentPage = 'home';
 
 require BASE_PATH . '/includes/header.php';
 
-$profilePhoto = BASE_PATH
-    . '/assets/images/profile/denos-formal.jpg';
+$bannerPath = BASE_PATH
+    . '/assets/images/branding/home-banner.png';
 ?>
 
-<section class="magazine-home">
-    <div class="container">
+<section class="home-banner">
 
-        <article class="magazine-cover reveal">
+    <?php if (is_file($bannerPath)): ?>
+        <img
+            class="home-banner-image"
+            src="<?= asset('images/branding/home-banner.png') ?>"
+            alt="Denos Kume presenting an artificial intelligence project"
+        >
+    <?php else: ?>
+        <div class="home-banner-placeholder">
+            <strong>Home banner missing</strong>
+            <span>
+                Add home-banner.png to
+                assets/images/branding/
+            </span>
+        </div>
+    <?php endif; ?>
 
-            <header class="magazine-masthead">
-                <div class="magazine-brand">
-                    <span>DK</span>
+    <div class="home-banner-overlay"></div>
 
-                    <strong>
-                        AI Engineering Portfolio
-                    </strong>
-                </div>
+    <div class="container home-banner-content">
 
-                <div class="magazine-issue">
-                    <span>Portfolio Edition</span>
-                    <strong>2026</strong>
-                </div>
-            </header>
+        <p class="home-banner-kicker">
+            AI Engineering Portfolio
+        </p>
 
-            <div class="magazine-rule"></div>
+        <h1>
+            Engineering intelligent systems
+            from data, signals and images.
+        </h1>
 
-            <div class="magazine-layout">
-
-                <div class="magazine-story">
-
-                    <p class="magazine-category">
-                        Machine Learning · Computer Vision ·
-                        Image Processing
-                    </p>
-
-                    <h1>
-                        Engineering
-                        intelligent systems
-                        with purpose.
-                    </h1>
-
-                    <p class="magazine-introduction">
-                        I am Denos Kume, a Master's student at
-                        École Centrale de Nantes, developing expertise
-                        in artificial intelligence, signal processing
-                        and visual computing.
-                    </p>
-
-                    <div class="magazine-byline">
-                        <span>Profile</span>
-
-                        <strong>
-                            Data Science, Signal and
-                            Image Processing
-                        </strong>
-                    </div>
-
-                </div>
-
-                <figure class="magazine-portrait">
-
-                    <?php if (is_file($profilePhoto)): ?>
-                        <img
-                            src="<?= asset(
-                                'images/profile/denos-formal.jpg'
-                            ) ?>"
-                            alt="Formal portrait of Denos Kume"
-                        >
-                    <?php else: ?>
-                        <div class="magazine-photo-placeholder">
-                            <strong>DK</strong>
-                            <span>Formal portrait</span>
-                        </div>
-                    <?php endif; ?>
-
-                    <figcaption>
-                        <strong>Denos Kume</strong>
-                        <span>AI Engineering Portfolio</span>
-                    </figcaption>
-
-                </figure>
-
-            </div>
-
-            <div class="magazine-rule"></div>
-
-            <footer class="magazine-cover-footer">
-                <p>
-                    Exploring AI through data, signals and images.
-                </p>
-
-                <span>
-                    France · 2026
-                </span>
-            </footer>
-
-        </article>
+        <p class="home-banner-description">
+            Denos Kume · Master's Student at
+            École Centrale de Nantes
+        </p>
 
     </div>
+
+    <div class="home-banner-caption">
+        <span>Machine Learning</span>
+        <span>Computer Vision</span>
+        <span>Image Processing</span>
+    </div>
+
 </section>
 
 <?php require BASE_PATH . '/includes/footer.php'; ?>
