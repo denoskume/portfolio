@@ -1,156 +1,147 @@
-.home-banner {
-    position: relative;
-    min-height: calc(100vh - var(--header-height));
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    background: #101722;
+
+.hero-home{
+
+position:relative;
+
+height:100vh;
+
+overflow:hidden;
+
+background:#111827;
+
 }
 
-.home-banner-image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
+.hero-image{
+
+position:absolute;
+
+inset:0;
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+object-position:center;
+
 }
 
-.home-banner-overlay {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(5, 10, 20, 0.93) 0%,
-            rgba(5, 10, 20, 0.78) 28%,
-            rgba(5, 10, 20, 0.35) 58%,
-            rgba(5, 10, 20, 0.08) 100%
-        ),
-        linear-gradient(
-            180deg,
-            rgba(5, 10, 20, 0.08) 55%,
-            rgba(5, 10, 20, 0.72) 100%
-        );
+.hero-overlay{
+
+position:absolute;
+
+inset:0;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+rgba(5,10,20,.90) 0%,
+
+rgba(5,10,20,.72) 30%,
+
+rgba(5,10,20,.30) 60%,
+
+rgba(5,10,20,.05) 100%
+
+),
+
+linear-gradient(
+
+180deg,
+
+transparent 55%,
+
+rgba(5,10,20,.70) 100%
+
+);
+
 }
 
-.home-banner-content {
-    position: relative;
-    z-index: 2;
-    padding-block: 5rem;
+.hero-content{
+
+position:relative;
+
+z-index:2;
+
+height:100%;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+max-width:650px;
+
+color:white;
+
 }
 
-.home-banner-kicker {
-    margin-bottom: 1.1rem;
-    color: #8fa4ff;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.17em;
-    text-transform: uppercase;
+.hero-kicker{
+
+margin-bottom:20px;
+
+color:#8fa4ff;
+
+font-size:.75rem;
+
+font-weight:800;
+
+letter-spacing:.18em;
+
+text-transform:uppercase;
+
 }
 
-.home-banner h1 {
-    max-width: 760px;
-    margin: 0;
-    color: #ffffff;
-    font-family: var(--font-heading);
-    font-size: clamp(3.4rem, 7vw, 7rem);
-    line-height: 0.94;
-    letter-spacing: -0.07em;
-    text-wrap: balance;
+.hero-content h1{
+
+margin:0;
+
+font-family:var(--font-heading);
+
+font-size:clamp(3.8rem,7vw,7rem);
+
+line-height:.92;
+
+letter-spacing:-.07em;
+
 }
 
-.home-banner-description {
-    max-width: 620px;
-    margin-top: 1.6rem;
-    color: rgba(255, 255, 255, 0.82);
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.7;
+.hero-subtitle{
+
+margin-top:28px;
+
+font-size:1rem;
+
+font-weight:500;
+
+color:rgba(255,255,255,.85);
+
 }
 
-.home-banner-caption {
-    position: absolute;
-    z-index: 2;
-    right: 2.5rem;
-    bottom: 2rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 0.6rem;
+@media(max-width:900px){
+
+.hero-home{
+
+height:85vh;
+
 }
 
-.home-banner-caption span {
-    padding: 0.48rem 0.75rem;
-    color: #ffffff;
-    background: rgba(11, 17, 28, 0.62);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 999px;
-    font-size: 0.68rem;
-    font-weight: 800;
-    backdrop-filter: blur(12px);
+.hero-image{
+
+object-position:62% center;
+
 }
 
-@media (max-width: 850px) {
-    .home-banner {
-        min-height: 760px;
-        align-items: flex-end;
-    }
+.hero-content h1{
 
-    .home-banner-image {
-        object-position: 56% center;
-    }
+font-size:4rem;
 
-    .home-banner-overlay {
-        background:
-            linear-gradient(
-                180deg,
-                rgba(5, 10, 20, 0.08) 20%,
-                rgba(5, 10, 20, 0.92) 78%,
-                rgba(5, 10, 20, 0.98) 100%
-            );
-    }
-
-    .home-banner-content {
-        padding-block: 4rem 8rem;
-    }
-
-    .home-banner h1 {
-        max-width: 650px;
-        font-size: clamp(3.2rem, 11vw, 5rem);
-    }
-
-    .home-banner-caption {
-        right: auto;
-        bottom: 2rem;
-        left: 1.25rem;
-        justify-content: flex-start;
-    }
 }
 
-@media (max-width: 560px) {
-    .home-banner {
-        min-height: 680px;
-    }
-
-    .home-banner-image {
-        object-position: 58% center;
-    }
-
-    .home-banner-content {
-        padding-block: 3rem 8rem;
-    }
-
-    .home-banner h1 {
-        font-size: 3.25rem;
-    }
-
-    .home-banner-description {
-        font-size: 0.9rem;
-    }
-
-    .home-banner-caption {
-        right: 1rem;
-        left: 1rem;
-    }
 }
+

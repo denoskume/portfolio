@@ -5,53 +5,38 @@ $currentPage = 'home';
 
 require BASE_PATH . '/includes/header.php';
 
-$bannerPath = BASE_PATH
-    . '/assets/images/branding/home-banner.png';
+$banner = BASE_PATH . '/assets/images/branding/home-banner.png';
 ?>
 
-<section class="home-banner">
+<section class="hero-home">
 
-    <?php if (is_file($bannerPath)): ?>
-        <img
-            class="home-banner-image"
-            src="<?= asset('images/branding/home-banner.png') ?>"
-            alt="Denos Kume presenting an artificial intelligence project"
-        >
-    <?php else: ?>
-        <div class="home-banner-placeholder">
-            <strong>Home banner missing</strong>
-            <span>
-                Add home-banner.png to
-                assets/images/branding/
-            </span>
-        </div>
-    <?php endif; ?>
+<?php if (is_file($banner)): ?>
 
-    <div class="home-banner-overlay"></div>
+<img
+    src="<?= asset('images/branding/home-banner.png') ?>"
+    class="hero-image"
+    alt="Denos Kume Presentation">
 
-    <div class="container home-banner-content">
+<?php endif; ?>
 
-        <p class="home-banner-kicker">
-            AI Engineering Portfolio
-        </p>
+<div class="hero-overlay"></div>
 
-        <h1>
-            Engineering intelligent systems
-            from data, signals and images.
-        </h1>
+<div class="container hero-content">
 
-        <p class="home-banner-description">
-            Denos Kume · Master's Student at
-            École Centrale de Nantes
-        </p>
+    <p class="hero-kicker">
+        AI ENGINEERING PORTFOLIO
+    </p>
 
-    </div>
+    <h1>
+        Engineering intelligent systems
+        from data, signals and images.
+    </h1>
 
-    <div class="home-banner-caption">
-        <span>Machine Learning</span>
-        <span>Computer Vision</span>
-        <span>Image Processing</span>
-    </div>
+    <p class="hero-subtitle">
+        Denos Kume · École Centrale de Nantes
+    </p>
+
+</div>
 
 </section>
 
