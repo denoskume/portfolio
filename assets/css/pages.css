@@ -91,3 +91,301 @@
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
 }
+
+/* ==================================================
+   ABOUT PAGE — PROFESSIONAL PAPER PRESENTATION
+================================================== */
+
+.about-paper-section {
+    padding-block: var(--space-8);
+    background:
+        linear-gradient(
+            180deg,
+            #edf0f4 0%,
+            #f8f9fb 100%
+        );
+}
+
+.about-paper {
+    display: grid;
+    grid-template-columns: 310px minmax(0, 1fr);
+    min-height: 1050px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(17, 24, 39, 0.13);
+}
+
+.about-sidebar {
+    padding: 2.5rem 2rem;
+    background: #f7f8fa;
+    border-right: 1px solid var(--color-border);
+}
+
+.about-photo-frame {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    margin-bottom: var(--space-5);
+    background: #e7eaf0;
+    border: 2px solid var(--color-primary);
+}
+
+.about-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.about-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-content: center;
+    gap: var(--space-2);
+    color: var(--color-text-muted);
+    text-align: center;
+    background:
+        linear-gradient(
+            135deg,
+            #f4f6f9,
+            #e4e8ef
+        );
+}
+
+.about-photo-placeholder span {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.about-photo-placeholder p {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.about-identity {
+    padding-bottom: var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.about-identity h1 {
+    margin-bottom: var(--space-2);
+    font-family: var(--font-heading);
+    font-size: 1.9rem;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+}
+
+.about-identity p {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+.about-sidebar-block {
+    padding-top: var(--space-5);
+}
+
+.about-sidebar-block + .about-sidebar-block {
+    margin-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+}
+
+.about-sidebar-block h2 {
+    margin-bottom: var(--space-4);
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.about-detail-list {
+    margin: 0;
+}
+
+.about-detail-list div {
+    padding-block: 0.72rem;
+    border-bottom: 1px dotted #a8b0bd;
+}
+
+.about-detail-list dt {
+    margin-bottom: 0.16rem;
+    color: var(--color-text-muted);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.about-detail-list dd {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 0.88rem;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.about-simple-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.about-simple-list li {
+    position: relative;
+    padding: 0.48rem 0 0.48rem 1rem;
+    color: var(--color-text-muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.about-simple-list li::before {
+    content: "";
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    background: var(--color-primary);
+    border-radius: 50%;
+}
+
+.about-main-content {
+    padding: 4.2rem 4.5rem;
+}
+
+.about-document-header {
+    padding-bottom: var(--space-6);
+    border-bottom: 2px solid var(--color-text);
+}
+
+.about-document-label {
+    margin-bottom: var(--space-3);
+    color: var(--color-primary);
+    font-size: var(--font-size-xs);
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.about-document-header h2 {
+    max-width: 800px;
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4.9rem);
+    line-height: 1.02;
+    letter-spacing: -0.055em;
+}
+
+.about-text-section {
+    padding-block: var(--space-6);
+    border-bottom: 1px dotted #8f98a7;
+}
+
+.about-text-section h3 {
+    margin-bottom: var(--space-4);
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.about-text-section p {
+    max-width: 850px;
+    color: #3e4754;
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+.about-text-section p + p {
+    margin-top: var(--space-4);
+}
+
+.about-quote {
+    margin: var(--space-7) 0 0;
+    padding: var(--space-5) var(--space-6);
+    color: #1e293b;
+    background: #f0f3f8;
+    border-left: 5px solid var(--color-primary);
+}
+
+.about-quote p {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    line-height: 1.6;
+}
+
+.about-quote cite {
+    display: block;
+    margin-top: var(--space-3);
+    color: var(--color-text-muted);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-sm);
+    font-style: normal;
+    font-weight: 700;
+}
+
+@media (max-width: 1000px) {
+    .about-paper {
+        grid-template-columns: 260px minmax(0, 1fr);
+    }
+
+    .about-sidebar {
+        padding: 2rem 1.5rem;
+    }
+
+    .about-main-content {
+        padding: 3rem;
+    }
+}
+
+@media (max-width: 760px) {
+    .about-paper-section {
+        padding-block: var(--space-5);
+    }
+
+    .about-paper {
+        grid-template-columns: 1fr;
+    }
+
+    .about-sidebar {
+        border-right: 0;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .about-photo-frame {
+        max-width: 270px;
+    }
+
+    .about-main-content {
+        padding: 2.2rem 1.4rem;
+    }
+
+    .about-document-header h2 {
+        font-size: 2.55rem;
+    }
+}
+
+@media print {
+    .site-header,
+    .site-footer {
+        display: none;
+    }
+
+    .about-paper-section {
+        padding: 0;
+        background: white;
+    }
+
+    .about-paper {
+        border: 0;
+        box-shadow: none;
+    }
+}
