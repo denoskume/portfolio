@@ -6,26 +6,27 @@
     background: #0b1220;
 }
 
-.banner-carousel-track {
+.banner-carousel-track,
+.banner-slide {
     position: absolute;
     inset: 0;
 }
 
 .banner-slide {
-    position: absolute;
-    inset: 0;
     margin: 0;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition:
-        opacity 900ms ease,
-        visibility 900ms ease;
+        opacity 850ms ease,
+        visibility 850ms ease;
 }
 
 .banner-slide.is-active {
+    z-index: 1;
     opacity: 1;
     visibility: visible;
-    z-index: 1;
+    pointer-events: auto;
 }
 
 .banner-slide img {
@@ -39,43 +40,40 @@
 .banner-control {
     position: absolute;
     top: 50%;
-    z-index: 3;
-    width: 48px;
-    height: 48px;
+    z-index: 5;
+    width: 46px;
+    height: 46px;
     display: grid;
     place-items: center;
+    padding: 0;
     color: #ffffff;
-    background: rgba(7, 12, 22, 0.62);
-    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(7, 12, 22, 0.64);
+    border: 1px solid rgba(255, 255, 255, 0.30);
     border-radius: 50%;
     font-size: 2rem;
     line-height: 1;
     transform: translateY(-50%);
-    backdrop-filter: blur(12px);
-    transition:
-        background 180ms ease,
-        transform 180ms ease;
+    backdrop-filter: blur(10px);
 }
 
 .banner-control:hover {
     background: #3157ff;
-    transform: translateY(-50%) scale(1.05);
 }
 
 .banner-previous {
-    left: 1.5rem;
+    left: 1.25rem;
 }
 
 .banner-next {
-    right: 1.5rem;
+    right: 1.25rem;
 }
 
 .banner-pagination {
     position: absolute;
     right: 0;
-    bottom: 1.5rem;
+    bottom: 1.25rem;
     left: 0;
-    z-index: 3;
+    z-index: 5;
     display: flex;
     justify-content: center;
     gap: 0.5rem;
@@ -85,12 +83,13 @@
     width: 8px;
     height: 8px;
     padding: 0;
-    background: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.48);
     border: 0;
     border-radius: 999px;
+    cursor: pointer;
     transition:
-        width 250ms ease,
-        background 250ms ease;
+        width 200ms ease,
+        background 200ms ease;
 }
 
 .banner-pagination-dot.is-active {
@@ -98,31 +97,37 @@
     background: #ffffff;
 }
 
-@media (max-width: 700px) {
-    .banner-carousel {
-        aspect-ratio: 16 / 9;
-    }
+.banner-empty {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    gap: 0.5rem;
+    padding: 2rem;
+    color: #ffffff;
+    text-align: center;
+}
 
+.banner-empty span {
+    color: #aab4c4;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 700px) {
     .banner-control {
         width: 40px;
         height: 40px;
     }
 
     .banner-previous {
-        left: 0.75rem;
+        left: 0.7rem;
     }
 
     .banner-next {
-        right: 0.75rem;
+        right: 0.7rem;
     }
 
     .banner-pagination {
-        bottom: 0.8rem;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .banner-slide {
-        transition: none;
+        bottom: 0.75rem;
     }
 }
