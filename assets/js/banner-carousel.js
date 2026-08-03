@@ -5,175 +5,143 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const track = carousel.querySelector('.banner-carousel-track');
     const slides = Array.from(
         carousel.querySelectorAll('.banner-slide')
     );
     const previousButton = carousel.querySelector(
-        '.banner-control-previous'
+        '.banner-previous'
     );
     const nextButton = carousel.querySelector(
-        '.banner-control-next'
+        '.banner-next'
     );
     const pagination = carousel.querySelector(
         '.banner-pagination'
     );
 
-    if (!track || slides.length === 0) {
+    if (slides.length === 0) {
         return;
     }
 
     let currentIndex = 0;
     let autoPlayTimer = null;
-    const autoPlayDelay = 4500;
+    const autoPlayDelay = 5000;
 
-    const visibleSlides = () => {
-        if (window.innerWidth <= 620) {
-            return 1;
-        }
+    slides.forEach((slide, index) => {
+        const dot = document.createElement('button');
 
-        if (window.innerWidth <= 900) {
-            return 2;
-        }
-
-        return 3;
-    };
-
-    const maximumIndex = () => {
-        return Math.max(0, slides.length - visibleSlides());
-    };
-
-    const slideStep = () => {
-        if (slides.length < 2) {
-            return 0;
-        }
-
-        const firstSlide = slides[0];
-        const secondSlide = slides[1];
-
-        return secondSlide.offsetLeft - firstSlide.offsetLeft;
-    };
-
-    const createPagination = () => {
-        pagination.innerHTML = '';
-
-        const pageCount = maximumIndex() + 1;
-
-        for (let index = 0; index < pageCount; index += 1) {
-            const dot = document.createElement('button');
-
-            dot.type = 'button';
-            dot.className = 'banner-pagination-dot';
-            dot.setAttribute(
-                'aria-label',
-                `Show banner group ${index + 1}`
-            );
-
-            dot.addEventListener('click', () => {
-                currentIndex = index;
-                updateCarousel();
-                restartAutoPlay();
-            });
-
-            pagination.appendChild(dot);
-        }
-    };
-
-    const updateCarousel = () => {
-        const maxIndex = maximumIndex();
-
-        if (currentIndex > maxIndex) {
-            currentIndex = 0;
-        }
-
-        const offset = currentIndex * slideStep();
-
-        track.style.transform = `translateX(-${offset}px)`;
-
-        const dots = pagination.querySelectorAll(
-            '.banner-pagination-dot'
+        dot.type = 'button';
+        dot.className = 'banner-pagination-dot';
+        dot.setAttribute(
+            'aria-label',
+            `Show banner ${index + 1}`
         );
 
-        dots.forEach((dot, index) => {
-            dot.classList.toggle(
+        dot.addEventListener('click', () => {
+            showSlide(index);
+            restartAutoPlay();
+        });
+
+        pagination.appendChild(dot);
+    });
+
+    const dots = Array.from(
+        pagination.querySelectorAll(
+            '.banner-pagination-dot'
+        )
+    );
+
+    function showSlide(index) {
+        currentIndex = (
+            index + slides.length
+        ) % slides.length;
+
+        slides.forEach((slide, slideIndex) => {
+            const isActive = slideIndex === currentIndex;
+
+            slide.classList.toggle(
                 'is-active',
-                index === currentIndex
+                isActive
+            );
+
+            slide.setAttribute(
+                'aria-hidden',
+                String(!isActive)
             );
         });
-    };
 
-    const next = () => {
-        const maxIndex = maximumIndex();
+        dots.forEach((dot, dotIndex) => {
+            dot.classList.toggle(
+                'is-active',
+                dotIndex === currentIndex
+            );
+        });
+    }
 
-        currentIndex =
-            currentIndex >= maxIndex
-                ? 0
-                : currentIndex + 1;
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
 
-        updateCarousel();
-    };
+    function previousSlide() {
+        showSlide(currentIndex - 1);
+    }
 
-    const previous = () => {
-        const maxIndex = maximumIndex();
-
-        currentIndex =
-            currentIndex <= 0
-                ? maxIndex
-                : currentIndex - 1;
-
-        updateCarousel();
-    };
-
-    const stopAutoPlay = () => {
+    function stopAutoPlay() {
         if (autoPlayTimer !== null) {
             window.clearInterval(autoPlayTimer);
             autoPlayTimer = null;
         }
-    };
+    }
 
-    const startAutoPlay = () => {
+    function startAutoPlay() {
         stopAutoPlay();
 
         if (
-            slides.length > visibleSlides()
+            slides.length > 1
             && !window.matchMedia(
                 '(prefers-reduced-motion: reduce)'
             ).matches
         ) {
             autoPlayTimer = window.setInterval(
-                next,
+                nextSlide,
                 autoPlayDelay
             );
         }
-    };
+    }
 
-    const restartAutoPlay = () => {
+    function restartAutoPlay() {
         startAutoPlay();
-    };
+    }
 
     previousButton?.addEventListener('click', () => {
-        previous();
+        previousSlide();
         restartAutoPlay();
     });
 
     nextButton?.addEventListener('click', () => {
-        next();
+        nextSlide();
         restartAutoPlay();
     });
 
-    carousel.addEventListener('mouseenter', stopAutoPlay);
-    carousel.addEventListener('mouseleave', startAutoPlay);
-    carousel.addEventListener('focusin', stopAutoPlay);
-    carousel.addEventListener('focusout', startAutoPlay);
+    carousel.addEventListener(
+        'mouseenter',
+        stopAutoPlay
+    );
 
-    window.addEventListener('resize', () => {
-        currentIndex = 0;
-        createPagination();
-        updateCarousel();
-        restartAutoPlay();
-    });
+    carousel.addEventListener(
+        'mouseleave',
+        startAutoPlay
+    );
 
-    createPagination();
-    updateCarousel();
+    carousel.addEventListener(
+        'focusin',
+        stopAutoPlay
+    );
+
+    carousel.addEventListener(
+        'focusout',
+        startAutoPlay
+    );
+
+    showSlide(0);
     startAutoPlay();
 });
