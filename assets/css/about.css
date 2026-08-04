@@ -387,3 +387,25 @@
     box-shadow: none !important;
 }
 
+
+/* Final About heading override */
+
+.about-page .about-content .about-header h2 {
+    max-width: 820px;
+    font-size: clamp(2rem, 2.65vw, 2.75rem) !important;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.6rem;
+}
+
+@media (max-width: 900px) {
+    .about-page .about-content .about-header h2 {
+        font-size: clamp(2rem, 4.5vw, 2.6rem) !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .about-page .about-content .about-header h2 {
+        font-size: 2.15rem !important;
+    }
+}
