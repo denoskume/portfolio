@@ -9,14 +9,14 @@ $photoPath = BASE_PATH
     . '/assets/images/profile/denos-formal.jpg';
 ?>
 
-<section class="candidate-about">
+<section class="about-page">
     <div class="container">
 
-        <article class="candidate-about-layout reveal">
+        <article class="about-layout reveal">
 
-            <aside class="candidate-about-sidebar">
+            <aside class="about-sidebar">
 
-                <div class="candidate-about-photo">
+                <div class="about-photo">
                     <?php if (is_file($photoPath)): ?>
                         <img
                             src="<?= asset(
@@ -25,27 +25,29 @@ $photoPath = BASE_PATH
                             alt="Formal portrait of Denos Kume"
                         >
                     <?php else: ?>
-                        <div class="candidate-about-placeholder">
+                        <div class="about-photo-placeholder">
                             DK
                         </div>
                     <?php endif; ?>
                 </div>
 
-                <div class="candidate-about-identity">
+                <div class="about-identity">
                     <h1>Denos Kume</h1>
 
-                    <p>
-                        Master 2 Student in Data Science,
-                        Signal and Image Processing
+                    <p class="about-title">
+                        Final-year MSc Student
+                    </p>
+
+                    <p class="about-programme">
+                        Data Science, Signal and Image Processing
+                    </p>
+
+                    <p class="about-school">
+                        École Centrale de Nantes
                     </p>
                 </div>
 
-                <dl class="candidate-about-details">
-                    <div>
-                        <dt>Institution</dt>
-                        <dd>École Centrale de Nantes</dd>
-                    </div>
-
+                <dl class="about-details">
                     <div>
                         <dt>Location</dt>
                         <dd>France</dd>
@@ -57,60 +59,64 @@ $photoPath = BASE_PATH
                     </div>
 
                     <div>
-                        <dt>Current Stage</dt>
-                        <dd>Final year of Master's programme</dd>
+                        <dt>Academic background</dt>
+                        <dd>
+                            Computer Science and Electronics
+                        </dd>
                     </div>
                 </dl>
 
             </aside>
 
-            <div class="candidate-about-content">
+            <div class="about-content">
 
-                <header class="candidate-about-header">
-                    <p>Professional Introduction</p>
-
-                    <h2>
-                        A Master 2 student developing practical skills
-                        across data, signals and images.
-                    </h2>
-
-                    <p class="candidate-about-summary">
-                        I am completing a Master's programme at
-                        École Centrale de Nantes in Data Science,
-                        Signal and Image Processing.
+                <header class="about-header">
+                    <p class="about-label">
+                        Professional Introduction
                     </p>
 
-                    <p class="candidate-about-summary">
-                        Through my coursework and projects, I am
-                        developing practical experience in machine
-                        learning, computer vision, image processing,
-                        signal processing and data analysis.
+                    <h2>
+                        Building practical skills across
+                        data, signals and images.
+                    </h2>
+
+                    <p class="about-summary">
+                        I am a final-year MSc student at École Centrale
+                        de Nantes, developing practical experience in
+                        machine learning, computer vision, image
+                        processing, signal processing and data analysis.
                     </p>
                 </header>
 
-                <section class="candidate-about-section">
-                    <h3>Current Profile</h3>
+                <section class="about-section">
+                    <h3>Who I Am</h3>
 
                     <p>
-                        My academic background combines computer
-                        science, electronics and applied engineering.
-                        I am currently strengthening my ability to
-                        analyse technical problems, implement methods
-                        in code and evaluate results clearly.
+                        My background combines computer science,
+                        electronics and applied engineering. Through
+                        coursework and projects, I am learning how to
+                        analyse technical problems, implement suitable
+                        methods and evaluate results clearly.
+                    </p>
+
+                    <p>
+                        I enjoy working on problems where data, signals
+                        or images must be transformed into useful
+                        information, predictions or decisions.
                     </p>
                 </section>
 
-                <section class="candidate-about-section">
+                <section class="about-section">
                     <h3>Areas of Specialization</h3>
 
-                    <div class="candidate-specialization-grid">
+                    <div class="about-specializations">
 
                         <article>
                             <strong>Machine Learning</strong>
 
                             <p>
-                                Classification, model evaluation,
-                                data preparation and experimental
+                                Classification, data preparation,
+                                model evaluation and experimental
                                 comparison.
                             </p>
                         </article>
@@ -129,7 +135,7 @@ $photoPath = BASE_PATH
 
                             <p>
                                 Filtering, transformation and
-                                analysis of digital images.
+                                interpretation of digital images.
                             </p>
                         </article>
 
@@ -154,10 +160,10 @@ $photoPath = BASE_PATH
                     </div>
                 </section>
 
-                <section class="candidate-about-section">
+                <section class="about-section">
                     <h3>Technical Skills</h3>
 
-                    <div class="candidate-skill-list">
+                    <div class="about-skills">
                         <span>Python</span>
                         <span>NumPy</span>
                         <span>pandas</span>
@@ -170,10 +176,10 @@ $photoPath = BASE_PATH
                     </div>
                 </section>
 
-                <section class="candidate-about-section">
-                    <h3>Selected Projects</h3>
+                <section class="about-section">
+                    <h3>Selected Work</h3>
 
-                    <div class="candidate-project-list">
+                    <div class="about-projects">
 
                         <article>
                             <span>01</span>
@@ -186,7 +192,7 @@ $photoPath = BASE_PATH
 
                                 <p>
                                     Evaluated prompt strategies on
-                                    ESC-50 and compared their impact
+                                    ESC-50 and analysed their effect
                                     on classification performance.
                                 </p>
                             </div>
@@ -216,8 +222,8 @@ $photoPath = BASE_PATH
 
                                 <p>
                                     Structured exercises and
-                                    mini-projects focused on building
-                                    stronger Python foundations.
+                                    mini-projects created to strengthen
+                                    Python and software foundations.
                                 </p>
                             </div>
                         </article>
@@ -225,7 +231,7 @@ $photoPath = BASE_PATH
                     </div>
 
                     <a
-                        class="candidate-about-link"
+                        class="about-project-link"
                         href="<?= page_url('projects') ?>"
                     >
                         View all projects
@@ -233,42 +239,41 @@ $photoPath = BASE_PATH
                     </a>
                 </section>
 
-                <section class="candidate-about-section">
+                <section class="about-section">
                     <h3>How I Work</h3>
 
-                    <ul class="candidate-work-list">
+                    <ul class="about-work-list">
                         <li>
-                            I prefer to understand the problem clearly
-                            before choosing a technical solution.
+                            I first clarify the problem, constraints
+                            and expected result.
                         </li>
 
                         <li>
-                            I value structured, readable and
+                            I prefer structured, readable and
                             reproducible work.
                         </li>
 
                         <li>
-                            I learn by combining coursework,
+                            I learn through coursework,
                             experimentation and practical projects.
                         </li>
 
                         <li>
-                            I appreciate collaboration, feedback and
-                            clear technical communication.
+                            I value collaboration, constructive
+                            feedback and clear communication.
                         </li>
                     </ul>
                 </section>
 
-                <section class="candidate-about-section">
-                    <h3>Beyond Engineering</h3>
+                <section class="about-section about-final-section">
+                    <h3>Beyond Technical Work</h3>
 
                     <p>
-                        Alongside my technical studies, I have developed
-                        experience in customer service, teaching and
-                        international student coordination. These roles
-                        strengthened my communication, adaptability and
-                        ability to work with people from different
-                        backgrounds.
+                        My experience in customer service, teaching and
+                        international student coordination has helped
+                        me develop adaptability, responsibility and the
+                        ability to communicate with people from
+                        different backgrounds.
                     </p>
                 </section>
 
