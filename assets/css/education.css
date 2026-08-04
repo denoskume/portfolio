@@ -232,3 +232,20 @@
 .education-link{
     margin-top:auto;
 }
+
+
+.education-card h2 a{
+    color:inherit;
+    text-decoration:none;
+    transition:color .2s ease;
+}
+
+.education-card h2 a:hover{
+    color:#3157ff;
+}
+
+.education-link{
+    justify-content:center;
+    text-decoration:none;
+}
+

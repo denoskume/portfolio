@@ -26,7 +26,13 @@ require BASE_PATH . '/includes/header.php';
             
 <article class="education-card reveal">
 
-    <h2>École Centrale de Nantes</h2>
+    <h2>
+    <a href="https://www.ec-nantes.fr/"
+       target="_blank"
+       rel="noopener noreferrer">
+        École Centrale de Nantes
+    </a>
+</h2>
 
     <p class="education-degree">
         MSc
@@ -51,7 +57,7 @@ require BASE_PATH . '/includes/header.php';
         rel="noopener noreferrer"
         class="education-link"
     >
-        Official Website ↗
+        Explore Coursework →
     </a>
 
 </article>
@@ -60,7 +66,13 @@ require BASE_PATH . '/includes/header.php';
             
 <article class="education-card reveal">
 
-    <h2>Kristu Jayanti University</h2>
+    <h2>
+    <a href="https://www.kristujayanti.edu.in/"
+       target="_blank"
+       rel="noopener noreferrer">
+        Kristu Jayanti University
+    </a>
+</h2>
 
     <p class="education-degree">
         Bachelor's Degree
@@ -85,7 +97,7 @@ require BASE_PATH . '/includes/header.php';
         rel="noopener noreferrer"
         class="education-link"
     >
-        Official Website ↗
+        Explore Coursework →
     </a>
 
 </article>
