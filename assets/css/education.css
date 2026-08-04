@@ -38,10 +38,10 @@
 }
 
 .education-card {
-    min-height: 560px;
+    min-height: 430px;
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 1.5rem;
     background: #ffffff;
     border: 1px solid #dfe3ea;
     border-radius: 18px;
@@ -63,7 +63,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.6rem;
 }
 
 .education-level {
@@ -201,7 +201,7 @@
 }
 
 .education-degree{
-    margin-top:2rem;
+    margin-top: 1.2rem;
     font-size:1rem;
     font-weight:700;
     color:#111827;
@@ -214,7 +214,7 @@
 }
 
 .education-info{
-    margin-top:2rem;
+    margin-top: 1.2rem;
 }
 
 .education-info p{
@@ -224,7 +224,7 @@
 }
 
 .education-graduation{
-    margin-top:2rem;
+    margin-top: 1.2rem;
     font-weight:600;
     color:#111827;
 }
@@ -247,5 +247,39 @@
 .education-link{
     justify-content:center;
     text-decoration:none;
+}
+
+
+
+/* ===== Compact Education Cards ===== */
+
+.education-card{
+    min-height:430px;
+    padding:1.5rem;
+}
+
+.education-card h2{
+    font-size:2rem;
+    margin-bottom:1.2rem;
+}
+
+.education-degree{
+    margin-top:0.8rem;
+}
+
+.education-programme{
+    margin-top:0.35rem;
+}
+
+.education-info{
+    margin-top:1.25rem;
+}
+
+.education-graduation{
+    margin-top:1.25rem;
+}
+
+.education-link{
+    margin-top:1.5rem;
 }
 
