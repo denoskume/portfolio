@@ -262,3 +262,45 @@
     }
 }
 
+
+
+/* ===== Master Skills by Programme Major ===== */
+
+.master-major-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.master-major-card {
+    padding: 1.4rem;
+    background: #f8f9fb;
+    border: 1px solid #d9dee6;
+    border-top: 3px solid #10213c;
+    border-radius: 14px;
+}
+
+.master-major-card h3 {
+    margin: 0 0 1rem;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    line-height: 1.3;
+}
+
+.master-major-card ul {
+    margin: 0;
+    padding-left: 1.15rem;
+}
+
+.master-major-card li {
+    margin: 0.55rem 0;
+    color: #495466;
+    line-height: 1.55;
+}
+
+@media (max-width: 980px) {
+    .master-major-grid {
+        grid-template-columns: 1fr;
+    }
+}

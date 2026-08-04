@@ -250,105 +250,95 @@ require BASE_PATH . '/includes/header.php';
 
             </article>
 
-            <!-- SKILLS DEVELOPED -->
-            <article class="coursework-panel reveal">
+            
+<!-- SKILLS DEVELOPED -->
+<article class="coursework-panel reveal">
 
-                <button
-                    class="coursework-trigger"
-                    type="button"
-                    aria-expanded="false"
-                    aria-controls="coursework-skills"
-                >
-                    <span>Skills Developed</span>
+    <button
+        class="coursework-trigger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="coursework-skills"
+    >
+        <span>Skills Developed</span>
 
-                    <span
-                        class="coursework-trigger-icon"
-                        aria-hidden="true"
-                    >
-                        +
-                    </span>
-                </button>
+        <span
+            class="coursework-trigger-icon"
+            aria-hidden="true"
+        >
+            +
+        </span>
+    </button>
 
-                <div
-                    id="coursework-skills"
-                    class="coursework-panel-content"
-                    hidden
-                >
-                    <div class="coursework-panel-inner">
+    <div
+        id="coursework-skills"
+        class="coursework-panel-content"
+        hidden
+    >
+        <div class="coursework-panel-inner">
 
-                        <h2>
-                            Technical and Engineering Foundations
-                        </h2>
+            <h2>Industry-Aligned Skills Developed</h2>
 
-                        <div class="coursework-skills-grid">
+            <div class="master-major-grid">
 
-                            <article>
-                                <span>01</span>
-                                <h3>Machine Learning</h3>
-                                <p>
-                                    Classification, model evaluation,
-                                    data analysis and experimental
-                                    comparison.
-                                </p>
-                            </article>
+                <article class="master-major-card">
 
-                            <article>
-                                <span>02</span>
-                                <h3>Computer Vision</h3>
-                                <p>
-                                    Image analysis, feature extraction,
-                                    visual representation and
-                                    segmentation.
-                                </p>
-                            </article>
+                    <h3>Data Science &amp; Machine Learning</h3>
 
-                            <article>
-                                <span>03</span>
-                                <h3>Signal Processing</h3>
-                                <p>
-                                    Filtering, spectral analysis,
-                                    time-frequency analysis and
-                                    system identification.
-                                </p>
-                            </article>
+                    <ul>
+                        <li>Data Preparation and Exploration</li>
+                        <li>Statistical Analysis and Interpretation</li>
+                        <li>Machine Learning Model Development</li>
+                        <li>Model Evaluation and Comparison</li>
+                        <li>Feature Engineering</li>
+                        <li>Information Retrieval</li>
+                        <li>Experimental Design</li>
+                        <li>Reproducible Data Workflows</li>
+                    </ul>
 
-                            <article>
-                                <span>04</span>
-                                <h3>Image Processing</h3>
-                                <p>
-                                    Image filtering, restoration,
-                                    inversion and representation.
-                                </p>
-                            </article>
+                </article>
 
-                            <article>
-                                <span>05</span>
-                                <h3>Optimization</h3>
-                                <p>
-                                    Mathematical modelling,
-                                    constrained optimization and
-                                    numerical methods.
-                                </p>
-                            </article>
+                <article class="master-major-card">
 
-                            <article>
-                                <span>06</span>
-                                <h3>Scientific Computing</h3>
-                                <p>
-                                    Python-based experimentation,
-                                    numerical analysis and
-                                    reproducible workflows.
-                                </p>
-                            </article>
+                    <h3>Computer Vision &amp; Image Processing</h3>
 
-                        </div>
+                    <ul>
+                        <li>Image Analysis and Representation</li>
+                        <li>Feature Extraction</li>
+                        <li>Image Filtering and Enhancement</li>
+                        <li>Segmentation and Visual Interpretation</li>
+                        <li>Image Restoration and Inverse Problems</li>
+                        <li>Computer Vision Pipeline Design</li>
+                        <li>Performance Evaluation</li>
+                        <li>Applied Visual Computing</li>
+                    </ul>
 
-                    </div>
-                </div>
+                </article>
 
-            </article>
+                <article class="master-major-card">
+
+                    <h3>Signal Processing &amp; Applied Mathematics</h3>
+
+                    <ul>
+                        <li>Signal Filtering and Denoising</li>
+                        <li>Spectral and Time-Frequency Analysis</li>
+                        <li>System Identification</li>
+                        <li>Stochastic Modelling</li>
+                        <li>Optimization for Engineering Problems</li>
+                        <li>Mathematical Modelling</li>
+                        <li>Numerical Methods</li>
+                        <li>Scientific Computing</li>
+                    </ul>
+
+                </article>
+
+            </div>
 
         </div>
+    </div>
+
+</article>
+</div>
 
     </div>
 </section>
