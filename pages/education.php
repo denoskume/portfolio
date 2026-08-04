@@ -52,9 +52,7 @@ require BASE_PATH . '/includes/header.php';
     </p>
 
     <a
-        href="https://www.ec-nantes.fr/"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="<?= page_url('coursework') ?>?program=master"
         class="education-link"
     >
         Explore Coursework →
