@@ -208,3 +208,16 @@
         min-width: 760px;
     }
 }
+
+
+.bachelor-year-placeholder {
+    padding: 2rem;
+    color: #667085;
+    background: #f7f8fa;
+    border: 1px solid #e0e4ea;
+}
+
+.bachelor-year-placeholder p {
+    margin: 0;
+    line-height: 1.7;
+}

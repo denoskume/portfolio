@@ -90,9 +90,7 @@ require BASE_PATH . '/includes/header.php';
     </p>
 
     <a
-        href="https://www.kristujayanti.edu.in/"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="<?= page_url('bachelor-coursework') ?>"
         class="education-link"
     >
         Explore Coursework →
