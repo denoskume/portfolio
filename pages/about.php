@@ -78,17 +78,15 @@ $photoPath = BASE_PATH
     <div class="about-introduction">
 
         <p>
-            Born in
-            M'Batto, Côte d'Ivoire,
-            Denos earned a Bachelor's degree in Computer Science and Electronics
-            from
-            <a href="https://www.kristujayanti.edu.in/"
-               target="_blank"
-               rel="noopener noreferrer">
-                Kristu Jayanti University
-            </a>
-            in January 2025.
-        </p>
+    Born in M'Batto, Côte d'Ivoire, Denos studied Computer Science and
+    Electronics at
+    <a href="https://www.kristujayanti.edu.in/"
+       target="_blank"
+       rel="noopener noreferrer">
+        Kristu Jayanti University
+    </a>,
+    graduating with a Bachelor's degree in January 2025.
+</p>
 
         <p>
             In September 2025, he joined
