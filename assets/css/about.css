@@ -106,8 +106,10 @@
     line-height: 1.45;
 }
 
-.about-content {
-    padding: 3rem 3.5rem;
+.about-content{
+    width:min(900px,100%);
+    margin:0 auto;
+    padding:3.5rem 4rem;
 }
 
 .about-header {
@@ -124,12 +126,13 @@
     text-transform: uppercase;
 }
 
-.about-header h2 {
-    max-width: 780px;
-    font-family: var(--font-heading);
-    font-size: clamp(2.25rem, 3.8vw, 3.35rem);
-    line-height: 1.08;
-    letter-spacing: -0.05em;
+.about-header h2{
+    max-width:760px;
+    font-family:var(--font-heading);
+    font-size:clamp(2.4rem,4vw,3.6rem);
+    line-height:1.08;
+    letter-spacing:-0.05em;
+    margin-bottom:2rem;
 }
 
 .about-summary {
@@ -269,9 +272,11 @@
         grid-template-columns: 290px minmax(0, 1fr);
     }
 
-    .about-content {
-        padding: 2.4rem;
-    }
+    .about-content{
+    width:min(900px,100%);
+    margin:0 auto;
+    padding:3.5rem 4rem;
+}
 }
 
 @media (max-width: 700px) {
@@ -283,9 +288,11 @@
         max-width: 280px;
     }
 
-    .about-content {
-        padding: 2rem 1.25rem;
-    }
+    .about-content{
+    width:min(900px,100%);
+    margin:0 auto;
+    padding:3.5rem 4rem;
+}
 
     .about-specializations {
         grid-template-columns: 1fr;
@@ -320,35 +327,51 @@
     display: none;
 }
 
-.about-header h2 {
-    margin-top: 0;
+.about-header h2{
+    max-width:760px;
+    font-family:var(--font-heading);
+    font-size:clamp(2.4rem,4vw,3.6rem);
+    line-height:1.08;
+    letter-spacing:-0.05em;
+    margin-bottom:2rem;
 }
 
-.about-introduction {
-    max-width: 820px;
-    margin-top: 1.35rem;
+.about-introduction{
+    width:100%;
+    max-width:760px;
 }
 
-.about-introduction p {
-    color: #596474;
-    font-size: 0.98rem;
-    line-height: 1.75;
+.about-introduction p{
+    width:100%;
+    max-width:760px;
+
+    margin:0 0 1.5rem;
+
+    color:#4b5563;
+    font-size:1.03rem;
+    line-height:1.95;
+
+    text-align:justify;
+    text-align-last:left;
+
+    hyphens:auto;
+    -webkit-hyphens:auto;
 }
 
 .about-introduction p + p {
     margin-top: 0.7rem;
 }
 
-.about-introduction a {
-    color: #3157ff;
-    font-weight: 700;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
+.about-introduction a{
+    color:#3157ff;
+    font-weight:600;
+    text-decoration:none !important;
+    white-space:normal;
 }
 
-.about-introduction a:hover {
-    color: #1f3ed2;
+.about-introduction a:hover{
+    color:#2446df;
+    text-decoration:none !important;
 }
 
 /* About page links */
