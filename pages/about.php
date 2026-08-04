@@ -72,8 +72,7 @@ $photoPath = BASE_PATH
 <header class="about-header">
 
     <h2>
-        From Côte d'Ivoire to applied engineering
-        in data, signals and images.
+        Machine Learning • Computer Vision • Signal & Image Processing
     </h2>
 
     <div class="about-introduction">
