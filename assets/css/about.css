@@ -313,3 +313,40 @@
         height: 285px;
     }
 }
+
+/* Simplified About introduction */
+
+.about-label {
+    display: none;
+}
+
+.about-header h2 {
+    margin-top: 0;
+}
+
+.about-introduction {
+    max-width: 820px;
+    margin-top: 1.35rem;
+}
+
+.about-introduction p {
+    color: #596474;
+    font-size: 0.98rem;
+    line-height: 1.75;
+}
+
+.about-introduction p + p {
+    margin-top: 0.7rem;
+}
+
+.about-introduction a {
+    color: #3157ff;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+.about-introduction a:hover {
+    color: #1f3ed2;
+}
