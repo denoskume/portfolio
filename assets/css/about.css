@@ -445,3 +445,18 @@
     letter-spacing: -0.05em !important;
 }
 
+
+/* ===== FINAL OVERRIDE - ABOUT TITLE ===== */
+
+.about-page .about-header h2{
+    font-size: 6rem !important;      /* +40% */
+    font-weight: 800 !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.06em !important;
+
+    max-width: 1200px !important;
+    width: 100% !important;
+
+    margin-bottom: 2rem !important;
+}
+
