@@ -13,6 +13,7 @@ $allowedPages = [
     'contact',
     'coursework',
     'coursework-year',
+    'bachelor-coursework',
 ];
 
 $requestedPage = $_GET['page'] ?? 'home';
