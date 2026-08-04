@@ -68,69 +68,65 @@ $photoPath = BASE_PATH
 
             <div class="about-content">
 
-                <header class="about-header">
+                
+<header class="about-header">
 
-                    <h2>
-                        From Côte d’Ivoire to applied engineering
-                        in data, signals and images.
-                    </h2>
+    <h2>
+        From Côte d'Ivoire to applied engineering
+        in data, signals and images.
+    </h2>
 
-                    <div class="about-introduction">
+    <div class="about-introduction">
 
-                        <p>
-                            Born in
-                            <a
-                                href="https://tourismecotedivoire.ci/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                M'Batto, Côte d'Ivoire
-                            </a>,
-                            Denos studied Computer Science and Electronics at
-                            <a
-                                href="https://www.kristujayanti.edu.in/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Kristu Jayanti University
-                            </a>,
-                            graduating with a Bachelor's degree in January 2025.
-                        </p>
+        <p>
+            Born in
+            <a href="https://tourismecotedivoire.ci/"
+               target="_blank"
+               rel="noopener noreferrer">
+                M'Batto, Côte d'Ivoire
+            </a>,
+            Denos earned a Bachelor's degree in Computer Science and Electronics
+            from
+            <a href="https://www.kristujayanti.edu.in/"
+               target="_blank"
+               rel="noopener noreferrer">
+                Kristu Jayanti University
+            </a>
+            in January 2025.
+        </p>
 
-                        <p>
-                            In September 2025, he joined
-                            <a
-                                href="https://www.ec-nantes.fr/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                École Centrale de Nantes
-                            </a>,
-                            <a
-                                href="https://www.france.fr/en"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                France
-                            </a>,
-                            to pursue an MSc in Data Science, Signal and Image
-                            Processing. His graduate studies emphasize data
-                            analysis, machine learning, and signal and image
-                            processing.
-                        </p>
+        <p>
+            In September 2025, he joined
+            <a href="https://www.ec-nantes.fr/"
+               target="_blank"
+               rel="noopener noreferrer">
+                École Centrale de Nantes
+            </a>,
+            <a href="https://www.france.fr/en"
+               target="_blank"
+               rel="noopener noreferrer">
+                France
+            </a>,
+            to pursue an MSc in Data Science, Signal and Image Processing.
+            His graduate studies focus on data analysis, machine learning,
+            computer vision, signal processing and image processing,
+            combining theoretical foundations with practical engineering
+            applications.
+        </p>
 
-                        <p>
-                            He is currently entering the final year of the
-                            programme and is seeking a final-year internship.
-                            He looks forward to applying his academic background
-                            to challenging engineering projects and continuing
-                            to develop his expertise in a professional
-                            environment.
-                        </p>
+        <p>
+            He is currently a final-year MSc student and is seeking a
+            six-month final-year internship. He looks forward to
+            contributing to challenging engineering projects,
+            learning from experienced teams and further developing
+            his technical and professional skills in an industrial
+            environment.
+        </p>
 
-                    </div>
+    </div>
 
-                </header>
+</header>
+
 
                 <section class="about-section">
                     <h3>Areas of Specialization</h3>
