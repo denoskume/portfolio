@@ -186,3 +186,49 @@
         gap: 0.2rem;
     }
 }
+
+
+.education-card{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+}
+
+.education-card h2{
+    margin:0;
+    font-size:1.8rem;
+    line-height:1.15;
+}
+
+.education-degree{
+    margin-top:2rem;
+    font-size:1rem;
+    font-weight:700;
+    color:#111827;
+}
+
+.education-programme{
+    margin-top:.5rem;
+    line-height:1.7;
+    color:#374151;
+}
+
+.education-info{
+    margin-top:2rem;
+}
+
+.education-info p{
+    margin:.3rem 0;
+    font-weight:600;
+    color:#111827;
+}
+
+.education-graduation{
+    margin-top:2rem;
+    font-weight:600;
+    color:#111827;
+}
+
+.education-link{
+    margin-top:auto;
+}

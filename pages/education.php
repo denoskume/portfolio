@@ -23,119 +23,73 @@ require BASE_PATH . '/includes/header.php';
 
         <div class="education-grid">
 
-            <article class="education-card reveal">
+            
+<article class="education-card reveal">
 
-                <div class="education-card-top">
-                    <span class="education-level">
-                        MSc
-                    </span>
+    <h2>École Centrale de Nantes</h2>
 
-                    <span class="education-period">
-                        2025 — Present
-                    </span>
-                </div>
+    <p class="education-degree">
+        MSc
+    </p>
 
-                <div class="education-card-content">
-                    <h2>
-                        École Centrale de Nantes
-                    </h2>
+    <p class="education-programme">
+        Data Science, Signal and Image Processing
+    </p>
 
-                    <h3>
-                        Data Science, Signal and Image Processing
-                    </h3>
+    <div class="education-info">
+        <p>2025 – Present</p>
+        <p>France</p>
+    </div>
 
-                    <p>
-                        Final-year MSc programme combining data analysis,
-                        machine learning, computer vision, signal processing
-                        and image processing.
-                    </p>
-                </div>
+    <p class="education-graduation">
+        Expected Graduation: 2027
+    </p>
 
-                <dl class="education-meta">
-                    <div>
-                        <dt>Location</dt>
-                        <dd>France</dd>
-                    </div>
+    <a
+        href="https://www.ec-nantes.fr/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="education-link"
+    >
+        Official Website ↗
+    </a>
 
-                    <div>
-                        <dt>Status</dt>
-                        <dd>In progress</dd>
-                    </div>
+</article>
 
-                    <div>
-                        <dt>Expected completion</dt>
-                        <dd>2027</dd>
-                    </div>
-                </dl>
 
-                <a
-                    href="https://www.ec-nantes.fr/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="education-link"
-                >
-                    Official website
-                    <span aria-hidden="true">↗</span>
-                </a>
+            
+<article class="education-card reveal">
 
-            </article>
+    <h2>Kristu Jayanti University</h2>
 
-            <article class="education-card reveal">
+    <p class="education-degree">
+        Bachelor's Degree
+    </p>
 
-                <div class="education-card-top">
-                    <span class="education-level">
-                        Bachelor's Degree
-                    </span>
+    <p class="education-programme">
+        Computer Science and Electronics
+    </p>
 
-                    <span class="education-period">
-                        2021 — 2025
-                    </span>
-                </div>
+    <div class="education-info">
+        <p>2021 – 2025</p>
+        <p>India</p>
+    </div>
 
-                <div class="education-card-content">
-                    <h2>
-                        Kristu Jayanti University
-                    </h2>
+    <p class="education-graduation">
+        Graduated: January 2025
+    </p>
 
-                    <h3>
-                        Computer Science and Electronics
-                    </h3>
+    <a
+        href="https://www.kristujayanti.edu.in/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="education-link"
+    >
+        Official Website ↗
+    </a>
 
-                    <p>
-                        Undergraduate programme combining programming,
-                        computing systems, electronics and applied
-                        technical foundations.
-                    </p>
-                </div>
+</article>
 
-                <dl class="education-meta">
-                    <div>
-                        <dt>Location</dt>
-                        <dd>India</dd>
-                    </div>
-
-                    <div>
-                        <dt>Status</dt>
-                        <dd>Completed</dd>
-                    </div>
-
-                    <div>
-                        <dt>Graduated</dt>
-                        <dd>January 2025</dd>
-                    </div>
-                </dl>
-
-                <a
-                    href="https://www.kristujayanti.edu.in/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="education-link"
-                >
-                    Official website
-                    <span aria-hidden="true">↗</span>
-                </a>
-
-            </article>
 
         </div>
 
