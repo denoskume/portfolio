@@ -350,3 +350,17 @@
 .about-introduction a:hover {
     color: #1f3ed2;
 }
+
+/* About page links */
+
+.about-introduction a,
+.about-introduction a:visited,
+.about-introduction a:hover,
+.about-introduction a:focus,
+.about-introduction a:active {
+    color: #3157ff;
+    text-decoration: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
