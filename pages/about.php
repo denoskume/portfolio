@@ -144,16 +144,7 @@ $photoPath = BASE_PATH
 
                 
 
-                <section class="about-section about-final-section">
-                    <h3>Beyond Technical Work</h3>
-
-                    <p>
-                        Experience in customer service, teaching and
-                        international student coordination has strengthened
-                        his communication, adaptability and sense of
-                        responsibility.
-                    </p>
-                </section>
+                
 
             </div>
 
