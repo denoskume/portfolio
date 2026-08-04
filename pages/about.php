@@ -62,75 +62,94 @@ $photoPath = BASE_PATH
                         <dt>Background</dt>
                         <dd>Computer Science and Electronics</dd>
                     </div>
+
+                    <div>
+                        <dt>Current Stage</dt>
+                        <dd>Final year of MSc programme</dd>
+                    </div>
                 </dl>
 
             </aside>
 
             <div class="about-content">
 
-                
-<header class="about-header">
+                <header class="about-header">
+                    <h2>
+                        Machine Learning • Computer Vision •
+                        Signal &amp; Image Processing
+                    </h2>
 
-    <h2>
-        Machine Learning • Computer Vision • Signal & Image Processing
-    </h2>
+                    <div class="about-introduction">
 
-    <div class="about-introduction">
+                        <p>
+                            Born in M'Batto, Côte d'Ivoire, Denos studied
+                            Computer Science and Electronics at
+                            <a
+                                href="https://www.kristujayanti.edu.in/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Kristu Jayanti University
+                            </a>,
+                            graduating with a Bachelor's degree in
+                            January 2025.
+                        </p>
 
-        <p>
-    Born in M'Batto, Côte d'Ivoire, Denos studied Computer Science and
-    Electronics at
-    <a href="https://www.kristujayanti.edu.in/"
-       target="_blank"
-       rel="noopener noreferrer">
-        Kristu Jayanti University
-    </a>,
-    graduating with a Bachelor's degree in January 2025.
-</p>
+                        <p>
+                            In September 2025, he joined
+                            <a
+                                href="https://www.ec-nantes.fr/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                École Centrale de Nantes
+                            </a>
+                            to pursue an MSc in Data Science, Signal and
+                            Image Processing. His graduate studies focus
+                            on machine learning, computer vision, signal
+                            processing, image processing and data analysis,
+                            combining theoretical foundations with practical
+                            engineering applications.
+                        </p>
 
-        <p>
-            In September 2025, he joined
-            <a href="https://www.ec-nantes.fr/"
-               target="_blank"
-               rel="noopener noreferrer">
-                École Centrale de Nantes
-            </a>,
-            France,
-            to pursue an MSc in Data Science, Signal and Image Processing.
-            His graduate studies focus on data analysis, machine learning,
-            computer vision, signal processing and image processing,
-            combining theoretical foundations with practical engineering
-            applications.
-        </p>
+                        <p>
+                            Through coursework, research projects and
+                            hands-on experimentation, he is developing
+                            practical skills in designing, implementing and
+                            evaluating intelligent systems. He enjoys
+                            working on engineering problems where data,
+                            signals and images can be transformed into
+                            reliable and meaningful solutions.
+                        </p>
 
-        <p>
-            He is currently a final-year MSc student and is seeking a
-            six-month final-year internship. He looks forward to
-            contributing to challenging engineering projects,
-            learning from experienced teams and further developing
-            his technical and professional skills in an industrial
-            environment.
-        </p>
+                        <p>
+                            He is currently seeking a six-month final-year
+                            internship where he can contribute to real-world
+                            engineering projects, collaborate with experienced
+                            teams and continue developing his technical skills
+                            in artificial intelligence and data-driven
+                            technologies.
+                        </p>
 
-    </div>
-
-</header>
-
+                    </div>
+                </header>
 
                 <section class="about-section">
-                    <h3>Areas of Specialization</h3>
+                    <h3>Core Areas</h3>
 
-                    <div class="about-specializations">
+                    <div class="about-grid">
 
                         <article>
+                            <span>01</span>
                             <strong>Machine Learning</strong>
                             <p>
                                 Classification, data preparation,
-                                model evaluation and comparison.
+                                model evaluation and experimental comparison.
                             </p>
                         </article>
 
                         <article>
+                            <span>02</span>
                             <strong>Computer Vision</strong>
                             <p>
                                 Image analysis, feature extraction,
@@ -139,14 +158,7 @@ $photoPath = BASE_PATH
                         </article>
 
                         <article>
-                            <strong>Image Processing</strong>
-                            <p>
-                                Filtering, transformation and
-                                interpretation of digital images.
-                            </p>
-                        </article>
-
-                        <article>
+                            <span>03</span>
                             <strong>Signal Processing</strong>
                             <p>
                                 Filtering, spectral analysis and
@@ -155,7 +167,17 @@ $photoPath = BASE_PATH
                         </article>
 
                         <article>
-                            <strong>Data Science</strong>
+                            <span>04</span>
+                            <strong>Image Processing</strong>
+                            <p>
+                                Filtering, transformation and
+                                interpretation of digital images.
+                            </p>
+                        </article>
+
+                        <article>
+                            <span>05</span>
+                            <strong>Data Analysis</strong>
                             <p>
                                 Data exploration, statistical analysis
                                 and interpretation of results.
@@ -166,9 +188,21 @@ $photoPath = BASE_PATH
                 </section>
 
                 <section class="about-section">
+                    <h3>Technical Interests</h3>
+
+                    <div class="about-tags">
+                        <span>Artificial Intelligence</span>
+                        <span>Deep Learning</span>
+                        <span>Pattern Recognition</span>
+                        <span>Information Retrieval</span>
+                        <span>Scientific Computing</span>
+                    </div>
+                </section>
+
+                <section class="about-section">
                     <h3>Technical Skills</h3>
 
-                    <div class="about-skills">
+                    <div class="about-tags">
                         <span>Python</span>
                         <span>NumPy</span>
                         <span>pandas</span>
@@ -196,9 +230,9 @@ $photoPath = BASE_PATH
                                 </strong>
 
                                 <p>
-                                    Evaluated prompt strategies on
-                                    ESC-50 and analysed their impact
-                                    on classification performance.
+                                    Evaluated prompt strategies on ESC-50
+                                    and analysed their impact on
+                                    classification performance.
                                 </p>
                             </div>
                         </article>
@@ -212,9 +246,9 @@ $photoPath = BASE_PATH
                                 </strong>
 
                                 <p>
-                                    Applied decomposition,
-                                    stationarity analysis and ARIMA
-                                    modelling to time-series data.
+                                    Applied decomposition, stationarity
+                                    analysis and ARIMA modelling to
+                                    time-series data.
                                 </p>
                             </div>
                         </article>
@@ -226,9 +260,9 @@ $photoPath = BASE_PATH
                                 <strong>Python for AI</strong>
 
                                 <p>
-                                    Structured exercises and
-                                    mini-projects created to strengthen
-                                    Python foundations.
+                                    Structured exercises and mini-projects
+                                    created to strengthen Python and
+                                    software foundations.
                                 </p>
                             </div>
                         </article>
@@ -249,23 +283,23 @@ $photoPath = BASE_PATH
 
                     <ul class="about-work-list">
                         <li>
-                            I clarify the problem before selecting
-                            a technical approach.
+                            I clarify the problem, constraints and expected
+                            outcome before selecting a technical approach.
                         </li>
 
                         <li>
-                            I value readable, structured and
-                            reproducible work.
+                            I value readable, structured and reproducible
+                            work.
                         </li>
 
                         <li>
-                            I learn through coursework,
-                            experimentation and projects.
+                            I learn through coursework, experimentation and
+                            practical projects.
                         </li>
 
                         <li>
-                            I appreciate collaboration and
-                            constructive feedback.
+                            I appreciate collaboration, constructive feedback
+                            and clear communication.
                         </li>
                     </ul>
                 </section>
@@ -275,9 +309,9 @@ $photoPath = BASE_PATH
 
                     <p>
                         Experience in customer service, teaching and
-                        international student coordination has
-                        strengthened my communication, adaptability
-                        and sense of responsibility.
+                        international student coordination has strengthened
+                        his communication, adaptability and sense of
+                        responsibility.
                     </p>
                 </section>
 
