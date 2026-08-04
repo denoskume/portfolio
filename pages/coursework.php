@@ -45,7 +45,7 @@ require BASE_PATH . '/includes/header.php';
                 </div>
 
                 <a
-                    href="<?= page_url('coursework-year') ?>&year=m1"
+                    href="<?= page_url('coursework-year') ?>&amp;year=m1"
                     class="coursework-link"
                 >
                     Explore M1 Courses
@@ -73,7 +73,7 @@ require BASE_PATH . '/includes/header.php';
                 </div>
 
                 <a
-                    href="<?= page_url('coursework-year') ?>&year=m2"
+                    href="<?= page_url('coursework-year') ?>&amp;year=m2"
                     class="coursework-link"
                 >
                     Explore M2 Courses

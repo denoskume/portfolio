@@ -52,7 +52,7 @@ require BASE_PATH . '/includes/header.php';
     </p>
 
     <a
-        href="<?= page_url('coursework') ?>?program=master"
+        href="<?= page_url('coursework') ?>&amp;program=master"
         class="education-link"
     >
         Explore Coursework →

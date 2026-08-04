@@ -14,7 +14,7 @@ require BASE_PATH . '/includes/header.php';
 
         <header class="coursework-year-header reveal">
             <a
-                href="<?= page_url('coursework') ?>?program=master"
+                href="<?= page_url('coursework') ?>&amp;program=master"
                 class="coursework-back"
             >
                 ← Back to Master's Coursework
