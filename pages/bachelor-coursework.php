@@ -158,7 +158,7 @@ require BASE_PATH . '/includes/header.php';
                     aria-expanded="false"
                     aria-controls="bachelor-year-4"
                 >
-                    <span>Year 4</span>
+                    <span>Internship</span>
 
                     <span
                         class="coursework-trigger-icon"
@@ -175,13 +175,13 @@ require BASE_PATH . '/includes/header.php';
                 >
                     <div class="coursework-panel-inner">
 
-                        <h2>Year 4 Coursework</h2>
+                        <h2>Final-Year Internship</h2>
 
                         <div class="bachelor-year-placeholder">
                             <p>
-                                Final-year course and project details
-                                will be added from the academic
-                                transcript.
+                                The fourth year was dedicated to the
+                                final-year internship and professional
+                                experience.
                             </p>
                         </div>
 
