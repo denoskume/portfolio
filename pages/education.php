@@ -6,98 +6,138 @@ $currentPage = 'education';
 require BASE_PATH . '/includes/header.php';
 ?>
 
-<section class="page-hero">
-    <div class="container page-hero-content reveal">
-        <p class="eyebrow">Education</p>
+<section class="education-page">
+    <div class="container">
 
-        <h1 class="page-title">
-            Academic foundations in AI, data, signals and images.
-        </h1>
+        <header class="education-header reveal">
+            <p>Education</p>
 
-        <p class="lead">
-            My coursework is organized separately from projects so
-            that every project can clearly reference the knowledge
-            it applies.
-        </p>
-    </div>
-</section>
+            <h1>
+                Academic background
+            </h1>
 
-<section class="section">
-    <div class="container stack-lg">
+            <span>
+                Two programmes that shaped my technical foundation.
+            </span>
+        </header>
 
-        <article class="card reveal">
-            <div class="stack-lg">
-                <div>
-                    <p class="eyebrow">2025 — Present</p>
+        <div class="education-grid">
 
-                    <h2 class="section-title">
+            <article class="education-card reveal">
+
+                <div class="education-card-top">
+                    <span class="education-level">
+                        MSc
+                    </span>
+
+                    <span class="education-period">
+                        2025 — Present
+                    </span>
+                </div>
+
+                <div class="education-card-content">
+                    <h2>
                         École Centrale de Nantes
                     </h2>
 
-                    <p class="lead">
-                        Master's Programme in Data Science,
-                        Signal and Image Processing
+                    <h3>
+                        Data Science, Signal and Image Processing
+                    </h3>
+
+                    <p>
+                        Final-year MSc programme combining data analysis,
+                        machine learning, computer vision, signal processing
+                        and image processing.
                     </p>
                 </div>
 
-                <div class="grid grid-2">
-                    <div class="stack">
-                        <h3 class="card-title">Semester 1</h3>
-
-                        <ul class="muted">
-                            <li>Algorithmics and Programming</li>
-                            <li>Artificial Intelligence</li>
-                            <li>Classical Linear Control</li>
-                            <li>Embedded Computing</li>
-                            <li>
-                                Mathematical Tools for Signals
-                                and Systems
-                            </li>
-                            <li>Signal Processing</li>
-                            <li>
-                                Cultural and Communication English
-                            </li>
-                        </ul>
+                <dl class="education-meta">
+                    <div>
+                        <dt>Location</dt>
+                        <dd>France</dd>
                     </div>
 
-                    <div class="stack">
-                        <h3 class="card-title">Semester 2</h3>
-
-                        <ul class="muted">
-                            <li>Computer Vision</li>
-                            <li>Image Processing</li>
-                            <li>Optimization Techniques</li>
-                            <li>
-                                Systems Identification and
-                                Signal Filtering
-                            </li>
-                            <li>
-                                Spectral and Time-Frequency Analysis
-                            </li>
-                            <li>Group Project</li>
-                            <li>
-                                Cultural and Communication English
-                            </li>
-                        </ul>
+                    <div>
+                        <dt>Status</dt>
+                        <dd>In progress</dd>
                     </div>
+
+                    <div>
+                        <dt>Expected completion</dt>
+                        <dd>2027</dd>
+                    </div>
+                </dl>
+
+                <a
+                    href="https://www.ec-nantes.fr/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="education-link"
+                >
+                    Official website
+                    <span aria-hidden="true">↗</span>
+                </a>
+
+            </article>
+
+            <article class="education-card reveal">
+
+                <div class="education-card-top">
+                    <span class="education-level">
+                        Bachelor's Degree
+                    </span>
+
+                    <span class="education-period">
+                        2021 — 2025
+                    </span>
                 </div>
-            </div>
-        </article>
 
-        <article class="card reveal">
-            <div class="stack">
-                <p class="eyebrow">2021 — 2025</p>
+                <div class="education-card-content">
+                    <h2>
+                        Kristu Jayanti University
+                    </h2>
 
-                <h2 class="section-title">
-                    Kristu Jayanti College
-                </h2>
+                    <h3>
+                        Computer Science and Electronics
+                    </h3>
 
-                <p class="lead">
-                    Bachelor's Degree in Computer Science
-                    and Electronics
-                </p>
-            </div>
-        </article>
+                    <p>
+                        Undergraduate programme combining programming,
+                        computing systems, electronics and applied
+                        technical foundations.
+                    </p>
+                </div>
+
+                <dl class="education-meta">
+                    <div>
+                        <dt>Location</dt>
+                        <dd>India</dd>
+                    </div>
+
+                    <div>
+                        <dt>Status</dt>
+                        <dd>Completed</dd>
+                    </div>
+
+                    <div>
+                        <dt>Graduated</dt>
+                        <dd>January 2025</dd>
+                    </div>
+                </dl>
+
+                <a
+                    href="https://www.kristujayanti.edu.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="education-link"
+                >
+                    Official website
+                    <span aria-hidden="true">↗</span>
+                </a>
+
+            </article>
+
+        </div>
 
     </div>
 </section>
