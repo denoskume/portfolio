@@ -10,7 +10,7 @@ require BASE_PATH . '/includes/header.php';
     <div class="container">
 
         <header class="education-header reveal">
-            <p>Education</p>
+            
 
             <h1>
                 Academic background

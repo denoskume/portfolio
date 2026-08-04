@@ -332,3 +332,33 @@
     }
 }
 
+
+
+/* ===== Final Education Header Alignment ===== */
+
+.education-header {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 2.2rem;
+    text-align: center;
+}
+
+.education-header > p {
+    display: none;
+}
+
+.education-header h1 {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.education-header span {
+    max-width: 650px;
+    margin: 0.85rem auto 0;
+    text-align: center;
+}
+
+.education-grid {
+    margin-inline: auto;
+    justify-content: center;
+}
