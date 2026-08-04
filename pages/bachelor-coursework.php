@@ -427,154 +427,91 @@ require BASE_PATH . '/includes/header.php';
                 </div>
             </article>
 
-            <!-- SKILLS DEVELOPED -->
-            <article class="coursework-panel reveal">
-                <button
-                    class="coursework-trigger"
-                    type="button"
-                    aria-expanded="false"
-                    aria-controls="bachelor-skills"
-                >
-                    <span>Skills Developed</span>
+            
+<!-- SKILLS DEVELOPED -->
+<article class="coursework-panel reveal">
 
-                    <span
-                        class="coursework-trigger-icon"
-                        aria-hidden="true"
-                    >
-                        +
-                    </span>
-                </button>
+    <button
+        class="coursework-trigger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="bachelor-skills"
+    >
+        <span>Skills Developed</span>
 
-                <div
-                    id="bachelor-skills"
-                    class="coursework-panel-content"
-                    hidden
-                >
-                    <div class="coursework-panel-inner">
+        <span
+            class="coursework-trigger-icon"
+            aria-hidden="true"
+        >
+            +
+        </span>
+    </button>
 
-                        <h2>
-                            Computer Science and Electronics Foundations
-                        </h2>
+    <div
+        id="bachelor-skills"
+        class="coursework-panel-content"
+        hidden
+    >
+        <div class="coursework-panel-inner">
 
-                        <div class="coursework-skills-grid">
+            <h2>Skills Developed Throughout the Programme</h2>
 
-                            <article>
-                                <span>01</span>
-                                <h3>Programming</h3>
-                                <p>
-                                    C, Java, PHP, programming logic,
-                                    algorithms and software development.
-                                </p>
-                            </article>
+            <div class="major-grid">
 
-                            <article>
-                                <span>02</span>
-                                <h3>Data Structures</h3>
-                                <p>
-                                    Data organization, algorithmic thinking
-                                    and structured problem solving.
-                                </p>
-                            </article>
+                <article class="major-card">
 
-                            <article>
-                                <span>03</span>
-                                <h3>Databases</h3>
-                                <p>
-                                    Database design, relational systems,
-                                    SQL and data management.
-                                </p>
-                            </article>
+                    <h3>Computer Science</h3>
 
-                            <article>
-                                <span>04</span>
-                                <h3>Operating Systems</h3>
-                                <p>
-                                    Linux, operating-system concepts and
-                                    hardware-software interaction.
-                                </p>
-                            </article>
+                    <ul>
+                        <li>Programming (C, Java, PHP)</li>
+                        <li>Data Structures & Algorithms</li>
+                        <li>Database Management Systems</li>
+                        <li>Operating Systems & Linux</li>
+                        <li>Software Engineering</li>
+                        <li>Internet Technology</li>
+                        <li>Artificial Intelligence</li>
+                        <li>Internet of Things (IoT)</li>
+                        <li>Machine Learning Fundamentals</li>
+                        <li>Cyber Security</li>
+                        <li>Web Development</li>
+                        <li>Technical Problem Solving</li>
+                    </ul>
 
-                            <article>
-                                <span>05</span>
-                                <h3>Electronics</h3>
-                                <p>
-                                    Analog electronics, digital electronics,
-                                    circuits and laboratory practice.
-                                </p>
-                            </article>
+                </article>
 
-                            <article>
-                                <span>06</span>
-                                <h3>Digital Design</h3>
-                                <p>
-                                    Verilog, VHDL, digital systems and
-                                    hardware-oriented design.
-                                </p>
-                            </article>
+                <article class="major-card">
 
-                            <article>
-                                <span>07</span>
-                                <h3>Embedded Systems</h3>
-                                <p>
-                                    8051 microcontrollers, peripheral
-                                    interfacing and embedded computing.
-                                </p>
-                            </article>
+                    <h3>Electronics</h3>
 
-                            <article>
-                                <span>08</span>
-                                <h3>Communication Systems</h3>
-                                <p>
-                                    Analog, digital and advanced
-                                    communication-system foundations.
-                                </p>
-                            </article>
+                    <ul>
+                        <li>Electronic Devices & Circuits</li>
+                        <li>Analog & Digital Electronics</li>
+                        <li>Digital Design (Verilog & VHDL)</li>
+                        <li>Communication Systems</li>
+                        <li>Advanced Communication Systems</li>
+                        <li>Embedded Systems</li>
+                        <li>Microcontrollers (8051)</li>
+                        <li>Instrumentation Systems</li>
+                        <li>Peripheral Interfacing</li>
+                        <li>Engineering Mathematics</li>
+                        <li>Laboratory Practice</li>
+                        <li>Engineering Project Development</li>
+                    </ul>
 
-                            <article>
-                                <span>09</span>
-                                <h3>AI and IoT</h3>
-                                <p>
-                                    Artificial intelligence, machine-learning
-                                    fundamentals and Internet of Things.
-                                </p>
-                            </article>
+                </article>
 
-                            <article>
-                                <span>10</span>
-                                <h3>Software Engineering</h3>
-                                <p>
-                                    Software lifecycle, implementation,
-                                    testing and technical documentation.
-                                </p>
-                            </article>
+            </div>
 
-                            <article>
-                                <span>11</span>
-                                <h3>Cyber Security</h3>
-                                <p>
-                                    Core security concepts and awareness
-                                    of digital risks.
-                                </p>
-                            </article>
+        </div>
+    </div>
 
-                            <article>
-                                <span>12</span>
-                                <h3>Technical Practice</h3>
-                                <p>
-                                    Laboratory work, practical implementation,
-                                    project delivery and internship experience.
-                                </p>
-                            </article>
+</article>
 
-                        </div>
-
-                    </div>
-                </div>
-            </article>
 
         </div>
 
     </div>
+
 </section>
 
 <script>
