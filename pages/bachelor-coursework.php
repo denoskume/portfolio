@@ -428,6 +428,7 @@ require BASE_PATH . '/includes/header.php';
             </article>
 
             
+
 <!-- SKILLS DEVELOPED -->
 <article class="coursework-panel reveal">
 
@@ -454,7 +455,7 @@ require BASE_PATH . '/includes/header.php';
     >
         <div class="coursework-panel-inner">
 
-            <h2>Skills Developed Throughout the Programme</h2>
+            <h2>Industry-Aligned Skills Developed</h2>
 
             <div class="major-grid">
 
@@ -463,18 +464,14 @@ require BASE_PATH . '/includes/header.php';
                     <h3>Computer Science</h3>
 
                     <ul>
-                        <li>Programming (C, Java, PHP)</li>
-                        <li>Data Structures & Algorithms</li>
-                        <li>Database Management Systems</li>
-                        <li>Operating Systems & Linux</li>
-                        <li>Software Engineering</li>
-                        <li>Internet Technology</li>
-                        <li>Artificial Intelligence</li>
-                        <li>Internet of Things (IoT)</li>
-                        <li>Machine Learning Fundamentals</li>
-                        <li>Cyber Security</li>
-                        <li>Web Development</li>
-                        <li>Technical Problem Solving</li>
+                        <li>Software Development</li>
+                        <li>Algorithmic Problem Solving</li>
+                        <li>Data Management</li>
+                        <li>Backend and Web Development</li>
+                        <li>Systems Thinking</li>
+                        <li>AI and Data-Driven Applications</li>
+                        <li>Testing and Debugging</li>
+                        <li>Technical Documentation</li>
                     </ul>
 
                 </article>
@@ -484,18 +481,14 @@ require BASE_PATH . '/includes/header.php';
                     <h3>Electronics</h3>
 
                     <ul>
-                        <li>Electronic Devices & Circuits</li>
-                        <li>Analog & Digital Electronics</li>
-                        <li>Digital Design (Verilog & VHDL)</li>
-                        <li>Communication Systems</li>
-                        <li>Advanced Communication Systems</li>
-                        <li>Embedded Systems</li>
-                        <li>Microcontrollers (8051)</li>
-                        <li>Instrumentation Systems</li>
-                        <li>Peripheral Interfacing</li>
-                        <li>Engineering Mathematics</li>
-                        <li>Laboratory Practice</li>
-                        <li>Engineering Project Development</li>
+                        <li>Circuit Analysis</li>
+                        <li>Digital System Design</li>
+                        <li>Embedded Systems Integration</li>
+                        <li>Hardware–Software Interfacing</li>
+                        <li>Instrumentation and Measurement</li>
+                        <li>Communication Systems Analysis</li>
+                        <li>Laboratory Validation</li>
+                        <li>Engineering Prototyping</li>
                     </ul>
 
                 </article>
@@ -506,9 +499,7 @@ require BASE_PATH . '/includes/header.php';
     </div>
 
 </article>
-
-
-        </div>
+</div>
 
     </div>
 
