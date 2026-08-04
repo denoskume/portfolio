@@ -11,6 +11,8 @@ $allowedPages = [
     'experience',
     'projects',
     'contact',
+    'coursework',
+    'coursework-year',
 ];
 
 $requestedPage = $_GET['page'] ?? 'home';
