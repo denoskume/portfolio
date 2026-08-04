@@ -59,10 +59,8 @@ $photoPath = BASE_PATH
                     </div>
 
                     <div>
-                        <dt>Academic background</dt>
-                        <dd>
-                            Computer Science and Electronics
-                        </dd>
+                        <dt>Background</dt>
+                        <dd>Computer Science and Electronics</dd>
                     </div>
                 </dl>
 
@@ -72,19 +70,19 @@ $photoPath = BASE_PATH
 
                 <header class="about-header">
                     <p class="about-label">
-                        Professional Introduction
+                        Professional Profile
                     </p>
 
                     <h2>
-                        Building practical skills across
-                        data, signals and images.
+                        Developing practical engineering skills
+                        across data, signals and images.
                     </h2>
 
                     <p class="about-summary">
                         I am a final-year MSc student at École Centrale
-                        de Nantes, developing practical experience in
-                        machine learning, computer vision, image
-                        processing, signal processing and data analysis.
+                        de Nantes, building practical experience through
+                        coursework, technical projects and structured
+                        experimentation.
                     </p>
                 </header>
 
@@ -93,16 +91,10 @@ $photoPath = BASE_PATH
 
                     <p>
                         My background combines computer science,
-                        electronics and applied engineering. Through
-                        coursework and projects, I am learning how to
-                        analyse technical problems, implement suitable
-                        methods and evaluate results clearly.
-                    </p>
-
-                    <p>
-                        I enjoy working on problems where data, signals
-                        or images must be transformed into useful
-                        information, predictions or decisions.
+                        electronics and applied engineering. I am
+                        learning how to analyse technical problems,
+                        implement suitable methods and evaluate results
+                        clearly.
                     </p>
                 </section>
 
@@ -113,17 +105,14 @@ $photoPath = BASE_PATH
 
                         <article>
                             <strong>Machine Learning</strong>
-
                             <p>
                                 Classification, data preparation,
-                                model evaluation and experimental
-                                comparison.
+                                model evaluation and comparison.
                             </p>
                         </article>
 
                         <article>
                             <strong>Computer Vision</strong>
-
                             <p>
                                 Image analysis, feature extraction,
                                 segmentation and visual pipelines.
@@ -132,7 +121,6 @@ $photoPath = BASE_PATH
 
                         <article>
                             <strong>Image Processing</strong>
-
                             <p>
                                 Filtering, transformation and
                                 interpretation of digital images.
@@ -141,7 +129,6 @@ $photoPath = BASE_PATH
 
                         <article>
                             <strong>Signal Processing</strong>
-
                             <p>
                                 Filtering, spectral analysis and
                                 time-frequency methods.
@@ -150,7 +137,6 @@ $photoPath = BASE_PATH
 
                         <article>
                             <strong>Data Science</strong>
-
                             <p>
                                 Data exploration, statistical analysis
                                 and interpretation of results.
@@ -192,7 +178,7 @@ $photoPath = BASE_PATH
 
                                 <p>
                                     Evaluated prompt strategies on
-                                    ESC-50 and analysed their effect
+                                    ESC-50 and analysed their impact
                                     on classification performance.
                                 </p>
                             </div>
@@ -223,7 +209,7 @@ $photoPath = BASE_PATH
                                 <p>
                                     Structured exercises and
                                     mini-projects created to strengthen
-                                    Python and software foundations.
+                                    Python foundations.
                                 </p>
                             </div>
                         </article>
@@ -244,23 +230,23 @@ $photoPath = BASE_PATH
 
                     <ul class="about-work-list">
                         <li>
-                            I first clarify the problem, constraints
-                            and expected result.
+                            I clarify the problem before selecting
+                            a technical approach.
                         </li>
 
                         <li>
-                            I prefer structured, readable and
+                            I value readable, structured and
                             reproducible work.
                         </li>
 
                         <li>
                             I learn through coursework,
-                            experimentation and practical projects.
+                            experimentation and projects.
                         </li>
 
                         <li>
-                            I value collaboration, constructive
-                            feedback and clear communication.
+                            I appreciate collaboration and
+                            constructive feedback.
                         </li>
                     </ul>
                 </section>
@@ -269,11 +255,10 @@ $photoPath = BASE_PATH
                     <h3>Beyond Technical Work</h3>
 
                     <p>
-                        My experience in customer service, teaching and
-                        international student coordination has helped
-                        me develop adaptability, responsibility and the
-                        ability to communicate with people from
-                        different backgrounds.
+                        Experience in customer service, teaching and
+                        international student coordination has
+                        strengthened my communication, adaptability
+                        and sense of responsibility.
                     </p>
                 </section>
 
