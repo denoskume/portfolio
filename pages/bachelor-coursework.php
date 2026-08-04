@@ -427,45 +427,6 @@ require BASE_PATH . '/includes/header.php';
                 </div>
             </article>
 
-            <!-- INTERNSHIP -->
-            <article class="coursework-panel reveal">
-                <button
-                    class="coursework-trigger"
-                    type="button"
-                    aria-expanded="false"
-                    aria-controls="bachelor-internship"
-                >
-                    <span>Internship</span>
-
-                    <span
-                        class="coursework-trigger-icon"
-                        aria-hidden="true"
-                    >
-                        +
-                    </span>
-                </button>
-
-                <div
-                    id="bachelor-internship"
-                    class="coursework-panel-content"
-                    hidden
-                >
-                    <div class="coursework-panel-inner">
-
-                        <h2>Final-Year Internship</h2>
-
-                        <div class="bachelor-year-placeholder">
-                            <p>
-                                The programme included a credited internship
-                                during Semester VI, focused on applying
-                                technical knowledge in a professional setting.
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-            </article>
-
             <!-- SKILLS DEVELOPED -->
             <article class="coursework-panel reveal">
                 <button
