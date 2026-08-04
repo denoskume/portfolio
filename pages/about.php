@@ -80,11 +80,7 @@ $photoPath = BASE_PATH
 
         <p>
             Born in
-            <a href="https://tourismecotedivoire.ci/"
-               target="_blank"
-               rel="noopener noreferrer">
-                M'Batto, Côte d'Ivoire
-            </a>,
+            M'Batto, Côte d'Ivoire,
             Denos earned a Bachelor's degree in Computer Science and Electronics
             from
             <a href="https://www.kristujayanti.edu.in/"
@@ -102,11 +98,7 @@ $photoPath = BASE_PATH
                rel="noopener noreferrer">
                 École Centrale de Nantes
             </a>,
-            <a href="https://www.france.fr/en"
-               target="_blank"
-               rel="noopener noreferrer">
-                France
-            </a>,
+            France,
             to pursue an MSc in Data Science, Signal and Image Processing.
             His graduate studies focus on data analysis, machine learning,
             computer vision, signal processing and image processing,
