@@ -137,37 +137,26 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
       </div>
 
       <div class="fl-paper-panel" id="fl-panel-figures" data-fl-panel="figures" role="tabpanel" aria-labelledby="fl-tab-figures" tabindex="0" hidden>
-        <div class="fl-panel-intro"><h2>Figures</h2><p>Experimental images and reconstructions produced in the project. Select a figure to open it at full resolution.</p></div>
-        <section class="fl-figure-section" id="fl-f-input">
-          <h3>Original and enhanced images</h3>
-          <p>Contrast enhancement makes the image structures easier to inspect before subtraction and segmentation.</p>
-          <figure class="fl-scientific-figure">
-            <a href="${raw}assets/grayscale-comparison.png" target="_blank" rel="noopener noreferrer"><img src="${raw}assets/grayscale-comparison.png" loading="lazy" decoding="async" alt="Project figure showing original and enhanced fluoroscopy frame 291"></a>
-            <figcaption><strong>Figure 1.</strong> Original and enhanced image of frame 291.</figcaption>
-          </figure>
+        <div class="fl-panel-intro"><h2>Figures</h2><p>All figures from the report, indexed for quick comparison. Use <strong>View in report</strong> to return to the corresponding explanation.</p></div>
+        <section class="fl-figure-section fl-index-figure" id="fl-f-input">
+          <a class="fl-index-thumb" href="${raw}assets/grayscale-comparison.png" target="_blank" rel="noopener noreferrer" aria-label="Open Figure 1 full size"><img src="${raw}assets/grayscale-comparison.png" loading="lazy" decoding="async" alt="Original and enhanced image, frame 291"></a>
+          <div class="fl-index-description"><h3>Figure 1. Original and enhanced images</h3><p>Fluoroscopy frame 291 before and after contrast enhancement. Illustrates the low-contrast input used in the segmentation study.</p>
+            <button type="button" class="fl-view-content" data-fl-open-panel="report" data-fl-jump="fl-r-fig1">View in report</button></div>
         </section>
-        <section class="fl-figure-section" id="fl-f-method">
-          <h3>Comparison with the manual reference</h3>
-          <p>The earlier prediction contains gaps; continuous reconstruction recovers a connected line that more closely follows the manual tracing.</p>
-          <figure class="fl-scientific-figure">
-            <a href="${raw}assets/mask-cleanup.png" target="_blank" rel="noopener noreferrer"><img src="${raw}assets/mask-cleanup.png" loading="lazy" decoding="async" alt="Project figure comparing previous prediction, continuous trace and manual tracing for frame 291"></a>
-            <figcaption><strong>Figure 2.</strong> Previous prediction, continuous trace and manual reference — frame 291.</figcaption>
-          </figure>
+        <section class="fl-figure-section fl-index-figure" id="fl-f-method">
+          <a class="fl-index-thumb" href="${raw}assets/mask-cleanup.png" target="_blank" rel="noopener noreferrer" aria-label="Open Figure 2 full size"><img src="${raw}assets/mask-cleanup.png" loading="lazy" decoding="async" alt="Previous mask, continuous path and manual tracing in frame 291"></a>
+          <div class="fl-index-description"><h3>Figure 2. Reconstruction compared with reference</h3><p>Direct comparison of the previous fragmented prediction, reconstructed continuous line and manually traced instrument.</p>
+            <button type="button" class="fl-view-content" data-fl-open-panel="report" data-fl-jump="fl-r-fig2">View in report</button></div>
         </section>
-        <section class="fl-figure-section" id="fl-f-results">
-          <h3>Reconstructed paths across the sequence</h3>
-          <p>All ten final predictions are shown in chronological order, with each frame's Dice score.</p>
-          <figure class="fl-scientific-figure">
-            <a href="${raw}assets/segmentation-comparison.png" target="_blank" rel="noopener noreferrer"><img src="${raw}assets/segmentation-comparison.png" loading="lazy" decoding="async" alt="Project figure showing ten held-out reconstructed paths with their Dice scores"></a>
-            <figcaption><strong>Figure 3.</strong> Reconstructed instrument paths and frame-level Dice scores.</figcaption>
-          </figure>
+        <section class="fl-figure-section fl-index-figure" id="fl-f-results">
+          <a class="fl-index-thumb" href="${raw}assets/segmentation-comparison.png" target="_blank" rel="noopener noreferrer" aria-label="Open Figure 3 full size"><img src="${raw}assets/segmentation-comparison.png" loading="lazy" decoding="async" alt="Ten predicted connected-path masks with Dice scores"></a>
+          <div class="fl-index-description"><h3>Figure 3. Final reconstructed paths</h3><p>All ten predictions in chronological order, each labeled with its frame-level Dice score.</p>
+            <button type="button" class="fl-view-content" data-fl-open-panel="report" data-fl-jump="fl-r-fig3">View in report</button></div>
         </section>
         <section class="fl-figure-section" id="fl-f-demo">
           <h3>Video demonstration</h3>
-          <p>A recorded demonstration of the reconstructed paths, presented after the results and figures.</p>
-          <figure class="fl-scientific-video">
-            <video controls playsinline preload="metadata" poster="${raw}assets/segmentation-comparison.png" aria-label="Recorded microcatheter segmentation demonstration"><source src="${raw}assets/demo-web.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>
-          </figure>
+          <p>Recorded playback of the reconstructed instrument paths from the project image sequence.</p>
+          <figure class="fl-scientific-video"><video controls playsinline preload="metadata" poster="${raw}assets/segmentation-comparison.png" aria-label="Microcatheter segmentation demo"><source src="${raw}assets/demo-web.mp4" type="video/mp4">Your browser does not support HTML5 video.</video></figure>
         </section>
       </div>
 
