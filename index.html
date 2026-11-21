@@ -1,92 +1,3059 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+
+<html lang="fr">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1c26">
-  <link rel="canonical" href="https://denoskume.github.io/portfolio/">
-  <meta name="description" content="Denos Kume — MSc Control & Robotics student at Centrale Nantes, focused on Computer Vision, Image Processing and Applied Machine Learning. Engineering projects, research and a six-month internship from February 2027.">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Denos Kume · Computer Vision & Applied AI">
-  <meta property="og:description" content="Engineering projects, reproducible experiments, code and research notes in vision and applied machine learning.">
-  <meta property="og:image" content="https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/segmentation-comparison.png">
-  <title>Denos Kume | Computer Vision, Image Processing & Applied AI</title>
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css">
-  <link rel="stylesheet" href="./atelier.css">
-  <script src="./content.js" defer></script>
-  <script src="./lab/workspace.js" defer></script>
-  <script src="./app.js" defer></script>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portfolio — Denos Kume · Computer Vision & Image Processing</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+  :root {
+
+    --ink: #0b0e13;
+
+    --ink-2: #1b2029;
+
+    --smoke: #5a6172;
+
+    --ash: #8a92a3;
+
+    --bone: #d4d8e0;
+
+    --paper: #f4f5f7;
+
+    --chalk: #fbfbfc;
+
+    --tech: #1e40af;
+
+    --rule: #d8dbe2;
+
+
+
+    --font-display: 'Instrument Serif', 'Times New Roman', serif;
+
+    --font-body: 'Geist', -apple-system, sans-serif;
+
+    --font-mono: 'Geist Mono', 'Courier New', monospace;
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+
+
+    --nav-h: 72px;
+
+    --gutter: clamp(20px, 5vw, 64px);
+
+    --max: 1400px;
+
+  }
+
+
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+
+
+
+  body {
+
+    font-family: var(--font-body);
+
+    background: var(--paper);
+
+    color: var(--ink);
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    font-weight: 400;
+
+    letter-spacing: -0.01em;
+
+    overflow-x: hidden;
+
+  }
+
+  ::selection { background: var(--ink); color: var(--paper); }
+
+
+
+  /* ============================================================
+
+     PRELOADER — Remplissage lent (10s) + Paliers de progression
+
+     ============================================================ */
+
+  .preloader {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: #1b212c;
+
+    z-index: 100000;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 30px;
+
+    transition: transform 1s var(--ease), opacity 1s var(--ease);
+
+  }
+
+  .preloader.done {
+
+    transform: translateY(-100%);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+  }
+
+
+
+  /* Conteneur du texte avec masque */
+
+  .pl-text-wrapper {
+
+    position: relative;
+
+    font-family: var(--font-display);
+
+    font-size: clamp(3rem, 8vw, 6rem);
+
+    line-height: 1.1;
+
+    letter-spacing: -0.02em;
+
+    text-align: center;
+
+    color: #6b7280; /* Gris de base */
+
+    padding: 10px 0;
+
+  }
+
+
+
+  /* Pseudo-élément pour le remplissage blanc */
+
+  .pl-text-wrapper::before {
+
+    content: attr(data-text);
+
+    position: absolute;
+
+    top: 0; left: 0;
+
+    width: 100%; height: 100%;
+
+    color: #ffffff;
+
+    /* Le clip-path démarre à 100% en bas (invisible) et va jusqu'à 0% (visible) */
+
+    clip-path: inset(100% 0 0 0);
+
+    /* L'animation prend 10 secondes avec des paliers nets */
+
+    animation: fillUp 10s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+    padding: 10px 0;
+
+  }
+
+
+
+  @keyframes fillUp {
+
+    0%   { clip-path: inset(100% 0 0 0); } /* 0% - Vide */
+
+    25%  { clip-path: inset(75% 0 0 0); }  /* 25% - Premier palier */
+
+    50%  { clip-path: inset(50% 0 0 0); }  /* 50% - Moitié */
+
+    75%  { clip-path: inset(25% 0 0 0); }  /* 75% - Trois quarts */
+
+    100% { clip-path: inset(0 0 0 0); }    /* 100% - Rempli */
+
+  }
+
+
+
+  /* Texte "Loading..." */
+
+  .pl-loading {
+
+    font-family: var(--font-display);
+
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+
+    color: rgba(244, 245, 247, 0.7);
+
+    letter-spacing: 0.05em;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+
+  }
+
+
+
+  /* Compteur de pourcentage */
+
+  .pl-percentage {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.85rem;
+
+    color: var(--paper);
+
+    letter-spacing: 0.1em;
+
+  }
+
+
+
+  /* Animation des points de suspension */
+
+  .pl-dots::after {
+
+    content: '';
+
+    animation: dots 1.5s steps(4, end) infinite;
+
+  }
+
+  @keyframes dots {
+
+    0%, 20% { content: ''; }
+
+    40% { content: '.'; }
+
+    60% { content: '..'; }
+
+    80%, 100% { content: '...'; }
+
+  }
+
+
+
+  /* ============================================================
+
+     NAVBAR
+
+     ============================================================ */
+
+  .navbar {
+
+    position: fixed;
+
+    top: 0; left: 0; right: 0;
+
+    height: var(--nav-h);
+
+    background: rgba(244, 245, 247, 0.88);
+
+    backdrop-filter: saturate(150%) blur(16px);
+
+    -webkit-backdrop-filter: saturate(150%) blur(16px);
+
+    border-bottom: 1px solid var(--rule);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 var(--gutter);
+
+    z-index: 1000;
+
+    transition: background 0.4s var(--ease);
+
+    transform: translateY(-100%);
+
+  }
+
+  .navbar.ready {
+
+    /* La navbar apparaît après 10s (fin du chargement) + 0.3s */
+
+    transform: translateY(0);
+
+    transition: transform 0.8s var(--ease) 10.3s, *background* 0.4s var(--ease);
+
+  }
+
+  .navbar.solid { background: rgba(244,245,247,0.98); }
+
+
+
+  .logo {
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 12px;
+
+    text-decoration: none;
+
+    color: var(--ink);
+
+  }
+
+  .logo .glyph {
+
+    font-family: var(--font-display);
+
+    font-size: 1.6rem;
+
+    font-style: italic;
+
+    line-height: 1;
+
+    letter-spacing: -0.02em;
+
+    transition: color 0.3s;
+
+  }
+
+  .logo:hover .glyph { color: var(--tech); }
+
+  .logo .name {
+
+    font-size: 0.72rem;
+
+    font-weight: 500;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+
+    padding-left: 12px;
+
+    border-left: 1px solid var(--bone);
+
+  }
+
+
+
+  .nav-links {
+
+    display: flex;
+
+    list-style: none;
+
+    gap: clamp(16px, 2.6vw, 38px);
+
+    align-items: center;
+
+  }
+
+  .nav-links li a {
+
+    text-decoration: none;
+
+    color: var(--smoke);
+
+    font-size: 0.82rem;
+
+    font-weight: 500;
+
+    letter-spacing: 0.04em;
+
+    position: relative;
+
+    padding: 6px 0;
+
+    transition: color 0.3s var(--ease);
+
+  }
+
+  .nav-links li a::after {
+
+    content: '';
+
+    position: absolute;
+
+    left: 0; bottom: 0;
+
+    width: 100%; height: 1px;
+
+    background: var(--ink);
+
+    transform: scaleX(0);
+
+    transform-origin: right;
+
+    transition: transform 0.5s var(--ease);
+
+  }
+
+  .nav-links li a:hover, .nav-links li a.active { color: var(--ink); }
+
+  .nav-links li a:hover::after, .nav-links li a.active::after {
+
+    transform: scaleX(1);
+
+    transform-origin: left;
+
+  }
+
+
+
+  /* ============================================================
+
+     STRUCTURE SPA
+
+     ============================================================ */
+
+  .main-container {
+
+    margin-top: var(--nav-h);
+
+    min-height: calc(100vh - var(--nav-h) - 80px);
+
+    opacity: 0;
+
+    /* Le contenu apparaît après 10s + 0.5s de délai */
+
+    transition: opacity 1s var(--ease) 10s;
+
+  }
+
+  .main-container.ready { opacity: 1; }
+
+  .section { display: none; }
+
+  .section.active {
+
+    display: block;
+
+    animation: sectionIn 0.6s var(--ease) both;
+
+  }
+
+  @keyframes sectionIn {
+
+    from { opacity: 0; transform: translateY(14px); }
+
+    to { opacity: 1; transform: translateY(0); }
+
+  }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+
+
+  .kicker {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.68rem;
+
+    font-weight: 500;
+
+    letter-spacing: 0.18em;
+
+    text-transform: uppercase;
+
+    color: var(--smoke);
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+  }
+
+  .kicker::before {
+
+    content: '';
+
+    width: 6px; height: 6px;
+
+    background: var(--tech);
+
+    border-radius: 1px;
+
+  }
+
+
+
+  /* ============================================================
+
+     HOME
+
+     ============================================================ */
+
+  .home { padding: clamp(40px, 7vh, 80px) 0 0; }
+
+
+
+  .hero-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+
+    gap: 24px;
+
+    align-items: end;
+
+    margin-bottom: clamp(50px, 8vh, 90px);
+
+  }
+
+  .hero-kicker { grid-column: 1 / 4; padding-top: 12px; margin-bottom: 8px; }
+
+  .hero-title {
+
+    grid-column: 1 / 3;
+
+    font-family: var(--font-display);
+
+    font-weight: 400;
+
+    font-size: clamp(2.6rem, 6.4vw, 5.8rem);
+
+    line-height: 0.94;
+
+    letter-spacing: -0.035em;
+
+    color: var(--ink);
+
+  }
+
+  .hero-title em { font-style: italic; color: var(--tech); }
+
+  .hero-aside {
+
+    grid-column: 3 / 4;
+
+    align-self: end;
+
+    font-size: 0.86rem;
+
+    color: var(--smoke);
+
+    line-height: 1.65;
+
+    border-top: 1px solid var(--rule);
+
+    padding-top: 16px;
+
+    max-width: 260px;
+
+  }
+
+  .hero-aside strong {
+
+    display: block;
+
+    color: var(--ink);
+
+    font-family: var(--font-mono);
+
+    font-size: 0.68rem;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    margin-bottom: 8px;
+
+    font-weight: 500;
+
+  }
+
+
+
+  .gallery-head {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: baseline;
+
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid var(--rule);
+
+    margin-bottom: 0;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+  }
+
+  .gallery-head .t {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.68rem;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+
+    color: var(--smoke);
+
+  }
+
+  .gallery-head .c {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.68rem;
+
+    color: var(--ash);
+
+  }
+
+
+
+  .carousel {
+
+    overflow: hidden;
+
+    position: relative;
+
+    width: 100%;
+
+    padding: clamp(20px, 4vh, 40px) 0 clamp(50px, 8vh, 90px);
+
+  }
+
+  .carousel::before, .carousel::after {
+
+    content: '';
+
+    position: absolute;
+
+    top: 0; bottom: 0;
+
+    width: clamp(60px, 12vw, 160px);
+
+    z-index: 3;
+
+    pointer-events: none;
+
+  }
+
+  .carousel::before { left: 0; background: linear-gradient(to right, var(--paper), transparent); }
+
+  .carousel::after { right: 0; background: linear-gradient(to left, var(--paper), transparent); }
+
+
+
+  .carousel-track {
+
+    display: flex;
+
+    width: max-content;
+
+    animation: slideRightToLeft 30s linear infinite;
+
+  }
+
+  .carousel:hover .carousel-track { animation-play-state: paused; }
+
+
+
+  @keyframes slideRightToLeft {
+
+    from { transform: translateX(0); }
+
+    to   { transform: translateX(-50%); }
+
+  }
+
+
+
+  .slide {
+
+    width: clamp(340px, 44vw, 640px);
+
+    aspect-ratio: 16 / 10;
+
+    flex-shrink: 0;
+
+    margin-right: 24px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: var(--bone);
+
+  }
+
+  .slide img {
+
+    width: 100%; height: 100%;
+
+    object-fit: cover;
+
+    filter: saturate(0.85) contrast(1.05);
+
+    transition: transform 1.4s var(--ease), filter 0.7s var(--ease);
+
+    display: block;
+
+  }
+
+  .slide:hover img { transform: scale(1.05); filter: saturate(1) contrast(1.05); }
+
+  .slide .num {
+
+    position: absolute;
+
+    top: 16px; left: 18px;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.68rem;
+
+    color: #fff;
+
+    letter-spacing: 0.08em;
+
+    z-index: 2;
+
+    mix-blend-mode: difference;
+
+  }
+
+  .slide .title {
+
+    position: absolute;
+
+    left: 20px; bottom: 18px;
+
+    right: 20px;
+
+    color: #fff;
+
+    font-family: var(--font-display);
+
+    font-size: 1.18rem;
+
+    letter-spacing: -0.01em;
+
+    z-index: 2;
+
+    text-shadow: 0 2px 20px rgba(0,0,0,0.55);
+
+  }
+
+  .slide::after {
+
+    content: '';
+
+    position: absolute;
+
+    inset: 0;
+
+    background: linear-gradient(to top, rgba(11,14,19,0.66), transparent 55%);
+
+    pointer-events: none;
+
+  }
+
+
+
+  /* ============================================================
+
+     ABOUT ME
+
+     ============================================================ */
+
+  .about { padding: clamp(50px, 8vh, 90px) 0 80px; }
+
+
+
+  .about-top {
+
+    display: grid;
+
+    grid-template-columns: 280px 1fr;
+
+    gap: clamp(30px, 5vw, 70px);
+
+    align-items: start;
+
+    margin-bottom: clamp(60px, 10vh, 110px);
+
+  }
+
+  .about-photo {
+
+    aspect-ratio: 4 / 5;
+
+    overflow: hidden;
+
+    background: var(--bone);
+
+    position: relative;
+
+  }
+
+  .about-photo::after {
+
+    content: '';
+
+    position: absolute;
+
+    inset: 0;
+
+    border: 1px solid rgba(11,14,19,0.08);
+
+    pointer-events: none;
+
+  }
+
+  .about-photo img {
+
+    width: 100%; height: 100%;
+
+    object-fit: cover;
+
+    filter: saturate(0.82) contrast(1.05);
+
+    transition: filter 0.7s var(--ease);
+
+    display: block;
+
+  }
+
+  .about-photo:hover img { filter: saturate(1) contrast(1.05); }
+
+  .about-photo-cap {
+
+    margin-top: 12px;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.64rem;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+
+    color: var(--smoke);
+
+    display: flex;
+
+    justify-content: space-between;
+
+  }
+
+
+
+  .about-text .kicker { margin-bottom: 22px; }
+
+  .about-text h2 {
+
+    font-family: var(--font-display);
+
+    font-weight: 400;
+
+    font-size: clamp(1.9rem, 3.4vw, 3rem);
+
+    line-height: 1.04;
+
+    letter-spacing: -0.03em;
+
+    margin-bottom: 26px;
+
+    color: var(--ink);
+
+  }
+
+  .about-text h2 em { font-style: italic; color: var(--tech); }
+
+  .about-text .body p {
+
+    font-size: 1rem;
+
+    line-height: 1.75;
+
+    color: var(--ink-2);
+
+    margin-bottom: 16px;
+
+    max-width: 56ch;
+
+  }
+
+  .about-facts {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 22px;
+
+    margin-top: 32px;
+
+    padding-top: 26px;
+
+    border-top: 1px solid var(--rule);
+
+  }
+
+  .about-facts .fact .k {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.64rem;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+
+    color: var(--smoke);
+
+    margin-bottom: 3px;
+
+  }
+
+  .about-facts .fact .v {
+
+    font-family: var(--font-display);
+
+    font-size: 1.08rem;
+
+    color: var(--ink);
+
+  }
+
+
+
+  .edu-block { margin-bottom: clamp(60px, 10vh, 100px); }
+
+  .section-title {
+
+    display: flex;
+
+    align-items: baseline;
+
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--ink);
+
+    padding-bottom: 14px;
+
+    margin-bottom: 0;
+
+    flex-wrap: wrap;
+
+    gap: 14px;
+
+  }
+
+  .section-title h3 {
+
+    font-family: var(--font-display);
+
+    font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+
+    font-weight: 400;
+
+    letter-spacing: -0.02em;
+
+  }
+
+  .section-title .sub {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.68rem;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    color: var(--smoke);
+
+  }
+
+
+
+  .edu-list { border-bottom: 1px solid var(--rule); }
+
+  .edu-row {
+
+    display: grid;
+
+    grid-template-columns: 160px 1fr 1fr;
+
+    gap: clamp(20px, 4vw, 50px);
+
+    padding: 26px 0;
+
+    border-top: 1px solid var(--rule);
+
+    align-items: start;
+
+  }
+
+  .edu-row:first-child { border-top: none; }
+
+  .edu-row .year {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.82rem;
+
+    color: var(--tech);
+
+    font-weight: 500;
+
+    padding-top: 4px;
+
+  }
+
+  .edu-row .degree h4 {
+
+    font-family: var(--font-display);
+
+    font-size: 1.28rem;
+
+    font-weight: 400;
+
+    letter-spacing: -0.015em;
+
+    color: var(--ink);
+
+    margin-bottom: 4px;
+
+    line-height: 1.2;
+
+  }
+
+  .edu-row .degree .school {
+
+    font-size: 0.82rem;
+
+    color: var(--smoke);
+
+  }
+
+  .edu-row .desc {
+
+    font-size: 0.9rem;
+
+    line-height: 1.65;
+
+    color: var(--ink-2);
+
+    max-width: 44ch;
+
+  }
+
+
+
+  .chrono {
+
+    position: relative;
+
+    padding-left: 40px;
+
+    margin-top: 36px;
+
+  }
+
+  .chrono::before {
+
+    content: '';
+
+    position: absolute;
+
+    left: 7px; top: 10px; bottom: 10px;
+
+    width: 1px;
+
+    background: var(--rule);
+
+  }
+
+  .chrono-item {
+
+    position: relative;
+
+    padding-bottom: 36px;
+
+  }
+
+  .chrono-item:last-child { padding-bottom: 0; }
+
+  .chrono-item::before {
+
+    content: '';
+
+    position: absolute;
+
+    left: -40px; top: 5px;
+
+    width: 15px; height: 15px;
+
+    border-radius: 50%;
+
+    background: var(--paper);
+
+    border: 1.5px solid var(--ash);
+
+    transition: border-color 0.4s var(--ease), *background* 0.4s var(--ease), transform 0.4s var(--ease);
+
+  }
+
+  .chrono-item:hover::before {
+
+    border-color: var(--tech);
+
+    background: var(--tech);
+
+    transform: scale(1.12);
+
+  }
+
+  .chrono-item .date {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.76rem;
+
+    font-weight: 500;
+
+    color: var(--smoke);
+
+    letter-spacing: 0.06em;
+
+    margin-bottom: 6px;
+
+    text-transform: uppercase;
+
+  }
+
+  .chrono-item h4 {
+
+    font-family: var(--font-display);
+
+    font-size: 1.22rem;
+
+    font-weight: 400;
+
+    color: var(--ink);
+
+    letter-spacing: -0.015em;
+
+    margin-bottom: 5px;
+
+  }
+
+  .chrono-item .org {
+
+    font-size: 0.88rem;
+
+    color: var(--tech);
+
+    font-weight: 500;
+
+    margin-bottom: 8px;
+
+  }
+
+  .chrono-item p {
+
+    color: var(--ink-2);
+
+    font-size: 0.92rem;
+
+    line-height: 1.68;
+
+    max-width: 60ch;
+
+  }
+
+
+
+  /* ============================================================
+
+     PROJECTS
+
+     ============================================================ */
+
+  .projects { padding: clamp(50px, 8vh, 90px) 0 80px; }
+
+
+
+  .projects-head {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: clamp(20px, 5vw, 60px);
+
+    align-items: end;
+
+    margin-bottom: clamp(50px, 8vh, 80px);
+
+    padding-bottom: 28px;
+
+    border-bottom: 1px solid var(--ink);
+
+  }
+
+  .projects-head .kicker { margin-bottom: 18px; }
+
+  .projects-head h2 {
+
+    font-family: var(--font-display);
+
+    font-weight: 400;
+
+    font-size: clamp(2.2rem, 4.6vw, 3.8rem);
+
+    line-height: 1;
+
+    letter-spacing: -0.03em;
+
+  }
+
+  .projects-head h2 em { font-style: italic; color: var(--tech); }
+
+  .projects-head p {
+
+    font-size: 0.95rem;
+
+    line-height: 1.7;
+
+    color: var(--ink-2);
+
+    max-width: 44ch;
+
+  }
+
+
+
+  .projects-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+
+    gap: 1px;
+
+    background: var(--rule);
+
+    border: 1px solid var(--rule);
+
+  }
+
+  .project-card {
+
+    background: var(--paper);
+
+    padding: clamp(28px, 4vw, 48px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 340px;
+
+    transition: background 0.5s var(--ease);
+
+  }
+
+  .project-card:hover { background: var(--chalk); }
+
+
+
+  .project-card .card-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: baseline;
+
+    margin-bottom: 28px;
+
+  }
+
+  .project-card .card-num {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.72rem;
+
+    color: var(--smoke);
+
+    letter-spacing: 0.08em;
+
+  }
+
+  .project-card .card-year {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.72rem;
+
+    color: var(--ash);
+
+    letter-spacing: 0.08em;
+
+  }
+
+  .project-card h3 {
+
+    font-family: var(--font-display);
+
+    font-weight: 400;
+
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+
+    line-height: 1.1;
+
+    letter-spacing: -0.02em;
+
+    margin-bottom: 14px;
+
+    color: var(--ink);
+
+    max-width: 16ch;
+
+  }
+
+  .project-card .brief {
+
+    font-size: 0.94rem;
+
+    line-height: 1.65;
+
+    color: var(--ink-2);
+
+    flex: 1;
+
+    margin-bottom: 28px;
+
+    max-width: 44ch;
+
+  }
+
+  .project-card .card-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding-top: 22px;
+
+    border-top: 1px solid var(--rule);
+
+    gap: 16px;
+
+  }
+
+  .project-card .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .project-card .tag {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.64rem;
+
+    letter-spacing: 0.06em;
+
+    text-transform: uppercase;
+
+    color: var(--smoke);
+
+    padding: 3px 8px;
+
+    border: 1px solid var(--rule);
+
+    background: var(--paper);
+
+  }
+
+  .btn-explore {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+
+    color: var(--ink);
+
+    background: none;
+
+    border: none;
+
+    cursor: pointer;
+
+    padding: 0;
+
+    flex-shrink: 0;
+
+  }
+
+  .btn-explore .arrow {
+
+    width: 24px; height: 24px;
+
+    border: 1px solid var(--ink);
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 0.7rem;
+
+    transition: background 0.4s var(--ease), color 0.4s var(--ease), transform 0.4s var(--ease);
+
+  }
+
+  .btn-explore:hover .arrow { background: var(--ink); color: var(--paper); transform: rotate(-45deg); }
+
+
+
+  /* ============================================================
+
+     PROJECT DETAIL
+
+     ============================================================ */
+
+  .detail { padding: clamp(40px, 6vh, 70px) 0 90px; }
+
+  .detail-wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--gutter); }
+
+
+
+  .detail-back {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    background: none;
+
+    border: none;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+
+    color: var(--smoke);
+
+    cursor: pointer;
+
+    padding: 0;
+
+    margin-bottom: clamp(40px, 7vh, 70px);
+
+    transition: color 0.3s var(--ease);
+
+  }
+
+  .detail-back .arrow {
+
+    width: 22px; height: 22px;
+
+    border: 1px solid rgba(11,14,19,0.2);
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    transition: border-color 0.4s var(--ease), transform 0.4s var(--ease);
+
+  }
+
+  .detail-back:hover { color: var(--ink); }
+
+  .detail-back:hover .arrow { border-color: var(--ink); transform: translateX(-3px); }
+
+
+
+  .detail-eyebrow {
+
+    display: flex;
+
+    gap: 30px;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    color: var(--smoke);
+
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid var(--rule);
+
+    margin-bottom: 40px;
+
+    flex-wrap: wrap;
+
+  }
+
+  .detail-eyebrow b { color: var(--ink); font-weight: 500; }
+
+
+
+  .detail-title {
+
+    font-family: var(--font-display);
+
+    font-weight: 400;
+
+    font-size: clamp(2.4rem, 5.6vw, 4.6rem);
+
+    line-height: 0.98;
+
+    letter-spacing: -0.035em;
+
+    color: var(--ink);
+
+    margin-bottom: 30px;
+
+    max-width: 16ch;
+
+  }
+
+  .detail-title em { font-style: italic; color: var(--tech); }
+
+
+
+  .detail-context {
+
+    font-family: var(--font-display);
+
+    font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+
+    font-style: italic;
+
+    line-height: 1.55;
+
+    color: var(--ink-2);
+
+    max-width: 56ch;
+
+    padding-bottom: 46px;
+
+    border-bottom: 1px solid var(--rule);
+
+    margin-bottom: 50px;
+
+  }
+
+
+
+  .article-block {
+
+    display: grid;
+
+    grid-template-columns: 170px 1fr;
+
+    gap: clamp(24px, 5vw, 60px);
+
+    padding: 32px 0;
+
+    border-bottom: 1px solid var(--rule);
+
+  }
+
+  .article-block:last-child { border-bottom: none; }
+
+  .article-block .label {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.68rem;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+
+    color: var(--smoke);
+
+    padding-top: 6px;
+
+  }
+
+  .article-block .label .n {
+
+    display: block;
+
+    color: var(--ash);
+
+    margin-bottom: 4px;
+
+  }
+
+  .article-block .content p {
+
+    font-size: 1rem;
+
+    line-height: 1.75;
+
+    color: var(--ink-2);
+
+    max-width: 62ch;
+
+  }
+
+  .article-block .content ul {
+
+    list-style: none;
+
+    padding: 0;
+
+    max-width: 62ch;
+
+  }
+
+  .article-block .content ul li {
+
+    font-size: 0.98rem;
+
+    line-height: 1.7;
+
+    color: var(--ink-2);
+
+    padding: 12px 0 12px 26px;
+
+    border-bottom: 1px solid rgba(11,14,19,0.08);
+
+    position: relative;
+
+  }
+
+  .article-block .content ul li:last-child { border-bottom: none; }
+
+  .article-block .content ul li::before {
+
+    content: '';
+
+    position: absolute;
+
+    left: 0; top: 20px;
+
+    width: 12px; height: 1px;
+
+    background: var(--tech);
+
+  }
+
+
+
+  .code-snapshot {
+
+    background: var(--ink);
+
+    color: #e8e6df;
+
+    padding: clamp(22px, 3.4vw, 38px);
+
+    font-family: var(--font-mono);
+
+    font-size: 0.82rem;
+
+    line-height: 1.8;
+
+    overflow-x: auto;
+
+    white-space: pre;
+
+    box-shadow: 0 30px 60px -30px rgba(11,14,19,0.35);
+
+    tab-size: 2;
+
+  }
+
+  .code-snapshot::-webkit-scrollbar { height: 8px; }
+
+  .code-snapshot::-webkit-scrollbar-track { background: var(--ink-2); }
+
+  .code-snapshot::-webkit-scrollbar-thumb { background: var(--smoke); }
+
+
+
+  /* ============================================================
+
+     CONTACT
+
+     ============================================================ */
+
+  .contact { padding: clamp(50px, 8vh, 90px) 0 90px; }
+
+  .contact-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: clamp(40px, 7vw, 100px);
+
+    align-items: start;
+
+  }
+
+  .contact-left .kicker { margin-bottom: 26px; }
+
+  .contact-left h2 {
+
+    font-family: var(--font-display);
+
+    font-weight: 400;
+
+    font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+
+    line-height: 1;
+
+    letter-spacing: -0.03em;
+
+    margin-bottom: 26px;
+
+  }
+
+  .contact-left h2 em { font-style: italic; color: var(--tech); }
+
+  .contact-left .intro {
+
+    font-size: 1rem;
+
+    line-height: 1.7;
+
+    color: var(--ink-2);
+
+    max-width: 42ch;
+
+    margin-bottom: 44px;
+
+  }
+
+  .contact-info { border-top: 1px solid var(--rule); }
+
+  .contact-info .row {
+
+    display: grid;
+
+    grid-template-columns: 110px 1fr;
+
+    gap: 20px;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid var(--rule);
+
+    align-items: baseline;
+
+  }
+
+  .contact-info .row .k {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.66rem;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+
+    color: var(--smoke);
+
+  }
+
+  .contact-info .row .v {
+
+    font-family: var(--font-display);
+
+    font-size: 1.08rem;
+
+    color: var(--ink);
+
+  }
+
+  .contact-info .row .v a {
+
+    color: var(--ink);
+
+    text-decoration: none;
+
+    border-bottom: 1px solid rgba(11,14,19,0.15);
+
+    transition: border-color 0.3s var(--ease);
+
+  }
+
+  .contact-info .row .v a:hover { border-color: var(--tech); }
+
+
+
+  .contact-form { display: flex; flex-direction: column; gap: 26px; }
+
+  .field { display: flex; flex-direction: column; gap: 8px; }
+
+  .field label {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.66rem;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+
+    color: var(--smoke);
+
+  }
+
+  .field input,
+
+  .field textarea {
+
+    width: 100%;
+
+    background: transparent;
+
+    border: none;
+
+    border-bottom: 1px solid var(--ink-2);
+
+    padding: 10px 0;
+
+    font-family: var(--font-body);
+
+    font-size: 1rem;
+
+    color: var(--ink);
+
+    transition: border-color 0.4s var(--ease);
+
+    border-radius: 0;
+
+  }
+
+  .field input::placeholder,
+
+  .field textarea::placeholder { color: var(--ash); }
+
+  .field input:focus,
+
+  .field textarea:focus {
+
+    outline: none;
+
+    border-bottom-color: var(--tech);
+
+  }
+
+  .field textarea { resize: vertical; min-height: 100px; }
+
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+
+
+
+  .submit {
+
+    align-self: flex-start;
+
+    margin-top: 14px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    background: var(--ink);
+
+    color: var(--paper);
+
+    border: none;
+
+    padding: 16px 30px;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.72rem;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition: background 0.4s var(--ease), gap 0.4s var(--ease);
+
+  }
+
+  .submit:hover { background: var(--tech); gap: 22px; }
+
+  .submit::after {
+
+    content: '→';
+
+    font-family: var(--font-body);
+
+    font-size: 1rem;
+
+    letter-spacing: 0;
+
+  }
+
+
+
+  /* ============================================================
+
+     FOOTER
+
+     ============================================================ */
+
+  .footer {
+
+    border-top: 1px solid var(--ink);
+
+    padding: 34px var(--gutter);
+
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    gap: 24px;
+
+    align-items: center;
+
+  }
+
+  .footer .left {
+
+    font-family: var(--font-display);
+
+    font-style: italic;
+
+    font-size: 1.1rem;
+
+    color: var(--ink);
+
+  }
+
+  .footer .center {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.66rem;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+
+    color: var(--smoke);
+
+    text-align: center;
+
+  }
+
+  .footer .right {
+
+    display: flex;
+
+    gap: 22px;
+
+    justify-content: flex-end;
+
+  }
+
+  .footer .right a {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.66rem;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    color: var(--smoke);
+
+    text-decoration: none;
+
+    transition: color 0.3s var(--ease);
+
+  }
+
+  .footer .right a:hover { color: var(--ink); }
+
+
+
+  /* ============================================================
+
+     RESPONSIVE
+
+     ============================================================ */
+
+  @media (max-width: 1000px) {
+
+    .hero-grid { grid-template-columns: 1fr; gap: 20px; }
+
+    .hero-title, .hero-kicker, .hero-aside { grid-column: 1 / -1; }
+
+    .hero-aside { max-width: none; }
+
+    .about-top { grid-template-columns: 1fr; }
+
+    .about-photo { max-width: 280px; }
+
+    .edu-row { grid-template-columns: 120px 1fr; }
+
+    .edu-row .desc { grid-column: 2 / 3; }
+
+    .projects-head { grid-template-columns: 1fr; }
+
+    .contact-grid { grid-template-columns: 1fr; }
+
+    .article-block { grid-template-columns: 1fr; gap: 12px; }
+
+    .footer { grid-template-columns: 1fr; text-align: center; }
+
+    .footer .right { justify-content: center; }
+
+  }
+
+  @media (max-width: 640px) {
+
+    :root { --nav-h: 62px; --gutter: 20px; }
+
+    .logo .name { display: none; }
+
+    .nav-links li a { font-size: 0.74rem; }
+
+    .projects-grid { grid-template-columns: 1fr; }
+
+    .edu-row { grid-template-columns: 1fr; gap: 10px; }
+
+    .edu-row .desc { grid-column: 1; }
+
+    .field-row { grid-template-columns: 1fr; }
+
+    .slide { width: 78vw; }
+
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    .carousel-track { animation: none; }
+
+    .section.active { animation: none; }
+
+  }
+
+</style>
+
 </head>
+
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  <div id="reading-progress" aria-hidden="true"></div>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#/" aria-label="Denos Kume — home">
-        <span class="brand-mark" aria-hidden="true">dk.</span>
-        <span>Denos Kume<small class="brand-sub">Engineering portfolio</small></span>
-      </a>
-      <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
-        <a class="nav-link" href="#/" data-nav="home">Home</a>
-        <a class="nav-link" href="#/about" data-nav="about">About</a>
-        <a class="nav-link" href="#/projects" data-nav="projects">Projects</a>
-        <a class="nav-link" href="#/research" data-nav="research">Research</a>
-        <a class="nav-link" href="#/blog" data-nav="blog">Blog</a>
-        <a class="nav-link" href="#/contact" data-nav="contact">Contact</a>
-      </nav>
-      <button type="button" class="studio-search" id="studio-search">Search portfolio <kbd>⌘ / Ctrl K</kbd></button>
-      <div class="header-tools">
-        <button class="icon-button" type="button" id="theme-toggle" aria-label="Switch color theme" title="Switch color theme">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg>
-        </button>
-        <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
-      </div>
-    </div>
-  </header>
-  <main id="main-content" tabindex="-1">
-    <div class="container" style="padding:90px 0;max-width:820px">
-      <span class="eyebrow">Engineering portfolio</span>
-      <h1 style="font-size:clamp(2.4rem,5vw,4rem);margin:14px 0 16px">Computer vision, built on evidence.</h1>
-      <p>Experiments in image processing, camera geometry and applied machine learning. A JavaScript-enabled browser reveals the interactive project library, research, blog and contact form.</p>
-      <p style="margin-top:25px"><a class="btn btn-primary" href="https://github.com/denoskume/portfolio">Explore source repository</a></p>
-    </div>
-  </main>
-  <dialog id="finder" aria-labelledby="finder-title"><div class="finder-head"><h2 id="finder-title">Search portfolio</h2><button type="button" id="finder-close" aria-label="Close search">×</button></div><input id="finder-query" type="search" placeholder="Search projects and articles" aria-label="Search projects and articles"><div id="finder-results"></div></dialog>
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <a class="brand" href="#/"><span class="brand-mark" aria-hidden="true">dk.</span> Denos Kume</a>
-        <p>Computer vision, signal and image processing, applied machine learning. Built with care, documented with evidence.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Explore</h4>
-        <a href="#/about">About</a><a href="#/projects">Projects</a><a href="#/research">Research</a><a href="#/blog">Blog</a><a href="#/contact">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="mailto:kamenan.kume@eleves.ec-nantes.fr">Email</a>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <span>© <span id="current-year">2026</span> Denos Kume. An independent portfolio.</span>
-      <span>Based in Nantes, France · MSc 2025–2027</span>
-    </div>
-  </footer>
-  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Expanded project figure" aria-hidden="true">
-    <div class="lightbox-content">
-      <button id="lightbox-close" class="lightbox-close" aria-label="Close expanded image" type="button">Close ×</button>
-      <img id="lightbox-image" src="" alt="">
-      <p id="lightbox-caption"></p>
-    </div>
-  </div>
-  <div id="toast" role="status" aria-live="polite"></div>
+
+
+
+<!-- ===== PRELOADER (10 secondes, paliers 25% / 50% / 75% / 100%) ===== -->
+
+<div class="preloader" id="preloader">
+
+  <div class="pl-text-wrapper" data-text="Denos Kume">Denos Kume</div>
+
+
+
+  <div class="pl-loading">
+
+    <div>Loading<span class="pl-dots"></span></div>
+
+    <!-- Le compteur sera mis à jour en JS -->
+
+    <div class="pl-percentage" id="plPercentage">0%</div>
+
+  </div>
+
+</div>
+
+
+
+<!-- ===== 1. NAVBAR FIXE ===== -->
+
+<nav class="navbar" id="navbar">
+
+  <a href="#" class="logo" data-target="home">
+
+    <span class="glyph">MSc.</span>
+
+    <span class="name">Denos Kume</span>
+
+  </a>
+
+  <ul class="nav-links">
+
+    <li><a href="#" data-target="home" class="active">Home</a></li>
+
+    <li><a href="#" data-target="about">About me</a></li>
+
+    <li><a href="#" data-target="projects">Project</a></li>
+
+    <li><a href="#" data-target="contact">Contact</a></li>
+
+  </ul>
+
+</nav>
+
+
+
+<!-- ===== 3. CONTENEUR PRINCIPAL ===== -->
+
+<div class="main-container" id="mainContainer">
+
+
+
+  <!-- ============ HOME ============ -->
+
+  <section id="home" class="section active">
+
+    <div class="home">
+
+      <div class="wrap">
+
+        <div class="hero-grid">
+
+          <div class="hero-kicker">
+
+            <span class="kicker">MSc Control &amp; Robotics — Centrale Nantes</span>
+
+          </div>
+
+          <h1 class="hero-title">
+
+            Traiter le signal,<br>
+
+            comprendre l'image,<br>
+
+            <em>contrôler la machine.</em>
+
+          </h1>
+
+          <aside class="hero-aside">
+
+            <strong>Étudiant — dernière année</strong>
+
+            Parcours Data Science, Signal &amp; Image Processing. Projets en vision par ordinateur, traitement d’images et machine learning appliqué. Recherche d’un stage de six mois dès février 2027.
+
+          </aside>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="wrap">
+
+        <div class="gallery-head">
+
+          <span class="t">Travaux récents — Aperçu visuel</span>
+
+          <span class="c">(06) — Défilement droite → gauche · 5 s / image</span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- CARROUSEL -->
+
+      <div class="carousel">
+
+        <div class="carousel-track" id="carouselTrack"></div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ============ ABOUT ME ============ -->
+
+  <section id="about" class="section">
+
+    <div class="about">
+
+      <div class="wrap">
+
+        <div class="about-top">
+
+          <div>
+
+            <div class="about-photo">
+
+              <img src="https://avatars.githubusercontent.com/u/110854822?v=4" alt="Photo de profil GitHub de Denos Kume">
+
+            </div>
+
+            <div class="about-photo-cap">
+
+              <span>Denos Kume</span>
+
+              <span>Nantes, France</span>
+
+            </div>
+
+          </div>
+
+          <div class="about-text">
+
+            <span class="kicker">À propos — note biographique</span>
+
+            <h2>De l'électronique à la <em>vision par ordinateur.</em></h2>
+
+            <div class="body">
+
+              <p>Je suis étudiant en dernière année du MSc Control &amp; Robotics à Centrale Nantes, avec une spécialisation en Data Science, traitement du signal et traitement de l'image.</p>
+
+              <p>J'ai étudié l'informatique et l'électronique à Bengaluru, où j'ai acquis des bases en programmation, développement logiciel et systèmes embarqués. Aujourd'hui, je mets ces compétences en pratique sur des projets Python, avec une attention particulière à l'évaluation et à la reproductibilité.</p>
+
+              <p>Mes travaux comprennent la segmentation de microcathéters en fluoroscopie, la calibration de caméra, la classification audio zero-shot et le développement de VisionLab, un outil interactif de traitement d'images. Je recherche un stage de six mois à partir de février 2027 pour contribuer à des projets en équipe.</p>
+
+            </div>
+
+            <div class="about-facts">
+
+              <div class="fact"><div class="k">Établissement</div><div class="v">Centrale Nantes</div></div>
+
+              <div class="fact"><div class="k">Promotion</div><div class="v">MSc 2025 – 2027</div></div>
+
+              <div class="fact"><div class="k">Spécialisation</div><div class="v">Data, Signal &amp; Image</div></div>
+
+              <div class="fact"><div class="k">Recherche de</div><div class="v">Stage · février 2027</div></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+
+        <div class="edu-block" style="margin-bottom:0;">
+
+          <div class="section-title">
+
+            <h3>Éducation</h3>
+
+            <span class="sub"></span>
+
+          </div>
+
+
+
+            <div class="chrono">
+
+            <div class="chrono-item">
+
+                <div class="date">2025 — 2027</div>
+
+                <h4>MSc Control &amp; Robotics</h4>
+
+                <div class="org">Centrale Nantes · Parcours DASIP</div>
+
+                <p>
+
+                Approfondissement des méthodes d'analyse de données,
+
+                d'apprentissage automatique, d'optimisation et de
+
+                modélisation statistique. Développement et application
+
+                d'algorithmes avancés aux signaux et aux images,
+
+                notamment dans les domaines scientifique et industriel.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="chrono-item">
+
+                <div class="date">2021 — 2025</div>
+
+                <h4>Licence — Informatique &amp; Électronique</h4>
+
+                <div class="org">
+
+                Kristu Jayanti University · Bengaluru, Inde
+
+                </div>
+
+                <p>
+
+                Acquisition de connaissances en programmation,
+
+                algorithmique, structures de données, bases de données
+
+                et développement logiciel. Étude des circuits
+
+                électroniques, microprocesseurs et microcontrôleurs,
+
+                avec une approche pratique des systèmes embarqués.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="chrono-item">
+
+                <div class="date">2020</div>
+
+                <h4>Baccalauréat scientifique — Série D</h4>
+
+                <div class="org">
+
+                Lycée Moderne M'Batto · Côte d'Ivoire
+
+                </div>
+
+                <p>
+
+                Étude des concepts mathématiques et des lois
+
+                fondamentales de la physique, avec une approche
+
+                axée sur le calcul, le raisonnement scientifique
+
+                et la résolution de problèmes.
+
+                </p>
+
+            </div>
+
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ============ PROJECTS ============ -->
+
+  <section id="projects" class="section">
+
+    <div class="projects">
+
+      <div class="wrap">
+
+        <div class="projects-head">
+
+          <div>
+
+            <span class="kicker">Travaux techniques — études de cas</span>
+
+            <h2>Quatre projets,<br><em>documentés.</em></h2>
+
+          </div>
+
+          <p>Chaque étude présente le contexte, les objectifs, la méthode, les résultats vérifiables et les limites du travail.</p>
+
+        </div>
+
+        <div class="projects-grid" id="projectsGrid"></div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ============ PROJECT DETAIL ============ -->
+
+  <section id="projectDetail" class="section">
+
+    <div class="detail">
+
+      <div class="detail-wrap" id="projectDetailContent"></div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ============ CONTACT ============ -->
+
+  <section id="contact" class="section">
+
+    <div class="contact">
+
+      <div class="wrap">
+
+        <div class="contact-grid">
+
+          <div class="contact-left">
+
+            <span class="kicker">Correspondance</span>
+
+            <h2>Discutons d'un stage ou d'une <em>collaboration.</em></h2>
+
+            <p class="intro">À la recherche d'un stage de six mois dès février 2027 en vision par ordinateur, traitement d'images ou machine learning appliqué. Également ouvert aux échanges techniques et collaborations.</p>
+
+            <div class="contact-info">
+
+              <div class="row"><span class="k">Email</span><span class="v"><a href="mailto:kamenan.kume@eleves.ec-nantes.fr">kamenan.kume@eleves.ec-nantes.fr</a></span></div>
+
+              <div class="row"><span class="k">Localisation</span><span class="v">Nantes, France</span></div>
+
+              <div class="row"><span class="k">LinkedIn</span><span class="v"><a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">linkedin.com/in/denoskume</a></span></div>
+
+              <div class="row"><span class="k">GitHub</span><span class="v"><a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">github.com/denoskume</a></span></div>
+
+              <div class="row"><span class="k">Statut</span><span class="v">Stage de 6 mois — dès février 2027</span></div>
+
+            </div>
+
+          </div>
+
+          <form class="contact-form" onsubmit="handleContact(event)">
+
+            <div class="field-row">
+
+              <div class="field">
+
+                <label for="name">Nom complet</label>
+
+                <input type="text" id="name" placeholder="Votre nom" required>
+
+              </div>
+
+              <div class="field">
+
+                <label for="email">Email</label>
+
+                <input type="email" id="email" placeholder="vous@exemple.com" required>
+
+              </div>
+
+            </div>
+
+            <div class="field">
+
+              <label for="subject">Sujet</label>
+
+              <input type="text" id="subject" placeholder="Objet de votre message" required>
+
+            </div>
+
+            <div class="field">
+
+              <label for="message">Message</label>
+
+              <textarea id="message" placeholder="Décrivez votre projet ou votre offre de stage en quelques lignes…" required></textarea>
+
+            </div>
+
+            <button type="submit" class="submit">Envoyer</button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+</div>
+
+
+
+<!-- ===== 2. FOOTER ===== -->
+
+<footer class="footer">
+
+  <div class="left">Denos Kume — Centrale Nantes</div>
+
+  <div class="center">© 2026 — Tous droits réservés</div>
+
+  <div class="right">
+
+    <a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a>
+
+    <a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+
+    <a href="#" onclick="showSection('home');return false;">Haut de page</a>
+
+  </div>
+
+</footer>
+
+
+
+<script>
+
+/* ============================================================
+
+   DONNÉES — Projets
+
+   ============================================================ */
+
+const projects = [
+  {
+    "id": 1,
+    "title": "Segmentation de microcathéters en fluoroscopie",
+    "brief": "Détection et segmentation d’instruments fins dans une séquence fluoroscopique bruitée, comparées à des annotations manuelles.",
+    "year": "2026",
+    "tags": [
+      "Python",
+      "OpenCV",
+      "Segmentation"
+    ],
+    "context": "Projet académique à Centrale Nantes, mené en binôme avec Oluwole Shokunbi sur dix images fluoroscopiques annotées.",
+    "introduction": "Les instruments fins et mobiles peuvent se confondre avec les structures anatomiques. Le travail compare des méthodes classiques de soustraction de fond et une extension visant à reconstruire un tracé continu.",
+    "objective": "Repérer les microcathéters et guides, produire des masques binaires et mesurer leurs écarts aux tracés manuels.",
+    "approach": [
+      "Normalisation du contraste et filtrage pour préparer dix images de 512 × 512 pixels.",
+      "Comparaison du seuillage fixe, d’Otsu et d’un mélange gaussien sur les mêmes images.",
+      "Évaluation par Dice, IoU, PSNR et inspection des erreurs image par image.",
+      "Extension supervisée fondée sur la réponse aux lignes sombres et la reconstruction du trajet."
+    ],
+    "code": "import numpy as np\n\ndef dice_score(prediction, reference):\n    pred = np.asarray(prediction, dtype=bool)\n    ref = np.asarray(reference, dtype=bool)\n    overlap = np.logical_and(pred, ref).sum()\n    total = pred.sum() + ref.sum()\n    return 1.0 if total == 0 else 2 * overlap / total",
+    "results": [
+      "Dice moyen : 0,416 pour le seuillage fixe avant l’extension de tracé.",
+      "Dice moyen : 0,876 sur neuf images de mouvement avec l’extension continue.",
+      "Évaluation intra-séquence ; comparaison avec des annotations manuelles.",
+      "Code et expériences : github.com/denoskume/Background-Subtraction-Fluoroscopy"
+    ],
+    "limitations": "Résultats obtenus sur une seule acquisition ; ils ne constituent pas une validation clinique indépendante.",
+    "future": "Tester sur des séquences indépendantes et améliorer la robustesse aux structures anatomiques et aux changements de contraste."
+  },
+  {
+    "id": 2,
+    "title": "Calibration de caméra",
+    "brief": "Estimation des paramètres intrinsèques et des poses à partir de neuf images d’un damier, avec analyse des erreurs de reprojection.",
+    "year": "2026",
+    "tags": [
+      "Python",
+      "OpenCV",
+      "Géométrie"
+    ],
+    "context": "Étude de cas académique de calibration géométrique, présentée dans le contexte d’un poste d’inspection visuelle.",
+    "introduction": "Avant de localiser des objets ou de mesurer des dimensions, il faut relier les coordonnées de l’image à un modèle géométrique de la caméra.",
+    "objective": "Estimer la matrice intrinsèque et les poses du damier, puis mesurer la précision et la robustesse des projections.",
+    "approach": [
+      "Détection de 8 × 6 coins internes sur neuf photographies d’un damier (pas de 30 mm).",
+      "Estimation d’homographies normalisées et résolution des contraintes de Zhang.",
+      "Reconstruction des poses caméra et visualisation des résidus par image.",
+      "Comparaison sur coins tenus à l’écart entre modèle linéaire et raffinement OpenCV."
+    ],
+    "code": "import cv2\n\ndef reprojection_error(observed, projected):\n    difference = observed.reshape(-1, 2) - projected.reshape(-1, 2)\n    return float((difference ** 2).sum(axis=1).mean() ** 0.5)",
+    "results": [
+      "9 photographies sur 9 utilisées ; 432 coins détectés.",
+      "Erreur moyenne de reprojection : 0,434 pixel ; RMS global : 0,534 pixel.",
+      "RMS sur coins tenus à l’écart : 0,395 pixel (Zhang linéaire) et 0,352 pixel (OpenCV raffiné).",
+      "Notebook et figures : github.com/denoskume/camera-calibration"
+    ],
+    "limitations": "Données de laboratoire ; la précision dimensionnelle sur une pièce réelle n’a pas été qualifiée.",
+    "future": "Évaluer la calibration sur une pièce de référence certifiée et différentes positions dans le champ."
+  },
+  {
+    "id": 3,
+    "title": "Classification audio zero-shot avec CLAP",
+    "brief": "Comparaison de dix formulations textuelles pour classifier des sons environnementaux sans entraînement spécifique sur ESC-50.",
+    "year": "2026",
+    "tags": [
+      "PyTorch",
+      "LAION-CLAP",
+      "Zero-shot"
+    ],
+    "context": "Projet académique de machine learning multimodal mené avec Venkatesh Muthukrishnan sur ESC-50.",
+    "introduction": "CLAP projette des extraits audio et des descriptions textuelles dans un espace commun. L’expérience étudie l’effet de la formulation du prompt sur le classement des sons.",
+    "objective": "Tester dix stratégies de prompt et mesurer leur effet sur la classification sans fine-tuning sur les classes ESC-50.",
+    "approach": [
+      "Utilisation du jeu ESC-50 : 2 000 extraits, 50 catégories.",
+      "Calcul des embeddings audio et texte avec un modèle LAION-CLAP pré-entraîné.",
+      "Normalisation L2 et classement par similarité cosinus.",
+      "Comparaison Top-1 et Top-k, puis analyse des résultats par classe."
+    ],
+    "code": "import numpy as np\n\ndef cosine_scores(audio_embedding, text_embeddings):\n    a = audio_embedding / np.linalg.norm(audio_embedding)\n    t = text_embeddings / np.linalg.norm(text_embeddings, axis=1, keepdims=True)\n    return t @ a",
+    "results": [
+      "Précision Top-1 de référence avec le nom de classe seul : 83,05 %.",
+      "Meilleure formulation : « an audio recording of {} » — Top-1 : 91,15 %.",
+      "Amélioration de 8,10 points de pourcentage ; Top-5 : 99,00 %.",
+      "Notebook : github.com/denoskume/CLAP-Zero-Shot-Audio-Classification"
+    ],
+    "limitations": "Dix prompts évalués sur un jeu de données unique ; les scores dépendent du modèle pré-entraîné et du protocole.",
+    "future": "Évaluer d’autres corpus audio et comparer des descriptions adaptées aux différents contextes de capture."
+  },
+  {
+    "id": 4,
+    "title": "VisionLab — laboratoire de traitement d’images",
+    "brief": "Application interactive Streamlit pour construire, visualiser, comparer et exporter des pipelines de traitement d’images.",
+    "year": "2026",
+    "tags": [
+      "Streamlit",
+      "OpenCV",
+      "scikit-image"
+    ],
+    "context": "Projet personnel open-source, version 2.0, développé et documenté dans le dépôt VisionLab.",
+    "introduction": "Pour comprendre les transformations d’images, il est utile de pouvoir enchaîner des opérations, inspecter les étapes et comparer les résultats dans une seule interface.",
+    "objective": "Centraliser des opérations de prétraitement, segmentation et analyse, avec visualisation et export reproductibles.",
+    "approach": [
+      "Import de fichiers PNG, JPEG et TIFF et inspection des propriétés des images.",
+      "Pipeline paramétrable : filtres, contraste, couleurs, contours, segmentation et morphologie.",
+      "Comparaison des étapes, histogrammes, métriques et extraction de caractéristiques.",
+      "Traitement par lot et export PNG, JSON, CSV ou ZIP selon les résultats."
+    ],
+    "code": "import cv2\n\ndef enhance_local_contrast(gray_image):\n    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))\n    return clahe.apply(gray_image)",
+    "results": [
+      "29 opérations de traitement d’images disponibles dans l’application.",
+      "Analyse d’objets : aire, centroïde, périmètre et boîte englobante.",
+      "Mesures de comparaison : PSNR, SSIM, Dice et IoU lorsque des références sont fournies.",
+      "Source : github.com/denoskume/VisionLab"
+    ],
+    "limitations": "La version documentée se concentre sur les images fixes ; les limites de résolution et de mémoire sont précisées dans le dépôt.",
+    "future": "Étendre progressivement le laboratoire à la vidéo et aux modèles pré-entraînés."
+  }
+];
+
+
+
+/* ============================================================
+
+   CARROUSEL — défile droite -> gauche, 5s / image
+
+   ============================================================ */
+
+const carouselItems = [
+  {"src": "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/segmentation-comparison.png", "label": "Segmentation de microcathéters"},
+  {"src": "https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/detected_chessboard_corners.png", "label": "Calibration — coins du damier"},
+  {"src": "https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/clap_complete_zero_shot_pipeline.png", "label": "Classification audio zero-shot"},
+  {"src": "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/grayscale-comparison.png", "label": "Prétraitement fluoroscopique"},
+  {"src": "https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/mean_reprojection_error_by_view.png", "label": "Erreurs de reprojection"},
+  {"src": "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/mask-cleanup.png", "label": "Reconstruction des instruments"}
+];
+
+
+
+function buildCarousel() {
+
+  const track = document.getElementById('carouselTrack');
+
+  const all = [...carouselItems, ...carouselItems];
+
+  track.style.animationDuration = (carouselItems.length * 5) + 's';
+
+  track.innerHTML = all.map((item, i) => {
+
+    const idx = String((i % carouselItems.length) + 1).padStart(2, '0');
+
+    return `
+
+      <figure class="slide">
+
+        <img src="${item.src}" alt="${item.label}">
+
+        <span class="num">${idx}</span>
+
+        <figcaption class="title">${item.label}</figcaption>
+
+      </figure>
+
+    `;
+
+  }).join('');
+
+}
+
+
+
+/* ============================================================
+
+   PROJECTS
+
+   ============================================================ */
+
+function buildProjects() {
+
+  const grid = document.getElementById('projectsGrid');
+
+  grid.innerHTML = projects.map((p, i) => {
+
+    const num = String(i + 1).padStart(2, '0');
+
+    return `
+
+      <article class="project-card">
+
+        <div class="card-top">
+
+          <span class="card-num">Projet ${num} / 04</span>
+
+          <span class="card-year">${p.year}</span>
+
+        </div>
+
+        <h3>${p.title}</h3>
+
+        <p class="brief">${p.brief}</p>
+
+        <div class="card-footer">
+
+          <div class="tags">
+
+            ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+
+          </div>
+
+          <button class="btn-explore" onclick="openProject(${p.id})">
+
+            Explore <span class="arrow">→</span>
+
+          </button>
+
+        </div>
+
+      </article>
+
+    `;
+
+  }).join('');
+
+}
+
+
+
+/* ============================================================
+
+   PROJECT DETAIL
+
+   ============================================================ */
+
+function openProject(id) {
+
+  const p = projects.find(x => x.id === id);
+
+  if (!p) return;
+
+  const n = String(p.id).padStart(2, '0');
+
+
+
+  const content = document.getElementById('projectDetailContent');
+
+  content.innerHTML = `
+
+    <button class="detail-back" onclick="showSection('projects')">
+
+      <span class="arrow">←</span> Retour aux projets
+
+    </button>
+
+    <div class="detail-eyebrow">
+
+      <span>Année <b>${p.year}</b></span>
+
+      <span>Projet <b>${n} / 04</b></span>
+
+      <span>Étude de cas</span>
+
+    </div>
+
+    <h1 class="detail-title">${p.title}</h1>
+
+    <p class="detail-context">${p.context}</p>
+
+    <div class="article-block">
+
+      <div class="label"><span class="n">01</span>Introduction</div>
+
+      <div class="content"><p>${p.introduction}</p></div>
+
+    </div>
+
+    <div class="article-block">
+
+      <div class="label"><span class="n">02</span>Objectif</div>
+
+      <div class="content"><p>${p.objective}</p></div>
+
+    </div>
+
+    <div class="article-block">
+
+      <div class="label"><span class="n">03</span>Approche</div>
+
+      <div class="content"><ul>${p.approach.map(a => `<li>${a}</li>`).join('')}</ul></div>
+
+    </div>
+
+    <div class="article-block">
+
+      <div class="label"><span class="n">04</span>Code snapshot</div>
+
+      <div class="content"><pre class="code-snapshot">${escapeHtml(p.code)}</pre></div>
+
+    </div>
+
+    <div class="article-block">
+
+      <div class="label"><span class="n">05</span>Résultats</div>
+
+      <div class="content"><ul>${p.results.map(r => `<li>${r}</li>`).join('')}</ul></div>
+
+    </div>
+
+    <div class="article-block">
+
+      <div class="label"><span class="n">06</span>Limitations</div>
+
+      <div class="content"><p>${p.limitations}</p></div>
+
+    </div>
+
+    <div class="article-block">
+
+      <div class="label"><span class="n">07</span>Perspectives futures</div>
+
+      <div class="content"><p>${p.future}</p></div>
+
+    </div>
+
+  `;
+
+  showSection('projectDetail');
+
+}
+
+
+
+function escapeHtml(str) {
+
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+}
+
+
+
+/* ============================================================
+
+   NAVIGATION
+
+   ============================================================ */
+
+function showSection(id) {
+
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+
+  const target = document.getElementById(id);
+
+  if (target) {
+
+    target.classList.add('active');
+
+    target.style.animation = 'none';
+
+    void target.offsetWidth;
+
+    target.style.animation = '';
+
+  }
+
+  document.querySelectorAll('.nav-links a').forEach(a => {
+
+    a.classList.toggle('active', a.getAttribute('data-target') === id);
+
+  });
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+}
+
+
+
+document.querySelectorAll('[data-target]').forEach(el => {
+
+  el.addEventListener('click', (e) => {
+
+    e.preventDefault();
+
+    showSection(el.getAttribute('data-target'));
+
+  });
+
+});
+
+
+
+const navbar = document.getElementById('navbar');
+
+window.addEventListener('scroll', () => {
+
+  navbar.classList.toggle('solid', window.scrollY > 10);
+
+}, { passive: true });
+
+
+
+/* ============================================================
+
+   CONTACT
+
+   ============================================================ */
+
+function handleContact(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const from = document.getElementById('email').value.trim();
+  const subject = document.getElementById('subject').value.trim();
+  const message = document.getElementById('message').value.trim();
+  const body = `De : ${name} (${from})\n\n${message}`;
+  window.location.href = `mailto:kamenan.kume@eleves.ec-nantes.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+/* ============================================================
+
+   INIT & PRELOADER (10 SECONDES)
+
+   ============================================================ */
+
+buildCarousel();
+
+buildProjects();
+
+
+
+window.addEventListener('load', () => {
+
+  const percentEl = document.getElementById('plPercentage');
+
+  const preloader = document.getElementById('preloader');
+
+  const navbar = document.getElementById('navbar');
+
+  const mainContainer = document.getElementById('mainContainer');
+
+
+
+  // On force le texte à afficher 25%, 50%, 75% puis 100% à des moments clés
+
+  setTimeout(() => { percentEl.textContent = '25%'; }, 2500);  // À 2.5s
+
+  setTimeout(() => { percentEl.textContent = '50%'; }, 5000);  // À 5s
+
+  setTimeout(() => { percentEl.textContent = '75%'; }, 7500);  // À 7.5s
+
+  setTimeout(() => { percentEl.textContent = '100%'; }, 10000); // À 10s
+
+
+
+  // Une fois les 10 secondes écoulées, on lance la disparition
+
+  setTimeout(() => {
+
+    preloader.classList.add('done');
+
+    navbar.classList.add('ready');
+
+    mainContainer.classList.add('ready');
+
+  }, 10000);
+
+});
+
+</script>
+
+
+
 </body>
+
 </html>
