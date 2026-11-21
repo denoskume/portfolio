@@ -636,9 +636,13 @@
 
     animation: slideRightToLeft 30s linear infinite;
 
+    animation-play-state: running;
+
+    will-change: transform;
+
   }
 
-  .carousel:hover .carousel-track { animation-play-state: paused; }
+  /* Le carrousel ne se met jamais en pause au survol : défilement permanent. */
 
 
 
@@ -2052,7 +2056,7 @@
 
   @media (prefers-reduced-motion: reduce) {
 
-    .carousel-track { animation: none; }
+    /* Le carrousel reste animé ; aucun arrêt automatique selon le périphérique. */
 
     .section.active { animation: none; }
 
