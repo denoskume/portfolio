@@ -1119,6 +1119,9 @@
 
   }
 
+  /* Projects section keeps a single, evergreen heading without editorial microcopy. */
+  #projects .projects-head { display: block; }
+
   .projects-head .kicker { margin-bottom: 18px; }
 
   .projects-head h2 {
@@ -2695,17 +2698,7 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
       <div class="wrap">
 
         <div class="projects-head">
-
-          <div>
-
-            <span class="kicker">Technical Work — Case Studies</span>
-
-            <h2>Three projects,<br><em>documented.</em></h2>
-
-          </div>
-
-          <p>Each case study presents the context, objectives, methodology, measurable results, and limitations of the work.</p>
-
+          <h2>Projects</h2>
         </div>
 
         <div class="projects-grid" id="projectsGrid"></div>
@@ -3154,21 +3147,11 @@ function buildProjects() {
 
   const grid = document.getElementById('projectsGrid');
 
-  grid.innerHTML = projects.map((p, i) => {
-
-    const num = String(i + 1).padStart(2, '0');
+  grid.innerHTML = projects.map(p => {
 
     return `
 
       <article class="project-card">
-
-        <div class="card-top">
-
-          <span class="card-num">Project ${num} / ${String(projects.length).padStart(2, '0')}</span>
-
-          <span class="card-year">${p.year}</span>
-
-        </div>
 
         <h3>${p.title}</h3>
 
