@@ -2598,90 +2598,90 @@ body:has(#home.active) .footer{display:none}
 const projects = [
   {
     "id": 1,
-    "title": "Segmentation de microcathéters en fluoroscopie",
-    "brief": "Détection et segmentation d’instruments fins dans une séquence fluoroscopique bruitée, comparées à des annotations manuelles.",
+    "title": "Microcatheter Segmentation in Fluoroscopy",
+    "brief": "Detection and segmentation of thin instruments in noisy fluoroscopy sequences, evaluated against manual annotations.",
     "year": "2026",
     "tags": [
       "Python",
       "OpenCV",
       "Segmentation"
     ],
-    "context": "Projet académique à Centrale Nantes, mené en binôme avec Oluwole Shokunbi sur dix images fluoroscopiques annotées.",
-    "introduction": "Les instruments fins et mobiles peuvent se confondre avec les structures anatomiques. Le travail compare des méthodes classiques de soustraction de fond et une extension visant à reconstruire un tracé continu.",
-    "objective": "Repérer les microcathéters et guides, produire des masques binaires et mesurer leurs écarts aux tracés manuels.",
+    "context": "Academic project at Centrale Nantes, developed with Oluwole Shokunbi using ten annotated fluoroscopy frames.",
+    "introduction": "Thin, moving instruments can be difficult to distinguish from anatomical structures. This study compares classical background subtraction methods and an extension designed to reconstruct a continuous instrument path.",
+    "objective": "Identify microcatheters and guidewires, generate binary masks, and quantify differences from manually annotated trajectories.",
     "approach": [
-      "Normalisation du contraste et filtrage pour préparer dix images de 512 × 512 pixels.",
-      "Comparaison du seuillage fixe, d’Otsu et d’un mélange gaussien sur les mêmes images.",
-      "Évaluation par Dice, IoU, PSNR et inspection des erreurs image par image.",
-      "Extension supervisée fondée sur la réponse aux lignes sombres et la reconstruction du trajet."
+      "Apply contrast normalization and filtering to prepare ten images of 512 × 512 pixels.",
+      "Compare fixed thresholding, Otsu thresholding, and a Gaussian mixture model on the same images.",
+      "Evaluate Dice, IoU, and PSNR, and inspect errors frame by frame.",
+      "Extend the method using a supervised dark-line response and trajectory reconstruction."
     ],
     "code": "import numpy as np\n\ndef dice_score(prediction, reference):\n    pred = np.asarray(prediction, dtype=bool)\n    ref = np.asarray(reference, dtype=bool)\n    overlap = np.logical_and(pred, ref).sum()\n    total = pred.sum() + ref.sum()\n    return 1.0 if total == 0 else 2 * overlap / total",
     "results": [
-      "Dice moyen : 0,416 pour le seuillage fixe avant l’extension de tracé.",
-      "Dice moyen : 0,876 sur neuf images de mouvement avec l’extension continue.",
-      "Évaluation intra-séquence ; comparaison avec des annotations manuelles.",
-      "Code et expériences : github.com/denoskume/Background-Subtraction-Fluoroscopy"
+      "Mean Dice score: 0.416 for fixed thresholding before trajectory extension.",
+      "Mean Dice score: 0.876 across nine motion frames with continuous trajectory reconstruction.",
+      "Intra-sequence evaluation against manual annotations.",
+      "Code and experiments: github.com/denoskume/Background-Subtraction-Fluoroscopy"
     ],
-    "limitations": "Résultats obtenus sur une seule acquisition ; ils ne constituent pas une validation clinique indépendante.",
-    "future": "Tester sur des séquences indépendantes et améliorer la robustesse aux structures anatomiques et aux changements de contraste."
+    "limitations": "Results come from a single acquisition and do not constitute independent clinical validation.",
+    "future": "Evaluate on independent sequences and improve robustness to anatomical structures and changes in contrast."
   },
   {
     "id": 2,
-    "title": "Calibration de caméra",
-    "brief": "Estimation des paramètres intrinsèques et des poses à partir de neuf images d’un damier, avec analyse des erreurs de reprojection.",
+    "title": "Camera Calibration",
+    "brief": "Estimation of camera intrinsics and poses from nine chessboard images, with reprojection error analysis.",
     "year": "2026",
     "tags": [
       "Python",
       "OpenCV",
-      "Géométrie"
+      "Geometry"
     ],
-    "context": "Étude de cas académique de calibration géométrique, présentée dans le contexte d’un poste d’inspection visuelle.",
-    "introduction": "Avant de localiser des objets ou de mesurer des dimensions, il faut relier les coordonnées de l’image à un modèle géométrique de la caméra.",
-    "objective": "Estimer la matrice intrinsèque et les poses du damier, puis mesurer la précision et la robustesse des projections.",
+    "context": "Academic case study in geometric calibration, framed around an industrial visual inspection scenario.",
+    "introduction": "Before locating objects or measuring dimensions in an image, pixel coordinates must be linked to a geometric camera model.",
+    "objective": "Estimate the camera intrinsic matrix and chessboard poses, then assess projection accuracy and robustness.",
     "approach": [
-      "Détection de 8 × 6 coins internes sur neuf photographies d’un damier (pas de 30 mm).",
-      "Estimation d’homographies normalisées et résolution des contraintes de Zhang.",
-      "Reconstruction des poses caméra et visualisation des résidus par image.",
-      "Comparaison sur coins tenus à l’écart entre modèle linéaire et raffinement OpenCV."
+      "Detect an 8 × 6 pattern of inner chessboard corners across nine photographs (30 mm square size).",
+      "Estimate normalized homographies and solve Zhang's calibration constraints.",
+      "Recover camera poses and visualize residuals for each image.",
+      "Compare the linear model and refined OpenCV model on held-out corners."
     ],
     "code": "import cv2\n\ndef reprojection_error(observed, projected):\n    difference = observed.reshape(-1, 2) - projected.reshape(-1, 2)\n    return float((difference ** 2).sum(axis=1).mean() ** 0.5)",
     "results": [
-      "9 photographies sur 9 utilisées ; 432 coins détectés.",
-      "Erreur moyenne de reprojection : 0,434 pixel ; RMS global : 0,534 pixel.",
-      "RMS sur coins tenus à l’écart : 0,395 pixel (Zhang linéaire) et 0,352 pixel (OpenCV raffiné).",
-      "Notebook et figures : github.com/denoskume/camera-calibration"
+      "All 9 photographs used; 432 corners detected.",
+      "Mean reprojection error: 0.434 pixels; overall RMS: 0.534 pixels.",
+      "Held-out corner RMS: 0.395 pixels (linear Zhang model) and 0.352 pixels (refined OpenCV model).",
+      "Notebook and figures: github.com/denoskume/camera-calibration"
     ],
-    "limitations": "Données de laboratoire ; la précision dimensionnelle sur une pièce réelle n’a pas été qualifiée.",
-    "future": "Évaluer la calibration sur une pièce de référence certifiée et différentes positions dans le champ."
+    "limitations": "Laboratory data only; dimensional accuracy on a real industrial part has not been qualified.",
+    "future": "Evaluate calibration using a certified reference target at different positions within the camera field of view."
   },
   {
     "id": 3,
-    "title": "Classification audio zero-shot avec CLAP",
-    "brief": "Comparaison de dix formulations textuelles pour classifier des sons environnementaux sans entraînement spécifique sur ESC-50.",
+    "title": "Zero-Shot Audio Classification with CLAP",
+    "brief": "Comparison of ten text prompt formulations to classify environmental sounds on ESC-50 without task-specific training.",
     "year": "2026",
     "tags": [
       "PyTorch",
       "LAION-CLAP",
       "Zero-shot"
     ],
-    "context": "Projet académique de machine learning multimodal mené avec Venkatesh Muthukrishnan sur ESC-50.",
-    "introduction": "CLAP projette des extraits audio et des descriptions textuelles dans un espace commun. L’expérience étudie l’effet de la formulation du prompt sur le classement des sons.",
-    "objective": "Tester dix stratégies de prompt et mesurer leur effet sur la classification sans fine-tuning sur les classes ESC-50.",
+    "context": "Academic multimodal machine learning project completed with Venkatesh Muthukrishnan using ESC-50.",
+    "introduction": "CLAP maps audio clips and text descriptions into a shared embedding space. This study explores how prompt wording influences sound classification.",
+    "objective": "Evaluate ten prompting strategies and measure their effect on zero-shot classification across the ESC-50 categories without fine-tuning.",
     "approach": [
-      "Utilisation du jeu ESC-50 : 2 000 extraits, 50 catégories.",
-      "Calcul des embeddings audio et texte avec un modèle LAION-CLAP pré-entraîné.",
-      "Normalisation L2 et classement par similarité cosinus.",
-      "Comparaison Top-1 et Top-k, puis analyse des résultats par classe."
+      "Use the ESC-50 dataset: 2,000 audio clips across 50 classes.",
+      "Compute audio and text embeddings with a pretrained LAION-CLAP model.",
+      "Apply L2 normalization and cosine similarity ranking.",
+      "Compare Top-1 and Top-k metrics and analyze performance by class."
     ],
     "code": "import numpy as np\n\ndef cosine_scores(audio_embedding, text_embeddings):\n    a = audio_embedding / np.linalg.norm(audio_embedding)\n    t = text_embeddings / np.linalg.norm(text_embeddings, axis=1, keepdims=True)\n    return t @ a",
     "results": [
-      "Précision Top-1 de référence avec le nom de classe seul : 83,05 %.",
-      "Meilleure formulation : « an audio recording of {} » — Top-1 : 91,15 %.",
-      "Amélioration de 8,10 points de pourcentage ; Top-5 : 99,00 %.",
-      "Notebook : github.com/denoskume/CLAP-Zero-Shot-Audio-Classification"
+      "Baseline Top-1 accuracy with class names alone: 83.05%.",
+      "Best prompt: “an audio recording of {}” — Top-1 accuracy: 91.15%.",
+      "Improvement: 8.10 percentage points; Top-5 accuracy: 99.00%.",
+      "Notebook: github.com/denoskume/CLAP-Zero-Shot-Audio-Classification"
     ],
-    "limitations": "Dix prompts évalués sur un jeu de données unique ; les scores dépendent du modèle pré-entraîné et du protocole.",
-    "future": "Évaluer d’autres corpus audio et comparer des descriptions adaptées aux différents contextes de capture."
+    "limitations": "Only ten prompts were evaluated on one dataset; scores depend on the pretrained model and evaluation protocol.",
+    "future": "Evaluate additional audio datasets and compare descriptions tailored to different recording conditions."
   }
 ];
 
@@ -2693,44 +2693,44 @@ const projects = [
    ============================================================ */
 const carouselGroups = [
   {
-    "title": "Segmentation de microcathéters",
-    "story": "Prétraitement · Reconstruction évaluée",
+    "title": "Microcatheter Segmentation",
+    "story": "Preprocessing · Evaluated trajectory reconstruction",
     "items": [
       {
         "url": "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/grayscale-comparison.png",
-        "label": "1 · Prétraitement et amélioration du contraste"
+        "label": "1 · Preprocessing and contrast enhancement"
       },
       {
         "url": "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/mask-cleanup.png",
-        "label": "2 · Tracé reconstruit comparé aux annotations"
+        "label": "2 · Reconstructed trajectory compared with annotations"
       }
     ]
   },
   {
-    "title": "Calibration de caméra",
-    "story": "Détection géométrique · Précision mesurée",
+    "title": "Camera Calibration",
+    "story": "Geometric detection · Measured precision",
     "items": [
       {
         "url": "https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/detected_chessboard_corners.png",
-        "label": "1 · Coins du damier détectés"
+        "label": "1 · Detected chessboard corners"
       },
       {
         "url": "https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/mean_reprojection_error_by_view.png",
-        "label": "2 · Erreurs de reprojection par vue"
+        "label": "2 · Reprojection errors by view"
       }
     ]
   },
   {
-    "title": "Classification audio zero-shot — CLAP",
-    "story": "Méthode audio-texte · Résultats mesurés",
+    "title": "Zero-Shot Audio Classification — CLAP",
+    "story": "Audio-text method · Measured performance",
     "items": [
       {
         "url": "https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/clap_complete_zero_shot_pipeline.png",
-        "label": "1 · Pipeline de classification audio-texte"
+        "label": "1 · Audio-text classification pipeline"
       },
       {
         "url": "https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/topk_accuracy_line.png",
-        "label": "2 · Précision Top-k avec le meilleur prompt"
+        "label": "2 · Top-k accuracy with the best-performing prompt"
       }
     ]
   }
@@ -2832,7 +2832,7 @@ function buildCarousel() {
   toggle?.addEventListener('click', () => {
     paused = !paused;
     toggle.textContent = paused ? '▶' : 'Ⅱ';
-    toggle.setAttribute('aria-label', paused ? 'Relancer le carrousel' : 'Mettre le carrousel en pause');
+    toggle.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
   });
   window.setInterval(() => { if (!paused) advance(); }, intervalMs);
 }
@@ -2859,7 +2859,7 @@ function buildProjects() {
 
         <div class="card-top">
 
-          <span class="card-num">Projet ${num} / ${String(projects.length).padStart(2, '0')}</span>
+          <span class="card-num">Project ${num} / ${String(projects.length).padStart(2, '0')}</span>
 
           <span class="card-year">${p.year}</span>
 
@@ -2917,17 +2917,17 @@ function openProject(id) {
 
     <button class="detail-back" onclick="showSection('projects')">
 
-      Retour aux projets
+      Back to Projects
 
     </button>
 
     <div class="detail-eyebrow">
 
-      <span>Année <b>${p.year}</b></span>
+      <span>Year <b>${p.year}</b></span>
 
-      <span>Projet <b>${n} / ${String(projects.length).padStart(2, '0')}</b></span>
+      <span>Project <b>${n} / ${String(projects.length).padStart(2, '0')}</b></span>
 
-      <span>Étude de cas</span>
+      <span>Case Study</span>
 
     </div>
 
@@ -2945,7 +2945,7 @@ function openProject(id) {
 
     <div class="article-block">
 
-      <div class="label"><span class="n">02</span>Objectif</div>
+      <div class="label"><span class="n">02</span>Objective</div>
 
       <div class="content"><p>${p.objective}</p></div>
 
@@ -2953,7 +2953,7 @@ function openProject(id) {
 
     <div class="article-block">
 
-      <div class="label"><span class="n">03</span>Approche</div>
+      <div class="label"><span class="n">03</span>Approach</div>
 
       <div class="content"><ul>${p.approach.map(a => `<li>${a}</li>`).join('')}</ul></div>
 
@@ -2969,7 +2969,7 @@ function openProject(id) {
 
     <div class="article-block">
 
-      <div class="label"><span class="n">05</span>Résultats</div>
+      <div class="label"><span class="n">05</span>Results</div>
 
       <div class="content"><ul>${p.results.map(r => `<li>${r}</li>`).join('')}</ul></div>
 
@@ -2985,7 +2985,7 @@ function openProject(id) {
 
     <div class="article-block">
 
-      <div class="label"><span class="n">07</span>Perspectives futures</div>
+      <div class="label"><span class="n">07</span>Future Work</div>
 
       <div class="content"><p>${p.future}</p></div>
 
@@ -3079,7 +3079,7 @@ function handleContact(e) {
   const from = document.getElementById('email').value.trim();
   const subject = document.getElementById('subject').value.trim();
   const message = document.getElementById('message').value.trim();
-  const body = `De : ${name} (${from})\n\n${message}`;
+  const body = `From: ${name} (${from})\n\n${message}`;
   window.location.href = `mailto:kamenan.kume@eleves.ec-nantes.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
