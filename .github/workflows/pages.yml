@@ -30,7 +30,7 @@ jobs:
           cp index.html app.js content.js styles.css atelier.css favicon.svg _site/
           cp lab/workspace.js lab/worker.js lab/compute.py _site/lab/
           cp -r assets _site/
-          test -f _site/assets/visionlab-demo-detections.svg
+          test -f _site/assets/denos-kume-signature.svg
           touch _site/.nojekyll
       - name: Check Pages configuration
         id: pages
