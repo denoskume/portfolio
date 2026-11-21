@@ -501,11 +501,11 @@
 
     grid-template-columns: 1fr 1fr 1fr;
 
-    gap: 24px;
+    gap: clamp(8px, 1.3vh, 12px);
 
     align-items: end;
 
-    margin-bottom: clamp(12px, 2.5vh, 24px);
+    margin-bottom: clamp(10px, 1.8vh, 18px);
 
   }
 
@@ -532,6 +532,18 @@
   }
 
   .hero-title em { font-style: italic; color: var(--tech); }
+
+  .hero-welcome {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: clamp(.78rem, 1vw, .95rem);
+    line-height: 1.45;
+    color: var(--smoke);
+  }
+  .hero-welcome strong {
+    color: var(--tech);
+    font-weight: 600;
+  }
 
   .gallery-head {
 
@@ -2027,6 +2039,8 @@
         <div class="hero-grid">
 
           <h1 class="hero-title">Traiter le signal, comprendre l'image, <em>contrôler la machine.</em></h1>
+
+          <p class="hero-welcome"><strong>Bienvenue sur mon portfolio.</strong> Découvrez mes projets en vision par ordinateur, traitement d’images et machine learning appliqué.</p>
 
         </div>
 
