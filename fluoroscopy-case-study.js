@@ -11,13 +11,13 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
   return `
 <article class="fluoro-study" aria-labelledby="fl-title">
   <div class="fl-backbar"><button type="button" onclick="showSection('projects')">Back to projects</button></div>
+  <header class="fl-paper-header">
+    <h1 id="fl-title">Microcatheter segmentation in fluoroscopy</h1>
+    <p class="fl-paper-question">Can we detect a thin instrument in noisy X-ray images and reconstruct its full path accurately?</p>
+    <p class="fl-paper-authors">Denos Kume &amp; Oluwole Shokunbi · Master 1 project · Centrale Nantes</p>
+  </header>
   <div class="fl-paper-shell">
     <div class="fl-paper-main">
-      <header class="fl-paper-header">
-        <h1 id="fl-title">Microcatheter segmentation in fluoroscopy</h1>
-        <p class="fl-paper-question">Can we detect a thin instrument in noisy X-ray images and reconstruct its full path accurately?</p>
-        <p class="fl-paper-authors">Denos Kume &amp; Oluwole Shokunbi · Master 1 project · Centrale Nantes</p>
-      </header>
       <div class="fl-paper-tabs" role="tablist" aria-label="Project case study views">
         <button id="fl-tab-report" class="fl-paper-tab is-active" type="button" role="tab" data-fl-tab="report" aria-selected="true" aria-controls="fl-panel-report" tabindex="0">Report</button>
         <button id="fl-tab-figures" class="fl-paper-tab" type="button" role="tab" data-fl-tab="figures" aria-selected="false" aria-controls="fl-panel-figures" tabindex="-1">Figures</button>
