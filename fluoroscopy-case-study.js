@@ -218,11 +218,36 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
 
     <aside class="fl-paper-sidebar" aria-label="Project article contents">
       <div class="fl-sidebar-sticky">
-        <h2>Contents</h2>
+        <h2>Article contents</h2>
         ${toc.map(group=>`<nav class="fl-toc-group" data-fl-toc="${group.key}" aria-label="${group.key} sections" ${group.key==='report'?'':'hidden'}>${group.entries.map(([id,label])=>`<a href="#${id}" data-fl-target-tab="${group.key}" data-fl-target-id="${id}" ${id==='fl-r-abstract'?'class="is-current"':''}>${label}</a>`).join("")}</nav>`).join("")}
       </div>
     </aside>
   </div>
+
+  <dialog class="fl-modal" id="fl-cite-dialog" aria-labelledby="fl-cite-title">
+    <div class="fl-modal-head"><h2 id="fl-cite-title">Cite this project</h2><button type="button" class="fl-modal-close" data-fl-close aria-label="Close citation dialog">×</button></div>
+    <p>Use this citation when referring to the project or its results.</p>
+    <label for="fl-cite-text">APA-style citation</label>
+    <textarea id="fl-cite-text" rows="4" readonly>Kume, D., &amp; Shokunbi, O. (2026). Microcatheter segmentation in fluoroscopy [Master 1 project, Centrale Nantes]. GitHub. https://github.com/denoskume/Background-Subtraction-Fluoroscopy</textarea>
+    <button type="button" data-fl-copy="citation">Copy citation</button>
+    <label for="fl-bibtex-text">BibTeX</label>
+    <textarea id="fl-bibtex-text" rows="8" readonly>@misc{kume2026fluoroscopy,
+  author = {Kume, Denos and Shokunbi, Oluwole},
+  title = {Microcatheter Segmentation in Fluoroscopy},
+  year = {2026},
+  note = {Master 1 academic project, Centrale Nantes},
+  url = {https://github.com/denoskume/Background-Subtraction-Fluoroscopy}
+}</textarea>
+    <button type="button" data-fl-copy="bibtex">Copy BibTeX</button>
+  </dialog>
+
+  <dialog class="fl-modal" id="fl-rights-dialog" aria-labelledby="fl-rights-title">
+    <div class="fl-modal-head"><h2 id="fl-rights-title">Rights &amp; permissions</h2><button type="button" class="fl-modal-close" data-fl-close aria-label="Close permissions dialog">×</button></div>
+    <p>This is a Master 1 academic project by Denos Kume and Oluwole Shokunbi at Centrale Nantes.</p>
+    <p><strong>No public license file is included in the source repository.</strong> The project therefore does not claim an MIT, Creative Commons, or other open license. Attribution is encouraged, but permission to redistribute project code, images, or supplied teaching data is not automatically granted by their public availability.</p>
+    <p>For code and project materials, consult the repository and its authors. Rights for the supplied fluoroscopy dataset and manual annotations have not been specified in the repository.</p>
+    <a href="${repo}" target="_blank" rel="noopener noreferrer">View source repository</a>
+  </dialog>
 </article>`;
 };
 window.initFluoroCaseStudy = function initFluoroCaseStudy() {
@@ -289,6 +314,81 @@ window.initFluoroCaseStudy = function initFluoroCaseStudy() {
     button.addEventListener("click", () => activateView(button.dataset.flOpenPanel, { targetId: button.dataset.flJump }));
   });
   activateView(activeView);
+
+  const statusNode = root.querySelector("#fl-action-status");
+  const reportUrl = "https://denoskume.github.io/portfolio/#/projects/fluoroscopy-instrument-segmentation";
+  const citationText = "Kume, D., & Shokunbi, O. (2026). Microcatheter segmentation in fluoroscopy [Master 1 project, Centrale Nantes]. GitHub. https://github.com/denoskume/Background-Subtraction-Fluoroscopy";
+  const bibtexText = "@misc{kume2026fluoroscopy,\\n  author = {Kume, Denos and Shokunbi, Oluwole},\\n  title = {Microcatheter Segmentation in Fluoroscopy},\\n  year = {2026},\\n  note = {Master 1 academic project, Centrale Nantes},\\n  url = {https://github.com/denoskume/Background-Subtraction-Fluoroscopy}\\n}";
+  const reportDialog = root.querySelector("#fl-cite-dialog");
+  const rightsDialog = root.querySelector("#fl-rights-dialog");
+
+  function notify(message) {
+    if (statusNode) statusNode.textContent = message;
+  }
+  async function copyText(value) {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(value);
+    } else {
+      const input = document.createElement("textarea");
+      input.value = value;
+      input.style.position = "fixed";
+      input.style.left = "-9999px";
+      document.body.appendChild(input);
+      input.select();
+      const success = document.execCommand("copy");
+      input.remove();
+      if (!success) throw new Error("Clipboard access not available");
+    }
+  }
+  function openDialog(dialog) {
+    if (dialog?.showModal) dialog.showModal();
+    else if (dialog) dialog.setAttribute("open", "");
+  }
+  root.querySelectorAll("[data-fl-close]").forEach(button => {
+    button.addEventListener("click", () => button.closest("dialog")?.close());
+  });
+  [reportDialog, rightsDialog].forEach(dialog => {
+    dialog?.addEventListener("click", event => {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+  root.querySelector('[data-fl-action="cite"]')?.addEventListener("click", () => openDialog(reportDialog));
+  root.querySelector('[data-fl-action="rights"]')?.addEventListener("click", () => openDialog(rightsDialog));
+  root.querySelector('[data-fl-action="share"]')?.addEventListener("click", async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({title:"Microcatheter segmentation in fluoroscopy",text:"Master 1 project by Denos Kume and Oluwole Shokunbi",url:reportUrl});
+        notify("Report shared");
+      } else {
+        await copyText(reportUrl);
+        notify("Report link copied");
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") notify("Sharing unavailable; copy the project URL from the address bar");
+    }
+  });
+  root.querySelectorAll("[data-fl-copy]").forEach(button => {
+    button.addEventListener("click", async () => {
+      try {
+        await copyText(button.dataset.flCopy === "citation" ? citationText : bibtexText);
+        button.textContent = "Copied";
+        notify("Citation copied");
+      } catch (error) {
+        notify("Clipboard unavailable. Select and copy the text shown in the dialog.");
+      }
+    });
+  });
+  root.querySelector('[data-fl-action="save"]')?.addEventListener("click", () => {
+    const previousView = activeView;
+    activateView("report");
+    notify("Print dialog opened — select Save as PDF to download the illustrated report.");
+    const restore = () => {
+      if (previousView !== "report") activateView(previousView);
+      window.removeEventListener("afterprint", restore);
+    };
+    window.addEventListener("afterprint", restore);
+    window.print();
+  });
 
   const data = [
     {frame:201, baseline:0.0, continuous:0.9319323892, fp:86, missed:63},
