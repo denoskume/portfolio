@@ -2007,10 +2007,8 @@ body:has(#home.active) .footer{display:none}
 .cn-news-card img{width:100%;height:clamp(150px,14.2vw,210px);object-fit:cover;display:block}
 .cn-news-card h3{font-size:clamp(.9rem,1.1vw,1.12rem);line-height:1.38;font-weight:600;margin-top:11px}
 .cn-news-card p{font-size:.79rem;color:#50677a;line-height:1.45;margin-top:4px}
-.cn-news-more,.cn-events>a{color:#0a2b49;display:inline-block;text-decoration:none;font-size:.8rem;border-bottom:1px solid #0a2b49;margin-top:26px}
+.cn-news-more{color:#0a2b49;display:inline-block;text-decoration:none;font-size:.8rem;border-bottom:1px solid #0a2b49;margin-top:26px}
 .cn-news-more{float:right}
-.cn-events span{display:inline-block;background:#e6edf5;padding:8px 9px;color:#0b2e48;font-size:.78rem;font-weight:700}
-.cn-events p{line-height:1.5;color:#253d55;margin-top:8px;font-size:.93rem}
 .cn-site-footer{background:#051d34;color:#fff;padding:38px var(--gutter) 18px}
 .cn-footer-grid{display:grid;grid-template-columns:1.05fr 1.3fr 1.05fr .9fr;gap:0}
 .cn-footer-grid>div{padding:5px 28px 30px;border-left:1px solid #243f55}
@@ -2050,7 +2048,6 @@ body:has(#home.active) .footer{display:none}
   
   
   .cn-news{grid-template-columns:1fr;padding:40px 20px 50px}
-  .cn-events{border-top:1px solid #ccd6de;padding-top:25px}
   .cn-footer-grid{grid-template-columns:repeat(2,1fr)}
   .cn-footer-grid>div:nth-child(3){border-left:0;padding-left:0}
 }
@@ -2139,24 +2136,9 @@ body:has(#home.active) .footer{display:none}
 .home-cn .cn-news-card h3{margin:0;padding:17px 18px 0;font-size:clamp(1rem,1.24vw,1.2rem)}
 .home-cn .cn-news-card p{margin:0;padding:8px 18px 20px;font-size:.85rem;line-height:1.55}
 .home-cn .cn-news-more{display:inline-flex;float:none;margin-top:24px}
-.home-cn .cn-events{
-  display:grid;
-  grid-template-columns:minmax(145px,.6fr) minmax(0,2fr) auto;
-  gap:25px;
-  align-items:center;
-  padding:25px 30px;
-  margin-top:42px;
-  border:0;
-  border-left:5px solid #e6ad00;
-  background:#f1f5f9;
-}
-.home-cn .cn-events h2{margin:0}
-.home-cn .cn-events>div{min-width:0}
-.home-cn .cn-events>a{margin:0;white-space:nowrap}
 @media(max-width:760px){
   
   .home-cn .cn-news-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-  .home-cn .cn-events{grid-template-columns:1fr;gap:10px;padding:20px}
 }
 @media(max-width:490px){
   
@@ -2165,7 +2147,7 @@ body:has(#home.active) .footer{display:none}
 }
 
 
-/* Centred project CTA, with the availability description intentionally removed. */
+/* Centered projects CTA. */
 .home-cn .cn-news-content{display:flex;flex-direction:column}
 .home-cn .cn-news-more{
   align-self:center;
@@ -2191,11 +2173,7 @@ body:has(#home.active) .footer{display:none}
   transform:translateY(-2px);
 }
 .home-cn .cn-news-more:focus-visible{outline:3px solid #e7b221;outline-offset:3px}
-.home-cn .cn-events{grid-template-columns:1fr 1fr auto}
-.home-cn .cn-events>div{display:flex;align-items:center;justify-content:center}
 @media(max-width:760px){
-  .home-cn .cn-events{grid-template-columns:1fr;justify-items:start}
-  .home-cn .cn-events>div{justify-content:start}
 }
 
 .home-cn .cn-top-button{font-size:.65rem;font-weight:600;letter-spacing:.02em;text-transform:uppercase}
@@ -2274,8 +2252,8 @@ body:has(#home.active) .footer{display:none}
         <div class="cn-keyfigures-photo"><img src="https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/detected_chessboard_corners.png" alt="Image de calibration de caméra en bleu" loading="lazy"></div>
       </section>
 
-      <!-- 03 / Travaux récents et disponibilité -->
-      <section class="cn-news" aria-label="Projets et disponibilité">
+      <!-- 03 / Travaux récents -->
+      <section class="cn-news" aria-label="Travaux récents">
         <div class="cn-news-content">
           <h2>Travaux récents</h2>
           <div class="cn-news-list">
@@ -2294,11 +2272,6 @@ body:has(#home.active) .footer{display:none}
           </div>
           <a href="#" data-target="projects" class="cn-news-more">Voir tous les projets</a>
         </div>
-        <aside class="cn-events">
-          <h2>Disponibilité</h2>
-          <div><span>DÈS FÉVRIER 2027</span></div>
-          <a href="#" data-target="contact">Me contacter</a>
-        </aside>
       </section>
 
       <!-- 06 / Footer 4 colonnes, bleu nuit -->
