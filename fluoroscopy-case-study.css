@@ -34,7 +34,7 @@ body:has(#projectDetail.active .fluoro-study) .main-container{margin-top:var(--n
 .fl-toc-group a:is(:hover,:focus-visible){color:#143f60;background:#f3f7fa}
 .fl-toc-group a.is-current{color:#0c3554;border-left-color:#174f78;background:#f0f5f9;font-weight:650}
 .fl-paper-header{padding:3px 0 clamp(27px,3.8vw,42px)}
-.fl-paper-header h1{font:650 clamp(2rem,3.35vw,3.4rem)/1.14 var(--font-body);letter-spacing:-.05em;color:#0e2e47;max-width:24ch;margin:0 0 18px;overflow-wrap:break-word}
+.fl-paper-header h1{font:650 clamp(2rem,3.35vw,3.4rem)/1.14 var(--font-body);letter-spacing:-.05em;color:#0e2e47;max-width:none;margin:0 0 18px;white-space:nowrap;overflow-wrap:normal;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin}
 .fl-paper-question{font:400 clamp(1.06rem,1.45vw,1.28rem)/1.55 var(--font-body);color:#3d5b71;max-width:72ch}
 .fl-paper-authors{font-size:.96rem;color:#617688;line-height:1.55;margin-top:19px!important}
 .fl-paper-tabs{display:flex;align-items:stretch;gap:0;border-bottom:3px solid #163751;background:#fff;position:sticky;top:var(--nav-h);z-index:10;padding-top:3px}
@@ -126,7 +126,7 @@ body:has(#projectDetail.active .fluoro-study) .main-container{margin-top:var(--n
 @media(max-width:800px){
  .fl-paper-shell{display:block}
  .fl-paper-sidebar{display:none}
- .fl-paper-header h1{max-width:26ch}
+ .fl-paper-header h1{max-width:none}
  .fl-paper-tabs{top:var(--nav-h)}
  .fl-paper-actions{gap:8px}
  .fl-paper-actions a{padding:9px 11px}
@@ -243,7 +243,7 @@ body:has(#projectDetail.active .fluoro-study) .main-container{margin-top:var(--n
  .fl-paper-shell{display:block!important}
  .fl-paper-main{width:100%!important;max-width:100%!important}
  .fl-paper-header{padding:0 0 14px!important}
- .fl-paper-header h1{font-size:21pt!important;max-width:none!important;color:#111!important}
+ .fl-paper-header h1{font-size:21pt!important;max-width:none!important;color:#111!important;white-space:normal!important;overflow:visible!important}
  .fl-paper-question,.fl-paper-authors{font-size:10pt!important}
  .fl-paper-panel[data-fl-panel="report"]{display:block!important}
  .fl-paper-panel[data-fl-panel="figures"],.fl-paper-panel[data-fl-panel="metrics"]{display:none!important}
