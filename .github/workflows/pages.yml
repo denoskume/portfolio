@@ -1,0 +1,38 @@
+name: Deploy standalone portfolio
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate and prepare static site
+        run: |
+          node --check app.js
+          node --check content.js
+          node --check lab/workspace.js
+          node --check lab/worker.js
+          mkdir -p _site/lab
+          cp index.html app.js content.js styles.css atelier.css favicon.svg _site/
+          cp lab/workspace.js lab/worker.js lab/compute.py _site/lab/
+          touch _site/.nojekyll
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

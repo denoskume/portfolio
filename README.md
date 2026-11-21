@@ -1,9 +1,43 @@
-# Denos Kume · Engineering portfolio
+# Denos Kume — Engineering Portfolio
 
-Computer vision, image processing and applied machine learning. Explore ten projects, hands-on workspaces, research and engineering notes.
+**Standalone site:** https://denoskume.github.io/portfolio/
 
-[Open the portfolio](https://denoskume.github.io/portfolio-/) · [Preview the current source](https://raw.githack.com/denoskume/portfolio-/main/index.html)
+A modern portfolio presenting verified engineering work in **Computer Vision**, **Image Processing**, and **Applied Machine Learning**. This is a dedicated website repository, not a copy of the academic lab repository.
 
-## Run locally
+## Explore
 
-From the repository root, run `python -m http.server 8000` and open `http://localhost:8000`. Project pages include the corresponding source repositories and notebooks.
+- **Home** — cinematic full-width featured projects, automatic five-second right-to-left carousel, manual controls and pause.
+- **Projects** — 10 searchable and filterable case studies, each with the challenge, method, results, limitations, figures, code snapshot and original notebook.
+- **Research** — research questions and work in progress, including industrial predictive maintenance.
+- **Blog** — technical field notes with full article pages.
+- **Contact** — interactive form with validation and fallback to email.
+- **Interactive case studies** — camera calibration and fluoroscopy review interfaces, plus Python/OpenCV workspaces for experiments on user or reference images.
+
+Product details include fixed horizontal navigation, responsive layouts, dark theme, keyboard search, accessible image lightbox, review notes and CSV/JSON/PNG exports.
+
+All original code, laboratory datasets and experimental figures stay in their source repositories. Case-study evidence is loaded from their official GitHub files. No per-project HTML pages are needed.
+
+## Local development
+
+```bash
+python -m http.server 8000
+```
+
+Then open http://localhost:8000/. Browser computation downloads the Python/OpenCV runtime on first use; contact relay may require initial recipient activation.
+
+## Structure
+
+```text
+index.html               Semantic shell, horizontal navigation
+styles.css / atelier.css  Responsive design system
+content.js               Project, research and article content
+app.js                   Routes, filters, search, carousel, contact
+lab/workspace.js         Interactive experiment UI
+lab/worker.js            Background browser worker
+lab/compute.py           Reproducible computation kernels
+.github/workflows/pages.yml  GitHub Pages CI/CD
+```
+
+Update `content.js` to add a new case study. Link the canonical repository and notebook, and use real figures and measured results.
+
+© 2026 Denos Kume.
