@@ -12,18 +12,11 @@ body:has(#projectDetail.active .fluoro-study) .main-container{margin-top:var(--n
 .fl-crumb button{border:0;background:none;padding:0;color:#214f70;font-size:.96rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:10px}
 .fl-crumb button::before{content:"";width:8px;height:8px;border-left:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg)}
 .fl-crumb button:hover,.fl-crumb button:focus-visible{color:#122e47;text-decoration:underline;text-underline-offset:4px}
-.fl-cover{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.04fr);gap:clamp(24px,4.7vw,64px);align-items:center;padding:0 0 clamp(46px,6vw,78px)}
-.fl-cover-copy,.fl-cover-video{min-width:0}
-.fl-cover h1{font:400 clamp(2.7rem,4.45vw,4.25rem)/1.04 var(--font-display);letter-spacing:-.03em;color:#0a2b46;margin:0 0 21px;max-width:13ch;overflow-wrap:break-word}
-.fl-lead{font-size:clamp(.99rem,1.18vw,1.13rem);line-height:1.72;color:#496176;max-width:49ch}
-.fl-cover-stats{display:flex;align-items:flex-start;gap:30px;margin:25px 0 15px}
-.fl-cover-stats>div{min-width:0;display:flex;flex-direction:column}
-.fl-cover-stats>div+div{padding-left:30px;border-left:1px solid #d5e0e7}
-.fl-cover-stats strong{font:400 clamp(2rem,2.9vw,2.8rem)/1.1 var(--font-display);color:#0c3c5c;letter-spacing:-.03em}
-.fl-cover-stats span{margin-top:6px;font-size:.94rem;color:#425c72;font-weight:550;line-height:1.45}
-.fl-cover-video{margin:0;background:#0c2539;box-shadow:0 10px 30px rgba(9,32,51,.12)}
-.fl-cover-video video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#0b2031}
 
+.fl-cover{padding:clamp(18px,2.5vw,36px) 0 clamp(43px,5.5vw,72px)}
+.fl-cover-copy{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(25px,5.5vw,75px);align-items:end;min-width:0}
+.fl-cover h1{font:400 clamp(2.8rem,5.1vw,5rem)/1.04 var(--font-display);letter-spacing:-.035em;color:#082c49;margin:0;max-width:18ch;overflow-wrap:break-word}
+.fl-research-question{font:400 clamp(1.22rem,2.05vw,1.85rem)/1.4 var(--font-display);letter-spacing:-.008em;color:#2d526e;max-width:31ch;border-left:2px solid #194c70;padding-left:clamp(17px,2.3vw,29px);margin:0 0 6px!important}
 .fl-chapter{padding:clamp(40px,5vw,64px) 0;border-top:1px solid #dce5eb}
 .fl-chapter-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,5vw,65px);align-items:start;margin-bottom:clamp(22px,3vw,34px)}
 .fl-chapter-intro h2,.fl-conclusion h2{font:400 clamp(1.85rem,3.15vw,2.9rem)/1.15 var(--font-display);letter-spacing:-.023em;color:#092f4c;max-width:19ch;margin:0}
@@ -100,34 +93,56 @@ body:has(#projectDetail.active .fluoro-study) .main-container{margin-top:var(--n
 .fl-frame-figure figcaption{display:flex;gap:8px 18px;align-items:baseline;flex-wrap:wrap;border-top:1px solid #dce5eb;padding:14px 17px;color:#4b667a;font-size:.93rem;line-height:1.6}
 .fl-frame-figure figcaption strong{color:#1e4a67}
 
-/* Context and expectations: substantive reading text, no micro-headings or decorative cards. */
-.fl-overview{border-top:1px solid #dce5eb;padding:clamp(34px,4.8vw,60px) 0 clamp(35px,5vw,65px)}
-.fl-overview h2,.fl-outcome h2{font:400 clamp(1.9rem,3.3vw,3.1rem)/1.15 var(--font-display);letter-spacing:-.02em;color:#092f4c;margin:0 0 18px}
-.fl-overview>p{font-size:1rem;line-height:1.8;color:#405d73;max-width:90ch}
-.fl-purpose-grid,.fl-outcome-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4.5vw,66px);margin-top:clamp(26px,3.5vw,42px);padding-top:26px;border-top:1px solid #dae4eb}
-.fl-purpose-grid>div,.fl-outcome-grid>div{min-width:0}
-.fl-purpose-grid h3,.fl-outcome-grid h3{font:500 clamp(1.35rem,2vw,1.7rem)/1.2 var(--font-display);color:#143e5c;margin:0 0 12px}
-.fl-purpose-grid p,.fl-outcome-grid p{font-size:1rem;line-height:1.75;color:#4a6478}
-.fl-outcome{padding:clamp(44px,6vw,76px) 0 clamp(18px,2.7vw,35px);border-top:1px solid #dce5eb}
+
+/* Reader-first case study: academic abstract, requirements and measured outcome. */
+.fl-overview,.fl-brief{border-top:1px solid #dce5eb;padding:clamp(39px,5vw,64px) 0}
+.fl-overview h2,.fl-brief h2,.fl-outcome h2,.fl-demo h2{font:400 clamp(2rem,3.35vw,3.1rem)/1.15 var(--font-display);letter-spacing:-.02em;color:#092f4c;margin:0 0 22px}
+.fl-overview>p{font-size:1.04rem;line-height:1.85;color:#405d73;max-width:92ch}
+.fl-overview>p+p{margin-top:16px}
+.fl-brief-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,68px);margin-top:30px;align-items:start}
+.fl-brief-grid>div{min-width:0}
+.fl-brief h3,.fl-outcome-grid h3{font:500 clamp(1.42rem,2.15vw,1.8rem)/1.2 var(--font-display);color:#143e5c;margin:0 0 14px}
+.fl-brief-spec h3:not(:first-child){margin-top:30px}
+.fl-brief p,.fl-outcome-grid p{font-size:1rem;line-height:1.78;color:#465f74}
+.fl-brief p+p{margin-top:14px}
+.fl-data-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid #d8e4eb;border-bottom:1px solid #d8e4eb;margin:20px 0 20px}
+.fl-data-facts>div{min-width:0;padding:19px 10px 17px 0;display:flex;flex-direction:column;gap:9px}
+.fl-data-facts>div+div{border-left:1px solid #d8e4eb;padding-left:13px}
+.fl-data-facts strong{font:400 clamp(1.6rem,2.5vw,2.3rem)/1.06 var(--font-display);letter-spacing:-.02em;color:#103d60;white-space:nowrap}
+.fl-data-facts span{font-size:.93rem;line-height:1.5;color:#48667b}
+.fl-outcome{padding:clamp(44px,6vw,76px) 0 clamp(35px,5vw,58px);border-top:1px solid #dce5eb}
 .fl-outcome-intro{max-width:1000px}
 .fl-outcome-intro p{font-size:1.02rem;line-height:1.78;color:#415b70;max-width:88ch}
 .fl-outcome-intro p+p{margin-top:17px}
 .fl-outcome-intro p strong{font-weight:650;color:#133f60}
-.fl-outcome-footer{display:flex;justify-content:space-between;align-items:center;gap:22px;border-top:1px solid #dce5eb;padding-top:27px;margin-top:36px}
-.fl-outcome-footer>p{font-size:.96rem;line-height:1.6;color:#50697d}
+.fl-outcome-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4.5vw,66px);margin-top:clamp(26px,3.5vw,42px);padding-top:26px;border-top:1px solid #dae4eb}
+.fl-outcome-grid>div{min-width:0}
+.fl-demo{border-top:1px solid #dce5eb;padding:clamp(42px,6vw,80px) 0 clamp(42px,5vw,66px)}
+.fl-demo-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(24px,5vw,70px);align-items:start;margin-bottom:clamp(22px,3vw,35px)}
+.fl-demo-intro h2{max-width:19ch;margin:0}
+.fl-demo-intro p{font-size:1.04rem;line-height:1.78;color:#486579;max-width:57ch}
+.fl-demo-player{max-width:1000px;width:100%;margin:0 auto;background:#0b263d}
+.fl-demo-player video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#091e31;box-shadow:0 10px 34px rgba(13,44,67,.1)}
+.fl-outcome-footer{display:flex;justify-content:space-between;align-items:center;gap:24px;border-top:1px solid #dce5eb;padding-top:27px;margin-top:3px}
+.fl-outcome-footer>p{font-size:1rem;line-height:1.6;color:#50697d}
 .fl-conclusion-links{display:flex;flex-wrap:wrap;gap:13px 21px;align-items:center;justify-content:flex-end}
 .fl-conclusion-links a{font-size:.94rem;line-height:1.5;font-weight:600;color:#1a517a;text-underline-offset:3px;white-space:nowrap}
 .fl-conclusion-links a.fl-primary-link{display:block;background:#0c3250;color:#fff;padding:12px 17px;text-decoration:none}
 .fl-conclusion-links a.fl-primary-link:hover,.fl-conclusion-links a.fl-primary-link:focus-visible{background:#184f75}
 @media(max-width:1000px){
- .fl-cover{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:25px}
- .fl-cover h1{font-size:clamp(2.25rem,4.6vw,3.4rem)}
+ .fl-cover h1{font-size:clamp(2.6rem,5.3vw,4.6rem)}
+ .fl-cover-copy{gap:24px}
+ .fl-data-facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .fl-data-facts strong{font-size:clamp(1.5rem,2.1vw,1.95rem)}
  .fl-method-row{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px}
 }
 @media(max-width:820px){
- .fl-cover{grid-template-columns:1fr;gap:22px;padding-bottom:42px}
- .fl-cover h1{max-width:19ch}
- .fl-cover-video{max-width:720px}
+ .fl-cover{padding-bottom:42px}
+ .fl-cover-copy{grid-template-columns:1fr;gap:22px}
+ .fl-cover h1{max-width:21ch}
+ .fl-research-question{max-width:70ch}
+ .fl-brief-grid{grid-template-columns:1fr;gap:30px}
+ .fl-demo-intro{grid-template-columns:1fr;gap:14px}
  .fl-chapter-intro{grid-template-columns:1fr;gap:13px}
  .fl-chapter-intro h2{max-width:28ch}
  .fl-chapter-intro p{max-width:75ch}
@@ -141,9 +156,13 @@ body:has(#projectDetail.active .fluoro-study) .main-container{margin-top:var(--n
  #projectDetail .detail:has(.fluoro-study){padding-top:20px}
  #projectDetail .detail-wrap:has(.fluoro-study){padding-inline:16px}
  .fl-crumb{margin-bottom:22px}
- .fl-cover h1{font-size:clamp(2.2rem,9vw,3.2rem);max-width:17ch}
- .fl-cover-stats{gap:17px;margin-top:19px}
- .fl-cover-stats>div+div{padding-left:17px}
+ .fl-cover h1{font-size:clamp(2.35rem,9vw,3.3rem);max-width:18ch}
+ .fl-research-question{font-size:1.33rem;max-width:none}
+ .fl-data-facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .fl-data-facts>div{padding:14px 6px 14px 0}
+ .fl-data-facts>div+div{padding-left:8px}
+ .fl-data-facts strong{font-size:clamp(1.38rem,5.6vw,1.9rem)}
+ .fl-data-facts span{font-size:.86rem}
  .fl-chapter{padding:36px 0}
  .fl-chapter-intro h2{font-size:clamp(1.85rem,7.3vw,2.4rem)}
  .fl-process{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -159,10 +178,11 @@ body:has(#projectDetail.active .fluoro-study) .main-container{margin-top:var(--n
  .fl-chart{padding:14px 7px}
  .fl-chart-heading{padding-inline:8px}
  .fl-frame-selector button{min-width:43px;padding:9px 7px}
- .fl-overview{padding:32px 0 38px}
- .fl-purpose-grid,.fl-outcome-grid{grid-template-columns:1fr;gap:23px;padding-top:23px;margin-top:25px}
- .fl-overview h2,.fl-outcome h2{font-size:clamp(1.85rem,7.3vw,2.4rem)}
+ .fl-overview,.fl-brief{padding:32px 0 38px}
+ .fl-outcome-grid{grid-template-columns:1fr;gap:23px;padding-top:23px;margin-top:25px}
+ .fl-overview h2,.fl-brief h2,.fl-outcome h2,.fl-demo h2{font-size:clamp(1.85rem,7.3vw,2.4rem)}
  .fl-outcome{padding-top:39px}
+ .fl-demo{padding:37px 0 42px}
  .fl-conclusion-links a{white-space:normal}
 }
 @media(prefers-reduced-motion:reduce){.fluoro-study *{scroll-behavior:auto}}
