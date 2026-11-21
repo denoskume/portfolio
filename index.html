@@ -404,7 +404,8 @@
 
   .main-container {
 
-    margin-top: var(--nav-h);
+    /* Laisser une respiration entre la navigation fixe et le contenu. */
+    margin-top: calc(var(--nav-h) + clamp(12px, 1.5vw, 20px));
 
     min-height: 0;
 
