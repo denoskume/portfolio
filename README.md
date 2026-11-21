@@ -44,4 +44,10 @@ lab/compute.py           Reproducible computation kernels
 
 Update `content.js` to add a new case study. Link the canonical repository and notebook, and use real figures and measured results.
 
+## License and attribution
+
+The original code of this standalone portfolio website is released under the [MIT License](LICENSE) (© 2026 Denos Kume).
+
+**Scope:** This software license does not cover third-party photographs, images, video, fonts, external dependencies, supplied academic datasets or annotations, or jointly authored source-project content. Such materials retain their respective rights. See [Licensing and content rights](LICENSING.md) for the scope and the fluoroscopy case study.
+
 © 2026 Denos Kume.
