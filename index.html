@@ -483,11 +483,11 @@
      ============================================================ */
 
   .home {
-    /* L'accueil tient entièrement dans la fenêtre, sans nécessiter de scroll. */
+    /* Allow the Home section to grow and scroll naturally below the fixed nav. */
     box-sizing: border-box;
-    height: calc(100vh - var(--nav-h));
-    height: calc(100svh - var(--nav-h));
-    min-height: 0;
+    width: 100%;
+    height: auto;
+    min-height: calc(100svh - var(--nav-h));
     display: flex;
     flex-direction: column;
     padding: clamp(12px, 2.2vh, 24px) 0 0;
@@ -580,13 +580,13 @@
   }
 
   .carousel {
-    /* Occupe uniquement l'espace vertical restant sous le titre. */
-    flex: 1 1 0;
-    min-height: 0;
+    /* A generously sized showcase; page scroll remains vertical while slides move horizontally. */
+    flex: 0 0 auto;
+    height: clamp(520px, 78svh, 900px);
     overflow: hidden;
     position: relative;
     width: 100%;
-    padding: 10px 0 8px;
+    padding: 10px 0 24px;
   }
 
   /* Afficher une seule image, puis passer à la suivante toutes les 5 s. */
