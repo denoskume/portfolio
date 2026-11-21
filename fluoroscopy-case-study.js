@@ -4,32 +4,25 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
  const repo="https://github.com/denoskume/Background-Subtraction-Fluoroscopy";
  return `
 <article class="fluoro-study" aria-labelledby="fl-title">
-  <div class="fl-crumb">
-    <button type="button" onclick="showSection('projects')">All projects</button>
-    <span>2026 / COMPUTER VISION</span>
-  </div>
+  <div class="fl-crumb"><button type="button" onclick="showSection('projects')">Back to projects</button></div>
   <header class="fl-cover">
     <div class="fl-cover-copy">
-      <span class="fl-overline">MEDICAL IMAGE PROCESSING</span>
       <h1 id="fl-title">Microcatheter segmentation in fluoroscopy</h1>
       <p class="fl-lead">Detecting thin instruments in noisy X-ray images, then reconstructing their paths as continuous lines.</p>
       <div class="fl-cover-stats">
         <div><strong>0.876</strong><span>Mean Dice score</span></div>
         <div><strong>10</strong><span>Annotated frames</span></div>
       </div>
-      <p class="fl-byline">Denos Kume &amp; Oluwole Shokunbi · Centrale Nantes</p>
     </div>
     <figure class="fl-cover-video">
       <video controls playsinline preload="metadata" poster="${raw}assets/segmentation-comparison.png" aria-label="Recorded demonstration of microcatheter segmentation">
         <source src="${raw}assets/demo-web.mp4" type="video/mp4">Your browser does not support HTML5 video.
       </video>
-      <figcaption>Recorded project demo · 19 seconds <a href="${raw}assets/demo-web.mp4" target="_blank" rel="noopener noreferrer">Open video</a></figcaption>
     </figure>
   </header>
 
   <section class="fl-chapter" id="fl-problem">
     <div class="fl-chapter-intro">
-      <span class="fl-section-tag">THE PROBLEM</span>
       <h2>The instrument almost disappears into the image.</h2>
       <p>In fluoroscopy, the microcatheter or guidewire is thin, low contrast, and easily confused with anatomy. We need to distinguish the instrument from the background and compare its position against manual tracings.</p>
     </div>
@@ -37,25 +30,20 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
       <a href="${raw}assets/grayscale-comparison.png" target="_blank" rel="noopener noreferrer">
         <img src="${raw}assets/grayscale-comparison.png" loading="lazy" decoding="async" alt="Actual original and enhanced grayscale fluoroscopy frame 291">
       </a>
-      <figcaption>Frame 291 · Original and contrast-enhanced images <span>Open full image</span></figcaption>
+      <figcaption>Original and enhanced fluoroscopy images, frame 291.</figcaption>
     </figure>
   </section>
 
   <section class="fl-chapter" id="fl-method">
     <div class="fl-chapter-intro">
-      <span class="fl-section-tag">THE METHOD</span>
       <h2>From changing pixels to one connected trace.</h2>
       <p>Ten 512 × 512 frames were analysed; frame 201 is the background reference and nine frames show movement.</p>
     </div>
     <div class="fl-process" aria-label="Processing stages">
-      <div><b>Prepare</b><span>Improve contrast and reduce noise</span></div>
-      <div><b>Subtract</b><span>Detect changes from the reference</span></div>
-      <div><b>Segment</b><span>Identify candidate instrument pixels</span></div>
-      <div><b>Reconnect</b><span>Recover a continuous path</span></div>
+      <div>Prepare</div><div>Subtract</div><div>Segment</div><div>Reconnect</div>
     </div>
     <div class="fl-method-row">
       <div class="fl-method-copy">
-        <span class="fl-method-label">SEGMENTATION</span>
         <h3>Isolate the instrument</h3>
         <p>After enhancement and filtering, fixed thresholding, Otsu thresholding and a two-component Gaussian mixture were tested to produce binary masks.</p>
         <p>These initial masks can be noisy or incomplete.</p>
@@ -64,12 +52,11 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
         <a href="${raw}assets/segmentation-comparison.png" target="_blank" rel="noopener noreferrer">
           <img src="${raw}assets/segmentation-comparison.png" loading="lazy" decoding="async" alt="Actual predicted instrument segmentation masks across ten frames">
         </a>
-        <figcaption>Predicted masks · All 10 frames <span>Open full image</span></figcaption>
+        <figcaption>Predicted instrument masks across all ten frames.</figcaption>
       </figure>
     </div>
     <div class="fl-method-row">
       <div class="fl-method-copy">
-        <span class="fl-method-label">PATH RECONSTRUCTION</span>
         <h3>Reconnect the missing sections</h3>
         <p>A supervised ExtraTrees model scores likely instrument pixels using local line features and temporal change. Path search turns the candidates into a connected centerline, starting from the bottom image edge.</p>
         <p>The resulting trace is compared with the manual reference.</p>
@@ -78,22 +65,20 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
         <a href="${raw}assets/mask-cleanup.png" target="_blank" rel="noopener noreferrer">
           <img src="${raw}assets/mask-cleanup.png" loading="lazy" decoding="async" alt="Actual previous segmentation, connected trace and manual reference for frame 291">
         </a>
-        <figcaption>Frame 291 · Previous mask, reconstructed line and manual trace <span>Open full image</span></figcaption>
+        <figcaption>Previous prediction, reconstructed path, and manual reference — frame 291.</figcaption>
       </figure>
     </div>
   </section>
 
   <section class="fl-chapter" id="fl-results">
     <div class="fl-chapter-intro">
-      <span class="fl-section-tag">THE RESULTS</span>
       <h2>The reconstructed path matches the annotation more closely.</h2>
-      <p>Dice measures overlap between the predicted instrument and manual tracing. Higher is better; 1 means a perfect match.</p>
+      <p>Dice measures overlap with manual tracings: 1 means a perfect match. The comparison uses the same nine motion frames.</p>
     </div>
     <div class="fl-score" aria-label="Mean Dice across nine motion frames">
       <div><small>Previous prediction</small><strong>0.501</strong></div>
       <span class="fl-score-separator" aria-hidden="true"></span>
       <div><small>Continuous trace</small><strong>0.876</strong></div>
-      <p>Mean Dice across the same nine motion frames (+0.376).</p>
     </div>
     <figure class="fl-chart">
       <div class="fl-chart-heading">
@@ -101,7 +86,6 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
         <div class="fl-legend"><span><i class="fl-line-old"></i>Previous</span><span><i class="fl-line-new"></i>Continuous trace</span></div>
       </div>
       <div id="fl-dice-plot" class="fl-dice-plot"></div>
-      <figcaption>Measured values · <a href="${repo}/blob/main/frame_comparison.csv" target="_blank" rel="noopener noreferrer">Source CSV</a></figcaption>
     </figure>
 
     <details class="fl-extras">
@@ -118,7 +102,6 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
     <details class="fl-extras fl-frame-extras">
       <summary>Explore all 10 annotated frames</summary>
       <div class="fl-frames">
-        <p>Select a frame to see the actual experimental review image and its metrics.</p>
         <div class="fl-frame-selector" role="group" aria-label="Choose fluoroscopy frame">
           ${[201,211,221,231,241,251,261,271,281,291].map(n=>`<button type="button" data-fluoro-frame="${n}" ${n===291?'class="selected" aria-pressed="true"':''}>${n}</button>`).join("")}
         </div>
@@ -134,13 +117,14 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
 
   <section class="fl-conclusion">
     <div>
-      <span class="fl-section-tag">CONCLUSION</span>
       <h2>A stronger trace, with clear limits.</h2>
       <p>Connected-path reconstruction improves segmentation on this one acquisition. Independent sequences and clinical review are still needed before the method can be considered generalizable.</p>
+      <p class="fl-credits">Academic project by Denos Kume and Oluwole Shokunbi at Centrale Nantes.</p>
     </div>
     <div class="fl-conclusion-links">
       <a class="fl-primary-link" href="${repo}" target="_blank" rel="noopener noreferrer">Explore repository</a>
       <a href="${repo}/blob/main/Fluoroscopy_Instrument_Segmentation.ipynb" target="_blank" rel="noopener noreferrer">Read the notebook</a>
+      <a href="${repo}/blob/main/frame_comparison.csv" target="_blank" rel="noopener noreferrer">View experimental results</a>
     </div>
   </section>
 </article>`;
