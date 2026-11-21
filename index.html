@@ -2306,6 +2306,44 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
   .navbar .nav-links{gap:14px}
 }
 
+
+/* My Journey — real city photographs, visual academic timeline. */
+.home-cn .cn-journey{padding:clamp(48px,5vw,74px) var(--gutter) clamp(46px,5vw,68px);background:#f7f9fb;color:#102b44}
+.cn-journey-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:28px}
+.cn-journey-heading>div{min-width:0}
+.cn-journey-eyebrow{display:block;font:600 .66rem var(--font-mono);letter-spacing:.15em;color:#365f81;margin-bottom:9px}
+.cn-journey-heading h2{font:400 clamp(2rem,3.4vw,3.15rem)/1.06 var(--font-display);letter-spacing:-.025em;color:#0b2946}
+.cn-journey-heading>p{max-width:475px;color:#536779;font-size:.9rem;line-height:1.65}
+.cn-journey-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.65vw,24px)}
+.cn-journey-card{display:flex;flex-direction:column;min-width:0;background:#fff;border:1px solid #e0e7ee;transition:transform .25s ease,box-shadow .25s ease}
+.cn-journey-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(10,37,66,.09)}
+.cn-journey-photo{position:relative;aspect-ratio:16/9;overflow:hidden;background:#d9e3eb}
+.cn-journey-photo img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .5s ease}
+.cn-journey-card:hover .cn-journey-photo img{transform:scale(1.025)}
+.cn-journey-number{position:absolute;bottom:13px;left:14px;padding:7px 10px;background:rgba(8,33,55,.91);color:#fff;font:600 .61rem var(--font-mono);letter-spacing:.075em}
+.cn-journey-body{padding:22px clamp(18px,2vw,28px) 20px;display:flex;flex:1;flex-direction:column;align-items:flex-start}
+.cn-journey-country{font:600 .66rem var(--font-mono);letter-spacing:.12em;color:#42688a}
+.cn-journey-body h3{font:400 clamp(1.75rem,2.3vw,2.25rem)/1.15 var(--font-display);color:#082843;margin:8px 0 12px}
+.cn-journey-body h4{font:600 .92rem/1.38 var(--font-body);color:#1c3955;margin:0 0 10px}
+.cn-journey-body>p{font-size:.82rem;color:#4f6376;line-height:1.7;margin:0 0 22px;flex:1}
+.cn-journey-credit{font-size:.66rem;line-height:1.5;color:#647c90;text-decoration:underline;text-underline-offset:3px}
+.cn-journey-credit:hover,.cn-journey-credit:focus-visible{color:#123d68}
+.cn-journey-education{display:block;margin:25px auto 0;width:max-content;max-width:100%;padding:11px 18px;border:1px solid #0b2946;color:#0b2946;background:transparent;font-size:.8rem;font-weight:600;text-decoration:none}
+.cn-journey-education:hover,.cn-journey-education:focus-visible{background:#0b2946;color:#fff}
+@media(max-width:850px){
+ .cn-journey-heading{display:block}
+ .cn-journey-heading>p{margin-top:13px;max-width:620px}
+ .cn-journey-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .cn-journey-card:last-child{grid-column:1/-1}
+ .cn-journey-card:last-child .cn-journey-photo{aspect-ratio:2.5/1}
+}
+@media(max-width:570px){
+ .home-cn .cn-journey{padding:42px 18px 44px}
+ .cn-journey-grid{grid-template-columns:1fr;gap:15px}
+ .cn-journey-card:last-child{grid-column:auto}
+ .cn-journey-card:last-child .cn-journey-photo{aspect-ratio:16/9}
+}
+
 </style>
 
 </head>
@@ -2405,6 +2443,63 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
         </div>
         <div class="cn-keyfigures-main"><strong>91.15<span> %</span></strong><small>Top-1 · CLAP project</small></div>
         <div class="cn-keyfigures-photo"><img src="https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/detected_chessboard_corners.png" alt="Camera calibration image with detected chessboard corners" loading="lazy"></div>
+      </section>
+
+
+      <!-- My journey — authentic city photographs, with image credits. -->
+      <section class="cn-journey" id="journey" aria-labelledby="journey-heading">
+        <div class="cn-journey-heading">
+          <div>
+            <span class="cn-journey-eyebrow">ACADEMIC JOURNEY · 3 COUNTRIES</span>
+            <h2 id="journey-heading">My Journey</h2>
+          </div>
+          <p>From Côte d’Ivoire through India to France — the places and experiences that shaped my path in engineering.</p>
+        </div>
+        <div class="cn-journey-grid">
+          <article class="cn-journey-card">
+            <div class="cn-journey-photo">
+              <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Entr%C3%A9e_du_Plateau_depuis_le_pont_G%C3%A9n%C3%A9ral_de_Gaulle%2C_Abidjan%2C_2023.jpg/960px-Entr%C3%A9e_du_Plateau_depuis_le_pont_G%C3%A9n%C3%A9ral_de_Gaulle%2C_Abidjan%2C_2023.jpg"
+                   alt="Authentic photograph of the Plateau district at sunset, Abidjan, Côte d’Ivoire" loading="lazy" decoding="async" width="960" height="432">
+              <span class="cn-journey-number">01 / ORIGINS</span>
+            </div>
+            <div class="cn-journey-body">
+              <span class="cn-journey-country">CÔTE D’IVOIRE · 2020</span>
+              <h3>Abidjan</h3>
+              <h4>Scientific foundations</h4>
+              <p>My journey began in Côte d’Ivoire, where I completed a scientific baccalaureate and developed a foundation in mathematics, physics and analytical reasoning.</p>
+              <a class="cn-journey-credit" href="https://commons.wikimedia.org/wiki/File:Entr%C3%A9e_du_Plateau_depuis_le_pont_G%C3%A9n%C3%A9ral_de_Gaulle,_Abidjan,_2023.jpg" target="_blank" rel="noopener noreferrer" title="Real photograph, J. N. Squire, CC BY-SA 4.0">Photo: J. N. Squire · CC BY-SA 4.0</a>
+            </div>
+          </article>
+          <article class="cn-journey-card">
+            <div class="cn-journey-photo">
+              <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/Vidhana_Souda_%2C_Bangalore.jpg/960px-Vidhana_Souda_%2C_Bangalore.jpg"
+                   alt="Authentic photograph of Vidhana Soudha in Bangalore, India" loading="lazy" decoding="async" width="960" height="598">
+              <span class="cn-journey-number">02 / BACHELOR’S</span>
+            </div>
+            <div class="cn-journey-body">
+              <span class="cn-journey-country">INDIA · 2021–2025</span>
+              <h3>Bangalore</h3>
+              <h4>BSc Computer Science &amp; Electronics</h4>
+              <p>At Kristu Jayanti University in Bengaluru, I built practical skills in programming, software development, electronics and embedded systems.</p>
+              <a class="cn-journey-credit" href="https://commons.wikimedia.org/wiki/File:Vidhana_Souda_,_Bangalore.jpg" target="_blank" rel="noopener noreferrer" title="Real photograph, Bikashrd, CC BY-SA 4.0">Photo: Bikashrd · CC BY-SA 4.0</a>
+            </div>
+          </article>
+          <article class="cn-journey-card">
+            <div class="cn-journey-photo">
+              <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Nantes_aerial_skyline_view.jpg/960px-Nantes_aerial_skyline_view.jpg"
+                   alt="Authentic aerial photograph of central Nantes, France" loading="lazy" decoding="async" width="960" height="720">
+              <span class="cn-journey-number">03 / MASTER’S</span>
+            </div>
+            <div class="cn-journey-body">
+              <span class="cn-journey-country">FRANCE · 2025–2027</span>
+              <h3>Nantes</h3>
+              <h4>MSc Control &amp; Robotics</h4>
+              <p>At Centrale Nantes, I study data science, signal and image processing, with a growing focus on computer vision and applied machine learning.</p>
+              <a class="cn-journey-credit" href="https://commons.wikimedia.org/wiki/File:Nantes_aerial_skyline_view.jpg" target="_blank" rel="noopener noreferrer" title="Real photograph, ahtcx, CC0 1.0">Photo: ahtcx · CC0 1.0</a>
+            </div>
+          </article>
+        </div>
+        <a class="cn-journey-education" href="#" data-target="about" data-scroll="education">Explore my education</a>
       </section>
 
       <!-- 03 / Travaux récents -->
