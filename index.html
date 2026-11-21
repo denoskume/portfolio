@@ -624,7 +624,7 @@
     will-change: transform;
   }
 
-  /* Chaque slide présente trois visuels sélectionnés du MÊME projet. */
+  /* Chaque slide présente deux grandes images complémentaires du même projet. */
   .slide {
     flex: 0 0 100%;
     width: 100%;
@@ -662,9 +662,9 @@
   }
   .slide-gallery {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     flex: 1 1 0;
-    gap: clamp(6px, 1.4vw, 20px);
+    gap: clamp(12px, 1.8vw, 26px);
     min-height: 0;
     width: 100%;
   }
@@ -2086,7 +2086,7 @@
 
       <!-- CARROUSEL -->
 
-      <div class="carousel" aria-label="Projets présentés par séries de trois images" aria-roledescription="carousel">
+      <div class="carousel" aria-label="Projets présentés par séries de deux grandes images" aria-roledescription="carousel">
 
         <div class="carousel-track" id="carouselTrack"></div>
 
@@ -2564,80 +2564,64 @@ const projects = [
 
 
 /* ============================================================
-   CARROUSEL PAR PROJET — 3 images pertinentes / 5 secondes
+   CARROUSEL PAR PROJET — 2 images pertinentes / 5 secondes
    Les trois premières galeries reprennent les figures originales
    des dépôts. VisionLab illustre son exemple synthétique documenté.
    ============================================================ */
 const carouselGroups = [
   {
     "title": "Segmentation de microcathéters",
-    "story": "Préparer · Segmenter · Évaluer",
+    "story": "Prétraitement · Reconstruction évaluée",
     "items": [
       {
         "url": "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/grayscale-comparison.png",
-        "label": "01 · Prétraitement et amélioration du contraste"
-      },
-      {
-        "url": "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/segmentation-comparison.png",
-        "label": "02 · Segmentation sur la séquence fluoroscopique"
+        "label": "1 · Prétraitement et amélioration du contraste"
       },
       {
         "url": "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/mask-cleanup.png",
-        "label": "03 · Tracé reconstruit comparé aux annotations"
+        "label": "2 · Tracé reconstruit comparé aux annotations"
       }
     ]
   },
   {
     "title": "Calibration de caméra",
-    "story": "Détecter · Estimer · Vérifier",
+    "story": "Détection géométrique · Précision mesurée",
     "items": [
       {
         "url": "https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/detected_chessboard_corners.png",
-        "label": "01 · Coins du damier détectés"
+        "label": "1 · Coins du damier détectés"
       },
       {
         "url": "https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/mean_reprojection_error_by_view.png",
-        "label": "02 · Erreurs de reprojection par vue"
-      },
-      {
-        "url": "https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/held_out_view_errors.png",
-        "label": "03 · Validation sur les coins tenus à l'écart"
+        "label": "2 · Erreurs de reprojection par vue"
       }
     ]
   },
   {
     "title": "Classification audio zero-shot — CLAP",
-    "story": "Pipeline · Prompts · Précision",
+    "story": "Méthode audio-texte · Résultats mesurés",
     "items": [
       {
         "url": "https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/clap_complete_zero_shot_pipeline.png",
-        "label": "01 · Pipeline de classification audio-texte"
-      },
-      {
-        "url": "https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/prompt_strategy_comparison_table.png",
-        "label": "02 · Comparaison des dix formulations"
+        "label": "1 · Pipeline de classification audio-texte"
       },
       {
         "url": "https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/topk_accuracy_line.png",
-        "label": "03 · Précision Top-k avec le meilleur prompt"
+        "label": "2 · Précision Top-k avec le meilleur prompt"
       }
     ]
   },
   {
     "title": "VisionLab — Traitement d’images",
-    "story": "Entrée · Masque · Mesure",
+    "story": "Image de démonstration · Détection illustrée",
     "items": [
       {
         "url": "./assets/visionlab-demo-input.svg",
-        "label": "01 · Image synthétique de démonstration"
-      },
-      {
-        "url": "./assets/visionlab-demo-mask.svg",
-        "label": "02 · Segmentation : masque binaire illustratif"
+        "label": "1 · Image synthétique de démonstration"
       },
       {
         "url": "./assets/visionlab-demo-detections.svg",
-        "label": "03 · Localisation et mesure de cinq pièces (illustration)"
+        "label": "2 · Localisation et mesure de cinq pièces (illustration)"
       }
     ]
   }
@@ -2735,7 +2719,7 @@ function buildCarousel() {
     fallbackTimeout = window.setTimeout(finishTransition, durationMs + 200);
   }
 
-  // Un groupe de trois images est visible à la fois, puis glisse pendant 1,6 s.
+  // Deux grandes images d'un projet sont visibles à la fois, puis glissent pendant 1,6 s.
   window.setInterval(advance, intervalMs);
 }
 
