@@ -148,6 +148,29 @@ def main():
     p("This Master 1 image-processing project investigates guidewire and microcatheter segmentation in fluoroscopic X-ray images. We compared background-subtraction methods against manual references and explored continuous-path reconstruction to reduce fragmented predictions. On nine motion frames from a supplied sequence, mean Dice increased from <b>0.501 to 0.876</b>. The results demonstrate improvement on this sequence rather than robustness across independent acquisitions.")
     h2("Keywords")
     p("Computer Vision | Image Processing | Fluoroscopy | Background Subtraction | Segmentation | ExtraTrees | Dice | Path Reconstruction")
+    h2("Nomenclature")
+    p("Key terms used throughout this image-processing project.")
+    terms = [
+        ("Computer Vision (CV)", "Methods that enable computers to extract useful information from images and video."),
+        ("Image Processing", "Operations used to enhance, filter, transform or analyse digital images."),
+        ("Fluoroscopy", "X-ray imaging that produces a sequence of frames. This project analyses an existing sequence offline."),
+        ("Guidewire", "A thin, flexible wire used to guide devices through a vessel; one of the instruments traced in the images."),
+        ("Microcatheter", "A small, flexible catheter that can be navigated over a guidewire; another instrument of interest in the images."),
+        ("Background Subtraction", "Comparing a frame with a reference background to highlight image regions that have changed."),
+        ("Segmentation / Binary Mask", "Separating instrument pixels from background pixels. A binary mask records the predicted class at each pixel."),
+        ("Manual Annotation (Reference Mask)", "An instrument tracing made by a person and converted into a mask for comparison with predictions."),
+        ("ExtraTrees", "Extremely Randomized Trees: a supervised ensemble of decision trees used here to score candidate instrument pixels."),
+        ("Dice Score", "An overlap measure between predicted and reference masks, ranging from 0 (no overlap) to 1 (perfect overlap)."),
+        ("IoU (Intersection over Union)", "The area shared by the predicted and reference instrument masks divided by the area covered by either mask."),
+        ("PSNR (Peak Signal-to-Noise Ratio)", "A decibel measure of pixel-level agreement derived from mean squared error; it can be misleading for sparse instruments."),
+        ("Continuous-Path Reconstruction", "Connecting candidate instrument pixels into a single plausible line to reduce gaps in the predicted trace."),
+    ]
+    for term, definition in terms:
+        story.append(KeepTogether([
+            Paragraph(f"<b>{escape(term)}</b>", STYLES["body"]),
+            Paragraph(escape(definition), STYLES["body"]),
+            Spacer(1, 3),
+        ]))
     h2("Project information")
     table([
         ["Type","Master 1 academic project"],
