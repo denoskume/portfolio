@@ -235,10 +235,17 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
       </div>
     </div>
 
-    <aside class="fl-paper-sidebar" aria-label="Project article contents">
+    <aside class="fl-paper-sidebar" aria-label="Contents">
       <div class="fl-sidebar-sticky">
-        <h2>Article contents</h2>
-        ${toc.map(group=>`<nav class="fl-toc-group" data-fl-toc="${group.key}" aria-label="${group.key} sections" ${group.key==='report'?'':'hidden'}>${group.entries.map(([id,label])=>`<a href="#${id}" data-fl-target-tab="${group.key}" data-fl-target-id="${id}" ${id==='fl-r-abstract'?'class="is-current"':''}>${label}</a>`).join("")}</nav>`).join("")}
+        <div class="fl-sidebar-heading">
+          <h2>Contents</h2>
+          <button type="button" class="fl-sidebar-toggle" data-fl-toggle-toc aria-controls="fl-toc-navigation" aria-expanded="true" aria-label="Collapse contents" title="Collapse contents">
+            <span class="fl-collapse-icon" aria-hidden="true">‹</span>
+          </button>
+        </div>
+        <div id="fl-toc-navigation">
+          ${toc.map(group=>`<nav class="fl-toc-group" data-fl-toc="${group.key}" aria-label="${group.key} sections" ${group.key==='report'?'':'hidden'}>${group.entries.map(([id,label])=>`<a href="#${id}" data-fl-target-tab="${group.key}" data-fl-target-id="${id}" ${id==='fl-r-abstract'?'class="is-current"':''}>${label}</a>`).join("")}</nav>`).join("")}
+        </div>
       </div>
     </aside>
   </div>
@@ -276,7 +283,21 @@ window.initFluoroCaseStudy = function initFluoroCaseStudy() {
   const tabButtons = Array.from(root.querySelectorAll("[data-fl-tab]"));
   const panels = Array.from(root.querySelectorAll("[data-fl-panel]"));
   const tocGroups = Array.from(root.querySelectorAll("[data-fl-toc]"));
+  const shell = root.querySelector(".fl-paper-shell");
+  const tocNavigation = root.querySelector("#fl-toc-navigation");
+  const tocToggle = root.querySelector("[data-fl-toggle-toc]");
   let activeView = "report";
+
+  tocToggle?.addEventListener("click", () => {
+    const collapsed = !shell.classList.contains("is-toc-collapsed");
+    shell.classList.toggle("is-toc-collapsed", collapsed);
+    tocNavigation.hidden = collapsed;
+    tocToggle.setAttribute("aria-expanded", String(!collapsed));
+    const label = collapsed ? "Expand contents" : "Collapse contents";
+    tocToggle.setAttribute("aria-label", label);
+    tocToggle.title = label;
+    tocToggle.querySelector(".fl-collapse-icon").textContent = collapsed ? "›" : "‹";
+  });
 
   function selectTocEntry(id) {
     root.querySelectorAll("[data-fl-target-id]").forEach(link => {
