@@ -2210,6 +2210,40 @@ body:has(#home.active) .footer{display:none}
   .home-cn .cn-news-card img{height:230px}
 }
 
+
+/* Centred project CTA, with the availability description intentionally removed. */
+.home-cn .cn-news-content{display:flex;flex-direction:column}
+.home-cn .cn-news-more{
+  align-self:center;
+  float:none;
+  margin:30px auto 0;
+  padding:13px 25px;
+  min-height:46px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  background:#0b2946;
+  border:1px solid #0b2946;
+  color:#fff;
+  font-size:.88rem;
+  font-weight:600;
+  text-decoration:none;
+  transition:background .2s ease,color .2s ease,transform .2s ease;
+}
+.home-cn .cn-news-more:hover,.home-cn .cn-news-more:focus-visible{
+  background:#153f6d;
+  color:#fff;
+  transform:translateY(-2px);
+}
+.home-cn .cn-news-more:focus-visible{outline:3px solid #e7b221;outline-offset:3px}
+.home-cn .cn-events{grid-template-columns:1fr 1fr auto}
+.home-cn .cn-events>div{display:flex;align-items:center;justify-content:center}
+@media(max-width:760px){
+  .home-cn .cn-events{grid-template-columns:1fr;justify-items:start}
+  .home-cn .cn-events>div{justify-content:start}
+}
+
 </style>
 
 </head>
@@ -2303,11 +2337,11 @@ body:has(#home.active) .footer{display:none}
               <h3>CLAP : classification zero-shot</h3><p>Évaluation de prompts et de la précision audio-texte sur ESC-50.</p>
             </a>
           </div>
-          <a href="#" data-target="projects" class="cn-news-more">Voir tous les projets ›</a>
+          <a href="#" data-target="projects" class="cn-news-more">Voir tous les projets <span aria-hidden="true">↗</span></a>
         </div>
         <aside class="cn-events">
           <h2>Disponibilité</h2>
-          <div><span>DÈS FÉVRIER 2027</span><p>Stage de 6 mois en vision par ordinateur, traitement d’images ou machine learning appliqué.</p></div>
+          <div><span>DÈS FÉVRIER 2027</span></div>
           <a href="#" data-target="contact">Me contacter ›</a>
         </aside>
       </section>
