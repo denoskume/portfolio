@@ -2326,8 +2326,21 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
 .project-demo figcaption{padding:12px 18px;font-size:.77rem;color:#4c6378}
 .project-demo figcaption a{color:#174b80;text-underline-offset:3px}
 
+/* Full-width article paragraphs: override legacy ch-based limits and word splitting. */
+#projectDetail .fluoro-study .fl-paper-panel .fl-paper-section > p,
+#projectDetail .fluoro-study .fl-paper-panel .fl-figure-section > p,
+#projectDetail .fluoro-study .fl-paper-panel .fl-metric-section > p {
+  display:block;
+  box-sizing:border-box;
+  width:100%;
+  max-width:none!important;
+  overflow-wrap:normal;
+  word-break:normal;
+  hyphens:none;
+  white-space:normal;
+}
 </style>
-<link rel="stylesheet" href="fluoroscopy-case-study.css?v=20261121-full-paragraph-width-v20">
+<link rel="stylesheet" href="fluoroscopy-case-study.css?v=20261121-article-layout-v21">
 
 </head>
 
@@ -2875,7 +2888,7 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
 
 
 <script src="content.js"></script>
-<script src="fluoroscopy-case-study.js?v=20261121-full-paragraph-width-v20"></script>
+<script src="fluoroscopy-case-study.js?v=20261121-article-layout-v21"></script>
 <script>
 
 /* ============================================================
