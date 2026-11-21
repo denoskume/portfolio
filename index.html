@@ -1966,35 +1966,32 @@ body:has(#home.active) .navbar .nav-links a{color:#10273c}
 .cn-slider-dots{background:#082039;border-radius:25px;padding:8px 10px;display:flex;align-items:center;gap:8px}
 .cn-slider-dots i{display:block;height:8px;width:8px;border-radius:50%;background:#8294a7;border:1px solid white}
 .cn-slider-dots i.active{background:#fff;width:10px;height:10px}
-.cn-keyfigures{height:clamp(235px,22.5vw,320px);display:grid;grid-template-columns:57% 25% 18%;overflow:hidden;background:#fff}
-.cn-keyfigures-list{padding:35px clamp(25px,4.5vw,70px);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;column-gap:28px}
-.cn-keyitem{display:flex;align-items:center;gap:20px;color:#122a47}
-.cn-keyicon{flex:0 0 58px;font-size:3.05rem;color:#15375a;line-height:1}
-.cn-keyicon.cn-gold{color:#e6ad00}
-.cn-keyitem p{font-weight:600;font-size:clamp(.73rem,1.12vw,1rem);line-height:1.35}
-.cn-keyfigures-main{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-left:5px;white-space:nowrap}
-.cn-keyfigures-main strong{font:400 clamp(2.55rem,4.45vw,5rem)/1 var(--font-display);color:#072340;letter-spacing:-.035em}
-.cn-keyfigures-main strong span{font-size:.6em}
-.cn-keyfigures-main small{margin-top:5px;font-size:.77rem;color:#516a7e}
-.cn-keyfigures-photo{position:relative;overflow:hidden;background:#1542ab}
-.cn-keyfigures-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(2) hue-rotate(170deg) contrast(1.3)}
-.cn-keyfigures-photo:before{content:'';z-index:1;position:absolute;inset:0;background:linear-gradient(to right,#fff 0,rgba(255,255,255,.55) 20%,rgba(22,68,183,.2) 70%,rgba(22,68,183,.45))}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Evidence gallery — genuine output figures and reproducible project metrics. */
+.cn-evidence{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#dfe7ed;border-block:1px solid #dfe7ed}
+.cn-evidence-card{display:flex;flex-direction:column;min-width:0;background:#fff;color:#082b48;text-decoration:none;transition:background .2s ease}
+.cn-evidence-card:hover,.cn-evidence-card:focus-visible{background:#f8fbfe}
+.cn-evidence-card:focus-visible{outline:3px solid #2146af;outline-offset:-3px}
+.cn-evidence-art{height:clamp(160px,15vw,235px);padding:12px 16px;background:#f5f7fa;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cn-evidence-art img{display:block;width:100%;height:100%;object-fit:contain;filter:none}
+.cn-evidence-result{display:flex;flex-direction:column;align-items:flex-start;flex:1;padding:19px clamp(15px,2.1vw,30px) 23px}
+.cn-evidence-project{font-size:.8rem;font-weight:600;line-height:1.35;color:#27445f}
+.cn-evidence-number{font:400 clamp(2.15rem,3.6vw,3.65rem)/1.15 var(--font-display);letter-spacing:-.04em;color:#082947;margin:12px 0 4px}
+.cn-evidence-number span{font-size:.58em;letter-spacing:0}
+.cn-evidence-measure{font-size:.91rem;font-weight:600;line-height:1.42;color:#153956}
+.cn-evidence-result small{margin-top:7px;font-size:.75rem;line-height:1.45;color:#5d7284}
+@media(max-width:780px){
+ .cn-evidence{grid-template-columns:1fr}
+ .cn-evidence-card{display:grid;grid-template-columns:minmax(0,45%) minmax(0,55%);align-items:stretch}
+ .cn-evidence-art{height:100%;min-height:215px}
+ .cn-evidence-result{justify-content:center;padding:18px 20px}
+ .cn-evidence-number{font-size:clamp(2rem,6vw,3.25rem)}
+}
+@media(max-width:490px){
+ .cn-evidence-card{grid-template-columns:1fr}
+ .cn-evidence-art{height:195px;min-height:0}
+ .cn-evidence-result{padding:15px 20px 20px}
+ .cn-evidence-number{margin:7px 0 3px}
+}
 
 .cn-news{padding:62px var(--gutter) 70px;display:grid;grid-template-columns:minmax(0,3fr) minmax(240px,1fr);gap:34px;background:#fff}
 .cn-news h2{font-size:clamp(1.22rem,1.5vw,1.5rem);font-weight:500;color:#072943;margin-bottom:20px}
@@ -2022,9 +2019,6 @@ body:has(#home.active) .navbar .nav-links a{color:#10273c}
 @media(max-width:1100px){
   .cn-hero-wedge{width:44%;clip-path:polygon(0 0,100% 0,70% 100%,0 100%)}.cn-hero-copy{width:47%}
   .cn-hero-copy h1{font-size:clamp(1.7rem,3.8vw,2.75rem)}
-  .cn-keyfigures{grid-template-columns:60% 23% 17%}
-  .cn-keyfigures-list{padding:30px 20px;column-gap:10px}
-  .cn-keyicon{flex-basis:43px;font-size:2.3rem}
   
 }
 @media(max-width:760px){
@@ -2035,10 +2029,6 @@ body:has(#home.active) .navbar .nav-links a{color:#10273c}
   .cn-slider-ui{padding-top:5px}
   .cn-hero-carousel.carousel{top:60%;left:0;right:0;bottom:0;width:100%;height:40%}
   .cn-hero-carousel .showcase-panel figcaption{font-size:.76rem}
-  .cn-keyfigures{height:auto;grid-template-columns:1fr 32%}
-  .cn-keyfigures-list{grid-column:1/-1;min-height:190px;padding:20px 16px}
-  .cn-keyfigures-main{min-height:150px;padding:15px 20px}
-  .cn-keyfigures-photo{min-height:150px}
   
   
   
@@ -2051,10 +2041,6 @@ body:has(#home.active) .navbar .nav-links a{color:#10273c}
   .cn-hero-wedge,.cn-hero-copy{height:62%}
   .cn-hero-carousel.carousel{top:62%;height:38%}
   .cn-hero-copy h1{font-size:clamp(2rem,9vw,2.5rem)}
-  .cn-keyfigures-list{grid-template-columns:1fr 1fr;gap:12px;padding:16px 13px}
-  .cn-keyicon{font-size:1.9rem;flex-basis:28px}
-  .cn-keyitem{gap:7px}
-  .cn-keyitem p{font-size:.7rem}
   
   
   
@@ -2421,15 +2407,43 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
       </section>
 
       <!-- 02 / Les faits en deux colonnes + chiffre phare + image bleue -->
-      <section class="cn-keyfigures" aria-label="Highlights at a glance">
-        <div class="cn-keyfigures-list">
-          <div class="cn-keyitem"><span class="cn-keyicon">◇</span><p><strong>3</strong> documented projects</p></div>
-          <div class="cn-keyitem"><span class="cn-keyicon">⌖</span><p><strong>9</strong> camera calibration views</p></div>
-          <div class="cn-keyitem"><span class="cn-keyicon cn-gold">★</span><p><strong>50</strong> ESC-50 audio classes</p></div>
-          <div class="cn-keyitem"><span class="cn-keyicon cn-gold">◎</span><p><strong>6-month</strong> internship from February 2027</p></div>
-        </div>
-        <div class="cn-keyfigures-main"><strong>91.15<span> %</span></strong><small>Top-1 · CLAP project</small></div>
-        <div class="cn-keyfigures-photo"><img src="https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/detected_chessboard_corners.png" alt="Camera calibration image with detected chessboard corners" loading="lazy"></div>
+      <section class="cn-evidence" aria-label="Measured results from my research projects">
+        <a class="cn-evidence-card" href="#" onclick="openProject(1);return false;" aria-label="View microcatheter segmentation study and its measured Dice score">
+          <div class="cn-evidence-art">
+            <img src="https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/segmentation-comparison.png"
+                 alt="Real experimental comparison of predicted microcatheter masks and reference annotations" loading="lazy" decoding="async">
+          </div>
+          <div class="cn-evidence-result">
+            <span class="cn-evidence-project">Microcatheter Segmentation</span>
+            <div class="cn-evidence-number">0.876</div>
+            <span class="cn-evidence-measure">Mean Dice score · 9 motion frames</span>
+            <small>Continuous-trace reconstruction · single acquisition</small>
+          </div>
+        </a>
+        <a class="cn-evidence-card" href="#" onclick="openProject(2);return false;" aria-label="View camera calibration study and reprojection error">
+          <div class="cn-evidence-art">
+            <img src="https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/mean_reprojection_error_by_view.png"
+                 alt="Actual mean reprojection error measured across the nine calibration images" loading="lazy" decoding="async">
+          </div>
+          <div class="cn-evidence-result">
+            <span class="cn-evidence-project">Camera Calibration</span>
+            <div class="cn-evidence-number">0.434 <span>px</span></div>
+            <span class="cn-evidence-measure">Mean reprojection error</span>
+            <small>Measured across 9 chessboard views</small>
+          </div>
+        </a>
+        <a class="cn-evidence-card" href="#" onclick="openProject(3);return false;" aria-label="View CLAP zero-shot classification study and accuracy">
+          <div class="cn-evidence-art">
+            <img src="https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/topk_accuracy_line.png"
+                 alt="Actual Top-k classification accuracy plot from the CLAP ESC-50 experiment" loading="lazy" decoding="async">
+          </div>
+          <div class="cn-evidence-result">
+            <span class="cn-evidence-project">CLAP · Zero-Shot Audio</span>
+            <div class="cn-evidence-number">91.15<span>%</span></div>
+            <span class="cn-evidence-measure">Top-1 classification accuracy</span>
+            <small>ESC-50 · 2,000 clips · best tested prompt</small>
+          </div>
+        </a>
       </section>
 
 
