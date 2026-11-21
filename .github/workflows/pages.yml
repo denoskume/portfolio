@@ -18,9 +18,24 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build downloadable project report PDF
         run: |
-          python -m pip install --quiet reportlab
+          python -m pip install --quiet reportlab pypdf
           python scripts/build_fluoroscopy_pdf.py
           test -s build/fluoroscopy-case-study.pdf
+          python - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader
+          pdf = Path("build/fluoroscopy-case-study.pdf")
+          reader = PdfReader(str(pdf))
+          report = " ".join(" ".join(page.extract_text().split()) for page in reader.pages)
+          required = ["Abstract", "Keywords", "Project information", "Nomenclature",
+                      "1.0 Introduction", "3.0 Methodology", "4.2 Frame-by-frame results",
+                      "5.0 Discussion and conclusion"]
+          for heading in required:
+              assert heading in report, f"PDF missing required section: {heading}"
+          assert report.index("Project information") < report.index("Nomenclature") < report.index("1.0 Introduction")
+          assert len(reader.pages) >= 4, "PDF report unexpectedly short"
+          print(f"Validated downloadable report: {len(reader.pages)} pages, {pdf.stat().st_size} bytes")
+          PY
       - name: Validate and prepare static site
         run: |
           node --check app.js
