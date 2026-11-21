@@ -52,6 +52,7 @@ body:has(#projectDetail.active .fluoro-study) .main-container{margin-top:var(--n
 .fl-paper-section>h3,.fl-figure-section>h3,.fl-metric-section>h3{font:500 clamp(1.4rem,1.95vw,1.86rem)/1.25 var(--font-display);color:#143b5a;margin:27px 0 12px}
 .fl-paper-section>h3:first-of-type{margin-top:12px}
 .fl-paper-section p,.fl-figure-section p,.fl-metric-section p,.fl-panel-intro p{font-size:1.025rem;line-height:1.8;color:#3c566a;max-width:83ch}
+.fl-paper-section>p,.fl-figure-section>p,.fl-metric-section>p,.fl-panel-intro>p,.fl-terms dd{text-align:justify;text-align-last:left;hyphens:auto;overflow-wrap:break-word}
 .fl-paper-section p+p,.fl-figure-section p+p,.fl-metric-section p+p{margin-top:15px}
 .fl-paper-section strong,.fl-metric-section strong{color:#0e3857;font-weight:650}
 .fl-inline-link{display:inline;font:inherit;color:#185981;border:0;background:none;text-decoration:underline;text-underline-offset:3px;padding:0;cursor:pointer}
