@@ -2346,8 +2346,7 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
   white-space:normal;
 }
 
-/* About Me: text naturally wraps alongside the portrait, then spans full width.
-   The approved biography and links are unchanged. */
+/* About Me: two complete paragraphs beside the portrait; final paragraph below. */
 body:has(#about.active) .main-container {
   margin-top: var(--nav-h);
 }
@@ -2355,33 +2354,47 @@ body:has(#about.active) .main-container {
   padding-top: clamp(20px, 2.6vw, 32px);
 }
 #about .about-flow {
-  display: flow-root;
   margin-bottom: clamp(60px, 9vh, 100px);
 }
-#about .about-portrait {
-  float: left;
-  width: clamp(220px, 25vw, 300px);
-  max-width: 100%;
-  margin: 0 clamp(28px, 5vw, 72px) 14px 0;
+#about .about-top {
+  display: grid;
+  grid-template-columns: clamp(220px, 25vw, 300px) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+  margin-bottom: 0;
+}
+#about .about-portrait,
+#about .about-text {
+  min-width: 0;
 }
 #about .about-photo {
   aspect-ratio: 1 / 1;
 }
-#about .about-text .body p {
+#about .about-text .body p,
+#about .about-continuation p {
   max-width: none;
   font-size: 1rem;
   line-height: 1.75;
   color: var(--ink-2);
   margin-bottom: 16px;
 }
-#about .about-text .body p:last-child {
+#about .about-text .body p:last-child,
+#about .about-continuation p:last-child {
   margin-bottom: 0;
 }
+#about .about-continuation {
+  margin-top: clamp(16px, 2vw, 26px);
+}
 @media (max-width: 760px) {
+  #about .about-top {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
   #about .about-portrait {
-    float: none;
     width: min(100%, 280px);
-    margin: 0 0 24px;
+  }
+  #about .about-continuation {
+    margin-top: 16px;
   }
 }
 </style>
@@ -2588,23 +2601,27 @@ body:has(#about.active) .main-container {
 
         <div class="about-flow">
 
-          <div class="about-portrait">
-            <div class="about-photo">
+          <div class="about-top">
+            <div class="about-portrait">
+              <div class="about-photo">
 
               <img src="https://avatars.githubusercontent.com/u/110854822?v=4" alt="Denos Kume GitHub profile photograph">
 
             </div>
+            </div>
+
+            <div class="about-text">
+              <h2>About Me</h2>
+              <div class="body">
+                <p>In June 2025, I graduated with a <strong>Bachelor's degree in Computer Science and Electronics from <a href="https://kristujayanti.edu.in/" target="_blank" rel="noopener noreferrer">Kristu Jayanti College</a></strong> in Bangalore, India (which became Kristu Jayanti University in July 2025). The degree combined two areas: programming, databases and data analysis, alongside digital electronics and embedded systems, with hands-on work involving microcontrollers and the Internet of Things (IoT). During my final year, I completed a <strong>three-month data analysis internship at Unified Mentor</strong>, from September to December 2024.</p>
+
+                <p>In September 2025, I began the <strong>MSc Control and Robotics at <a href="https://www.ec-nantes.fr/english-version" target="_blank" rel="noopener noreferrer">Centrale Nantes</a></strong>. I am currently in my final year, following the Data Science, Signal and Image Processing track. The programme focuses on artificial intelligence (AI), machine learning (ML) and numerical optimization methods applied to data analysis and image processing. Alongside my studies, I completed <strong>freelance assignments for RWS TrainAI</strong> from August to October 2026, evaluating responses from AI models.</p>
+              </div>
+            </div>
           </div>
 
-          <div class="about-text">
-            <h2>About Me</h2>
-            <div class="body">
-              <p>In <strong>June 2025</strong>, I graduated with a <strong>Bachelor's degree in Computer Science and Electronics from <a href="https://kristujayanti.edu.in/" target="_blank" rel="noopener noreferrer">Kristu Jayanti College</a></strong> in Bangalore, India (which became Kristu Jayanti University in July 2025). The degree combined two areas: <strong>programming, databases and data analysis</strong>, alongside <strong>digital electronics and embedded systems</strong>, with hands-on work involving microcontrollers and the Internet of Things (IoT). During my final year, I completed a <strong>three-month data analysis internship at Unified Mentor, from September to December 2024</strong>.</p>
-
-              <p>In <strong>September 2025</strong>, I began the <strong>MSc Control and Robotics at <a href="https://www.ec-nantes.fr/english-version" target="_blank" rel="noopener noreferrer">Centrale Nantes</a></strong>, where I am now in my final year on the Data Science, Signal and Image Processing track. The programme focuses on <strong>artificial intelligence (AI), machine learning (ML) and numerical optimization methods applied to data analysis and image processing</strong>. Alongside my studies, I completed <strong>freelance assignments for RWS TrainAI from August to October 2026</strong>, evaluating responses from AI models.</p>
-
-              <p>I am looking for a <strong>six-month internship starting in February 2027</strong> in <strong>data science, with a particular interest in computer vision and image processing</strong>. I am also open to data analysis opportunities, especially in industrial settings. I would like to join a technical team where I can <strong>contribute to its projects, put my knowledge into practice and develop my skills</strong> while learning from experienced colleagues.</p>
-            </div>
+          <div class="about-continuation">
+            <p>I am looking for a <strong>six-month internship starting in February 2027</strong> in <strong>data science, with a particular interest in computer vision and image processing</strong>. I am also open to data analysis opportunities, especially in industrial settings. I would like to join a technical team where I can contribute to its projects, put my knowledge into practice and develop my skills while learning from experienced colleagues.</p>
           </div>
 
         </div>
