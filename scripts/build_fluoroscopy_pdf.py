@@ -101,30 +101,57 @@ def table(rows, widths, header=True):
     story.append(t)
     story.append(Spacer(1, 10))
 
-def frame_chart():
-    frames=[211,221,231,241,251,261,271,281,291]
-    old=[.083462,.286629,.467286,.596285,.582875,.544292,.667311,.690557,.587576]
-    new=[.931683,.818005,.888947,.883092,.847207,.883501,.878369,.907880,.848672]
+def load_frame_comparison():
+    """Read the canonical per-frame metrics from the academic project."""
+    payload = fetch_asset("frame_comparison.csv")
+    if not payload:
+        raise RuntimeError("Cannot build an accurate PDF without frame_comparison.csv")
+    reader = csv.DictReader(io.StringIO(payload.decode("utf-8-sig")))
+    required = {"frame", "baseline_dice", "new_dice", "new_fp", "new_fn"}
+    if not required.issubset(reader.fieldnames or []):
+        raise ValueError("Frame comparison CSV is missing required metrics")
+    rows = [
+        {
+            "frame": int(row["frame"]),
+            "baseline_dice": float(row["baseline_dice"]),
+            "new_dice": float(row["new_dice"]),
+            "new_fp": int(row["new_fp"]),
+            "new_fn": int(row["new_fn"]),
+        }
+        for row in reader
+    ]
+    motion = [row for row in rows if row["frame"] != 201]
+    if [row["frame"] for row in motion] != list(range(211, 292, 10)):
+        raise ValueError("Unexpected frame sequence in source CSV")
+    return motion
+
+
+def frame_chart(rows):
+    """Visualize the nine motion-frame results reported in the source CSV."""
+    frames = [row["frame"] for row in rows]
+    old = [row["baseline_dice"] for row in rows]
+    new = [row["new_dice"] for row in rows]
     width, height = PAGE_WIDTH - 15, 180
     d = Drawing(width, height)
-    left, bottom, plot_w, plot_h=37,30,width-52,height-50
-    for v in [0,.25,.50,.75,1]:
-        y=bottom+v*plot_h
-        d.add(Line(left,y,left+plot_w,y,strokeColor=RULE,strokeWidth=.6))
-        d.add(String(left-8,y-4,f"{v:.2f}",fontSize=7,fillColor=MUTED,textAnchor="end"))
-    colors_for=[colors.HexColor("#A7864A"),colors.HexColor("#18618A")]
-    for values,color in zip([old,new],colors_for):
-        points=[]
-        for i,score in enumerate(values):
-            x=left+i*plot_w/8
-            y=bottom+score*plot_h
-            points.extend([x,y])
-            d.add(Circle(x,y,2.7,fillColor=color,strokeColor=colors.white,strokeWidth=.6))
-        d.add(PolyLine(points,strokeColor=color,strokeWidth=2,fillColor=None))
-    for i,label in enumerate(frames):
-        d.add(String(left+i*plot_w/8,bottom-14,str(label),fontSize=7,fillColor=MUTED,textAnchor="middle"))
+    left, bottom, plot_w, plot_h = 37, 30, width - 52, height - 50
+    for v in [0, .25, .50, .75, 1]:
+        y = bottom + v * plot_h
+        d.add(Line(left, y, left + plot_w, y, strokeColor=RULE, strokeWidth=.6))
+        d.add(String(left - 8, y - 4, f"{v:.2f}", fontSize=7, fillColor=MUTED, textAnchor="end"))
+    colors_for = [colors.HexColor("#A7864A"), colors.HexColor("#18618A")]
+    for values, color in zip([old, new], colors_for):
+        points = []
+        for i, score in enumerate(values):
+            x = left + i * plot_w / (len(rows) - 1)
+            y = bottom + score * plot_h
+            points.extend([x, y])
+            d.add(Circle(x, y, 2.7, fillColor=color, strokeColor=colors.white, strokeWidth=.6))
+        d.add(PolyLine(points, strokeColor=color, strokeWidth=2, fillColor=None))
+    for i, label in enumerate(frames):
+        d.add(String(left + i * plot_w / (len(rows) - 1), bottom - 14, str(label), fontSize=7, fillColor=MUTED, textAnchor="middle"))
     story.append(d)
-    story.append(Paragraph("Dice score by motion frame. Earlier prediction (brown) vs connected trace (blue). Source: frame_comparison.csv.",STYLES["caption"]))
+    story.append(Paragraph("Figure 4. Dice score by motion frame. Earlier prediction (brown) vs continuous trace (blue). Source: frame_comparison.csv.", STYLES["caption"]))
+
 
 def footer(canvas, doc):
     canvas.saveState()
@@ -139,6 +166,7 @@ def footer(canvas, doc):
 
 def main():
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    frame_rows = load_frame_comparison()
     doc=SimpleDocTemplate(str(OUTPUT),pagesize=A4,rightMargin=21*mm,leftMargin=21*mm,topMargin=19*mm,bottomMargin=24*mm,title="Microcatheter segmentation in fluoroscopy | Master 1 report",author="Denos Kume and Oluwole Shokunbi",subject="Academic image-processing project at Centrale Nantes")
     story.append(Paragraph("Microcatheter segmentation in fluoroscopy",STYLES["title"]))
     story.append(Paragraph("Can we detect a thin instrument in noisy X-ray images and reconstruct its full path accurately?",STYLES["subtitle"]))
@@ -212,8 +240,24 @@ def main():
     p("Dice is an overlap measure from 0 (none) to 1 (perfect). Across nine motion frames, mean Dice rose from <b>0.501 to 0.876</b> for the continuous reconstruction, a gain of <b>+0.375 Dice points</b>.")
     table([["Previous prediction","Continuous trace","Dice gain"],["0.501","0.876","+0.375"]],[PAGE_WIDTH/3]*3)
     figure("assets/segmentation-comparison.png",3,"All ten reconstructed instrument traces in chronological order, with Dice scores.")
-    frame_chart()
-    h2("4.2 Error reduction")
+    frame_chart(frame_rows)
+    h2("4.2 Frame-by-frame results")
+    p("Table 2 reports all nine motion frames used in the comparison. Higher Dice means greater overlap; false-positive and missed pixels describe errors in the final continuous trace.")
+    table(
+        [["Frame", "Earlier Dice", "Continuous Dice", "False positives", "Missed pixels"]]
+        + [
+            [
+                str(row["frame"]),
+                f'{row["baseline_dice"]:.3f}',
+                f'{row["new_dice"]:.3f}',
+                str(row["new_fp"]),
+                str(row["new_fn"]),
+            ]
+            for row in frame_rows
+        ],
+        [PAGE_WIDTH*.14, PAGE_WIDTH*.19, PAGE_WIDTH*.22, PAGE_WIDTH*.24, PAGE_WIDTH*.21],
+    )
+    h2("4.3 Error reduction")
     table([
         ["Error type","Earlier prediction","Continuous trace"],
         ["False-positive pixels","22,472","3,553"],
