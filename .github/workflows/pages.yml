@@ -56,11 +56,11 @@ jobs:
               "project badge numbering": r'class="card-num"',
               "card year micro-label": r'class="card-year"',
               "detail eyebrow metadata": r'class="detail-eyebrow"',
-              "fixed project count heading": r'(?i)three\\s+projects',
-              "hardcoded index over project total": r'Project\\s+\\$\\{[^}]+\\}\\s*/\\s*\\$\\{',
-              "decorative case-study preheading": r'Technical Work\\s*[—-]\\s*Case Studies',
+              "fixed project count heading": r'(?i)three\s+projects',
+              "hardcoded index over project total": r'Project\s+\$\{[^}]+\}\s*/\s*\$\{',
+              "decorative case-study preheading": r'Technical Work\s*[—-]\s*Case Studies',
               "redundant case-study blurb": r'Each case study presents the context',
-              "numbered blog note badge": r'NOTE\\s+\\$\\{',
+              "numbered blog note badge": r'NOTE\s+\$\{',
           }
           for label, pattern in forbidden.items():
               if re.search(pattern, html):
