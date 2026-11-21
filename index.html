@@ -2327,7 +2327,7 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
 .project-demo figcaption a{color:#174b80;text-underline-offset:3px}
 
 </style>
-<link rel="stylesheet" href="fluoroscopy-case-study.css">
+<link rel="stylesheet" href="fluoroscopy-case-study.css?v=20261121-1611">
 
 </head>
 
@@ -2875,7 +2875,7 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
 
 
 <script src="content.js"></script>
-<script src="fluoroscopy-case-study.js"></script>
+<script src="fluoroscopy-case-study.js?v=20261121-1611"></script>
 <script>
 
 /* ============================================================
@@ -3201,6 +3201,8 @@ function openProject(id) {
     content.innerHTML = renderFluoroCaseStudy();
     initFluoroCaseStudy();
     showSection('projectDetail');
+    // Keep this project accessible via a permanent direct URL.
+    history.replaceState(null, '', location.pathname + location.search + '#/projects/fluoroscopy-instrument-segmentation');
     return;
   }
 
@@ -3321,7 +3323,12 @@ function escapeHtml(str) {
    ============================================================ */
 
 function showSection(id) {
-  if (id !== 'projectDetail') document.querySelectorAll('#projectDetailContent video').forEach(video => video.pause());
+  if (id !== 'projectDetail') {
+    document.querySelectorAll('#projectDetailContent video').forEach(video => video.pause());
+    if (location.hash === '#/projects/fluoroscopy-instrument-segmentation') {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  }
 
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
 
@@ -3513,6 +3520,11 @@ document.addEventListener('keydown',event=>{
 buildCarousel();
 buildProjects();
 buildBlog();
+
+// Direct links must open the same case study as clicking its project card.
+if (location.hash === '#/projects/fluoroscopy-instrument-segmentation') {
+  openProject(1);
+}
 
 </script>
 
