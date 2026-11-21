@@ -333,7 +333,7 @@ window.initFluoroCaseStudy = function initFluoroCaseStudy() {
   const statusNode = root.querySelector("#fl-action-status");
   const reportUrl = "https://denoskume.github.io/portfolio/#/projects/fluoroscopy-instrument-segmentation";
   const citationText = "Kume, D., & Shokunbi, O. (2026). Microcatheter segmentation in fluoroscopy [Master 1 project, Centrale Nantes]. GitHub. https://github.com/denoskume/Background-Subtraction-Fluoroscopy";
-  const bibtexText = "@misc{kume2026fluoroscopy,\\n  author = {Kume, Denos and Shokunbi, Oluwole},\\n  title = {Microcatheter Segmentation in Fluoroscopy},\\n  year = {2026},\\n  note = {Master 1 academic project, Centrale Nantes},\\n  url = {https://github.com/denoskume/Background-Subtraction-Fluoroscopy}\\n}";
+  const bibtexText = "@misc{kume2026fluoroscopy,\n  author = {Kume, Denos and Shokunbi, Oluwole},\n  title = {Microcatheter Segmentation in Fluoroscopy},\n  year = {2026},\n  note = {Master 1 academic project, Centrale Nantes},\n  url = {https://github.com/denoskume/Background-Subtraction-Fluoroscopy}\n}";
   const reportDialog = root.querySelector("#fl-cite-dialog");
   const rightsDialog = root.querySelector("#fl-rights-dialog");
 
