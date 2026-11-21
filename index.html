@@ -1322,25 +1322,7 @@
 
   }
 
-  .btn-explore .arrow {
 
-    width: 24px; height: 24px;
-
-    border: 1px solid var(--ink);
-
-    border-radius: 50%;
-
-    display: grid;
-
-    place-items: center;
-
-    font-size: 0.7rem;
-
-    transition: background 0.4s var(--ease), color 0.4s var(--ease), transform 0.4s var(--ease);
-
-  }
-
-  .btn-explore:hover .arrow { background: var(--ink); color: var(--paper); transform: rotate(-45deg); }
 
 
 
@@ -1388,25 +1370,7 @@
 
   }
 
-  .detail-back .arrow {
-
-    width: 22px; height: 22px;
-
-    border: 1px solid rgba(11,14,19,0.2);
-
-    border-radius: 50%;
-
-    display: grid;
-
-    place-items: center;
-
-    transition: border-color 0.4s var(--ease), transform 0.4s var(--ease);
-
-  }
-
   .detail-back:hover { color: var(--ink); }
-
-  .detail-back:hover .arrow { border-color: var(--ink); transform: translateX(-3px); }
 
 
 
@@ -1830,17 +1794,7 @@
 
   .submit:hover { background: var(--tech); gap: 22px; }
 
-  .submit::after {
 
-    content: '→';
-
-    font-family: var(--font-body);
-
-    font-size: 1rem;
-
-    letter-spacing: 0;
-
-  }
 
 
 
@@ -2244,6 +2198,7 @@ body:has(#home.active) .footer{display:none}
   .home-cn .cn-events>div{justify-content:start}
 }
 
+.home-cn .cn-top-button{font-size:.65rem;font-weight:600;letter-spacing:.02em;text-transform:uppercase}
 </style>
 
 </head>
@@ -2299,7 +2254,7 @@ body:has(#home.active) .footer{display:none}
           <p class="cn-eyebrow">BIENVENUE SUR MON PORTFOLIO</p>
           <h1>Traiter le signal,<br>comprendre l’image,<br><em>contrôler la machine.</em></h1>
           <p class="cn-hero-description">Denos Kume · MSc Control &amp; Robotics<br>Centrale Nantes · Vision par ordinateur, traitement d’images et ML appliqué.</p>
-          <a href="#" data-target="projects" class="cn-hero-explore">Découvrir mes projets <span aria-hidden="true">↗</span></a>
+          <a href="#" data-target="projects" class="cn-hero-explore">Découvrir mes projets</a>
           <div class="cn-slider-ui">
             <button class="cn-slider-toggle" id="cnCarouselToggle" type="button" aria-label="Mettre le carrousel en pause" title="Lecture / pause">Ⅱ</button>
             <span class="cn-slider-dots" id="cnCarouselDots" aria-hidden="true"><i class="active"></i><i></i><i></i></span>
@@ -2337,12 +2292,12 @@ body:has(#home.active) .footer{display:none}
               <h3>CLAP : classification zero-shot</h3><p>Évaluation de prompts et de la précision audio-texte sur ESC-50.</p>
             </a>
           </div>
-          <a href="#" data-target="projects" class="cn-news-more">Voir tous les projets <span aria-hidden="true">↗</span></a>
+          <a href="#" data-target="projects" class="cn-news-more">Voir tous les projets</a>
         </div>
         <aside class="cn-events">
           <h2>Disponibilité</h2>
           <div><span>DÈS FÉVRIER 2027</span></div>
-          <a href="#" data-target="contact">Me contacter ›</a>
+          <a href="#" data-target="contact">Me contacter</a>
         </aside>
       </section>
 
@@ -2352,11 +2307,11 @@ body:has(#home.active) .footer{display:none}
           <div class="cn-footer-brand"><img src="assets/denos-kume-signature.svg" alt="Signature Denos Kume" width="170" height="55" loading="lazy"><p>Portfolio de projets techniques<br>Vision · Signal · Image</p><small>© 2026 Denos Kume</small></div>
           <div><h3>Informations</h3><p>Étudiant en MSc Control &amp; Robotics<br>Centrale Nantes, France</p><p>Stage de six mois<br>à partir de février 2027</p></div>
           <div><h3>Navigation</h3><a href="#" data-target="home">Accueil</a><a href="#" data-target="about">À propos</a><a href="#" data-target="projects">Projets</a><a href="#" data-target="contact">Contact</a></div>
-          <div><h3>Me retrouver</h3><a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="#" data-target="contact">Échanger sur un projet ↗</a></div>
+          <div><h3>Me retrouver</h3><a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="#" data-target="contact">Échanger sur un projet</a></div>
         </div>
         <div class="cn-footer-bottom"><span>PROJETS DOCUMENTÉS · DONNÉES ET RÉSULTATS</span><span>NANTES, FRANCE</span></div>
       </footer>
-      <button class="cn-top-button" type="button" aria-label="Retour en haut de la page" onclick="window.scrollTo({top:0,behavior:'smooth'})">⌃</button>
+      <button class="cn-top-button" type="button" aria-label="Retour en haut de la page" onclick="window.scrollTo({top:0,behavior:'smooth'})">Haut</button>
     </div>
   </section>
 
@@ -2988,7 +2943,7 @@ function buildProjects() {
 
           <button class="btn-explore" onclick="openProject(${p.id})">
 
-            Explore <span class="arrow">→</span>
+            Explore
 
           </button>
 
@@ -3026,7 +2981,7 @@ function openProject(id) {
 
     <button class="detail-back" onclick="showSection('projects')">
 
-      <span class="arrow">←</span> Retour aux projets
+      Retour aux projets
 
     </button>
 
