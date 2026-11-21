@@ -1,0 +1,131 @@
+
+/* Fluoroscopy case study — dedicated editorial layout (other projects unchanged). */
+.fluoro-study{color:#13304b;background:transparent;padding-bottom:28px}
+.fluoro-study *{box-sizing:border-box}
+.fluoro-study [id^="fl-"]{scroll-margin-top:130px}
+.fl-back{font:600 .75rem var(--font-body);color:#345d7d;background:transparent;border:0;border-bottom:1px solid #90aabd;padding:0 0 8px;cursor:pointer;margin:0 0 38px}
+.fl-back:hover,.fl-back:focus-visible{color:#123c64;border-color:#123c64}
+.fl-hero{padding:0 0 clamp(26px,4vw,50px);border-bottom:1px solid #dbe5ed}
+.fl-eyebrow,.fl-chapter{font:600 .67rem var(--font-mono);letter-spacing:.13em;color:#52718d;text-transform:uppercase}
+.fl-hero h1{font:400 clamp(2.5rem,5.7vw,5.15rem)/1.02 var(--font-display);letter-spacing:-.04em;max-width:18ch;margin:17px 0 26px;color:#082c4b}
+.fl-lead{font-size:clamp(1.12rem,1.9vw,1.45rem);line-height:1.55;max-width:68ch;color:#38566d}
+.fl-authors{font-size:.78rem;color:#71879a;line-height:1.5;margin-top:20px}
+.fl-jump{display:flex;gap:9px;flex-wrap:wrap;margin:28px 0 0}
+.fl-jump a{font-size:.75rem;font-weight:600;line-height:1.35;padding:10px 13px;border:1px solid #d2dfe9;color:#215273;text-decoration:none;background:#fff}
+.fl-jump a:hover,.fl-jump a:focus-visible{border-color:#1b5481;color:#073c67;background:#eff7fb}
+.fl-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:25px 0 36px;background:#dae5ed;border:1px solid #dae5ed}
+.fl-metrics>div{display:flex;flex-direction:column;align-items:flex-start;padding:clamp(19px,2.7vw,30px);background:#f7fafc;min-width:0}
+.fl-metric-number{font:400 clamp(2.3rem,4vw,4rem)/1 var(--font-display);letter-spacing:-.045em;color:#0b3a60;margin-bottom:12px}
+.fl-metric-name{font-size:.88rem;font-weight:650;line-height:1.38;color:#143e60}
+.fl-metrics small{font-size:.74rem;color:#698296;line-height:1.5;margin-top:7px}
+.fl-section{padding:clamp(40px,5.3vw,66px) 0;border-bottom:1px solid #d9e3eb}
+.fl-section-heading{margin:0 0 24px}
+.fl-section-heading h2{font:400 clamp(2rem,3.6vw,3.15rem)/1.12 var(--font-display);letter-spacing:-.03em;color:#092c4b;margin:12px 0 0;max-width:23ch}
+.fl-text{max-width:780px}
+.fl-text p,.fl-stage p,.fl-end p,.fl-section-intro{font-size:1rem;line-height:1.78;color:#3b5369;margin:0 0 16px}
+.fl-text p strong,.fl-stage p strong,.fl-end strong{color:#133f60}
+.fl-point{border-left:3px solid #1d5b86;background:#f0f6fa;padding:19px 23px;margin:27px 0}
+.fl-point strong{font:.75rem var(--font-mono);letter-spacing:.075em;text-transform:uppercase;color:#12496e}
+.fl-point p{margin:6px 0 0;font-size:.95rem;line-height:1.75;color:#294a64}
+.fl-pipeline{display:flex;gap:9px;align-items:stretch;margin:28px 0 0}
+.fl-pipeline>div{flex:1;min-width:0;background:#0c304e;color:white;padding:19px 13px;display:flex;flex-direction:column;gap:8px}
+.fl-pipeline b{font-size:.85rem;font-weight:650;line-height:1.3}
+.fl-pipeline span:not(.fl-pipe-connector){font-size:.73rem;line-height:1.4;color:#c2d3e0}
+.fl-pipe-connector{align-self:center;width:17px;flex:0 0 17px;height:1px;background:#86a1b5;position:relative}
+.fl-pipe-connector::after{content:"";position:absolute;right:0;top:-3px;border:4px solid transparent;border-left-color:#86a1b5;transform:translateX(6px)}
+.fl-stage{display:grid;grid-template-columns:110px minmax(0,1fr);gap:25px;padding:30px 0;border-bottom:1px solid #dfe7ee}
+.fl-stage:last-child{border-bottom:0}
+.fl-stage-num{font:600 .68rem var(--font-mono);letter-spacing:.14em;color:#6e889e;padding-top:12px}
+.fl-stage h3{font:500 clamp(1.45rem,2.55vw,2rem)/1.25 var(--font-display);color:#10344f;letter-spacing:-.02em;margin:0 0 18px}
+.fl-figure{background:#f5f8fa;border:1px solid #d8e3eb;margin:25px 0 26px;max-width:100%}
+.fl-figure a{display:block;padding:14px;text-decoration:none}
+.fl-figure img{display:block;width:100%;height:auto;max-height:620px;object-fit:contain;background:#fff}
+.fl-figure figcaption{border-top:1px solid #d9e4eb;padding:12px 17px;color:#5a7185;font-size:.77rem;line-height:1.6}
+.fl-figure figcaption b{color:#2a4d69}
+.fl-methods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:24px 0}
+.fl-methods>div{background:#f2f6fa;padding:19px 17px;border-top:3px solid #2e6288}
+.fl-methods h4{font-size:.94rem;font-weight:700;color:#164468;margin:0 0 9px}
+.fl-methods p{font-size:.78rem;line-height:1.65;margin:0}
+.fl-note{font-size:.85rem!important;color:#526c80!important;line-height:1.7!important;background:#f3f7fa;padding:16px 19px;border-left:2px solid #afc0cf}
+.fl-results-summary{display:grid;grid-template-columns:1fr 30px 1fr;align-items:center;gap:12px;background:#0b304f;padding:clamp(22px,3vw,35px);color:#fff;margin:28px 0}
+.fl-results-summary>div{display:flex;flex-direction:column;gap:7px}
+.fl-results-summary>div>span{font-size:.78rem;font-weight:550;color:#c1d3e0}
+.fl-results-summary b{font:400 clamp(2.8rem,6vw,5rem)/1 var(--font-display);letter-spacing:-.03em;color:#fff}
+.fl-results-summary small{font-size:.73rem;line-height:1.5;color:#b4cada}
+.fl-result-line{height:1px;background:#8cbbd3;position:relative}
+.fl-result-line::after{content:"";position:absolute;right:0;top:-4px;border:5px solid transparent;border-left-color:#8cbbd3;transform:translateX(7px)}
+.fl-chart-box{padding:25px 22px 16px;border:1px solid #dce6ee;background:#fff}
+.fl-chart-head{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+.fl-chart-head h3{font-size:1.05rem;font-weight:650;color:#183b59;line-height:1.4;margin:0}
+.fl-chart-legend{display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.fl-chart-legend span{font-size:.73rem;color:#526d81;display:inline-flex;align-items:center;gap:7px}
+.fl-chart-legend i{width:15px;height:3px;display:inline-block}
+.fl-legend-base{background:#b48c4a}
+.fl-legend-new{background:#11538a}
+.fl-dice-plot{width:100%;overflow:visible;margin-top:13px}
+.fl-dice-plot svg{display:block;width:100%;height:auto;max-height:390px}
+.fl-source{font-size:.74rem;color:#648093;line-height:1.5;margin:0}
+.fl-source a,.fl-links a{color:#155580;text-underline-offset:3px}
+.fl-pixel-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#dce5ed;margin:22px 0 31px;border:1px solid #dce5ed}
+.fl-pixel-metrics>div{display:flex;flex-direction:column;gap:8px;padding:24px;background:#f7f9fb}
+.fl-pixel-metrics b{font:400 clamp(1.45rem,2.4vw,2rem)/1.1 var(--font-display);letter-spacing:-.018em;color:#082f4e}
+.fl-pixel-metrics b span{color:#a07a3a}
+.fl-pixel-metrics>div>span{font-size:.86rem;font-weight:650;color:#244760}
+.fl-pixel-metrics small{font-size:.76rem;line-height:1.55;color:#627d90}
+.fl-subhead{font:500 clamp(1.2rem,2vw,1.55rem)/1.3 var(--font-display);color:#143d5d;margin:34px 0 17px}
+.fl-table-wrap{overflow-x:auto}
+.fl-data-table{width:100%;border-collapse:collapse;min-width:540px;font-size:.86rem;color:#244862}
+.fl-data-table th{text-align:left;background:#102f49;color:#e9f2f8;padding:14px 15px;font-weight:600}
+.fl-data-table td{padding:14px 15px;border-bottom:1px solid #e0e7ed;line-height:1.55}
+.fl-data-table tbody tr:nth-child(even){background:#f4f8fa}
+.fl-data-table b{color:#0b4772}
+.fl-table-note{font-size:.79rem;line-height:1.7;color:#657d90;margin:13px 0 0}
+.fl-frame-selector{display:flex;flex-wrap:wrap;gap:7px;margin:22px 0 16px}
+.fl-frame-selector button{font:600 .79rem var(--font-body);min-width:57px;padding:11px 13px;background:#f3f7fa;color:#28516e;border:1px solid #d5e1ea;cursor:pointer}
+.fl-frame-selector button:hover,.fl-frame-selector button:focus-visible{background:#e1eef7;border-color:#215f90}
+.fl-frame-selector button.selected{background:#0b3556;color:#fff;border-color:#0b3556}
+.fl-frame-figure{margin:0;background:#f4f7fa;border:1px solid #dce6ee}
+.fl-frame-figure>a{display:block;padding:14px}
+.fl-frame-figure img{width:100%;max-height:730px;height:auto;display:block;object-fit:contain;background:#fff}
+.fl-frame-figure figcaption{border-top:1px solid #d6e0e9;padding:14px 18px;display:flex;flex-direction:column;gap:7px;font-size:.78rem;color:#577085;line-height:1.5}
+.fl-frame-figure figcaption strong{font-size:.91rem;color:#123e5e}
+.fl-expand{font-size:.7rem;color:#346784;text-decoration:underline;text-underline-offset:3px}
+.fl-video{margin-top:24px}
+.fl-end-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:22px 0 37px}
+.fl-end-grid>div{border-top:3px solid #23577a;padding:18px 16px;background:#f4f8fa}
+.fl-end-grid h3{font-size:1rem;font-weight:700;color:#194461;margin:0 0 10px}
+.fl-end-grid p{font-size:.82rem;line-height:1.7;margin:0}
+.fl-reproduce{padding:clamp(22px,3.5vw,36px);background:#eaf2f7}
+.fl-reproduce h3{font:500 1.6rem var(--font-display);color:#153f5e;margin:0 0 12px}
+.fl-reproduce p{font-size:.9rem;line-height:1.7;color:#38556b}
+.fl-reproduce code{font-family:var(--font-mono);font-size:.86em}
+.fl-reproduce pre{background:#0c2b46;color:#e8f1f8;padding:19px 18px;overflow:auto;font:400 .78rem/1.8 var(--font-mono);margin:20px 0}
+.fl-reproduce pre code{font:inherit;color:inherit}
+.fl-links{display:flex;gap:16px 23px;flex-wrap:wrap;margin-top:15px}
+.fl-links a{font-size:.79rem;font-weight:600}
+.fl-attribution{font-size:.76rem!important;color:#6a7d90!important;margin-top:22px!important}
+@media(max-width:850px){
+  .fl-pipeline{flex-wrap:wrap}
+  .fl-pipeline>div{min-width:150px;flex:1}
+  .fl-pipe-connector{display:none}
+  .fl-methods{grid-template-columns:1fr}
+  .fl-end-grid{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+  .fl-back{margin-bottom:22px}
+  .fl-hero h1{font-size:clamp(2.25rem,9.4vw,3.6rem)}
+  .fl-metrics{grid-template-columns:1fr}
+  .fl-metrics>div{padding:18px 22px}
+  .fl-metric-number{font-size:2.8rem}
+  .fl-section{padding:34px 0}
+  .fl-stage{grid-template-columns:1fr;gap:7px;padding:23px 0}
+  .fl-stage-num{padding:0}
+  .fl-stage h3{font-size:1.48rem}
+  .fl-pixel-metrics{grid-template-columns:1fr}
+  .fl-chart-box{padding:18px 10px 12px}
+  .fl-chart-head{padding:0 9px}
+  .fl-results-summary{padding:20px 17px;gap:8px;grid-template-columns:1fr 18px 1fr}
+  .fl-results-summary b{font-size:clamp(2rem,8.5vw,3.2rem)}
+  .fl-frame-selector button{min-width:47px;padding:10px 9px}
+  .fl-figure a,.fl-frame-figure>a{padding:6px}
+}
