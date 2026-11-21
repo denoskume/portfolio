@@ -36,68 +36,70 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
 
   <section class="fl-chapter" id="fl-method">
     <div class="fl-chapter-intro">
-      <h2>From changing pixels to one connected trace.</h2>
-      <p>Ten 512 × 512 frames were analysed; frame 201 is the background reference and nine frames show movement.</p>
+      <h2>Detect the instrument, then reconnect its path.</h2>
+      <p>We analysed ten 512 × 512 fluoroscopy frames. Frame 201 is the background reference; the other nine show the instrument moving.</p>
     </div>
     <div class="fl-process" aria-label="Processing stages">
       <div>Prepare</div><div>Subtract</div><div>Segment</div><div>Reconnect</div>
     </div>
-    <div class="fl-method-row">
+
+    <div class="fl-method-row fl-baseline-row">
       <div class="fl-method-copy">
-        <h3>Isolate the instrument</h3>
-        <p>After enhancement and filtering, fixed thresholding, Otsu thresholding and a two-component Gaussian mixture were tested to produce binary masks.</p>
-        <p>These initial masks can be noisy or incomplete.</p>
+        <h3>First, identify possible instrument pixels</h3>
+        <p>After contrast enhancement and background subtraction, we compared three segmentation methods. Each produces an initial mask, but the thin instrument is often fragmented or confused with surrounding anatomy.</p>
       </div>
-      <figure class="fl-visual">
-        <a href="${raw}assets/segmentation-comparison.png" target="_blank" rel="noopener noreferrer">
-          <img src="${raw}assets/segmentation-comparison.png" loading="lazy" decoding="async" alt="Actual predicted instrument segmentation masks across ten frames">
-        </a>
-        <figcaption>Predicted instrument masks across all ten frames.</figcaption>
-      </figure>
+      <div class="fl-baseline-table">
+        <h4>Initial segmentation performance</h4>
+        <table>
+          <thead><tr><th>Method</th><th>Mean Dice</th></tr></thead>
+          <tbody>
+            <tr><td>Fixed threshold</td><td>0.416</td></tr>
+            <tr><td>Otsu threshold</td><td>0.412</td></tr>
+            <tr><td>Gaussian mixture</td><td>0.385</td></tr>
+          </tbody>
+        </table>
+        <p>Compared with manual tracings before connected-path reconstruction.</p>
+      </div>
     </div>
-    <div class="fl-method-row">
+
+    <div class="fl-method-row fl-reconstruction-row">
       <div class="fl-method-copy">
-        <h3>Reconnect the missing sections</h3>
-        <p>A supervised ExtraTrees model scores likely instrument pixels using local line features and temporal change. Path search turns the candidates into a connected centerline, starting from the bottom image edge.</p>
-        <p>The resulting trace is compared with the manual reference.</p>
+        <h3>Then, reconstruct a continuous path</h3>
+        <p>A supervised ExtraTrees model scores pixels using line appearance and changes over time. A path-search algorithm joins the strongest candidates into one connected centerline.</p>
+        <p>The image compares the earlier fragmented prediction, reconstructed trace and manual annotation for the same frame.</p>
       </div>
       <figure class="fl-visual">
         <a href="${raw}assets/mask-cleanup.png" target="_blank" rel="noopener noreferrer">
-          <img src="${raw}assets/mask-cleanup.png" loading="lazy" decoding="async" alt="Actual previous segmentation, connected trace and manual reference for frame 291">
+          <img src="${raw}assets/mask-cleanup.png" loading="lazy" decoding="async" alt="Frame 291: fragmented previous mask, continuous reconstructed trace and manual annotation">
         </a>
-        <figcaption>Previous prediction, reconstructed path, and manual reference — frame 291.</figcaption>
+        <figcaption>Frame 291: previous prediction, continuous trace, and manual reference.</figcaption>
       </figure>
     </div>
   </section>
 
   <section class="fl-chapter" id="fl-results">
     <div class="fl-chapter-intro">
-      <h2>The reconstructed path matches the annotation more closely.</h2>
-      <p>Dice measures overlap with manual tracings: 1 means a perfect match. The comparison uses the same nine motion frames.</p>
+      <h2>Does reconstruction produce a better match?</h2>
+      <p>We compared the reconstructed path with manually traced instruments. Dice measures how closely the masks overlap: 1 means a perfect match.</p>
     </div>
     <div class="fl-score" aria-label="Mean Dice across nine motion frames">
       <div><small>Previous prediction</small><strong>0.501</strong></div>
       <span class="fl-score-separator" aria-hidden="true"></span>
       <div><small>Continuous trace</small><strong>0.876</strong></div>
     </div>
+    <figure class="fl-visual fl-visual-results">
+      <a href="${raw}assets/segmentation-comparison.png" target="_blank" rel="noopener noreferrer">
+        <img src="${raw}assets/segmentation-comparison.png" loading="lazy" decoding="async" alt="All ten final continuous-trace predictions in chronological order, with each frame's Dice score">
+      </a>
+      <figcaption>Final reconstructed traces across all ten frames. The numbers above each trace show its Dice score.</figcaption>
+    </figure>
     <figure class="fl-chart">
       <div class="fl-chart-heading">
         <h3>Dice score by frame</h3>
-        <div class="fl-legend"><span><i class="fl-line-old"></i>Previous</span><span><i class="fl-line-new"></i>Continuous trace</span></div>
+        <div class="fl-legend"><span><i class="fl-line-old"></i>Previous prediction</span><span><i class="fl-line-new"></i>Continuous trace</span></div>
       </div>
       <div id="fl-dice-plot" class="fl-dice-plot"></div>
     </figure>
-
-    <details class="fl-extras">
-      <summary>Compare the original segmentation methods</summary>
-      <div class="fl-table-scroll"><table class="fl-benchmark">
-        <thead><tr><th>Method</th><th>Dice</th><th>IoU</th><th>PSNR</th></tr></thead>
-        <tbody><tr><td>Fixed threshold</td><td>0.416</td><td>0.280</td><td>16.57 dB</td></tr>
-        <tr><td>Otsu</td><td>0.412</td><td>0.295</td><td>13.95 dB</td></tr>
-        <tr><td>Gaussian mixture</td><td>0.385</td><td>0.249</td><td>15.30 dB</td></tr></tbody>
-      </table></div>
-      <p>These are the earlier classical method results, before connected-path reconstruction. They are not the 0.501 baseline above.</p>
-    </details>
 
     <details class="fl-extras fl-frame-extras">
       <summary>Explore all 10 annotated frames</summary>
