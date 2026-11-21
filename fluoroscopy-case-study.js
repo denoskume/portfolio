@@ -13,7 +13,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
   <div class="fl-backbar"><button type="button" onclick="showSection('projects')">Back to projects</button></div>
   <header class="fl-paper-header">
     <h1 id="fl-title">Microcatheter segmentation in fluoroscopy</h1>
-    <p class="fl-paper-question">Can we detect a thin instrument in noisy X-ray images and reconstruct its full path accurately?</p>
+    <p class="fl-paper-question">Can we detect a thin instrument in noisy X&#8209;ray images and reconstruct its full path accurately?</p>
     <p class="fl-paper-authors">Denos Kume &amp; Oluwole Shokunbi · Master 1 project · Centrale Nantes</p>
   </header>
   <div class="fl-paper-shell">
@@ -35,7 +35,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
 
         <section class="fl-paper-section" id="fl-r-abstract">
           <h2>Abstract</h2>
-          <p>This Master 1 project at Centrale Nantes investigated how to detect thin guidewires and microcatheters in fluoroscopic <span class="fl-nowrap">X-ray</span> images. The instrument occupies a small portion of each frame and can be confused with noisy anatomical edges, making complete segmentation difficult.</p>
+          <p>This Master 1 project at Centrale Nantes investigated how to detect thin guidewires and microcatheters in fluoroscopic X&#8209;ray images. The instrument occupies a small portion of each frame and can be confused with noisy anatomical edges, making complete segmentation difficult.</p>
           <p>We built a background-subtraction pipeline, evaluated fixed thresholding, Otsu thresholding and Gaussian-mixture segmentation against manual annotations, then explored supervised pixel scoring and continuous-path reconstruction to recover missed segments. Over nine motion frames from the supplied sequence, mean Dice improved from <strong>0.501 to 0.876</strong> after reconstruction. The project demonstrates improved within-sequence segmentation; its robustness on independent sequences remains untested.</p>
         </section>
 
