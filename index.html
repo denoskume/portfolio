@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="fr">
+<html lang="en">
 
 <head>
 
@@ -2185,7 +2185,7 @@ body:has(#home.active) .footer{display:none}
 
 <nav class="navbar" id="navbar">
 
-  <a href="#" class="logo" data-target="home" aria-label="Denos Kume — accueil">
+  <a href="#" class="logo" data-target="home" aria-label="Denos Kume — Home">
     <img class="signature-logo" src="assets/denos-kume-signature.svg" alt="Denos Kume" width="232" height="56" decoding="async">
   </a>
 
@@ -2193,9 +2193,9 @@ body:has(#home.active) .footer{display:none}
 
     <li><a href="#" data-target="home" class="active">Home</a></li>
 
-    <li><a href="#" data-target="about">About me</a></li>
+    <li><a href="#" data-target="about">About Me</a></li>
 
-    <li><a href="#" data-target="projects">Project</a></li>
+    <li><a href="#" data-target="projects">Projects</a></li>
 
     <li><a href="#" data-target="contact">Contact</a></li>
 
@@ -2217,65 +2217,65 @@ body:has(#home.active) .footer{display:none}
     <div class="home home-cn">
 
       <!-- 01 / Bannière : composition et contraste proches de la vidéo -->
-      <section class="cn-hero" aria-label="Bienvenue sur le portfolio">
-        <div class="carousel cn-hero-carousel" aria-label="Deux visuels par projet, défilement automatique de droite à gauche" aria-roledescription="carousel">
+      <section class="cn-hero" aria-label="Welcome to the portfolio">
+        <div class="carousel cn-hero-carousel" aria-label="Two images per project, automatically sliding from right to left" aria-roledescription="carousel">
           <div class="carousel-track" id="carouselTrack"></div>
         </div>
         <div class="cn-hero-wedge"></div>
         <div class="cn-hero-copy">
-          <h1>Je recherche un stage<br>de 6 mois à partir<br><em>de février 2027.</em></h1>
+          <h1>Seeking a six-month<br>internship starting<br><em>February 2027.</em></h1>
           <div class="cn-slider-ui">
-            <button class="cn-slider-toggle" id="cnCarouselToggle" type="button" aria-label="Mettre le carrousel en pause" title="Lecture / pause">Ⅱ</button>
+            <button class="cn-slider-toggle" id="cnCarouselToggle" type="button" aria-label="Pause slideshow" title="Play / pause">Ⅱ</button>
             <span class="cn-slider-dots" id="cnCarouselDots" aria-hidden="true"><i class="active"></i><i></i><i></i></span>
           </div>
         </div>
       </section>
 
       <!-- 02 / Les faits en deux colonnes + chiffre phare + image bleue -->
-      <section class="cn-keyfigures" aria-label="Repères de mon parcours">
+      <section class="cn-keyfigures" aria-label="Highlights at a glance">
         <div class="cn-keyfigures-list">
-          <div class="cn-keyitem"><span class="cn-keyicon">◇</span><p><strong>3</strong> projets documentés</p></div>
-          <div class="cn-keyitem"><span class="cn-keyicon">⌖</span><p><strong>9</strong> vues de calibration caméra</p></div>
-          <div class="cn-keyitem"><span class="cn-keyicon cn-gold">★</span><p><strong>50</strong> classes audio ESC-50</p></div>
-          <div class="cn-keyitem"><span class="cn-keyicon cn-gold">◎</span><p>Stage de <strong>6 mois</strong> dès février 2027</p></div>
+          <div class="cn-keyitem"><span class="cn-keyicon">◇</span><p><strong>3</strong> documented projects</p></div>
+          <div class="cn-keyitem"><span class="cn-keyicon">⌖</span><p><strong>9</strong> camera calibration views</p></div>
+          <div class="cn-keyitem"><span class="cn-keyicon cn-gold">★</span><p><strong>50</strong> ESC-50 audio classes</p></div>
+          <div class="cn-keyitem"><span class="cn-keyicon cn-gold">◎</span><p><strong>6-month</strong> internship from February 2027</p></div>
         </div>
-        <div class="cn-keyfigures-main"><strong>91,15<span> %</span></strong><small>Top-1 · projet CLAP</small></div>
-        <div class="cn-keyfigures-photo"><img src="https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/detected_chessboard_corners.png" alt="Image de calibration de caméra en bleu" loading="lazy"></div>
+        <div class="cn-keyfigures-main"><strong>91.15<span> %</span></strong><small>Top-1 · CLAP project</small></div>
+        <div class="cn-keyfigures-photo"><img src="https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/detected_chessboard_corners.png" alt="Camera calibration image with detected chessboard corners" loading="lazy"></div>
       </section>
 
       <!-- 03 / Travaux récents -->
-      <section class="cn-news" aria-label="Travaux récents">
+      <section class="cn-news" aria-label="Recent work">
         <div class="cn-news-content">
-          <h2>Travaux récents</h2>
+          <h2>Recent Work</h2>
           <div class="cn-news-list">
             <a href="#" onclick="openProject(1);return false;" class="cn-news-card">
-              <img src="https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/mask-cleanup.png" alt="Visualisation du masque de microcathéter" loading="lazy" decoding="async">
-              <h3>Segmentation de microcathéters</h3><p>Prétraitement, soustraction de fond et comparaison aux annotations manuelles.</p>
+              <img src="https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/mask-cleanup.png" alt="Visualization of a microcatheter segmentation mask" loading="lazy" decoding="async">
+              <h3>Microcatheter Segmentation</h3><p>Preprocessing, background subtraction, and evaluation against manual annotations.</p>
             </a>
 <a href="#" onclick="openProject(2);return false;" class="cn-news-card">
-              <img src="https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/mean_reprojection_error_by_view.png" alt="Erreurs moyennes de reprojection de la caméra" loading="lazy" decoding="async">
-              <h3>Calibration de caméra</h3><p>Calibration géométrique par damier et analyse des erreurs de reprojection.</p>
+              <img src="https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/mean_reprojection_error_by_view.png" alt="Mean camera reprojection errors by view" loading="lazy" decoding="async">
+              <h3>Camera Calibration</h3><p>Chessboard-based geometric calibration and reprojection error analysis.</p>
             </a>
 <a href="#" onclick="openProject(3);return false;" class="cn-news-card">
-              <img src="https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/clap_complete_zero_shot_pipeline.png" alt="Schéma du pipeline de classification audio-texte" loading="lazy" decoding="async">
-              <h3>CLAP : classification zero-shot</h3><p>Évaluation de prompts et de la précision audio-texte sur ESC-50.</p>
+              <img src="https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/clap_complete_zero_shot_pipeline.png" alt="Diagram of the CLAP audio-text classification pipeline" loading="lazy" decoding="async">
+              <h3>CLAP: Zero-Shot Audio Classification</h3><p>Comparing prompt formulations and audio-text classification accuracy on ESC-50.</p>
             </a>
           </div>
-          <a href="#" data-target="projects" class="cn-news-more">Voir tous les projets</a>
+          <a href="#" data-target="projects" class="cn-news-more">View All Projects</a>
         </div>
       </section>
 
       <!-- 06 / Footer 4 colonnes, bleu nuit -->
       <footer class="cn-site-footer">
         <div class="cn-footer-grid">
-          <div class="cn-footer-brand"><img src="assets/denos-kume-signature.svg" alt="Signature Denos Kume" width="170" height="55" loading="lazy"><p>Portfolio de projets techniques<br>Vision · Signal · Image</p><small>© 2026 Denos Kume</small></div>
-          <div><h3>Informations</h3><p>Étudiant en MSc Control &amp; Robotics<br>Centrale Nantes, France</p><p>Stage de six mois<br>à partir de février 2027</p></div>
-          <div><h3>Navigation</h3><a href="#" data-target="home">Accueil</a><a href="#" data-target="about">À propos</a><a href="#" data-target="projects">Projets</a><a href="#" data-target="contact">Contact</a></div>
-          <div><h3>Me retrouver</h3><a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="#" data-target="contact">Échanger sur un projet</a></div>
+          <div class="cn-footer-brand"><img src="assets/denos-kume-signature.svg" alt="Denos Kume signature" width="170" height="55" loading="lazy"><p>Technical project portfolio<br>Vision · Signal · Image</p><small>© 2026 Denos Kume</small></div>
+          <div><h3>Information</h3><p>MSc Control &amp; Robotics student<br>Centrale Nantes, France</p><p>Seeking a six-month internship<br>starting February 2027</p></div>
+          <div><h3>Navigation</h3><a href="#" data-target="home">Home</a><a href="#" data-target="about">About Me</a><a href="#" data-target="projects">Projects</a><a href="#" data-target="contact">Contact</a></div>
+          <div><h3>Connect</h3><a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="#" data-target="contact">Discuss a Project</a></div>
         </div>
-        <div class="cn-footer-bottom"><span>PROJETS DOCUMENTÉS · DONNÉES ET RÉSULTATS</span><span>NANTES, FRANCE</span></div>
+        <div class="cn-footer-bottom"><span>DOCUMENTED PROJECTS · METHODS & RESULTS</span><span>NANTES, FRANCE</span></div>
       </footer>
-      <button class="cn-top-button" type="button" aria-label="Retour en haut de la page" onclick="window.scrollTo({top:0,behavior:'smooth'})">Haut</button>
+      <button class="cn-top-button" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Top</button>
     </div>
   </section>
 
@@ -2293,7 +2293,7 @@ body:has(#home.active) .footer{display:none}
 
             <div class="about-photo">
 
-              <img src="https://avatars.githubusercontent.com/u/110854822?v=4" alt="Photo de profil GitHub de Denos Kume">
+              <img src="https://avatars.githubusercontent.com/u/110854822?v=4" alt="Denos Kume GitHub profile photograph">
 
             </div>
 
@@ -2309,29 +2309,29 @@ body:has(#home.active) .footer{display:none}
 
           <div class="about-text">
 
-            <span class="kicker">À propos — note biographique</span>
+            <span class="kicker">About Me — Background</span>
 
-            <h2>De l'électronique à la <em>vision par ordinateur.</em></h2>
+            <h2>From electronics to <em>computer vision.</em></h2>
 
             <div class="body">
 
-              <p>Je suis étudiant en dernière année du MSc Control &amp; Robotics à Centrale Nantes, avec une spécialisation en Data Science, traitement du signal et traitement de l'image.</p>
+              <p>I am a final-year MSc Control &amp; Robotics student at Centrale Nantes, focusing on data science, signal processing, and image processing.</p>
 
-              <p>J'ai étudié l'informatique et l'électronique à Bengaluru, où j'ai acquis des bases en programmation, développement logiciel et systèmes embarqués. Aujourd'hui, je mets ces compétences en pratique sur des projets Python, avec une attention particulière à l'évaluation et à la reproductibilité.</p>
+              <p>I studied computer science and electronics in Bengaluru, building a foundation in programming, software development, and embedded systems. Today, I apply these skills to Python projects, with particular attention to evaluation and reproducibility.</p>
 
-              <p>Mes travaux comprennent la segmentation de microcathéters en fluoroscopie, la calibration de caméra et la classification audio zero-shot. Je recherche un stage de six mois à partir de février 2027 pour contribuer à des projets en équipe.</p>
+              <p>My work includes microcatheter segmentation in fluoroscopy, camera calibration, and zero-shot audio classification. I am seeking a six-month internship starting February 2027 to contribute to projects within a technical team.</p>
 
             </div>
 
             <div class="about-facts">
 
-              <div class="fact"><div class="k">Établissement</div><div class="v">Centrale Nantes</div></div>
+              <div class="fact"><div class="k">Institution</div><div class="v">Centrale Nantes</div></div>
 
-              <div class="fact"><div class="k">Promotion</div><div class="v">MSc 2025 – 2027</div></div>
+              <div class="fact"><div class="k">Class of</div><div class="v">MSc 2025 – 2027</div></div>
 
-              <div class="fact"><div class="k">Spécialisation</div><div class="v">Data, Signal &amp; Image</div></div>
+              <div class="fact"><div class="k">Focus</div><div class="v">Data, Signal &amp; Image</div></div>
 
-              <div class="fact"><div class="k">Recherche de</div><div class="v">Stage · février 2027</div></div>
+              <div class="fact"><div class="k">Seeking</div><div class="v">Internship · February 2027</div></div>
 
             </div>
 
@@ -2347,7 +2347,7 @@ body:has(#home.active) .footer{display:none}
 
           <div class="section-title">
 
-            <h3>Éducation</h3>
+            <h3>Education</h3>
 
             <span class="sub"></span>
 
@@ -2363,20 +2363,10 @@ body:has(#home.active) .footer{display:none}
 
                 <h4>MSc Control &amp; Robotics</h4>
 
-                <div class="org">Centrale Nantes · Parcours DASIP</div>
+                <div class="org">Centrale Nantes · DASIP track</div>
 
                 <p>
-
-                Approfondissement des méthodes d'analyse de données,
-
-                d'apprentissage automatique, d'optimisation et de
-
-                modélisation statistique. Développement et application
-
-                d'algorithmes avancés aux signaux et aux images,
-
-                notamment dans les domaines scientifique et industriel.
-
+                Advanced study of data analysis, machine learning, optimization, and statistical modelling. Development and application of signal and image processing algorithms for scientific and industrial problems.
                 </p>
 
             </div>
@@ -2387,26 +2377,16 @@ body:has(#home.active) .footer{display:none}
 
                 <div class="date">2021 — 2025</div>
 
-                <h4>Licence — Informatique &amp; Électronique</h4>
+                <h4>BSc — Computer Science &amp; Electronics</h4>
 
                 <div class="org">
 
-                Kristu Jayanti University · Bengaluru, Inde
+                Kristu Jayanti University · Bengaluru, India
 
                 </div>
 
                 <p>
-
-                Acquisition de connaissances en programmation,
-
-                algorithmique, structures de données, bases de données
-
-                et développement logiciel. Étude des circuits
-
-                électroniques, microprocesseurs et microcontrôleurs,
-
-                avec une approche pratique des systèmes embarqués.
-
+                Coursework in programming, algorithms, data structures, databases, and software development, alongside electronic circuits, microprocessors, and microcontrollers, with practical work in embedded systems.
                 </p>
 
             </div>
@@ -2417,7 +2397,7 @@ body:has(#home.active) .footer{display:none}
 
                 <div class="date">2020</div>
 
-                <h4>Baccalauréat scientifique — Série D</h4>
+                <h4>Scientific Baccalaureate — Series D</h4>
 
                 <div class="org">
 
@@ -2426,15 +2406,7 @@ body:has(#home.active) .footer{display:none}
                 </div>
 
                 <p>
-
-                Étude des concepts mathématiques et des lois
-
-                fondamentales de la physique, avec une approche
-
-                axée sur le calcul, le raisonnement scientifique
-
-                et la résolution de problèmes.
-
+                Studied mathematics and fundamental physics with an emphasis on quantitative reasoning, scientific problem-solving, and analysis.
                 </p>
 
             </div>
@@ -2469,13 +2441,13 @@ body:has(#home.active) .footer{display:none}
 
           <div>
 
-            <span class="kicker">Travaux techniques — études de cas</span>
+            <span class="kicker">Technical Work — Case Studies</span>
 
-            <h2>Trois projets,<br><em>documentés.</em></h2>
+            <h2>Three projects,<br><em>documented.</em></h2>
 
           </div>
 
-          <p>Chaque étude présente le contexte, les objectifs, la méthode, les résultats vérifiables et les limites du travail.</p>
+          <p>Each case study presents the context, objectives, methodology, measurable results, and limitations of the work.</p>
 
         </div>
 
@@ -2515,23 +2487,23 @@ body:has(#home.active) .footer{display:none}
 
           <div class="contact-left">
 
-            <span class="kicker">Correspondance</span>
+            <span class="kicker">Get in Touch</span>
 
-            <h2>Discutons d'un stage ou d'une <em>collaboration.</em></h2>
+            <h2>Let's discuss an internship or a <em>collaboration.</em></h2>
 
-            <p class="intro">À la recherche d'un stage de six mois dès février 2027 en vision par ordinateur, traitement d'images ou machine learning appliqué. Également ouvert aux échanges techniques et collaborations.</p>
+            <p class="intro">I am looking for a six-month internship starting February 2027 in computer vision, image processing, or applied machine learning. I am also open to technical discussions and collaboration opportunities.</p>
 
             <div class="contact-info">
 
               <div class="row"><span class="k">Email</span><span class="v"><a href="mailto:kamenan.kume@eleves.ec-nantes.fr">kamenan.kume@eleves.ec-nantes.fr</a></span></div>
 
-              <div class="row"><span class="k">Localisation</span><span class="v">Nantes, France</span></div>
+              <div class="row"><span class="k">Location</span><span class="v">Nantes, France</span></div>
 
               <div class="row"><span class="k">LinkedIn</span><span class="v"><a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">linkedin.com/in/denoskume</a></span></div>
 
               <div class="row"><span class="k">GitHub</span><span class="v"><a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">github.com/denoskume</a></span></div>
 
-              <div class="row"><span class="k">Statut</span><span class="v">Stage de 6 mois — dès février 2027</span></div>
+              <div class="row"><span class="k">Status</span><span class="v">Seeking a six-month internship — February 2027</span></div>
 
             </div>
 
@@ -2543,9 +2515,9 @@ body:has(#home.active) .footer{display:none}
 
               <div class="field">
 
-                <label for="name">Nom complet</label>
+                <label for="name">Full Name</label>
 
-                <input type="text" id="name" placeholder="Votre nom" required>
+                <input type="text" id="name" placeholder="Your name" required>
 
               </div>
 
@@ -2553,7 +2525,7 @@ body:has(#home.active) .footer{display:none}
 
                 <label for="email">Email</label>
 
-                <input type="email" id="email" placeholder="vous@exemple.com" required>
+                <input type="email" id="email" placeholder="you@example.com" required>
 
               </div>
 
@@ -2561,9 +2533,9 @@ body:has(#home.active) .footer{display:none}
 
             <div class="field">
 
-              <label for="subject">Sujet</label>
+              <label for="subject">Subject</label>
 
-              <input type="text" id="subject" placeholder="Objet de votre message" required>
+              <input type="text" id="subject" placeholder="Subject of your message" required>
 
             </div>
 
@@ -2571,11 +2543,11 @@ body:has(#home.active) .footer{display:none}
 
               <label for="message">Message</label>
 
-              <textarea id="message" placeholder="Décrivez votre projet ou votre offre de stage en quelques lignes…" required></textarea>
+              <textarea id="message" placeholder="Tell me about your project or internship opportunity…" required></textarea>
 
             </div>
 
-            <button type="submit" class="submit">Envoyer</button>
+            <button type="submit" class="submit">Send Message</button>
 
           </form>
 
@@ -2599,7 +2571,7 @@ body:has(#home.active) .footer{display:none}
 
   <div class="left">Denos Kume — Centrale Nantes</div>
 
-  <div class="center">© 2026 — Tous droits réservés</div>
+  <div class="center">© 2026 — All rights reserved</div>
 
   <div class="right">
 
@@ -2607,7 +2579,7 @@ body:has(#home.active) .footer{display:none}
 
     <a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a>
 
-    <a href="#" onclick="showSection('home');return false;">Haut de page</a>
+    <a href="#" onclick="showSection('home');return false;">Back to Top</a>
 
   </div>
 
