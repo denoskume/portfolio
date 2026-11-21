@@ -2327,6 +2327,7 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
 .project-demo figcaption a{color:#174b80;text-underline-offset:3px}
 
 </style>
+<link rel="stylesheet" href="fluoroscopy-case-study.css">
 
 </head>
 
@@ -2874,6 +2875,7 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
 
 
 <script src="content.js"></script>
+<script src="fluoroscopy-case-study.js"></script>
 <script>
 
 /* ============================================================
@@ -3193,6 +3195,14 @@ function openProject(id) {
   const p = projects.find(x => x.id === id);
 
   if (!p) return;
+
+  if (p.id === 1) {
+    const content = document.getElementById('projectDetailContent');
+    content.innerHTML = renderFluoroCaseStudy();
+    initFluoroCaseStudy();
+    showSection('projectDetail');
+    return;
+  }
 
   const n = String(p.id).padStart(2, '0');
 
