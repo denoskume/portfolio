@@ -1949,7 +1949,6 @@ body:has(#home.active){--nav-h:90px;--gutter:clamp(20px,2.35vw,38px);background:
 body:has(#home.active) .navbar{background:#fff;border-top:5px solid #081e33;border-bottom:1px solid #d9dee4;backdrop-filter:none}
 body:has(#home.active) .navbar.solid{background:#fff}
 body:has(#home.active) .navbar .nav-links a{color:#10273c}
-body:has(#home.active) .footer{display:none}
 .home.home-cn{height:auto;min-height:100vh;padding:0;display:block;overflow:visible;background:#fff;color:#08243d;font-family:var(--font-body)}
 .cn-hero{height:clamp(345px,32vw,455px);position:relative;overflow:hidden;background:#edf1f6}
 .cn-hero-carousel.carousel{position:absolute;inset:0 0 0 19%;height:100%;width:81%;padding:0;background:#f0f2f5;flex:none}
@@ -2170,7 +2169,7 @@ body:has(#home.active) .footer{display:none}
 @media(max-width:760px){
 }
 
-.home-cn .cn-top-button{font-size:.65rem;font-weight:600;letter-spacing:.02em;text-transform:uppercase}
+.cn-top-button{font-size:.65rem;font-weight:600;letter-spacing:.02em;text-transform:uppercase}
 
 /* Two-tier editorial header: dark social ribbon, white section navigation. */
 .navbar,.navbar.solid,body:has(#home.active) .navbar,body:has(#home.active) .navbar.solid{
@@ -2430,17 +2429,7 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
         </div>
       </section>
 
-      <!-- 06 / Footer 4 colonnes, bleu nuit -->
-      <footer class="cn-site-footer">
-        <div class="cn-footer-grid">
-          <div class="cn-footer-brand"><img src="assets/denos-kume-signature.svg" alt="Denos Kume signature" width="170" height="55" loading="lazy"><p>Technical project portfolio<br>Vision · Signal · Image</p></div>
-          <div><h3>Information</h3><p>MSc Control &amp; Robotics student<br>Centrale Nantes, France</p><p>Seeking a six-month internship<br>starting February 2027</p></div>
-          <div><h3>Navigation</h3><a href="#" data-target="home">Home</a><a href="#" data-target="about">About Me</a><a href="#" data-target="projects">Projects</a><a href="#" data-target="contact">Contact</a></div>
-          <div><h3>Connect</h3><a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="#" data-target="contact">Discuss a Project</a></div>
-        </div>
-        <div class="cn-footer-bottom"><span>© 2026 Denos Kume. All rights reserved.</span></div>
-      </footer>
-      <button class="cn-top-button" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Top</button>
+
     </div>
   </section>
 
@@ -2785,23 +2774,16 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
 
 <!-- ===== 2. FOOTER ===== -->
 
-<footer class="footer">
-
-  <div class="left">Denos Kume — Centrale Nantes</div>
-
-  <div class="center">© 2026 — All rights reserved</div>
-
-  <div class="right">
-
-    <a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a>
-
-    <a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-
-    <a href="#" onclick="showSection('home');return false;">Back to Top</a>
-
-  </div>
-
-</footer>
+<footer class="cn-site-footer">
+        <div class="cn-footer-grid">
+          <div class="cn-footer-brand"><img src="assets/denos-kume-signature.svg" alt="Denos Kume signature" width="170" height="55" loading="lazy"><p>Technical project portfolio<br>Vision · Signal · Image</p></div>
+          <div><h3>Information</h3><p>MSc Control &amp; Robotics student<br>Centrale Nantes, France</p><p>Seeking a six-month internship<br>starting February 2027</p></div>
+          <div><h3>Navigation</h3><a href="#" data-target="home">Home</a><a href="#" data-target="about">About Me</a><a href="#" data-target="projects">Projects</a><a href="#" data-target="contact">Contact</a></div>
+          <div><h3>Connect</h3><a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="#" data-target="contact">Discuss a Project</a></div>
+        </div>
+        <div class="cn-footer-bottom"><span>© 2026 Denos Kume. All rights reserved.</span></div>
+      </footer>
+<button class="cn-top-button" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Top</button>
 
 
 
