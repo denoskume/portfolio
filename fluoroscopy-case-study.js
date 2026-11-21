@@ -443,15 +443,35 @@ window.initFluoroCaseStudy = function initFluoroCaseStudy() {
       }
     });
   });
-  root.querySelector('[data-fl-action="save"]')?.addEventListener("click", () => {
-    const link = document.createElement("a");
-    link.href = new URL("fluoroscopy-case-study.pdf", document.baseURI).href;
-    link.download = "Microcatheter-Segmentation-Master1-Report.pdf";
-    link.style.display = "none";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    notify("Downloading the illustrated PDF report");
+  root.querySelector('[data-fl-action="save"]')?.addEventListener("click", async event => {
+    const button = event.currentTarget;
+    if (button.disabled) return;
+    button.disabled = true;
+    notify("Preparing the latest PDF report...");
+    try {
+      // Versioned URL and no-store request avoid downloading a cached, older report.
+      const url = new URL("fluoroscopy-case-study.pdf?v=20261121-frame-metrics-v2", document.baseURI);
+      const response = await fetch(url.href, { cache: "no-store" });
+      if (!response.ok) throw new Error("PDF request failed: " + response.status);
+      const pdf = await response.blob();
+      const signature = new TextDecoder("ascii").decode(await pdf.slice(0, 5).arrayBuffer());
+      if (signature !== "%PDF-") throw new Error("The server did not return a PDF");
+      const objectUrl = URL.createObjectURL(new Blob([pdf], { type: "application/pdf" }));
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = "Microcatheter-Segmentation-Master1-Report.pdf";
+      link.style.display = "none";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 15000);
+      notify("Latest illustrated PDF download started");
+    } catch (error) {
+      console.error("PDF download failed", error);
+      notify("The PDF is currently unavailable. Please retry after the latest website deployment.");
+    } finally {
+      button.disabled = false;
+    }
   });
 
   const data = [
