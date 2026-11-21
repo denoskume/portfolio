@@ -50,7 +50,7 @@
 
 
 
-    --nav-h: 72px;
+    --nav-h: 90px;
 
     --gutter: clamp(20px, 5vw, 64px);
 
@@ -1945,7 +1945,7 @@
 
 
 /* HOME — fidèle aux proportions de la vidéo : banner, stats, cards, mosaic, news, footer */
-body:has(#home.active){--nav-h:62px;--gutter:clamp(20px,2.35vw,38px);background:#fff}
+body:has(#home.active){--nav-h:90px;--gutter:clamp(20px,2.35vw,38px);background:#fff}
 body:has(#home.active) .navbar{background:#fff;border-top:5px solid #081e33;border-bottom:1px solid #d9dee4;backdrop-filter:none}
 body:has(#home.active) .navbar.solid{background:#fff}
 body:has(#home.active) .navbar .nav-links a{color:#10273c}
@@ -2171,6 +2171,142 @@ body:has(#home.active) .footer{display:none}
 }
 
 .home-cn .cn-top-button{font-size:.65rem;font-weight:600;letter-spacing:.02em;text-transform:uppercase}
+
+/* Two-tier editorial header: dark social ribbon, white section navigation. */
+.navbar,.navbar.solid,body:has(#home.active) .navbar,body:has(#home.active) .navbar.solid{
+  height:var(--nav-h);background:#fff;border:0;border-bottom:1px solid #e7ebf1;
+  padding:0;display:block;backdrop-filter:none;-webkit-backdrop-filter:none;
+}
+.navbar::before{
+  content:"";position:absolute;z-index:0;top:0;right:0;left:25%;height:40px;
+  background:#0b2745;clip-path:polygon(40px 0,100% 0,100% 100%,0 100%);
+}
+.navbar .logo{
+  position:absolute;z-index:2;top:15px;left:clamp(22px,4.8vw,70px);
+  width:60px;height:60px;display:flex;align-items:center;justify-content:center;
+}
+.dk-monogram{
+  width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:#0b2745;color:#fff;font-family:var(--font-display);
+  font-size:25px;font-weight:600;letter-spacing:-.065em;line-height:1;
+}
+.nav-upper{
+  position:absolute;top:0;right:clamp(22px,4.8vw,70px);height:40px;z-index:2;
+  display:flex;align-items:center;gap:20px;
+}
+.nav-upper a{font-size:12px;color:#fff;text-decoration:none;font-weight:600;letter-spacing:0}
+.nav-upper a:hover,.nav-upper a:focus-visible{text-decoration:underline;text-underline-offset:4px}
+.nav-divider{display:block;background:rgba(255,255,255,.75);width:1px;height:12px}
+.nav-lower{
+  position:absolute;top:40px;bottom:0;left:clamp(320px,28.5vw,405px);
+  right:clamp(22px,4.8vw,70px);display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.navbar .nav-links{display:flex;align-items:center;gap:clamp(20px,2.6vw,44px);white-space:nowrap;margin:0}
+.navbar .nav-links li{position:relative;display:flex;align-items:center;gap:7px}
+.navbar .nav-links a,body:has(#home.active) .navbar .nav-links a{
+  color:#50546a;font-family:var(--font-body);font-size:12px;letter-spacing:.015em;
+  text-transform:uppercase;font-weight:600;padding:7px 0;text-decoration:none;white-space:nowrap;
+}
+.navbar .nav-links a::after{display:none}
+.navbar .nav-links a:hover,.navbar .nav-links a.active,
+body:has(#home.active) .navbar .nav-links a:hover,
+body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
+.nav-menu-toggle{
+  display:inline-flex;align-items:center;justify-content:center;width:13px;height:24px;padding:0;
+  border:0;background:transparent;cursor:pointer;
+}
+.nav-menu-toggle::after{
+  content:"";display:block;width:5px;height:5px;
+  border-right:1.5px solid #979eab;border-bottom:1.5px solid #979eab;
+  transform:rotate(45deg) translateY(-2px);
+}
+.nav-dropdown{
+  display:none;position:absolute;top:100%;left:-13px;min-width:235px;z-index:1100;
+  padding:10px;background:#fff;border:1px solid #e3e8ee;
+  box-shadow:0 14px 34px rgba(8,25,43,.14);
+}
+.nav-entry:hover .nav-dropdown,.nav-entry:focus-within .nav-dropdown,.nav-entry.open .nav-dropdown{display:grid;gap:2px}
+.navbar .nav-dropdown a,body:has(#home.active) .navbar .nav-dropdown a,
+.nav-dropdown button{
+  text-align:left;display:block;width:100%;padding:10px 11px;border:0;background:transparent;
+  font:500 12px var(--font-body);color:#253a51;text-transform:none;cursor:pointer;
+}
+.navbar .nav-dropdown a:hover,.nav-dropdown button:hover,
+.navbar .nav-dropdown a:focus-visible,.nav-dropdown button:focus-visible{background:#f0f4fb;color:#2445b5}
+.nav-search{
+  display:flex;align-items:center;justify-content:center;width:36px;height:36px;flex:0 0 36px;
+  border:0;border-radius:50%;background:#2445b8;color:#fff;cursor:pointer;
+  transition:background .2s ease,transform .2s ease;
+}
+.nav-search:hover{background:#0b2745;transform:scale(1.04)}
+.nav-search svg{width:18px;height:18px}
+.nav-search:focus-visible,.nav-menu-toggle:focus-visible{outline:2px solid #2445b8;outline-offset:3px}
+.portfolio-search-overlay[hidden]{display:none!important}
+.portfolio-search-overlay{
+  position:fixed;z-index:1500;inset:0;background:rgba(6,22,41,.60);
+  display:flex;align-items:flex-start;justify-content:center;padding:clamp(105px,14vh,150px) 18px 24px;
+}
+.portfolio-search-panel{
+  width:min(620px,100%);background:#fff;padding:clamp(20px,4vw,32px);
+  box-shadow:0 20px 50px rgba(0,0,0,.20);border-radius:3px;
+}
+.portfolio-search-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}
+.portfolio-search-head strong{font-size:18px;color:#0b2745}
+.portfolio-search-head button{background:none;border:0;color:#2445b8;cursor:pointer;font:600 12px var(--font-body)}
+.portfolio-search-label{display:block;font-size:12px;color:#5e687b;margin-bottom:8px}
+#portfolioSearchInput{width:100%;border:1px solid #cad3df;border-radius:3px;padding:13px 15px;background:#fff;color:#0b2745;font:400 15px var(--font-body)}
+#portfolioSearchInput:focus{outline:2px solid #2445b8;outline-offset:1px}
+.portfolio-search-results{max-height:min(52vh,480px);overflow:auto;padding-top:12px}
+.portfolio-search-results button{display:block;width:100%;border:0;border-bottom:1px solid #eef1f5;background:#fff;text-align:left;padding:12px 5px;cursor:pointer;color:#16304b}
+.portfolio-search-results button:hover,.portfolio-search-results button:focus-visible{background:#f4f7fb}
+.portfolio-search-results button strong{display:block;font-size:14px;margin:3px 0}
+.portfolio-search-results button span{display:block;font-size:11px;color:#697991;text-transform:uppercase;letter-spacing:.08em}
+.portfolio-search-results button small{display:block;font-size:12px;color:#526176;line-height:1.4}
+.portfolio-search-results>p{font-size:13px;color:#607086;padding:12px 5px}
+.blog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.blog-card{cursor:pointer}
+.blog-card .brief{max-width:65ch}
+.blog-article .article-block .content p{max-width:75ch}
+.resume-sheet{background:#fff;border:1px solid #e0e5eb;padding:clamp(24px,4vw,48px);margin:0 auto 36px;max-width:1050px}
+.resume-sheet h1{font:400 clamp(2.2rem,4vw,3.6rem)/1.05 var(--font-display);color:#0b2745}
+.resume-sheet .resume-subtitle{margin:14px 0 20px;color:#43546b;line-height:1.65;font-size:1rem}
+.resume-sheet .resume-contact{display:flex;flex-wrap:wrap;gap:10px 24px;font-size:.84rem;padding-bottom:20px;border-bottom:1px solid #e2e6ec}
+.resume-sheet a{color:#2445b8}
+.resume-sheet h2{font:600 .82rem var(--font-body);letter-spacing:.09em;text-transform:uppercase;color:#0b2745;margin:28px 0 10px}
+.resume-sheet p,.resume-sheet li{line-height:1.7;font-size:.95rem;color:#36475b}
+.resume-sheet li{margin-left:20px}
+.resume-sheet .resume-item{display:flex;justify-content:space-between;gap:18px;margin:15px 0}
+.resume-sheet .resume-item strong{font-size:.95rem}
+.resume-sheet .resume-item span{font-size:.78rem;color:#62748a;white-space:nowrap}
+.resume-actions{margin:20px 0 0;display:flex;gap:16px;flex-wrap:wrap}
+.resume-actions a{display:inline-block;background:#0b2745;color:#fff;text-decoration:none;font-size:.82rem;font-weight:600;padding:12px 18px}
+@media(max-width:1100px){
+  .nav-lower{left:clamp(240px,28vw,320px)}
+  .navbar .nav-links{gap:clamp(13px,1.8vw,26px)}
+}
+@media(max-width:760px){
+  :root,body:has(#home.active){--nav-h:114px}
+  .navbar::before{left:92px;height:44px;clip-path:polygon(27px 0,100% 0,100% 100%,0 100%)}
+  .navbar .logo{left:16px;top:9px;width:50px;height:50px}
+  .dk-monogram{width:50px;height:50px;font-size:21px}
+  .nav-upper{right:17px;top:0;height:44px;gap:12px}
+  .nav-upper a{font-size:11px}
+  .nav-lower{top:69px;left:12px;right:12px;height:38px;bottom:auto;gap:8px}
+  .navbar .nav-links{gap:18px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;padding-right:4px}
+  .navbar .nav-links::-webkit-scrollbar{display:none}
+  .navbar .nav-links a,body:has(#home.active) .navbar .nav-links a{font-size:11px}
+  .nav-search{height:34px;width:34px;flex-basis:34px}
+  .nav-dropdown{position:fixed;top:108px;left:12px;right:12px;min-width:0}
+  .blog-grid{grid-template-columns:1fr}
+  .resume-sheet .resume-item{display:block}
+}
+@media(max-width:400px){
+  .nav-upper{gap:9px;right:13px}
+  .nav-upper a{font-size:10px}
+  .nav-lower{gap:6px}
+  .navbar .nav-links{gap:14px}
+}
+
 </style>
 
 </head>
@@ -2183,25 +2319,54 @@ body:has(#home.active) .footer{display:none}
 
 <!-- ===== 1. NAVBAR FIXE ===== -->
 
-<nav class="navbar" id="navbar">
-
-  <a href="#" class="logo" data-target="home" aria-label="Denos Kume — Home">
-    <img class="signature-logo" src="assets/denos-kume-signature.svg" alt="Denos Kume" width="232" height="56" decoding="async">
-  </a>
-
-  <ul class="nav-links">
-
-    <li><a href="#" data-target="home" class="active">Home</a></li>
-
-    <li><a href="#" data-target="about">About Me</a></li>
-
-    <li><a href="#" data-target="projects">Projects</a></li>
-
-    <li><a href="#" data-target="contact">Contact</a></li>
-
-  </ul>
-
+<nav class="navbar" id="navbar" aria-label="Main navigation">
+  <a href="#" class="logo" data-target="home" aria-label="Denos Kume — Home"><span class="dk-monogram" aria-hidden="true">DK</span></a>
+  <div class="nav-upper" aria-label="Social and CV links">
+    <a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <span class="nav-divider" aria-hidden="true"></span>
+    <a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <span class="nav-divider" aria-hidden="true"></span>
+    <a href="#" data-target="resume">CV</a>
+  </div>
+  <div class="nav-lower">
+    <ul class="nav-links">
+      <li><a href="#" data-target="home" class="active">HOME</a></li>
+      <li class="nav-entry">
+        <a href="#" data-target="about">ABOUT ME</a>
+        <button class="nav-menu-toggle" type="button" aria-label="More About Me options" aria-expanded="false"></button>
+        <div class="nav-dropdown">
+          <a href="#" data-target="about">Overview</a>
+          <a href="#" data-target="about" data-scroll="education">Education</a>
+        </div>
+      </li>
+      <li class="nav-entry">
+        <a href="#" data-target="projects">PROJECTS</a>
+        <button class="nav-menu-toggle" type="button" aria-label="Choose a project" aria-expanded="false"></button>
+        <div class="nav-dropdown">
+          <a href="#" data-target="projects">All Projects</a>
+          <button type="button" onclick="openProject(1);closeNavMenus()">Microcatheter Segmentation</button>
+          <button type="button" onclick="openProject(2);closeNavMenus()">Camera Calibration</button>
+          <button type="button" onclick="openProject(3);closeNavMenus()">Zero-Shot CLAP</button>
+        </div>
+      </li>
+      <li><a href="#" data-target="blog">BLOG</a></li>
+      <li><a href="#" data-target="contact">CONTACT</a></li>
+    </ul>
+    <button class="nav-search" type="button" id="openPortfolioSearch" aria-label="Search portfolio" title="Search portfolio">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.5 4.5"></path>
+      </svg>
+    </button>
+  </div>
 </nav>
+<div class="portfolio-search-overlay" id="portfolioSearch" role="dialog" aria-modal="true" aria-label="Search the portfolio" hidden>
+  <div class="portfolio-search-panel">
+    <div class="portfolio-search-head"><strong>Search portfolio</strong><button type="button" id="closePortfolioSearch" aria-label="Close search">Close</button></div>
+    <label class="portfolio-search-label" for="portfolioSearchInput">Find pages, projects and articles</label>
+    <input type="search" id="portfolioSearchInput" placeholder="Search by topic, skill or project…" autocomplete="off">
+    <div class="portfolio-search-results" id="portfolioSearchResults" aria-live="polite"></div>
+  </div>
+</div>
 
 
 
@@ -2343,7 +2508,7 @@ body:has(#home.active) .footer{display:none}
 
 
 
-        <div class="edu-block" style="margin-bottom:0;">
+        <div class="edu-block" id="education" style="margin-bottom:0;">
 
           <div class="section-title">
 
@@ -2475,6 +2640,59 @@ body:has(#home.active) .footer{display:none}
 
 
 
+  <!-- ============ BLOG ============ -->
+  <section id="blog" class="section">
+    <div class="projects">
+      <div class="wrap">
+        <div class="projects-head">
+          <div><span class="kicker">Research notes · Methods &amp; lessons</span><h2>Notes from <em>practice.</em></h2></div>
+          <p>Short technical articles about experimental methods, evaluation, reproducibility and lessons from my projects.</p>
+        </div>
+        <div class="projects-grid blog-grid" id="blogGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="blogDetail" class="section">
+    <div class="detail"><div class="detail-wrap blog-article" id="blogDetailContent"></div></div>
+  </section>
+
+  <!-- ============ CV OVERVIEW ============ -->
+  <section id="resume" class="section">
+    <div class="projects">
+      <div class="wrap">
+        <div class="projects-head">
+          <div><span class="kicker">Academic &amp; technical background</span><h2>Curriculum <em>Vitae.</em></h2></div>
+          <p>A concise overview of my education, technical focus and selected projects.</p>
+        </div>
+        <div class="resume-sheet">
+          <h1>Denos Kume</h1>
+          <p class="resume-subtitle">Final-year MSc Control &amp; Robotics student — Data Science, Signal &amp; Image Processing.<br>Seeking a six-month internship starting February 2027.</p>
+          <div class="resume-contact">
+            <span>Nantes, France</span>
+            <a href="mailto:kamenan.kume@eleves.ec-nantes.fr">kamenan.kume@eleves.ec-nantes.fr</a>
+            <a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+          <h2>Profile</h2>
+          <p>Interested in computer vision, image processing and applied machine learning, with a background in programming, electronics and embedded systems. Looking to learn and contribute as part of a technical team.</p>
+          <h2>Education</h2>
+          <div class="resume-item"><div><strong>MSc Control &amp; Robotics</strong><p>Centrale Nantes — Data Science, Signal &amp; Image Processing</p></div><span>2025–2027</span></div>
+          <div class="resume-item"><div><strong>BSc Computer Science &amp; Electronics</strong><p>Kristu Jayanti University, Bengaluru, India</p></div><span>2021–2025</span></div>
+          <h2>Technical focus</h2>
+          <p>Python · NumPy · OpenCV · PyTorch · Image Processing · Computer Vision · Data Analysis · Machine Learning</p>
+          <h2>Selected projects</h2>
+          <ul>
+            <li>Microcatheter segmentation in fluoroscopy — image preprocessing, background subtraction and mask evaluation.</li>
+            <li>Camera calibration — geometric calibration from nine chessboard images and reprojection analysis.</li>
+            <li>CLAP zero-shot audio classification — 91.15% best Top-1 accuracy on ESC-50.</li>
+          </ul>
+          <div class="resume-actions"><a href="mailto:kamenan.kume@eleves.ec-nantes.fr?subject=CV%20request">Request the latest PDF CV</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ CONTACT ============ -->
 
   <section id="contact" class="section">
@@ -2587,6 +2805,7 @@ body:has(#home.active) .footer{display:none}
 
 
 
+<script src="content.js"></script>
 <script>
 
 /* ============================================================
@@ -3044,15 +3263,16 @@ function showSection(id) {
 
 
 document.querySelectorAll('[data-target]').forEach(el => {
-
-  el.addEventListener('click', (e) => {
-
-    e.preventDefault();
-
+  el.addEventListener('click', event => {
+    event.preventDefault();
     showSection(el.getAttribute('data-target'));
-
+    closeNavMenus();
+    const scrollId = el.getAttribute('data-scroll');
+    if (scrollId) window.setTimeout(() => {
+      const anchor = document.getElementById(scrollId);
+      if (anchor) anchor.scrollIntoView({behavior:'smooth',block:'start'});
+    }, 180);
   });
-
 });
 
 
@@ -3083,9 +3303,127 @@ function handleContact(e) {
   window.location.href = `mailto:kamenan.kume@eleves.ec-nantes.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
+
+/* Header menus, search and article reader. */
+function closeNavMenus() {
+  document.querySelectorAll('.nav-entry.open').forEach(entry => entry.classList.remove('open'));
+  document.querySelectorAll('.nav-menu-toggle').forEach(button => button.setAttribute('aria-expanded','false'));
+}
+document.querySelectorAll('.nav-menu-toggle').forEach(button => {
+  button.addEventListener('click', event => {
+    event.stopPropagation();
+    const entry = button.closest('.nav-entry');
+    const opening = !entry.classList.contains('open');
+    closeNavMenus();
+    entry.classList.toggle('open', opening);
+    button.setAttribute('aria-expanded', String(opening));
+  });
+});
+document.addEventListener('click', event => {
+  if (!event.target.closest('.nav-entry')) closeNavMenus();
+});
+
+const portfolioArticles = window.PORTFOLIO_DATA?.articles || [];
+function buildBlog() {
+  const grid = document.getElementById('blogGrid');
+  if (!grid) return;
+  grid.innerHTML = portfolioArticles.map((article, index) => `
+    <article class="project-card blog-card">
+      <div class="card-top"><span class="card-num">NOTE ${String(index + 1).padStart(2,'0')}</span><span class="card-year">${escapeHtml(article.tag || 'Research')}</span></div>
+      <h3>${escapeHtml(article.title)}</h3>
+      <p class="brief">${escapeHtml(article.summary)}</p>
+      <div class="card-footer"><span class="tag">${escapeHtml(article.minutes ? article.minutes + ' min read' : 'Read')}</span>
+        <button class="btn-explore" type="button" data-blog-open="${escapeHtml(article.slug)}">Read article</button>
+      </div>
+    </article>
+  `).join('');
+  grid.addEventListener('click', event => {
+    const item = event.target.closest('[data-blog-open]');
+    if (item) openBlog(item.getAttribute('data-blog-open'));
+  });
+}
+function openBlog(slug) {
+  const article = portfolioArticles.find(item => item.slug === slug);
+  if (!article) return;
+  const target = document.getElementById('blogDetailContent');
+  target.innerHTML = `
+    <button type="button" class="detail-back" onclick="showSection('blog')">Back to Blog</button>
+    <div class="detail-eyebrow"><span>Technical Note</span><span>${escapeHtml(article.tag || 'Research')}</span><span>${escapeHtml(article.minutes ? article.minutes + ' min read' : '')}</span></div>
+    <h1 class="detail-title">${escapeHtml(article.title)}</h1>
+    <p class="detail-context">${escapeHtml(article.summary)}</p>
+    ${article.sections.map((section, index) => `
+      <div class="article-block">
+        <div class="label"><span class="n">${String(index + 1).padStart(2,'0')}</span>${escapeHtml(section.heading || 'Note')}</div>
+        <div class="content"><p>${escapeHtml(section.body || '')}</p></div>
+      </div>
+    `).join('')}
+  `;
+  showSection('blogDetail');
+}
+
+const searchDialog = document.getElementById('portfolioSearch');
+const searchInput = document.getElementById('portfolioSearchInput');
+const searchResults = document.getElementById('portfolioSearchResults');
+let searchPreviousFocus = null;
+const searchPages = [
+  {title:'Home',description:'Six-month internship starting February 2027',id:'home'},
+  {title:'About Me',description:'Background, education and technical focus',id:'about'},
+  {title:'Projects',description:'Computer vision, image processing and applied machine learning case studies',id:'projects'},
+  {title:'Blog',description:'Technical articles and research notes',id:'blog'},
+  {title:'Contact',description:'Email, GitHub, LinkedIn and contact form',id:'contact'},
+  {title:'CV',description:'Curriculum vitae, skills and education',id:'resume'}
+];
+function renderPortfolioSearch() {
+  const query = searchInput.value.trim().toLowerCase();
+  const results = [
+    ...searchPages.map(page => ({type:'page',key:page.id,title:page.title,summary:page.description,category:'Page'})),
+    ...projects.map(project => ({type:'project',key:String(project.id),title:project.title,summary:project.brief,category:'Project'})),
+    ...portfolioArticles.map(article => ({type:'blog',key:article.slug,title:article.title,summary:article.summary,category:'Article'}))
+  ].filter(item => !query || `${item.title} ${item.summary} ${item.category}`.toLowerCase().includes(query)).slice(0,12);
+  searchResults.innerHTML = results.length ? results.map(item => `
+    <button type="button" data-search-item="true" data-type="${escapeHtml(item.type)}" data-key="${escapeHtml(item.key)}">
+      <span>${escapeHtml(item.category)}</span><strong>${escapeHtml(item.title)}</strong><small>${escapeHtml(item.summary)}</small>
+    </button>
+  `).join('') : '<p>No matching pages, projects or articles.</p>';
+}
+function openPortfolioSearch() {
+  searchPreviousFocus = document.activeElement;
+  searchDialog.hidden = false;
+  searchInput.value = '';
+  renderPortfolioSearch();
+  document.body.style.overflow = 'hidden';
+  searchInput.focus();
+}
+function closePortfolioSearch() {
+  searchDialog.hidden = true;
+  document.body.style.overflow = '';
+  searchPreviousFocus?.focus();
+}
+document.getElementById('openPortfolioSearch').addEventListener('click',openPortfolioSearch);
+document.getElementById('closePortfolioSearch').addEventListener('click',closePortfolioSearch);
+searchInput.addEventListener('input',renderPortfolioSearch);
+searchDialog.addEventListener('click',event => {if(event.target===searchDialog)closePortfolioSearch();});
+searchResults.addEventListener('click',event=>{
+  const item=event.target.closest('[data-search-item]');
+  if(!item)return;
+  const type=item.dataset.type,key=item.dataset.key;
+  closePortfolioSearch();
+  if(type==='page')showSection(key);
+  else if(type==='project')openProject(Number(key));
+  else if(type==='blog')openBlog(key);
+});
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&!searchDialog.hidden){closePortfolioSearch();return;}
+  if(event.key==='Escape')closeNavMenus();
+  if(event.key==='/'&&searchDialog.hidden&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName||'')){
+    event.preventDefault();openPortfolioSearch();
+  }
+});
+
 /* Initialisation immédiate : aucun timer ni attente des images externes. */
 buildCarousel();
 buildProjects();
+buildBlog();
 
 </script>
 
