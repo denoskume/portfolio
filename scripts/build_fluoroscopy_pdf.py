@@ -11,7 +11,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 from reportlab.lib import colors
-from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_JUSTIFY
+from reportlab.lib.enums import TA_CENTER, TA_LEFT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
@@ -47,12 +47,12 @@ def fetch_asset(path: str) -> bytes | None:
 
 FONT = "Helvetica"
 STYLES = {
-    "title": ParagraphStyle("TitleArticle", fontName="Helvetica-Bold", fontSize=19, leading=24, textColor=INK, spaceAfter=11),
-    "subtitle": ParagraphStyle("SubtitleArticle", fontName=FONT, fontSize=10.3, leading=15, textColor=MUTED, spaceAfter=11),
-    "author": ParagraphStyle("AuthorArticle", fontName=FONT, fontSize=9.1, leading=12, textColor=MUTED, spaceAfter=13),
+    "title": ParagraphStyle("TitleArticle", fontName="Helvetica-Bold", fontSize=19, leading=24, textColor=INK, alignment=TA_CENTER, spaceAfter=11),
+    "subtitle": ParagraphStyle("SubtitleArticle", fontName=FONT, fontSize=10.3, leading=15, textColor=MUTED, alignment=TA_CENTER, spaceAfter=11),
+    "author": ParagraphStyle("AuthorArticle", fontName=FONT, fontSize=9.1, leading=12, textColor=MUTED, alignment=TA_CENTER, spaceAfter=13),
     "h1": ParagraphStyle("H1Article", fontName="Helvetica-Bold", fontSize=15.2, leading=19.5, textColor=INK, spaceBefore=17, spaceAfter=10, keepWithNext=True),
     "h2": ParagraphStyle("H2Article", fontName="Helvetica-Bold", fontSize=11.6, leading=15, textColor=BLUE, spaceBefore=12, spaceAfter=8, keepWithNext=True),
-    "body": ParagraphStyle("BodyArticle", fontName=FONT, fontSize=9.9, leading=15.9, textColor=INK, alignment=TA_JUSTIFY, spaceAfter=10),
+    "body": ParagraphStyle("BodyArticle", fontName=FONT, fontSize=9.9, leading=15.9, textColor=INK, spaceAfter=10),
     "caption": ParagraphStyle("CaptionArticle", fontName=FONT, fontSize=8.8, leading=13, textColor=MUTED, spaceAfter=9),
     "table": ParagraphStyle("TableArticle", fontName=FONT, fontSize=9.1, leading=13.3, textColor=INK),
     "small": ParagraphStyle("SmallArticle", fontName=FONT, fontSize=8.5, leading=12, textColor=MUTED),
