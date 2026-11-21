@@ -16,6 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Build downloadable project report PDF
+        run: |
+          python -m pip install --quiet reportlab
+          python scripts/build_fluoroscopy_pdf.py
+          test -s build/fluoroscopy-case-study.pdf
       - name: Validate and prepare static site
         run: |
           node --check app.js
@@ -29,6 +34,8 @@ jobs:
           cp index.html app.js content.js styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css _site/
           cp lab/workspace.js lab/worker.js lab/compute.py _site/lab/
           cp -r assets _site/
+          cp build/fluoroscopy-case-study.pdf _site/fluoroscopy-case-study.pdf
+          test -s _site/fluoroscopy-case-study.pdf
           test -f _site/assets/denos-kume-signature.svg
           test -s _site/fluoroscopy-case-study.js
           test -s _site/fluoroscopy-case-study.css
