@@ -1,179 +1,183 @@
-/* Focused, source-grounded fluoroscopy case study */
+/* Academic case study with journal-style Report, Figures and Metrics views. */
 window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
- const raw="https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/";
- const repo="https://github.com/denoskume/Background-Subtraction-Fluoroscopy";
- return `
+  const raw = "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/";
+  const repo = "https://github.com/denoskume/Background-Subtraction-Fluoroscopy";
+  const frames = [201,211,221,231,241,251,261,271,281,291];
+  const toc = [
+    {key:"report",entries:[["fl-r-abstract","Abstract"],["fl-r-brief","Dataset & objectives"],["fl-r-problem","The challenge"],["fl-r-method","Methodology"],["fl-r-outcome","Conclusion & limitations"]]},
+    {key:"figures",entries:[["fl-f-input","Input images"],["fl-f-method","Reconstruction comparison"],["fl-f-results","Final predictions"],["fl-f-demo","Video demonstration"]]},
+    {key:"metrics",entries:[["fl-m-dice","Dice comparison"],["fl-m-baselines","Initial methods"],["fl-m-errors","Detection errors"],["fl-m-frames","Frame explorer"]]}
+  ];
+  return `
 <article class="fluoro-study" aria-labelledby="fl-title">
-  <div class="fl-crumb"><button type="button" onclick="showSection('projects')">Back to projects</button></div>
-  <header class="fl-cover">
-    <div class="fl-cover-copy">
-      <h1 id="fl-title">Microcatheter segmentation in fluoroscopy</h1>
-      <p class="fl-research-question">Can we detect a thin instrument in noisy X-ray images and reconstruct its full path accurately?</p>
-    </div>
-  </header>
-
-  <section class="fl-overview" aria-labelledby="fl-abstract-title">
-    <h2 id="fl-abstract-title">Abstract</h2>
-    <p>This Master 1 image-processing project at Centrale Nantes investigated how to segment thin guidewires and microcatheters in fluoroscopic X-ray images. Their low contrast, image noise and similarity to surrounding structures make accurate detection difficult.</p>
-    <p>We developed a background-subtraction pipeline, compared three classical segmentation methods and assessed their output against manual annotations. Because the initial masks could miss or fragment the instrument, we also explored supervised pixel scoring and continuous-path reconstruction. The study examines what worked, what failed and how much the reconstructed traces improved on the supplied image sequence.</p>
-  </section>
-
-  <section class="fl-brief" aria-labelledby="fl-brief-title">
-    <h2 id="fl-brief-title">Dataset and project requirements</h2>
-    <div class="fl-brief-grid">
-      <div class="fl-brief-data">
-        <h3>Dataset</h3>
-        <div class="fl-data-facts" aria-label="Dataset summary">
-          <div><strong>10</strong><span>Grayscale X-ray frames</span></div>
-          <div><strong>512 × 512</strong><span>Pixels per frame</span></div>
-          <div><strong>20</strong><span>Manual tracings</span></div>
-        </div>
-        <p>Frame 201 serves as the reference image for background subtraction. The other nine frames show motion, and manual instrument tracings provide the reference masks for evaluation.</p>
+  <div class="fl-backbar"><button type="button" onclick="showSection('projects')">Back to projects</button></div>
+  <div class="fl-paper-shell">
+    <main class="fl-paper-main">
+      <header class="fl-paper-header">
+        <h1 id="fl-title">Microcatheter segmentation in fluoroscopy</h1>
+        <p class="fl-paper-question">Can we detect a thin instrument in noisy X-ray images and reconstruct its full path accurately?</p>
+        <p class="fl-paper-authors">Denos Kume &amp; Oluwole Shokunbi · Master 1 project · Centrale Nantes</p>
+      </header>
+      <div class="fl-paper-tabs" role="tablist" aria-label="Project case study views">
+        <button id="fl-tab-report" class="fl-paper-tab is-active" type="button" role="tab" data-fl-tab="report" aria-selected="true" aria-controls="fl-panel-report" tabindex="0">Report</button>
+        <button id="fl-tab-figures" class="fl-paper-tab" type="button" role="tab" data-fl-tab="figures" aria-selected="false" aria-controls="fl-panel-figures" tabindex="-1">Figures</button>
+        <button id="fl-tab-metrics" class="fl-paper-tab" type="button" role="tab" data-fl-tab="metrics" aria-selected="false" aria-controls="fl-panel-metrics" tabindex="-1">Metrics</button>
       </div>
-      <div class="fl-brief-spec">
-        <h3>Objective</h3>
-        <p>Identify instrument pixels, recover a complete and connected trace, and measure agreement with the manually annotated reference.</p>
-        <h3>Project requirements</h3>
-        <p>Prepare and enhance the images; implement and compare fixed thresholding, Otsu thresholding and Gaussian-mixture segmentation; produce binary masks for all frames; and evaluate the outputs using Dice, IoU, PSNR and visual error inspection.</p>
-        <p>The extended reconstruction was evaluated by path continuity and improvement in Dice. No predefined minimum Dice score was specified in the project repository.</p>
+      <nav class="fl-paper-actions" aria-label="Project resources">
+        <a href="${repo}" target="_blank" rel="noopener noreferrer">Source code</a>
+        <a href="${repo}/blob/main/Fluoroscopy_Instrument_Segmentation.ipynb" target="_blank" rel="noopener noreferrer">Notebook</a>
+        <a href="${repo}/blob/main/frame_comparison.csv" target="_blank" rel="noopener noreferrer">Results data</a>
+      </nav>
+
+      <div class="fl-paper-panel" id="fl-panel-report" data-fl-panel="report" role="tabpanel" aria-labelledby="fl-tab-report" tabindex="0">
+        <section class="fl-paper-section" id="fl-r-abstract">
+          <h2>Abstract</h2>
+          <p>In this Master 1 computer vision and image-processing project, we investigated how to identify thin guidewires and microcatheters in a sequence of fluoroscopic X-ray images. Low contrast, noise and surrounding anatomical structures make it difficult to isolate a complete instrument path.</p>
+          <p>We implemented a background-subtraction pipeline, compared three classical segmentation methods against manual annotations, then explored continuous-path reconstruction to address incomplete and fragmented predictions. We evaluated the results frame by frame to understand both the improvements and the remaining limitations.</p>
+        </section>
+
+        <section class="fl-paper-section" id="fl-r-brief">
+          <h2>Dataset, objective and requirements</h2>
+          <h3>Dataset</h3>
+          <p>The supplied dataset contains ten 512 × 512 grayscale X-ray frames and twenty manual tracings. Frame 201 is the reference for background subtraction, while the nine subsequent frames are used for the reported motion-frame comparisons. Manual tracings provide the reference masks.</p>
+          <div class="fl-facts" aria-label="Dataset facts">
+            <div><strong>10</strong><span>X-ray frames</span></div>
+            <div><strong>512 × 512</strong><span>Resolution</span></div>
+            <div><strong>20</strong><span>Manual tracings</span></div>
+          </div>
+          <h3>Objective</h3>
+          <p>Identify instrument pixels, reconstruct a continuous path, and compare each prediction with the manually traced reference.</p>
+          <h3>Project requirements</h3>
+          <p>Enhance and preprocess the images; implement fixed thresholding, Otsu thresholding and Gaussian-mixture segmentation; export binary instrument masks; and assess output quality through Dice, IoU, PSNR and visual error inspection. The later connected-path extension was evaluated for path continuity and improved overlap.</p>
+          <p>No predefined minimum Dice target is specified in the project repository, so success is assessed through reproducible outputs and measured improvement rather than a claimed pass threshold.</p>
+        </section>
+
+        <section class="fl-paper-section" id="fl-r-problem">
+          <h2>The challenge</h2>
+          <p>The instrument can occupy only a small part of a frame. Its dark line may resemble anatomical edges, while weak movement makes some shaft segments difficult to detect through background subtraction. Noise may introduce false detections and split the predicted instrument into disconnected pieces.</p>
+          <p>The challenge was therefore not only to detect individual candidate pixels but also to recover a plausible, connected instrument path. <button class="fl-inline-link" type="button" data-fl-open-panel="figures" data-fl-jump="fl-f-input">View the original and enhanced frames</button>.</p>
+        </section>
+
+        <section class="fl-paper-section" id="fl-r-method">
+          <h2>Methodology</h2>
+          <div class="fl-method-steps" aria-label="Processing pipeline">
+            <span>Prepare</span><span>Subtract</span><span>Segment</span><span>Reconnect</span>
+          </div>
+          <h3>Classical segmentation</h3>
+          <p>We first improved image contrast and reduced noise, then compared each frame with the reference to highlight motion. Fixed thresholding, Otsu thresholding and a two-component Gaussian mixture produced candidate binary masks. Their measured overlap with manual annotations established the initial comparison.</p>
+          <p>The masks sometimes missed stationary instrument segments or retained irrelevant anatomical edges. The original method scores are available in the <button class="fl-inline-link" type="button" data-fl-open-panel="metrics" data-fl-jump="fl-m-baselines">Metrics comparison</button>.</p>
+          <h3>Continuous-path reconstruction</h3>
+          <p>To address fragmented detections, a supervised ExtraTrees model scored candidate pixels using line appearance and temporal change. A path-search step then joined high-scoring pixels into one connected centerline, assuming that the instrument enters from the lower border of these images.</p>
+          <p>The resulting prediction was compared with the earlier mask and the manual reference. <button class="fl-inline-link" type="button" data-fl-open-panel="figures" data-fl-jump="fl-f-method">See the reconstruction comparison</button>.</p>
+        </section>
+
+        <section class="fl-paper-section" id="fl-r-outcome">
+          <h2>Did we meet the objective?</h2>
+          <p><strong>Yes, within the supplied Master 1 image sequence.</strong> We generated masks for all ten frames, and the reconstructed predictions each formed a connected component. Across the nine motion frames, mean Dice improved from <strong>0.501 to 0.876</strong>, a gain of <strong>0.375 Dice points</strong>.</p>
+          <p>The reconstructed masks also reduced false-positive pixels from 22,472 to 3,553 and missed instrument pixels from 5,240 to 2,511. Enforcing a continuous path helped recover segments that independent pixel predictions had lost.</p>
+          <h3>Limitations and next steps</h3>
+          <p>All results come from one supplied acquisition. The model and path settings were explored using that sequence, and reconstruction assumes entry from the lower frame border. Future work should evaluate other image sequences with different instrument positions, motion and image quality.</p>
+        </section>
       </div>
-    </div>
-  </section>
 
-  <section class="fl-chapter" id="fl-problem">
-    <div class="fl-chapter-intro">
-      <h2>The instrument almost disappears into the image.</h2>
-      <p>Anatomical edges, image noise and weak contrast make the instrument difficult to separate from its surroundings. A simple subtraction mask can miss parts that barely move or mistake background structures for the instrument. This is why the quality of the <em>complete traced path</em>, not just isolated dark pixels, matters.</p>
-    </div>
-    <figure class="fl-visual fl-visual-wide">
-      <a href="${raw}assets/grayscale-comparison.png" target="_blank" rel="noopener noreferrer">
-        <img src="${raw}assets/grayscale-comparison.png" loading="lazy" decoding="async" alt="Actual original and enhanced grayscale fluoroscopy frame 291">
-      </a>
-      <figcaption>Original and enhanced fluoroscopy images, frame 291.</figcaption>
-    </figure>
-  </section>
-
-  <section class="fl-chapter" id="fl-method">
-    <div class="fl-chapter-intro">
-      <h2>Detect the instrument, then reconnect its path.</h2>
-      <p>We first examined how classical image-processing methods detect candidate pixels, then introduced connected-path reconstruction to address the gaps they left behind.</p>
-    </div>
-    <div class="fl-process" aria-label="Processing stages">
-      <div>Prepare</div><div>Subtract</div><div>Segment</div><div>Reconnect</div>
-    </div>
-
-    <div class="fl-method-row fl-baseline-row">
-      <div class="fl-method-copy">
-        <h3>First, identify possible instrument pixels</h3>
-        <p>We enhanced image contrast, filtered noise and subtracted the reference frame to highlight changes. Fixed thresholding, Otsu's threshold and a Gaussian mixture model then produced candidate masks. This established a baseline and exposed missed or disconnected instrument segments.</p>
+      <div class="fl-paper-panel" id="fl-panel-figures" data-fl-panel="figures" role="tabpanel" aria-labelledby="fl-tab-figures" tabindex="0" hidden>
+        <div class="fl-panel-intro"><h2>Figures</h2><p>Experimental images and reconstructions produced in the project. Select a figure to open it at full resolution.</p></div>
+        <section class="fl-figure-section" id="fl-f-input">
+          <h3>Original and enhanced images</h3>
+          <p>Contrast enhancement makes the image structures easier to inspect before subtraction and segmentation.</p>
+          <figure class="fl-scientific-figure">
+            <a href="${raw}assets/grayscale-comparison.png" target="_blank" rel="noopener noreferrer"><img src="${raw}assets/grayscale-comparison.png" loading="lazy" decoding="async" alt="Project figure showing original and enhanced fluoroscopy frame 291"></a>
+            <figcaption><strong>Figure 1.</strong> Original and enhanced image of frame 291.</figcaption>
+          </figure>
+        </section>
+        <section class="fl-figure-section" id="fl-f-method">
+          <h3>Comparison with the manual reference</h3>
+          <p>The earlier prediction contains gaps; continuous reconstruction recovers a connected line that more closely follows the manual tracing.</p>
+          <figure class="fl-scientific-figure">
+            <a href="${raw}assets/mask-cleanup.png" target="_blank" rel="noopener noreferrer"><img src="${raw}assets/mask-cleanup.png" loading="lazy" decoding="async" alt="Project figure comparing previous prediction, continuous trace and manual tracing for frame 291"></a>
+            <figcaption><strong>Figure 2.</strong> Previous prediction, continuous trace and manual reference — frame 291.</figcaption>
+          </figure>
+        </section>
+        <section class="fl-figure-section" id="fl-f-results">
+          <h3>Reconstructed paths across the sequence</h3>
+          <p>All ten final predictions are shown in chronological order, with each frame's Dice score.</p>
+          <figure class="fl-scientific-figure">
+            <a href="${raw}assets/segmentation-comparison.png" target="_blank" rel="noopener noreferrer"><img src="${raw}assets/segmentation-comparison.png" loading="lazy" decoding="async" alt="Project figure showing ten held-out reconstructed paths with their Dice scores"></a>
+            <figcaption><strong>Figure 3.</strong> Reconstructed instrument paths and frame-level Dice scores.</figcaption>
+          </figure>
+        </section>
+        <section class="fl-figure-section" id="fl-f-demo">
+          <h3>Video demonstration</h3>
+          <p>A recorded demonstration of the reconstructed paths, presented after the results and figures.</p>
+          <figure class="fl-scientific-video">
+            <video controls playsinline preload="metadata" poster="${raw}assets/segmentation-comparison.png" aria-label="Recorded microcatheter segmentation demonstration"><source src="${raw}assets/demo-web.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>
+          </figure>
+        </section>
       </div>
-      <div class="fl-baseline-table">
-        <h4>Initial segmentation performance</h4>
-        <table>
-          <thead><tr><th>Method</th><th>Mean Dice</th></tr></thead>
-          <tbody>
-            <tr><td>Fixed threshold</td><td>0.416</td></tr>
-            <tr><td>Otsu threshold</td><td>0.412</td></tr>
-            <tr><td>Gaussian mixture</td><td>0.385</td></tr>
-          </tbody>
-        </table>
-        <p>These scores describe initial masks before component cleanup. The later 0.501 baseline is a separate processing stage.</p>
-      </div>
-    </div>
 
-    <div class="fl-method-row fl-reconstruction-row">
-      <div class="fl-method-copy">
-        <h3>Then, reconstruct a continuous path</h3>
-        <p>To address these gaps, a supervised ExtraTrees model used dark-line appearance, local changes and information across frames to score candidate pixels. Path search connected them into a single plausible centerline, assuming the instrument enters from the bottom of this image.</p>
-        <p>The image compares the earlier fragmented prediction, reconstructed trace and manual annotation for the same frame.</p>
+      <div class="fl-paper-panel" id="fl-panel-metrics" data-fl-panel="metrics" role="tabpanel" aria-labelledby="fl-tab-metrics" tabindex="0" hidden>
+        <div class="fl-panel-intro"><h2>Metrics</h2><p>Quantitative evaluation against manual masks. The aggregate comparison below uses nine motion frames (211–291) from the same sequence.</p></div>
+        <section class="fl-metric-section" id="fl-m-dice">
+          <h3>Continuous-trace improvement</h3>
+          <p>Dice measures predicted-mask overlap with the reference, from 0 (no overlap) to 1 (perfect overlap). Higher values are better.</p>
+          <div class="fl-score" aria-label="Dice improvement from 0.501 to 0.876, a gain of 0.375 points">
+            <div><span>Previous prediction</span><strong>0.501</strong></div>
+            <div><span>Continuous trace</span><strong>0.876</strong></div>
+            <div class="fl-score-gain"><span>Dice improvement</span><strong>+0.375</strong></div>
+          </div>
+          <figure class="fl-chart">
+            <div class="fl-chart-heading"><h4>Dice score by frame</h4>
+              <div class="fl-legend"><span><i class="fl-line-old"></i>Previous prediction</span><span><i class="fl-line-new"></i>Continuous trace</span></div>
+            </div>
+            <div id="fl-dice-plot" class="fl-dice-plot" aria-label="Line chart comparing previous and reconstructed Dice across motion frames"></div>
+          </figure>
+        </section>
+        <section class="fl-metric-section" id="fl-m-baselines">
+          <h3>Initial segmentation methods</h3>
+          <p>The earlier classical methods were evaluated before connected-path reconstruction. These scores are a different processing stage from the 0.501 comparison above.</p>
+          <div class="fl-metric-table-wrap">
+            <table class="fl-metric-table">
+              <thead><tr><th>Method</th><th>Mean Dice</th><th>Mean IoU</th><th>Mean PSNR</th></tr></thead>
+              <tbody>
+                <tr><td>Fixed threshold (0.10)</td><td>0.416</td><td>0.280</td><td>16.57 dB</td></tr>
+                <tr><td>Otsu threshold</td><td>0.412</td><td>0.295</td><td>13.95 dB</td></tr>
+                <tr><td>Gaussian mixture</td><td>0.385</td><td>0.249</td><td>15.30 dB</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The fixed threshold had the highest mean Dice of these three methods. Dice and IoU measure instrument overlap; PSNR reflects whole-image pixel error and should not be interpreted on its own.</p>
+        </section>
+        <section class="fl-metric-section" id="fl-m-errors">
+          <h3>False detections and missed pixels</h3>
+          <p>Across nine motion frames, continuous reconstruction reduced both types of error compared with the previous prediction.</p>
+          <div class="fl-error-comparison">
+            <div><h4>False-positive pixels</h4><p><span>22,472</span><span aria-hidden="true">→</span><strong>3,553</strong></p></div>
+            <div><h4>Missed instrument pixels</h4><p><span>5,240</span><span aria-hidden="true">→</span><strong>2,511</strong></p></div>
+          </div>
+        </section>
+        <section class="fl-metric-section" id="fl-m-frames">
+          <h3>Inspect individual frames</h3>
+          <p>Choose one of the ten images to inspect the exported review figure and its frame-level scores. Frame 201 is the reference frame and is not included in the nine-frame mean above.</p>
+          <div class="fl-frame-selector" role="group" aria-label="Choose a fluoroscopy frame">
+            ${frames.map(n=>`<button type="button" data-fluoro-frame="${n}" ${n===291?'class="selected" aria-pressed="true"':''}>${n}</button>`).join("")}
+          </div>
+          <figure class="fl-frame-figure">
+            <a id="fl-frame-link" href="${raw}review/frame_291_review.png" target="_blank" rel="noopener noreferrer">
+              <img id="fl-frame-image" src="${raw}review/frame_291_review.png" alt="Experiment review image for frame 291" loading="lazy">
+            </a>
+            <figcaption><strong id="fl-frame-caption">Frame 291</strong><span id="fl-frame-info" aria-live="polite">Previous Dice: 0.588 · Continuous-trace Dice: 0.849 · False positives: 811 · Missed pixels: 414</span></figcaption>
+          </figure>
+        </section>
       </div>
-      <figure class="fl-visual">
-        <a href="${raw}assets/mask-cleanup.png" target="_blank" rel="noopener noreferrer">
-          <img src="${raw}assets/mask-cleanup.png" loading="lazy" decoding="async" alt="Frame 291: fragmented previous mask, continuous reconstructed trace and manual annotation">
-        </a>
-        <figcaption>Frame 291: previous prediction, continuous trace, and manual reference.</figcaption>
-      </figure>
-    </div>
-  </section>
+    </main>
 
-  <section class="fl-chapter" id="fl-results">
-    <div class="fl-chapter-intro">
-      <h2>Does reconstruction produce a better match?</h2>
-      <p>We compared the reconstructed path with manually traced instruments. Dice measures how closely the masks overlap: 1 means a perfect match.</p>
-    </div>
-    <div class="fl-score" aria-label="Mean Dice improvement across nine motion frames">
-      <div><small>Previous prediction</small><strong>0.501</strong></div>
-      <div><small>Continuous trace</small><strong>0.876</strong></div>
-      <div class="fl-score-gain"><small>Dice improvement</small><strong>+0.375</strong></div>
-    </div>
-    <figure class="fl-visual fl-visual-results">
-      <a href="${raw}assets/segmentation-comparison.png" target="_blank" rel="noopener noreferrer">
-        <img src="${raw}assets/segmentation-comparison.png" loading="lazy" decoding="async" alt="All ten final continuous-trace predictions in chronological order, with each frame's Dice score">
-      </a>
-      <figcaption>Final reconstructed traces across all ten frames. The numbers above each trace show its Dice score.</figcaption>
-    </figure>
-    <figure class="fl-chart">
-      <div class="fl-chart-heading">
-        <h3>Dice score by frame</h3>
-        <div class="fl-legend"><span><i class="fl-line-old"></i>Previous prediction</span><span><i class="fl-line-new"></i>Continuous trace</span></div>
+    <aside class="fl-paper-sidebar" aria-label="Project article contents">
+      <div class="fl-sidebar-sticky">
+        <h2>Contents</h2>
+        ${toc.map(group=>`<nav class="fl-toc-group" data-fl-toc="${group.key}" aria-label="${group.key} sections" ${group.key==='report'?'':'hidden'}>${group.entries.map(([id,label])=>`<a href="#${id}" data-fl-target-tab="${group.key}" data-fl-target-id="${id}" ${id==='fl-r-abstract'?'class="is-current"':''}>${label}</a>`).join("")}</nav>`).join("")}
       </div>
-      <div id="fl-dice-plot" class="fl-dice-plot"></div>
-    </figure>
-
-    <details class="fl-extras fl-frame-extras">
-      <summary>Explore all 10 annotated frames</summary>
-      <div class="fl-frames">
-        <div class="fl-frame-selector" role="group" aria-label="Choose fluoroscopy frame">
-          ${[201,211,221,231,241,251,261,271,281,291].map(n=>`<button type="button" data-fluoro-frame="${n}" ${n===291?'class="selected" aria-pressed="true"':''}>${n}</button>`).join("")}
-        </div>
-        <figure class="fl-frame-figure">
-          <a id="fl-frame-link" href="${raw}review/frame_291_review.png" target="_blank" rel="noopener noreferrer">
-            <img id="fl-frame-image" src="${raw}review/frame_291_review.png" alt="Real frame 291 review image" loading="lazy">
-          </a>
-          <figcaption><strong id="fl-frame-caption">Frame 291</strong><span id="fl-frame-info" aria-live="polite">Previous Dice: 0.588 · Continuous-trace Dice: 0.849 · False positives: 811 · Missed pixels: 414</span></figcaption>
-        </figure>
-      </div>
-    </details>
-  </section>
-
-  <section class="fl-outcome" aria-labelledby="fl-outcome-title">
-    <div class="fl-outcome-intro">
-      <h2 id="fl-outcome-title">Did we meet the objective?</h2>
-      <p><strong>Yes, for this academic experiment.</strong> We generated instrument masks for all ten frames and the reconstructed predictions each formed one connected component. Across the nine motion frames, mean Dice rose from <strong>0.501 to 0.876</strong>, a gain of <strong>0.375 Dice points</strong>.</p>
-      <p>The reconstructed traces also reduced false-positive pixels from <strong>22,472 to 3,553</strong> and missed instrument pixels from <strong>5,240 to 2,511</strong>. These measurements demonstrate stronger segmentation on the supplied teaching sequence; performance on other image sequences has not yet been evaluated.</p>
-    </div>
-    <div class="fl-outcome-grid">
-      <div>
-        <h3>Why did it work better?</h3>
-        <p>Background subtraction alone can lose parts of a nearly stationary instrument and pick up anatomical edges. Scoring dark-line evidence and then enforcing a connected path helped preserve the instrument's shape instead of treating each candidate pixel independently.</p>
-      </div>
-      <div>
-        <h3>What remains unresolved?</h3>
-        <p>We worked with one supplied image sequence, and some model settings were developed using those frames. The connected-path method also assumes the instrument enters from the lower image border. To test whether the approach generalizes, it should be evaluated on other sequences with different instrument positions, motion and image quality.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="fl-demo" aria-labelledby="fl-demo-title">
-    <div class="fl-demo-intro">
-      <h2 id="fl-demo-title">See the final reconstruction</h2>
-      <p>After the method and evaluation, this recorded demo shows the reconstructed instrument paths across the image sequence.</p>
-    </div>
-    <figure class="fl-demo-player">
-      <video controls playsinline preload="metadata" poster="${raw}assets/segmentation-comparison.png" aria-label="Recorded demonstration of microcatheter segmentation on the ten academic image frames">
-        <source src="${raw}assets/demo-web.mp4" type="video/mp4">Your browser does not support HTML5 video.
-      </video>
-    </figure>
-  </section>
-
-  <footer class="fl-outcome-footer">
-    <p>Master 1 project by Denos Kume and Oluwole Shokunbi at Centrale Nantes.</p>
-    <div class="fl-conclusion-links">
-      <a class="fl-primary-link" href="${repo}" target="_blank" rel="noopener noreferrer">Explore repository</a>
-      <a href="${repo}/blob/main/Fluoroscopy_Instrument_Segmentation.ipynb" target="_blank" rel="noopener noreferrer">Executed notebook</a>
-      <a href="${repo}/blob/main/frame_comparison.csv" target="_blank" rel="noopener noreferrer">Experimental results</a>
-    </div>
-  </footer>
+    </aside>
+  </div>
 </article>`;
 };
 window.initFluoroCaseStudy = function initFluoroCaseStudy() {
