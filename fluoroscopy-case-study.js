@@ -23,7 +23,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
 
   <section class="fl-overview" aria-labelledby="fl-overview-title">
     <h2 id="fl-overview-title">Project overview</h2>
-    <p>As part of an academic image-processing practical in the MSc Control &amp; Robotics programme at Centrale Nantes, we studied a short sequence of fluoroscopic X-ray images. The challenge was to identify very thin guidewires and microcatheters that can blend into anatomy. We first tested conventional background-subtraction methods, then investigated whether reconstructing a continuous path could overcome their fragmented predictions.</p>
+    <p>During the first year of our MSc Control &amp; Robotics programme (Master 1) at Centrale Nantes, we developed this image-processing project using a short sequence of fluoroscopic X-ray images. The challenge was to identify very thin guidewires and microcatheters that can blend into anatomy. We first tested conventional background-subtraction methods, then investigated whether reconstructing a continuous path could overcome their fragmented predictions.</p>
     <div class="fl-purpose-grid">
       <div>
         <h3>Our objective</h3>
@@ -149,7 +149,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
       </div>
     </div>
     <div class="fl-outcome-footer">
-      <p>Academic project by Denos Kume and Oluwole Shokunbi at Centrale Nantes.</p>
+      <p>Master 1 project by Denos Kume and Oluwole Shokunbi at Centrale Nantes.</p>
       <div class="fl-conclusion-links">
         <a class="fl-primary-link" href="${repo}" target="_blank" rel="noopener noreferrer">Explore repository</a>
         <a href="${repo}/blob/main/Fluoroscopy_Instrument_Segmentation.ipynb" target="_blank" rel="noopener noreferrer">Executed notebook</a>
