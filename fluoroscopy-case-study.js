@@ -4,7 +4,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
   const repo = "https://github.com/denoskume/Background-Subtraction-Fluoroscopy";
   const frames = [201,211,221,231,241,251,261,271,281,291];
   const toc = [
-    {key:"report",entries:[["fl-r-abstract","Abstract"],["fl-r-keywords","Keywords & information"],["fl-r-intro","1.0 Introduction"],["fl-r-dataset","2.0 Dataset & objectives"],["fl-r-method","3.0 Methodology"],["fl-r-results","4.0 Experimental results"],["fl-r-discussion","5.0 Discussion & conclusion"]]},
+    {key:"report",entries:[["fl-r-abstract","Abstract"],["fl-r-keywords","Keywords"],["fl-r-nomenclature","Nomenclature"],["fl-r-information","Project information"],["fl-r-intro","1.0 Introduction"],["fl-r-dataset","2.0 Dataset & objectives"],["fl-r-method","3.0 Methodology"],["fl-r-results","4.0 Experimental results"],["fl-r-discussion","5.0 Discussion & conclusion"]]},
     {key:"figures",entries:[["fl-f-input","Figure 1 · Input images"],["fl-f-method","Figure 2 · Reconstruction"],["fl-f-results","Figure 3 · Predictions"],["fl-f-demo","Video demonstration"]]},
     {key:"metrics",entries:[["fl-m-dice","Dice comparison"],["fl-m-baselines","Initial methods"],["fl-m-errors","Detection errors"],["fl-m-frames","Frame explorer"]]}
   ];
@@ -44,7 +44,26 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
           <div class="fl-keywords" aria-label="Project keywords">
             <span>Computer Vision</span><span>Image Processing</span><span>Fluoroscopy</span><span>Background Subtraction</span><span>Segmentation</span><span>ExtraTrees</span><span>Dice Score</span><span>Path Reconstruction</span>
           </div>
-          <h2>Project information</h2>
+          <div class="fl-nomenclature" id="fl-r-nomenclature" aria-labelledby="fl-nomenclature-title">
+            <h2 id="fl-nomenclature-title">Nomenclature</h2>
+            <p class="fl-nomenclature-intro">Key terms used throughout this image-processing project.</p>
+            <dl class="fl-terms">
+              <div><dt>Computer Vision (CV)</dt><dd>Methods that enable computers to extract useful information from images and video.</dd></div>
+              <div><dt>Image Processing</dt><dd>Operations used to enhance, filter, transform or analyse digital images.</dd></div>
+              <div><dt>Fluoroscopy</dt><dd>X-ray imaging that produces a sequence of frames. This project analyses an existing sequence offline.</dd></div>
+              <div><dt>Guidewire</dt><dd>A thin, flexible wire used to guide devices through a vessel; one of the instruments traced in the images.</dd></div>
+              <div><dt>Microcatheter</dt><dd>A small, flexible catheter that can be navigated over a guidewire; another instrument of interest in the images.</dd></div>
+              <div><dt>Background Subtraction</dt><dd>Comparing a frame with a reference background to highlight image regions that have changed.</dd></div>
+              <div><dt>Segmentation / Binary Mask</dt><dd>Separating instrument pixels from background pixels. A binary mask records the predicted class at each pixel.</dd></div>
+              <div><dt>Manual Annotation (Reference Mask)</dt><dd>An instrument tracing made by a person and converted into a mask for comparison with predictions.</dd></div>
+              <div><dt>ExtraTrees</dt><dd>Extremely Randomized Trees: a supervised ensemble of decision trees used here to score candidate instrument pixels.</dd></div>
+              <div><dt>Dice Score</dt><dd>An overlap measure between predicted and reference masks, ranging from 0 (no overlap) to 1 (perfect overlap).</dd></div>
+              <div><dt>IoU (Intersection over Union)</dt><dd>The area shared by the predicted and reference instrument masks divided by the area covered by either mask.</dd></div>
+              <div><dt>PSNR (Peak Signal-to-Noise Ratio)</dt><dd>A decibel measure of pixel-level agreement derived from mean squared error; it can be misleading for sparse instruments.</dd></div>
+              <div><dt>Continuous-Path Reconstruction</dt><dd>Connecting candidate instrument pixels into a single plausible line to reduce gaps in the predicted trace.</dd></div>
+            </dl>
+          </div>
+          <h2 id="fl-r-information">Project information</h2>
           <div class="fl-info-table" role="table" aria-label="Project information">
             <div role="row"><strong role="rowheader">Type</strong><span role="cell">Master 1 academic project</span></div>
             <div role="row"><strong role="rowheader">Institution</strong><span role="cell">Centrale Nantes · MSc Control &amp; Robotics</span></div>
