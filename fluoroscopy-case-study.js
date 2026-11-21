@@ -313,6 +313,21 @@ window.initFluoroCaseStudy = function initFluoroCaseStudy() {
   root.querySelectorAll("[data-fl-open-panel]").forEach(button => {
     button.addEventListener("click", () => activateView(button.dataset.flOpenPanel, { targetId: button.dataset.flJump }));
   });
+  root.querySelectorAll(".fl-figure-ref, .fl-table-ref").forEach(link => {
+    link.addEventListener("click", event => {
+      event.preventDefault();
+      const target = root.querySelector(link.getAttribute("href"));
+      target?.scrollIntoView({behavior:"smooth",block:"start"});
+    });
+  });
+  if (typeof IntersectionObserver !== "undefined") {
+    const observer = new IntersectionObserver(entries => {
+      if (activeView !== "report") return;
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => a.boundingClientRect.top-b.boundingClientRect.top);
+      if (visible.length) selectTocEntry(visible[0].target.id);
+    }, {root:null,rootMargin:"-17% 0px -72% 0px",threshold:0});
+    root.querySelectorAll('#fl-panel-report > section[id]').forEach(section => observer.observe(section));
+  }
   activateView(activeView);
 
   const statusNode = root.querySelector("#fl-action-status");
