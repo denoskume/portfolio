@@ -2685,9 +2685,9 @@ function buildCarousel() {
         ${group.items.map((item, i) => `
           <figure class="showcase-panel">
             <div class="showcase-image">
-              <img src="${escaped(item.url)}" alt="${escaped(item.label)}" loading="${groupIndex === 0 ? 'eager' : 'lazy'}" decoding="async">
+              <img src="${escaped(item.url)}" alt="${escaped(item.label)}" loading="eager" decoding="async">
             </div>
-            <figcaption><span>${String(i + 1).padStart(2, '0')}</span> ${escaped(item.label.replace(/^\\d+ · /, ''))}</figcaption>
+            <figcaption><span>${String(i + 1).padStart(2, '0')}</span> ${escaped(item.label.split(' · ').slice(1).join(' · ') || item.label)}</figcaption>
           </figure>
         `).join('')}
       </div>
