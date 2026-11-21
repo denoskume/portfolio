@@ -329,7 +329,17 @@ window.initFluoroCaseStudy = function initFluoroCaseStudy() {
         if (target && !target.closest("[hidden]")) target.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     } else if (options.scroll) {
-      root.querySelector(".fl-paper-tabs")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      // The tab bar is sticky: scrollIntoView on it may leave the page at the
+      // bottom of the previous (longer) view. Scroll to the new panel itself.
+      requestAnimationFrame(() => {
+        const panel = panels.find(item => item.dataset.flPanel === view);
+        const tabs = root.querySelector(".fl-paper-tabs");
+        if (!panel || !tabs || panel.hidden) return;
+        const navbarHeight = parseFloat(getComputedStyle(root).getPropertyValue("--nav-h")) || 0;
+        const stickyHeaderHeight = navbarHeight + tabs.getBoundingClientRect().height + 12;
+        const panelDocumentTop = panel.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: Math.max(0, panelDocumentTop - stickyHeaderHeight), behavior: "instant" });
+      });
     }
   }
 
@@ -341,7 +351,7 @@ window.initFluoroCaseStudy = function initFluoroCaseStudy() {
       event.preventDefault();
       const next = tabButtons[keys[event.key]];
       next.focus();
-      activateView(next.dataset.flTab);
+      activateView(next.dataset.flTab, { scroll: true });
     });
   });
   root.querySelectorAll("[data-fl-target-tab]").forEach(link => {
