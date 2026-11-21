@@ -148,6 +148,14 @@ def main():
     p("This Master 1 image-processing project investigates guidewire and microcatheter segmentation in fluoroscopic X-ray images. We compared background-subtraction methods against manual references and explored continuous-path reconstruction to reduce fragmented predictions. On nine motion frames from a supplied sequence, mean Dice increased from <b>0.501 to 0.876</b>. The results demonstrate improvement on this sequence rather than robustness across independent acquisitions.")
     h2("Keywords")
     p("Computer Vision | Image Processing | Fluoroscopy | Background Subtraction | Segmentation | ExtraTrees | Dice | Path Reconstruction")
+    h2("Project information")
+    table([
+        ["Type","Master 1 academic project"],
+        ["Institution","Centrale Nantes | MSc Control & Robotics"],
+        ["Authors","Denos Kume and Oluwole Shokunbi"],
+        ["Dataset","10 grayscale frames, 512 x 512 pixels, 20 manual tracings"],
+    ],[108,PAGE_WIDTH-108],header=False)
+
     h2("Nomenclature")
     p("Key terms used throughout this image-processing project.")
     terms = [
@@ -171,13 +179,6 @@ def main():
             Paragraph(escape(definition), STYLES["body"]),
             Spacer(1, 3),
         ]))
-    h2("Project information")
-    table([
-        ["Type","Master 1 academic project"],
-        ["Institution","Centrale Nantes | MSc Control & Robotics"],
-        ["Authors","Denos Kume and Oluwole Shokunbi"],
-        ["Dataset","10 grayscale frames, 512 x 512 pixels, 20 manual tracings"],
-    ],[108,PAGE_WIDTH-108],header=False)
 
     h1("1.0 Introduction")
     p("Fluoroscopy produces sequences of X-ray images where thin instruments must be distinguished from anatomical structures. Low contrast, image noise and similar-looking edges can make straightforward segmentation unreliable. Background subtraction highlights changes, but nearly stationary shaft segments may be missed while unrelated anatomical edges are retained.")
