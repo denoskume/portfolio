@@ -82,10 +82,10 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
       <h2>Does reconstruction produce a better match?</h2>
       <p>We compared the reconstructed path with manually traced instruments. Dice measures how closely the masks overlap: 1 means a perfect match.</p>
     </div>
-    <div class="fl-score" aria-label="Mean Dice across nine motion frames">
+    <div class="fl-score" aria-label="Mean Dice improvement across nine motion frames">
       <div><small>Previous prediction</small><strong>0.501</strong></div>
-      <span class="fl-score-separator" aria-hidden="true"></span>
       <div><small>Continuous trace</small><strong>0.876</strong></div>
+      <div class="fl-score-gain"><small>Dice improvement</small><strong>+0.375</strong></div>
     </div>
     <figure class="fl-visual fl-visual-results">
       <a href="${raw}assets/segmentation-comparison.png" target="_blank" rel="noopener noreferrer">
