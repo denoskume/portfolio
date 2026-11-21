@@ -35,7 +35,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
 
         <section class="fl-paper-section" id="fl-r-abstract">
           <h2>Abstract</h2>
-          <p>This Master 1 project at Centrale Nantes investigated how to detect thin guidewires and microcatheters in fluoroscopic X-ray images. The instrument occupies a small portion of each frame and can be confused with noisy anatomical edges, making complete segmentation difficult.</p>
+          <p>This Master 1 project at Centrale Nantes investigated how to detect thin guidewires and microcatheters in fluoroscopic <span class="fl-nowrap">X-ray</span> images. The instrument occupies a small portion of each frame and can be confused with noisy anatomical edges, making complete segmentation difficult.</p>
           <p>We built a background-subtraction pipeline, evaluated fixed thresholding, Otsu thresholding and Gaussian-mixture segmentation against manual annotations, then explored supervised pixel scoring and continuous-path reconstruction to recover missed segments. Over nine motion frames from the supplied sequence, mean Dice improved from <strong>0.501 to 0.876</strong> after reconstruction. The project demonstrates improved within-sequence segmentation; its robustness on independent sequences remains untested.</p>
         </section>
 
