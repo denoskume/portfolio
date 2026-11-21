@@ -2397,6 +2397,57 @@ body:has(#about.active) .main-container {
     margin-top: 16px;
   }
 }
+/* Education and Experience: paired chronology, in two clear columns. */
+#about .education-experience {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(38px, 6vw, 90px);
+  align-items: stretch;
+}
+#about .edu-exp-heading {
+  min-width: 0;
+  margin-bottom: 34px;
+}
+#about .edu-exp-entry {
+  min-width: 0;
+  margin-left: 40px;
+  padding-bottom: 36px;
+}
+#about .edu-exp-entry::after {
+  content: '';
+  position: absolute;
+  left: -33px;
+  top: 22px;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule);
+  pointer-events: none;
+}
+#about .edu-exp-entry.final-entry::after {
+  display: none;
+}
+#about .edu-exp-entry p {
+  max-width: none;
+  overflow-wrap: break-word;
+}
+#about .edu-exp-entry .org {
+  overflow-wrap: break-word;
+}
+@media (max-width: 800px) {
+  #about .education-experience {
+    display: flex;
+    flex-direction: column;
+  }
+  #about .edu-heading { order: 0; }
+  #about .education-entry { order: 1; }
+  #about .exp-heading {
+    order: 2;
+    margin-top: 32px;
+  }
+  #about .experience-entry { order: 3; }
+  #about .edu-exp-heading { margin-bottom: 26px; }
+  #about .edu-exp-entry { padding-bottom: 30px; }
+}
 </style>
 <link rel="stylesheet" href="fluoroscopy-case-study.css?v=20261121-article-layout-v21">
 
@@ -2626,79 +2677,49 @@ body:has(#about.active) .main-container {
 
         </div>
 
-        <div class="edu-block" id="education" style="margin-bottom:0;">
-
-          <div class="section-title">
-
+        <div class="edu-block education-experience" id="education" style="margin-bottom:0;">
+          <div class="section-title edu-exp-heading edu-heading">
             <h3>Education</h3>
-
-            <span class="sub"></span>
-
+          </div>
+          <div class="section-title edu-exp-heading exp-heading" id="experience">
+            <h3>Experience</h3>
           </div>
 
-
-
-            <div class="chrono">
-
-            <div class="chrono-item">
-
-                <div class="date">2025 — 2027</div>
-
-                <h4>MSc Control and Robotics</h4>
-
-                <div class="org"><a href="https://www.ec-nantes.fr/english-version" target="_blank" rel="noopener noreferrer">Centrale Nantes</a> · Data Science, Signal and Image Processing</div>
-
-                <p>
-                The programme focuses on artificial intelligence (AI), machine learning (ML) and numerical optimization methods applied to data analysis and image processing.
-                </p>
-
-            </div>
-
-
-
-            <div class="chrono-item">
-
-                <div class="date">2021 — June 2025</div>
-
-                <h4>Bachelor — Computer Science and Electronics</h4>
-
-                <div class="org">
-
-                <a href="https://kristujayanti.edu.in/" target="_blank" rel="noopener noreferrer">Kristu Jayanti College</a> (now Kristu Jayanti University since July 2025) · Bangalore, India
-
-                </div>
-
-                <p>
-                Two complementary areas: programming, databases and data analysis; and digital electronics and embedded systems, with practical work using microcontrollers and the Internet of Things (IoT). Final-year three-month data analysis internship at Unified Mentor, September–December 2024.
-                </p>
-
-            </div>
-
-
-
-            <div class="chrono-item">
-
-                <div class="date">2020</div>
-
-                <h4>Scientific Baccalaureate — Series D</h4>
-
-                <div class="org">
-
-                Lycée Moderne M'Batto · Côte d'Ivoire
-
-                </div>
-
-                <p>
-                Studied mathematics and fundamental physics with an emphasis on quantitative reasoning, scientific problem-solving, and analysis.
-                </p>
-
-            </div>
-
-            </div>
-
-
-
+          <div class="chrono-item edu-exp-entry education-entry">
+            <div class="date">2025 — 2027</div>
+            <h4>MSc Control and Robotics</h4>
+            <div class="org"><a href="https://www.ec-nantes.fr/english-version" target="_blank" rel="noopener noreferrer">Centrale Nantes</a> · Data Science, Signal and Image Processing</div>
+            <p>The programme focuses on artificial intelligence (AI), machine learning (ML) and numerical optimization methods applied to data analysis and image processing.</p>
           </div>
+
+          <div class="chrono-item edu-exp-entry experience-entry">
+            <div class="date">August — October 2026</div>
+            <h4>AI Model Response Evaluation — Freelance</h4>
+            <div class="org">RWS TrainAI</div>
+            <p>Freelance assignments evaluating responses from AI models.</p>
+          </div>
+
+          <div class="chrono-item edu-exp-entry education-entry">
+            <div class="date">2021 — June 2025</div>
+            <h4>Bachelor — Computer Science and Electronics</h4>
+            <div class="org"><a href="https://kristujayanti.edu.in/" target="_blank" rel="noopener noreferrer">Kristu Jayanti College</a> (now Kristu Jayanti University since July 2025) · Bangalore, India</div>
+            <p>Two complementary areas: programming, databases and data analysis; and digital electronics and embedded systems, with practical work using microcontrollers and the Internet of Things (IoT).</p>
+          </div>
+
+          <div class="chrono-item edu-exp-entry experience-entry final-entry">
+            <div class="date">September — December 2024</div>
+            <h4>Data Analysis Intern — Final-Year Internship</h4>
+            <div class="org">Unified Mentor</div>
+            <p>Three-month data analysis internship completed as part of the Bachelor's degree.</p>
+          </div>
+
+          <div class="chrono-item edu-exp-entry education-entry final-entry">
+            <div class="date">2020</div>
+            <h4>Scientific Baccalaureate — Series D</h4>
+            <div class="org">Lycée Moderne M'Batto · Côte d'Ivoire</div>
+            <p>Studied mathematics and fundamental physics with an emphasis on quantitative reasoning, scientific problem-solving, and analysis.</p>
+          </div>
+        </div>
 
         </div>
 
