@@ -23,7 +23,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
 
   <section class="fl-overview" aria-labelledby="fl-overview-title">
     <h2 id="fl-overview-title">Project overview</h2>
-    <p>During the MSc Control &amp; Robotics programme at Centrale Nantes, we studied a short sequence of fluoroscopic X-ray images. The challenge was to identify very thin guidewires and microcatheters that can blend into anatomy. We first tested conventional background-subtraction methods, then investigated whether reconstructing a continuous path could overcome their fragmented predictions.</p>
+    <p>As part of an academic image-processing practical in the MSc Control &amp; Robotics programme at Centrale Nantes, we studied a short sequence of fluoroscopic X-ray images. The challenge was to identify very thin guidewires and microcatheters that can blend into anatomy. We first tested conventional background-subtraction methods, then investigated whether reconstructing a continuous path could overcome their fragmented predictions.</p>
     <div class="fl-purpose-grid">
       <div>
         <h3>Our objective</h3>
@@ -136,7 +136,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
     <div class="fl-outcome-intro">
       <h2 id="fl-outcome-title">Did we meet the objective?</h2>
       <p><strong>Yes, for this academic experiment.</strong> We generated instrument masks for all ten frames and the reconstructed predictions each formed one connected component. Across the nine motion frames, mean Dice rose from <strong>0.501 to 0.876</strong>, a gain of <strong>0.375 Dice points</strong>.</p>
-      <p>The reconstructed traces also reduced false-positive pixels from <strong>22,472 to 3,553</strong> and missed instrument pixels from <strong>5,240 to 2,511</strong>. These measurements support an improvement in this sequence, not clinical reliability across patients.</p>
+      <p>The reconstructed traces also reduced false-positive pixels from <strong>22,472 to 3,553</strong> and missed instrument pixels from <strong>5,240 to 2,511</strong>. These measurements demonstrate stronger segmentation on the supplied teaching sequence; performance on other image sequences has not yet been evaluated.</p>
     </div>
     <div class="fl-outcome-grid">
       <div>
@@ -145,7 +145,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
       </div>
       <div>
         <h3>What remains unresolved?</h3>
-        <p>The data come from a single acquisition. Model settings were explored on that sequence, the path assumes entry from the lower image border, and independent patient-level or clinical review is unavailable. Further validation on unseen sequences is needed.</p>
+        <p>We worked with one supplied image sequence, and some model settings were developed using those frames. The connected-path method also assumes the instrument enters from the lower image border. To test whether the approach generalizes, it should be evaluated on other sequences with different instrument positions, motion and image quality.</p>
       </div>
     </div>
     <div class="fl-outcome-footer">
