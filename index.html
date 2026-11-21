@@ -646,13 +646,6 @@
     border-bottom: 1px solid var(--rule);
     padding-bottom: 8px;
   }
-  .slide-project-header .project-number {
-    font-family: var(--font-mono);
-    font-size: .67rem;
-    letter-spacing: .08em;
-    color: var(--tech);
-    white-space: nowrap;
-  }
   .slide-project-header h3 {
     font-family: var(--font-display);
     font-weight: 400;
@@ -707,10 +700,7 @@
     font-size: clamp(.59rem, .82vw, .8rem);
     line-height: 1.3;
   }
-  .showcase-panel figcaption span {
-    color: var(--tech);
-    margin-right: 5px;
-  }
+
 
   /* ============================================================
 
@@ -2093,18 +2083,6 @@
 
 
 
-      <div class="wrap">
-
-        <div class="gallery-head">
-
-          <span class="t">Travaux récents — Aperçu visuel</span>
-
-        </div>
-
-      </div>
-
-
-
       <!-- CARROUSEL -->
 
       <div class="carousel" aria-label="Projets présentés par séries de trois images" aria-roledescription="carousel">
@@ -2677,7 +2655,6 @@ function buildCarousel() {
   track.innerHTML = groups.map((group, groupIndex) => `
     <article class="slide" aria-label="${escaped(group.title)}" aria-hidden="${groupIndex !== 0}">
       <div class="slide-project-header">
-        <span class="project-number">PROJET ${String(groupIndex % carouselGroups.length + 1).padStart(2, '0')} / ${String(carouselGroups.length).padStart(2, '0')}</span>
         <h3>${escaped(group.title)}</h3>
         <span class="project-story">${escaped(group.story)}</span>
       </div>
@@ -2687,7 +2664,7 @@ function buildCarousel() {
             <div class="showcase-image">
               <img src="${escaped(item.url)}" alt="${escaped(item.label)}" loading="eager" decoding="async">
             </div>
-            <figcaption><span>${String(i + 1).padStart(2, '0')}</span> ${escaped(item.label.split(' · ').slice(1).join(' · ') || item.label)}</figcaption>
+            <figcaption>${escaped(item.label.split(' · ').slice(1).join(' · ') || item.label)}</figcaption>
           </figure>
         `).join('')}
       </div>
