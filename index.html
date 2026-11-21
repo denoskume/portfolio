@@ -406,7 +406,7 @@
 
     margin-top: var(--nav-h);
 
-    min-height: calc(100vh - var(--nav-h) - 80px);
+    min-height: 0;
 
     opacity: 1;
 
@@ -1094,7 +1094,7 @@
 
      ============================================================ */
 
-  .projects { padding: clamp(50px, 8vh, 90px) 0 80px; }
+  .projects { padding: clamp(20px, 3vh, 34px) 0 clamp(22px, 3vh, 38px); }
 
 
 
@@ -1108,9 +1108,9 @@
 
     align-items: end;
 
-    margin-bottom: clamp(50px, 8vh, 80px);
+    margin-bottom: clamp(16px, 2.5vh, 28px);
 
-    padding-bottom: 28px;
+    padding-bottom: 16px;
 
     border-bottom: 1px solid var(--ink);
 
@@ -1166,13 +1166,13 @@
 
     background: var(--paper);
 
-    padding: clamp(28px, 4vw, 48px);
+    padding: clamp(18px, 2.6vw, 30px);
 
     display: flex;
 
     flex-direction: column;
 
-    min-height: 340px;
+    min-height: 0;
 
     transition: background 0.5s var(--ease);
 
@@ -1190,7 +1190,7 @@
 
     align-items: baseline;
 
-    margin-bottom: 28px;
+    margin-bottom: 16px;
 
   }
 
@@ -1248,7 +1248,7 @@
 
     flex: 1;
 
-    margin-bottom: 28px;
+    margin-bottom: 18px;
 
     max-width: 44ch;
 
@@ -1624,7 +1624,7 @@
 
      ============================================================ */
 
-  .contact { padding: clamp(50px, 8vh, 90px) 0 90px; }
+  .contact { padding: clamp(20px, 3vh, 34px) 0 clamp(22px, 3vh, 38px); }
 
   .contact-grid {
 
@@ -1632,13 +1632,13 @@
 
     grid-template-columns: 1fr 1fr;
 
-    gap: clamp(40px, 7vw, 100px);
+    gap: clamp(22px, 4vw, 56px);
 
     align-items: start;
 
   }
 
-  .contact-left .kicker { margin-bottom: 26px; }
+  .contact-left .kicker { margin-bottom: 12px; }
 
   .contact-left h2 {
 
@@ -1652,7 +1652,7 @@
 
     letter-spacing: -0.03em;
 
-    margin-bottom: 26px;
+    margin-bottom: 16px;
 
   }
 
@@ -1668,7 +1668,7 @@
 
     max-width: 42ch;
 
-    margin-bottom: 44px;
+    margin-bottom: 18px;
 
   }
 
@@ -1682,7 +1682,7 @@
 
     gap: 20px;
 
-    padding: 18px 0;
+    padding: 12px 0;
 
     border-bottom: 1px solid var(--rule);
 
@@ -1730,7 +1730,7 @@
 
 
 
-  .contact-form { display: flex; flex-direction: column; gap: 26px; }
+  .contact-form { display: flex; flex-direction: column; gap: 18px; }
 
   .field { display: flex; flex-direction: column; gap: 8px; }
 
@@ -1798,7 +1798,7 @@
 
     align-self: flex-start;
 
-    margin-top: 14px;
+    margin-top: 2px;
 
     display: inline-flex;
 
@@ -2136,6 +2136,21 @@ body:has(#home.active) .footer{display:none}
   .cn-footer-bottom{font-size:.52rem}
 }
 
+
+/* Sections Project / Contact : suppress oversized blank whitespace without affecting Home. */
+#projects, #contact { min-height: 0; }
+#projects .wrap, #contact .wrap { width: 100%; }
+#projects .projects-grid { align-items: stretch; }
+#contact .contact-left .intro { margin-bottom: 18px; }
+#contact .contact-info .row .v { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 1000px) {
+  #contact .contact-grid { gap: 24px; }
+}
+@media (max-width: 640px) {
+  #projects .projects-grid { grid-template-columns: minmax(0, 1fr); }
+  #projects .project-card { min-height: 0; }
+  #contact .contact-info .row { grid-template-columns: 90px minmax(0,1fr); gap: 12px; }
+}
 </style>
 
 </head>
