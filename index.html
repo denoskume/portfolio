@@ -1120,7 +1120,7 @@
   }
 
   /* Projects section keeps a single, evergreen heading without editorial microcopy. */
-  #projects .projects-head { display: block; }
+  #projects .projects-head, #blog .projects-head, #resume .projects-head { display: block; }
 
   .projects-head .kicker { margin-bottom: 18px; }
 
@@ -2569,7 +2569,7 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
 
           <div class="about-text">
 
-            <span class="kicker">About Me — Background</span>
+            
 
             <h2>From electronics to <em>computer vision.</em></h2>
 
@@ -2730,8 +2730,7 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
     <div class="projects">
       <div class="wrap">
         <div class="projects-head">
-          <div><span class="kicker">Research notes · Methods &amp; lessons</span><h2>Notes from <em>practice.</em></h2></div>
-          <p>Short technical articles about experimental methods, evaluation, reproducibility and lessons from my projects.</p>
+          <h2>Blog</h2>
         </div>
         <div class="projects-grid blog-grid" id="blogGrid"></div>
       </div>
@@ -2747,8 +2746,7 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
     <div class="projects">
       <div class="wrap">
         <div class="projects-head">
-          <div><span class="kicker">Academic &amp; technical background</span><h2>Curriculum <em>Vitae.</em></h2></div>
-          <p>A concise overview of my education, technical focus and selected projects.</p>
+          <h2>Curriculum Vitae</h2>
         </div>
         <div class="resume-sheet">
           <h1>Denos Kume</h1>
@@ -2790,7 +2788,7 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
 
           <div class="contact-left">
 
-            <span class="kicker">Get in Touch</span>
+            
 
             <h2>Let's discuss an internship or a <em>collaboration.</em></h2>
 
@@ -3205,8 +3203,6 @@ function openProject(id) {
     return;
   }
 
-  const n = String(p.id).padStart(2, '0');
-
 
 
   const content = document.getElementById('projectDetailContent');
@@ -3218,16 +3214,6 @@ function openProject(id) {
       Back to Projects
 
     </button>
-
-    <div class="detail-eyebrow">
-
-      <span>Year <b>${p.year}</b></span>
-
-      <span>Project <b>${n} / ${String(projects.length).padStart(2, '0')}</b></span>
-
-      <span>Case Study</span>
-
-    </div>
 
     <h1 class="detail-title">${p.title}</h1>
 
@@ -3245,7 +3231,7 @@ function openProject(id) {
 
     <div class="article-block">
 
-      <div class="label"><span class="n">01</span>Introduction</div>
+      <div class="label">Introduction</div>
 
       <div class="content"><p>${p.introduction}</p></div>
 
@@ -3253,7 +3239,7 @@ function openProject(id) {
 
     <div class="article-block">
 
-      <div class="label"><span class="n">02</span>Objective</div>
+      <div class="label">Objective</div>
 
       <div class="content"><p>${p.objective}</p></div>
 
@@ -3261,7 +3247,7 @@ function openProject(id) {
 
     <div class="article-block">
 
-      <div class="label"><span class="n">03</span>Approach</div>
+      <div class="label">Approach</div>
 
       <div class="content"><ul>${p.approach.map(a => `<li>${a}</li>`).join('')}</ul></div>
 
@@ -3269,7 +3255,7 @@ function openProject(id) {
 
     <div class="article-block">
 
-      <div class="label"><span class="n">04</span>Code snapshot</div>
+      <div class="label">Code snapshot</div>
 
       <div class="content"><pre class="code-snapshot">${escapeHtml(p.code)}</pre></div>
 
@@ -3277,7 +3263,7 @@ function openProject(id) {
 
     <div class="article-block">
 
-      <div class="label"><span class="n">05</span>Results</div>
+      <div class="label">Results</div>
 
       <div class="content"><ul>${p.results.map(r => `<li>${r}</li>`).join('')}</ul></div>
 
@@ -3285,7 +3271,7 @@ function openProject(id) {
 
     <div class="article-block">
 
-      <div class="label"><span class="n">06</span>Limitations</div>
+      <div class="label">Limitations</div>
 
       <div class="content"><p>${p.limitations}</p></div>
 
@@ -3293,7 +3279,7 @@ function openProject(id) {
 
     <div class="article-block">
 
-      <div class="label"><span class="n">07</span>Future Work</div>
+      <div class="label">Future Work</div>
 
       <div class="content"><p>${p.future}</p></div>
 
@@ -3428,12 +3414,11 @@ const portfolioArticles = window.PORTFOLIO_DATA?.articles || [];
 function buildBlog() {
   const grid = document.getElementById('blogGrid');
   if (!grid) return;
-  grid.innerHTML = portfolioArticles.map((article, index) => `
+  grid.innerHTML = portfolioArticles.map(article => `
     <article class="project-card blog-card">
-      <div class="card-top"><span class="card-num">NOTE ${String(index + 1).padStart(2,'0')}</span><span class="card-year">${escapeHtml(article.tag || 'Research')}</span></div>
       <h3>${escapeHtml(article.title)}</h3>
       <p class="brief">${escapeHtml(article.summary)}</p>
-      <div class="card-footer"><span class="tag">${escapeHtml(article.minutes ? article.minutes + ' min read' : 'Read')}</span>
+      <div class="card-footer">
         <button class="btn-explore" type="button" data-blog-open="${escapeHtml(article.slug)}">Read article</button>
       </div>
     </article>
@@ -3449,12 +3434,11 @@ function openBlog(slug) {
   const target = document.getElementById('blogDetailContent');
   target.innerHTML = `
     <button type="button" class="detail-back" onclick="showSection('blog')">Back to Blog</button>
-    <div class="detail-eyebrow"><span>Technical Note</span><span>${escapeHtml(article.tag || 'Research')}</span><span>${escapeHtml(article.minutes ? article.minutes + ' min read' : '')}</span></div>
     <h1 class="detail-title">${escapeHtml(article.title)}</h1>
     <p class="detail-context">${escapeHtml(article.summary)}</p>
-    ${article.sections.map((section, index) => `
+    ${article.sections.map(section => `
       <div class="article-block">
-        <div class="label"><span class="n">${String(index + 1).padStart(2,'0')}</span>${escapeHtml(section.heading || 'Note')}</div>
+        <div class="label">${escapeHtml(section.heading || 'Note')}</div>
         <div class="content"><p>${escapeHtml(section.body || '')}</p></div>
       </div>
     `).join('')}
