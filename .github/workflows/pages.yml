@@ -20,15 +20,18 @@ jobs:
         run: |
           node --check app.js
           node --check content.js
+          node --check fluoroscopy-case-study.js
           node --check lab/workspace.js
           node --check lab/worker.js
           python -c 'from pathlib import Path; import re; html=Path("index.html").read_text(); Path("/tmp/portfolio-inline.js").write_text("\n".join(re.findall(r"<script[^>]*>([\s\S]*?)</script>", html, flags=re.I)), encoding="utf-8")'
           node --check /tmp/portfolio-inline.js
           mkdir -p _site/lab
-          cp index.html app.js content.js styles.css atelier.css favicon.svg _site/
+          cp index.html app.js content.js styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css _site/
           cp lab/workspace.js lab/worker.js lab/compute.py _site/lab/
           cp -r assets _site/
           test -f _site/assets/denos-kume-signature.svg
+          test -s _site/fluoroscopy-case-study.js
+          test -s _site/fluoroscopy-case-study.css
           touch _site/.nojekyll
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
