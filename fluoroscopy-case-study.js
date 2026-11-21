@@ -8,30 +8,34 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
   <header class="fl-cover">
     <div class="fl-cover-copy">
       <h1 id="fl-title">Microcatheter segmentation in fluoroscopy</h1>
-      <p class="fl-lead">An academic computer vision study: can we detect a microcatheter or guidewire in noisy X-ray images, then recover a continuous instrument path?</p>
-      <div class="fl-cover-stats">
-        <div><strong>0.876</strong><span>Mean Dice score</span></div>
-        <div><strong>10</strong><span>Annotated frames</span></div>
-      </div>
+      <p class="fl-research-question">Can we detect a thin instrument in noisy X-ray images and reconstruct its full path accurately?</p>
     </div>
-    <figure class="fl-cover-video">
-      <video controls playsinline preload="metadata" poster="${raw}assets/segmentation-comparison.png" aria-label="Recorded demonstration of microcatheter segmentation">
-        <source src="${raw}assets/demo-web.mp4" type="video/mp4">Your browser does not support HTML5 video.
-      </video>
-    </figure>
   </header>
 
-  <section class="fl-overview" aria-labelledby="fl-overview-title">
-    <h2 id="fl-overview-title">Project overview</h2>
-    <p>During the first year of our MSc Control &amp; Robotics programme (Master 1) at Centrale Nantes, we developed this image-processing project using a short sequence of fluoroscopic X-ray images. The challenge was to identify very thin guidewires and microcatheters that can blend into anatomy. We first tested conventional background-subtraction methods, then investigated whether reconstructing a continuous path could overcome their fragmented predictions.</p>
-    <div class="fl-purpose-grid">
-      <div>
-        <h3>Our objective</h3>
-        <p>Detect the instrument in each frame, compare the predicted masks with manually traced references, and understand why initial methods miss parts of the tool.</p>
+  <section class="fl-overview" aria-labelledby="fl-abstract-title">
+    <h2 id="fl-abstract-title">Abstract</h2>
+    <p>This Master 1 image-processing project at Centrale Nantes investigated how to segment thin guidewires and microcatheters in fluoroscopic X-ray images. Their low contrast, image noise and similarity to surrounding structures make accurate detection difficult.</p>
+    <p>We developed a background-subtraction pipeline, compared three classical segmentation methods and assessed their output against manual annotations. Because the initial masks could miss or fragment the instrument, we also explored supervised pixel scoring and continuous-path reconstruction. The study examines what worked, what failed and how much the reconstructed traces improved on the supplied image sequence.</p>
+  </section>
+
+  <section class="fl-brief" aria-labelledby="fl-brief-title">
+    <h2 id="fl-brief-title">Dataset and project requirements</h2>
+    <div class="fl-brief-grid">
+      <div class="fl-brief-data">
+        <h3>Dataset</h3>
+        <div class="fl-data-facts" aria-label="Dataset summary">
+          <div><strong>10</strong><span>Grayscale X-ray frames</span></div>
+          <div><strong>512 × 512</strong><span>Pixels per frame</span></div>
+          <div><strong>20</strong><span>Manual tracings</span></div>
+        </div>
+        <p>Frame 201 serves as the reference image for background subtraction. The other nine frames show motion, and manual instrument tracings provide the reference masks for evaluation.</p>
       </div>
-      <div>
-        <h3>What success would look like</h3>
-        <p>A reproducible mask for all ten frames, one connected instrument path, and a measurable improvement in overlap with the manual annotations. The repository does not specify a predefined target Dice score.</p>
+      <div class="fl-brief-spec">
+        <h3>Objective</h3>
+        <p>Identify instrument pixels, recover a complete and connected trace, and measure agreement with the manually annotated reference.</p>
+        <h3>Project requirements</h3>
+        <p>Prepare and enhance the images; implement and compare fixed thresholding, Otsu thresholding and Gaussian-mixture segmentation; produce binary masks for all frames; and evaluate the outputs using Dice, IoU, PSNR and visual error inspection.</p>
+        <p>The extended reconstruction was evaluated by path continuity and improvement in Dice. No predefined minimum Dice score was specified in the project repository.</p>
       </div>
     </div>
   </section>
@@ -52,7 +56,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
   <section class="fl-chapter" id="fl-method">
     <div class="fl-chapter-intro">
       <h2>Detect the instrument, then reconnect its path.</h2>
-      <p>We analysed ten annotated 512 × 512 frames. Frame 201 served as the background reference; the nine later frames were used for the reported motion-frame comparisons.</p>
+      <p>We first examined how classical image-processing methods detect candidate pixels, then introduced connected-path reconstruction to address the gaps they left behind.</p>
     </div>
     <div class="fl-process" aria-label="Processing stages">
       <div>Prepare</div><div>Subtract</div><div>Segment</div><div>Reconnect</div>
@@ -148,15 +152,28 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
         <p>We worked with one supplied image sequence, and some model settings were developed using those frames. The connected-path method also assumes the instrument enters from the lower image border. To test whether the approach generalizes, it should be evaluated on other sequences with different instrument positions, motion and image quality.</p>
       </div>
     </div>
-    <div class="fl-outcome-footer">
-      <p>Master 1 project by Denos Kume and Oluwole Shokunbi at Centrale Nantes.</p>
-      <div class="fl-conclusion-links">
-        <a class="fl-primary-link" href="${repo}" target="_blank" rel="noopener noreferrer">Explore repository</a>
-        <a href="${repo}/blob/main/Fluoroscopy_Instrument_Segmentation.ipynb" target="_blank" rel="noopener noreferrer">Executed notebook</a>
-        <a href="${repo}/blob/main/frame_comparison.csv" target="_blank" rel="noopener noreferrer">Experimental results</a>
-      </div>
-    </div>
   </section>
+
+  <section class="fl-demo" aria-labelledby="fl-demo-title">
+    <div class="fl-demo-intro">
+      <h2 id="fl-demo-title">See the final reconstruction</h2>
+      <p>After the method and evaluation, this recorded demo shows the reconstructed instrument paths across the image sequence.</p>
+    </div>
+    <figure class="fl-demo-player">
+      <video controls playsinline preload="metadata" poster="${raw}assets/segmentation-comparison.png" aria-label="Recorded demonstration of microcatheter segmentation on the ten academic image frames">
+        <source src="${raw}assets/demo-web.mp4" type="video/mp4">Your browser does not support HTML5 video.
+      </video>
+    </figure>
+  </section>
+
+  <footer class="fl-outcome-footer">
+    <p>Master 1 project by Denos Kume and Oluwole Shokunbi at Centrale Nantes.</p>
+    <div class="fl-conclusion-links">
+      <a class="fl-primary-link" href="${repo}" target="_blank" rel="noopener noreferrer">Explore repository</a>
+      <a href="${repo}/blob/main/Fluoroscopy_Instrument_Segmentation.ipynb" target="_blank" rel="noopener noreferrer">Executed notebook</a>
+      <a href="${repo}/blob/main/frame_comparison.csv" target="_blank" rel="noopener noreferrer">Experimental results</a>
+    </div>
+  </footer>
 </article>`;
 };
 window.initFluoroCaseStudy = function initFluoroCaseStudy() {
