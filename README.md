@@ -1,6 +1,10 @@
 # Denos Kume — Engineering Portfolio
 
-**Standalone site:** https://denoskume.github.io/portfolio/
+**Repository:** https://github.com/denoskume/portfolio
+
+**Public website (after initial Pages activation):** https://denoskume.github.io/portfolio/
+
+To activate the website once, open **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**, then use **Actions → Deploy standalone portfolio → Run workflow**. The workflow validates the source on every push and deploys automatically as soon as GitHub Pages is configured.
 
 A modern portfolio presenting verified engineering work in **Computer Vision**, **Image Processing**, and **Applied Machine Learning**. This is a dedicated website repository, not a copy of the academic lab repository.
 
