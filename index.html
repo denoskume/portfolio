@@ -122,6 +122,8 @@
 
   .preloader.done {
 
+    transition: none;
+
     transform: translateY(-100%);
 
     opacity: 0;
@@ -304,11 +306,11 @@
 
   .navbar.ready {
 
-    /* La navbar apparaît après 10s (fin du chargement) + 0.3s */
+    /* Navigation immédiatement visible dès la fin du chargement */
 
     transform: translateY(0);
 
-    transition: transform 0.8s var(--ease) 10.3s, background 0.4s var(--ease);
+    transition: none;
 
   }
 
@@ -444,13 +446,13 @@
 
     opacity: 0;
 
-    /* Le contenu apparaît après 10s + 0.5s de délai */
+    /* Contenu visible sans délai additionnel après le chargement */
 
-    transition: opacity 1s var(--ease) 10s;
+    transition: none;
 
   }
 
-  .main-container.ready { opacity: 1; }
+  .main-container.ready { opacity: 1; transition: none; }
 
   .section { display: none; }
 
