@@ -300,7 +300,7 @@
 
     transition: background 0.4s var(--ease);
 
-    transform: translateY(-100%);
+    transform: translateY(0);
 
   }
 
@@ -444,7 +444,7 @@
 
     min-height: calc(100vh - var(--nav-h) - 80px);
 
-    opacity: 0;
+    opacity: 1;
 
     /* Contenu visible sans délai additionnel après le chargement */
 
@@ -460,7 +460,7 @@
 
     display: block;
 
-    animation: sectionIn 0.6s var(--ease) both;
+    animation: none; /* Le premier écran est visible dès le premier rendu */
 
   }
 
@@ -2120,27 +2120,7 @@
 
 
 
-<!-- ===== PRELOADER (10 secondes, paliers 25% / 50% / 75% / 100%) ===== -->
-
-<div class="preloader" id="preloader">
-
-  <div class="pl-text-wrapper" data-text="Denos Kume">Denos Kume</div>
-
-
-
-  <div class="pl-loading">
-
-    <div>Loading<span class="pl-dots"></span></div>
-
-    <!-- Le compteur sera mis à jour en JS -->
-
-    <div class="pl-percentage" id="plPercentage">0%</div>
-
-  </div>
-
-</div>
-
-
+<!-- Navigation et contenu affichés immédiatement, sans écran de chargement artificiel -->
 
 <!-- ===== 1. NAVBAR FIXE ===== -->
 
@@ -3002,55 +2982,9 @@ function handleContact(e) {
   window.location.href = `mailto:kamenan.kume@eleves.ec-nantes.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-/* ============================================================
-
-   INIT & PRELOADER (10 SECONDES)
-
-   ============================================================ */
-
+/* Initialisation immédiate : aucun timer ni attente des images externes. */
 buildCarousel();
-
 buildProjects();
-
-
-
-window.addEventListener('load', () => {
-
-  const percentEl = document.getElementById('plPercentage');
-
-  const preloader = document.getElementById('preloader');
-
-  const navbar = document.getElementById('navbar');
-
-  const mainContainer = document.getElementById('mainContainer');
-
-
-
-  // On force le texte à afficher 25%, 50%, 75% puis 100% à des moments clés
-
-  setTimeout(() => { percentEl.textContent = '25%'; }, 2500);  // À 2.5s
-
-  setTimeout(() => { percentEl.textContent = '50%'; }, 5000);  // À 5s
-
-  setTimeout(() => { percentEl.textContent = '75%'; }, 7500);  // À 7.5s
-
-  setTimeout(() => { percentEl.textContent = '100%'; }, 10000); // À 10s
-
-
-
-  // Une fois les 10 secondes écoulées, on lance la disparition
-
-  setTimeout(() => {
-
-    preloader.classList.add('done');
-
-    navbar.classList.add('ready');
-
-    mainContainer.classList.add('ready');
-
-  }, 10000);
-
-});
 
 </script>
 
