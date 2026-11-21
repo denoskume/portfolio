@@ -2398,6 +2398,23 @@ body:has(#about.active) .main-container {
   }
 }
 /* Education and Experience: paired chronology, in two clear columns. */
+#about .edu-exp-bullets {
+  list-style: disc outside;
+  margin: 8px 0 0;
+  padding-left: 20px;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+#about .edu-exp-bullets li {
+  padding-left: 2px;
+  margin-bottom: 6px;
+  overflow-wrap: break-word;
+}
+#about .edu-exp-bullets li:last-child {
+  margin-bottom: 0;
+}
+
 #about .education-experience {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2689,35 +2706,60 @@ body:has(#about.active) .main-container {
             <div class="date">2025 — 2027</div>
             <h4>MSc Control and Robotics</h4>
             <div class="org"><a href="https://www.ec-nantes.fr/english-version" target="_blank" rel="noopener noreferrer">Centrale Nantes</a> · Data Science, Signal and Image Processing</div>
-            <p>The programme focuses on artificial intelligence (AI), machine learning (ML) and numerical optimization methods applied to data analysis and image processing.</p>
+            <ul class="edu-exp-bullets">
+              <li>Artificial intelligence (AI) methods.</li>
+              <li>Machine learning (ML) methods.</li>
+              <li>Numerical optimization.</li>
+              <li>Applications to data analysis and image processing.</li>
+            </ul>
           </div>
 
           <div class="chrono-item edu-exp-entry experience-entry">
             <div class="date">August — October 2026</div>
             <h4>AI Model Response Evaluation — Freelance</h4>
             <div class="org">RWS TrainAI</div>
-            <p>Freelance assignments evaluating responses from AI models.</p>
+            <ul class="edu-exp-bullets">
+              <li>Freelance assignments focused on AI-generated responses.</li>
+              <li>Evaluation of model response quality.</li>
+              <li>Review of responses to identify errors.</li>
+              <li>Project-based AI evaluation work.</li>
+            </ul>
           </div>
 
           <div class="chrono-item edu-exp-entry education-entry">
             <div class="date">2021 — June 2025</div>
             <h4>Bachelor — Computer Science and Electronics</h4>
             <div class="org"><a href="https://kristujayanti.edu.in/" target="_blank" rel="noopener noreferrer">Kristu Jayanti College</a> (now Kristu Jayanti University since July 2025) · Bangalore, India</div>
-            <p>Two complementary areas: programming, databases and data analysis; and digital electronics and embedded systems, with practical work using microcontrollers and the Internet of Things (IoT).</p>
+            <ul class="edu-exp-bullets">
+              <li>Programming and software development.</li>
+              <li>Databases and data analysis.</li>
+              <li>Digital electronics.</li>
+              <li>Embedded systems, microcontrollers and the Internet of Things (IoT).</li>
+            </ul>
           </div>
 
           <div class="chrono-item edu-exp-entry experience-entry final-entry">
             <div class="date">September — December 2024</div>
             <h4>Data Analysis Intern — Final-Year Internship</h4>
             <div class="org">Unified Mentor</div>
-            <p>Three-month data analysis internship completed as part of the Bachelor's degree.</p>
+            <ul class="edu-exp-bullets">
+              <li>Three-month internship in data analysis.</li>
+              <li>Final-year placement as part of the Bachelor's degree.</li>
+              <li>Practical introduction to data analysis in a professional setting.</li>
+              <li>Experience connecting academic data analysis studies with workplace activities.</li>
+            </ul>
           </div>
 
           <div class="chrono-item edu-exp-entry education-entry final-entry">
             <div class="date">2020</div>
             <h4>Scientific Baccalaureate — Series D</h4>
             <div class="org">Lycée Moderne M'Batto · Côte d'Ivoire</div>
-            <p>Studied mathematics and fundamental physics with an emphasis on quantitative reasoning, scientific problem-solving, and analysis.</p>
+            <ul class="edu-exp-bullets">
+              <li>Mathematics.</li>
+              <li>Fundamental physics.</li>
+              <li>Quantitative reasoning.</li>
+              <li>Scientific problem-solving and analysis.</li>
+            </ul>
           </div>
         </div>
 
