@@ -536,11 +536,9 @@
 
   }
 
-  .hero-kicker { grid-column: 1 / 4; padding-top: 12px; margin-bottom: 8px; }
-
   .hero-title {
 
-    grid-column: 1 / 3;
+    grid-column: 1 / -1;
 
     font-family: var(--font-display);
 
@@ -557,48 +555,6 @@
   }
 
   .hero-title em { font-style: italic; color: var(--tech); }
-
-  .hero-aside {
-
-    grid-column: 3 / 4;
-
-    align-self: end;
-
-    font-size: 0.86rem;
-
-    color: var(--smoke);
-
-    line-height: 1.65;
-
-    border-top: 1px solid var(--rule);
-
-    padding-top: 16px;
-
-    max-width: 260px;
-
-  }
-
-  .hero-aside strong {
-
-    display: block;
-
-    color: var(--ink);
-
-    font-family: var(--font-mono);
-
-    font-size: 0.68rem;
-
-    letter-spacing: 0.1em;
-
-    text-transform: uppercase;
-
-    margin-bottom: 8px;
-
-    font-weight: 500;
-
-  }
-
-
 
   .gallery-head {
 
@@ -633,18 +589,6 @@
     color: var(--smoke);
 
   }
-
-  .gallery-head .c {
-
-    font-family: var(--font-mono);
-
-    font-size: 0.68rem;
-
-    color: var(--ash);
-
-  }
-
-
 
   .carousel {
 
@@ -2060,11 +2004,9 @@
 
     .hero-grid { grid-template-columns: 1fr; gap: 20px; }
 
-    .hero-title, .hero-kicker, .hero-aside { grid-column: 1 / -1; }
+    .hero-title { grid-column: 1 / -1; }
 
-    .hero-aside { max-width: none; }
-
-    .about-top { grid-template-columns: 1fr; }
+      .about-top { grid-template-columns: 1fr; }
 
     .about-photo { max-width: 280px; }
 
@@ -2166,12 +2108,6 @@
 
         <div class="hero-grid">
 
-          <div class="hero-kicker">
-
-            <span class="kicker">MSc Control &amp; Robotics — Centrale Nantes</span>
-
-          </div>
-
           <h1 class="hero-title">
 
             Traiter le signal,<br>
@@ -2181,14 +2117,6 @@
             <em>contrôler la machine.</em>
 
           </h1>
-
-          <aside class="hero-aside">
-
-            <strong>Étudiant — dernière année</strong>
-
-            Parcours Data Science, Signal &amp; Image Processing. Projets en vision par ordinateur, traitement d’images et machine learning appliqué. Recherche d’un stage de six mois dès février 2027.
-
-          </aside>
 
         </div>
 
@@ -2201,8 +2129,6 @@
         <div class="gallery-head">
 
           <span class="t">Travaux récents — Aperçu visuel</span>
-
-          <span class="c">(06) — Défilement droite → gauche · 5 s / image</span>
 
         </div>
 
