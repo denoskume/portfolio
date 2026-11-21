@@ -58,7 +58,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
             <tr><td>Gaussian mixture</td><td>0.385</td></tr>
           </tbody>
         </table>
-        <p>Compared with manual tracings before connected-path reconstruction.</p>
+        <p>These scores describe initial masks before component cleanup. The later 0.501 baseline is a separate processing stage.</p>
       </div>
     </div>
 
