@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#0b1c26"/><text x="50%" y="51%" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#83dfc9" text-anchor="middle" dominant-baseline="middle">dk.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="DK logo">
+  <title>DK — Denos Kume</title>
+  <circle cx="32" cy="32" r="31" fill="#0b2745"/>
+  <text x="32" y="40" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="28" font-weight="700" letter-spacing="-2.2" fill="#ffffff">DK</text>
+</svg>
