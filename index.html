@@ -2212,7 +2212,8 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
   padding:10px;background:#fff;border:1px solid #e3e8ee;
   box-shadow:0 14px 34px rgba(8,25,43,.14);
 }
-.nav-entry:hover .nav-dropdown,.nav-entry:focus-within .nav-dropdown,.nav-entry.open .nav-dropdown{display:grid;gap:2px}
+/* Menus are controlled by .open only: hover/focus cannot reopen a dismissed menu. */
+.nav-entry.open .nav-dropdown{display:grid;gap:2px}
 .navbar .nav-dropdown a,body:has(#home.active) .navbar .nav-dropdown a,
 .nav-dropdown button{
   text-align:left;display:block;width:100%;padding:10px 11px;border:0;background:transparent;
@@ -2368,20 +2369,20 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
       <li><a href="#" data-target="home" class="active">HOME</a></li>
       <li class="nav-entry">
         <a href="#" data-target="about">ABOUT ME</a>
-        <button class="nav-menu-toggle" type="button" aria-label="More About Me options" aria-expanded="false"></button>
-        <div class="nav-dropdown">
+        <button class="nav-menu-toggle" type="button" aria-label="More About Me options" aria-haspopup="true" aria-controls="nav-about-dropdown" aria-expanded="false"></button>
+        <div class="nav-dropdown" id="nav-about-dropdown">
           <a href="#" data-target="about">Overview</a>
           <a href="#" data-target="about" data-scroll="education">Education</a>
         </div>
       </li>
       <li class="nav-entry">
         <a href="#" data-target="projects">PROJECTS</a>
-        <button class="nav-menu-toggle" type="button" aria-label="Choose a project" aria-expanded="false"></button>
-        <div class="nav-dropdown">
+        <button class="nav-menu-toggle" type="button" aria-label="Choose a project" aria-haspopup="true" aria-controls="nav-projects-dropdown" aria-expanded="false"></button>
+        <div class="nav-dropdown" id="nav-projects-dropdown">
           <a href="#" data-target="projects">All Projects</a>
-          <button type="button" onclick="openProject(1);closeNavMenus()">Microcatheter Segmentation</button>
-          <button type="button" onclick="openProject(2);closeNavMenus()">Camera Calibration</button>
-          <button type="button" onclick="openProject(3);closeNavMenus()">Zero-Shot CLAP</button>
+          <button type="button" onclick="closeNavMenus();openProject(1)">Microcatheter Segmentation</button>
+          <button type="button" onclick="closeNavMenus();openProject(2)">Camera Calibration</button>
+          <button type="button" onclick="closeNavMenus();openProject(3)">Zero-Shot CLAP</button>
         </div>
       </li>
       <li><a href="#" data-target="blog">BLOG</a></li>
@@ -3428,6 +3429,12 @@ document.querySelectorAll('.nav-menu-toggle').forEach(button => {
     closeNavMenus();
     entry.classList.toggle('open', opening);
     button.setAttribute('aria-expanded', String(opening));
+  });
+});
+// Selecting any dropdown item dismisses the popover even if it still has focus.
+document.querySelectorAll('.nav-dropdown').forEach(menu => {
+  menu.addEventListener('click', event => {
+    if (event.target.closest('a, button')) closeNavMenus();
   });
 });
 document.addEventListener('click', event => {
