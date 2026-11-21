@@ -27,7 +27,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
         <button type="button" data-fl-action="save"><span aria-hidden="true">↓</span> Save PDF</button>
         <button type="button" data-fl-action="share"><span aria-hidden="true">↗</span> Share</button>
         <button type="button" data-fl-action="cite"><span aria-hidden="true">“ ”</span> Cite</button>
-        <button type="button" data-fl-action="rights">Rights &amp; Permissions</button>
+        <button type="button" data-fl-action="rights">License &amp; Rights</button>
         <span id="fl-action-status" class="fl-action-status" role="status" aria-live="polite"></span>
       </div>
 
@@ -242,11 +242,11 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
   </dialog>
 
   <dialog class="fl-modal" id="fl-rights-dialog" aria-labelledby="fl-rights-title">
-    <div class="fl-modal-head"><h2 id="fl-rights-title">Rights &amp; permissions</h2><button type="button" class="fl-modal-close" data-fl-close aria-label="Close permissions dialog">×</button></div>
-    <p>This is a Master 1 academic project by Denos Kume and Oluwole Shokunbi at Centrale Nantes.</p>
-    <p><strong>No public license file is included in the source repository.</strong> The project therefore does not claim an MIT, Creative Commons, or other open license. Attribution is encouraged, but permission to redistribute project code, images, or supplied teaching data is not automatically granted by their public availability.</p>
-    <p>For code and project materials, consult the repository and its authors. Rights for the supplied fluoroscopy dataset and manual annotations have not been specified in the repository.</p>
-    <a href="${repo}" target="_blank" rel="noopener noreferrer">View source repository</a>
+    <div class="fl-modal-head"><h2 id="fl-rights-title">License &amp; rights</h2><button type="button" class="fl-modal-close" data-fl-close aria-label="Close permissions dialog">×</button></div>
+    <p><strong>Portfolio website code — MIT License.</strong> The original frontend code of this standalone website is available under MIT. <a href="https://github.com/denoskume/portfolio/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Read the MIT License</a> and <a href="https://github.com/denoskume/portfolio/blob/main/LICENSING.md" target="_blank" rel="noopener noreferrer">see the scope</a>.</p>
+    <p><strong>Academic project — separate rights.</strong> This Master 1 case study was created by Denos Kume and Oluwole Shokunbi at Centrale Nantes. The website's MIT License does <strong>not</strong> cover the project's jointly authored code, figures, or course-provided fluoroscopy sequence and manual annotations.</p>
+    <p>The source project has no published open license; its materials being accessible on GitHub does not automatically permit redistribution. The dataset's reuse rights have not been established. Contact the relevant authors or owners for permission where required.</p>
+    <a href="${repo}" target="_blank" rel="noopener noreferrer">View academic source repository</a>
   </dialog>
 </article>`;
 };
