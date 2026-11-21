@@ -10,12 +10,10 @@ permissions:
 concurrency:
   group: github-pages
   cancel-in-progress: true
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - name: Validate and prepare static site
@@ -32,49 +30,20 @@ jobs:
           cp -r assets _site/
           test -f _site/assets/denos-kume-signature.svg
           touch _site/.nojekyll
-      - name: Check Pages configuration
-        id: pages
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          code=$(curl -sS -o /dev/null -w '%{http_code}' \
-            -H "Authorization: Bearer ${GH_TOKEN}" \
-            -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages")
-          if [ "${code}" = "200" ]; then
-            echo "enabled=true" >> "${GITHUB_OUTPUT}"
-            echo "GitHub Pages is configured."
-          else
-            echo "enabled=false" >> "${GITHUB_OUTPUT}"
-            echo "GitHub Pages is not configured (HTTP ${code})."
-            echo "Open Settings > Pages > Build and deployment > Source: GitHub Actions."
-          fi
-      - if: steps.pages.outputs.enabled == 'true'
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-      - if: steps.pages.outputs.enabled == 'true'
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-      - name: Wait until the Pages artifact is visible
-        if: steps.pages.outputs.enabled == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          for attempt in {1..12}; do
-            count=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" \
-              --jq '[.artifacts[] | select(.name == "github-pages")] | length')
-            if [ "${count}" = "1" ]; then
-              echo "Pages artifact is available (attempt ${attempt})."
-              break
-            fi
-            if [ "${count}" -gt 1 ]; then
-              echo "::error::Multiple Pages artifacts detected (${count}); use a fresh workflow run."
-              exit 1
-            fi
-            echo "Artifact is not yet indexed; retrying..."
-            sleep 3
-          done
-          test "${count}" = "1"
-      - if: steps.pages.outputs.enabled == 'true'
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
