@@ -37,7 +37,7 @@
     return `<header class="home container">
       <div class="hero-grid"><div class="hero-kicker"><span class="kicker">Denos Kume · Nantes</span></div>
       <h1 class="hero-title">Computer vision<br>and the <span class="italic">geometry</span><span class="indent">of images.</span></h1>
-      <aside class="hero-aside"><strong>Engineering practice</strong>I study how cameras measure space and how algorithms trace fine structures in noisy images. <a href="#/about">About me →</a></aside></div>
+      <aside class="hero-aside"><strong>Engineering practice</strong>Final-year MSc student at Centrale Nantes. I build and evaluate image-processing and computer-vision pipelines. Seeking a six-month internship from February 2027. <a href="#/about">About me →</a></aside></div>
       <div class="hero-meta">${[[projects.length,'Projects'],[articles.length,'Field notes'],['09','Calibration views'],['10','Fluoroscopy frames']].map(([value,label]) => `<div><span class="num">${String(value).padStart(2,'0')}</span><span class="lbl">${label}</span></div>`).join('')}</div>
       </header><div class="marquee-label"><span class="t">Selected work</span><a href="#/projects">Project index →</a></div>
       <section class="featured-carousel" aria-label="Featured projects" aria-roledescription="carousel">
@@ -116,13 +116,62 @@
     };
   }
   function aboutPage() {
-    return `<section class="about container"><div class="about-grid">
-      <figure class="about-portrait"><div class="frame"><img src="https://raw.githubusercontent.com/denoskume/camera-calibration/main/data/calibration_images/img7.jpg" alt="Chessboard target used in the camera calibration study"></div><figcaption class="cap">From the calibration study</figcaption></figure>
-      <div class="about-text"><span class="kicker">About Denos</span><h1>From electronics to <em>computer vision.</em></h1><div class="body"><p>I am a final-year Control and Robotics student at Centrale Nantes, specializing in data science, signal and image processing. My work connects the physics of image capture with the algorithms that interpret each frame.</p><p>In my projects, I compare predictions with manual tracings, inspect reprojection errors across camera poses and document the experiments in runnable notebooks.</p></div><a class="text-link" href="#/projects">Explore my projects →</a></div></div>
-      <div class="timeline-head"><h2>Education and experience</h2></div>
-      <div class="chrono-row"><span>2025–2027</span><strong>Centrale Nantes</strong><span>MSc in Control and Robotics · Nantes, France</span></div>
-      <div class="chrono-row"><span>2024</span><strong>Unified Mentor</strong><span>Data analyst internship · Bengaluru, India</span></div>
-      <div class="chrono-row"><span>2021–2025</span><strong>Kristu Jayanti University</strong><span>BSc in Computer Science and Electronics · Bengaluru, India</span></div></section>`;
+    return `<section class="about container" aria-labelledby="about-title">
+      <div class="about-grid">
+        <figure class="about-portrait">
+          <div class="frame"><img src="https://avatars.githubusercontent.com/u/110854822?v=4" alt="Denos Kume — public GitHub profile photograph" loading="eager" decoding="async"></div>
+          <figcaption class="cap"><span>Denos Kume</span><span>Nantes, France</span></figcaption>
+        </figure>
+        <div class="about-text">
+          <span class="kicker">About me · Engineering journey</span>
+          <h1 id="about-title">From electronics to <em>computer vision.</em></h1>
+          <div class="body">
+            <p>I am a final-year MSc student in Control and Robotics at Centrale Nantes, following the Data Science, Signal &amp; Image Processing (DASIP) track. My main interests are computer vision, image processing and applied machine learning.</p>
+            <p>My approach is hands-on: formulate the problem, build a reproducible pipeline and evaluate its limitations. My work includes fluoroscopic instrument segmentation, camera calibration and experimental comparisons documented in Python notebooks.</p>
+            <p>I am seeking a six-month, team-based engineering internship starting in February 2027, with opportunities to learn, contribute and develop solutions for real applications.</p>
+          </div>
+          <div class="about-facts">
+            <div class="fact"><div class="k">Current program</div><div class="v">MSc Control &amp; Robotics</div></div>
+            <div class="fact"><div class="k">Track</div><div class="v">Data · Signal · Image</div></div>
+            <div class="fact"><div class="k">Based in</div><div class="v">Nantes, France</div></div>
+            <div class="fact"><div class="k">Internship</div><div class="v">February – July 2027</div></div>
+          </div>
+          <div class="about-actions">
+            <a class="btn btn-primary" href="#/projects">Explore projects <span aria-hidden="true">→</span></a>
+            <a class="btn btn-outline" href="#/contact">Get in touch <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-head"><h2>Education</h2><span class="sub">Academic pathway · 2020–2027</span></div>
+      <div class="chrono">
+        <article class="chrono-row">
+          <span class="year">2025 — 2027</span>
+          <div class="role"><h4>MSc Control &amp; Robotics</h4><p class="org">Centrale Nantes · DASIP track · France</p></div>
+          <p class="desc">Data analysis, machine learning, optimisation and statistical modelling, with practical algorithm development for signals and images in scientific and industrial applications.</p>
+        </article>
+        <article class="chrono-row">
+          <span class="year">2021 — 2025</span>
+          <div class="role"><h4>BSc Computer Science &amp; Electronics</h4><p class="org">Kristu Jayanti University · Bengaluru, India</p></div>
+          <p class="desc">Algorithms, data structures, programming, databases and software development, alongside electronic circuits, microprocessors, microcontrollers and embedded systems.</p>
+        </article>
+        <article class="chrono-row">
+          <span class="year">2020</span>
+          <div class="role"><h4>Scientific Baccalaureate · Series D</h4><p class="org">Lycée Moderne M'Batto · Côte d'Ivoire</p></div>
+          <p class="desc">Mathematical concepts and fundamental principles of physics, with an emphasis on calculation, logical reasoning and problem solving.</p>
+        </article>
+      </div>
+      <div class="timeline-head timeline-secondary"><h2>Professional experience</h2><span class="sub">Early professional practice</span></div>
+      <div class="chrono">
+        <article class="chrono-row">
+          <span class="year">Sep — Dec 2024</span>
+          <div class="role"><h4>Data Analyst Intern</h4><p class="org">Unified Mentor Pvt. Ltd. · Bengaluru, India</p></div>
+          <p class="desc">Bachelor's final-year internship, providing practical experience with data analysis and professional reporting.</p>
+        </article>
+      </div>
+      <div class="about-source-note"><span class="kicker">Academic references</span>
+        <p>Program information: <a href="https://www.ec-nantes.fr/study/masters" target="_blank" rel="noopener noreferrer">Centrale Nantes ↗</a> · <a href="https://kristujayanti.edu.in/" target="_blank" rel="noopener noreferrer">Kristu Jayanti ↗</a>. Descriptions are concise summaries, not quotations from the institutions.</p>
+      </div>
+    </section>`;
   }
 
   function projectsPage() {
