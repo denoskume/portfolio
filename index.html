@@ -2306,7 +2306,7 @@ body:has(#home.active) .footer{display:none}
           <a href="#" data-target="projects" class="cn-hero-explore">Découvrir mes projets <span aria-hidden="true">↗</span></a>
           <div class="cn-slider-ui">
             <button class="cn-slider-toggle" id="cnCarouselToggle" type="button" aria-label="Mettre le carrousel en pause" title="Lecture / pause">Ⅱ</button>
-            <span class="cn-slider-dots" id="cnCarouselDots" aria-hidden="true"><i class="active"></i><i></i><i></i><i></i></span>
+            <span class="cn-slider-dots" id="cnCarouselDots" aria-hidden="true"><i class="active"></i><i></i><i></i></span>
           </div>
         </div>
       </section>
@@ -2314,7 +2314,7 @@ body:has(#home.active) .footer{display:none}
       <!-- 02 / Les faits en deux colonnes + chiffre phare + image bleue -->
       <section class="cn-keyfigures" aria-label="Repères de mon parcours">
         <div class="cn-keyfigures-list">
-          <div class="cn-keyitem"><span class="cn-keyicon">◇</span><p><strong>4</strong> projets documentés</p></div>
+          <div class="cn-keyitem"><span class="cn-keyicon">◇</span><p><strong>3</strong> projets documentés</p></div>
           <div class="cn-keyitem"><span class="cn-keyicon">⌖</span><p><strong>9</strong> vues de calibration caméra</p></div>
           <div class="cn-keyitem"><span class="cn-keyicon cn-gold">★</span><p><strong>50</strong> classes audio ESC-50</p></div>
           <div class="cn-keyitem"><span class="cn-keyicon cn-gold">◎</span><p>Stage de <strong>6 mois</strong> dès février 2027</p></div>
@@ -2349,8 +2349,8 @@ body:has(#home.active) .footer{display:none}
         </a>
         <a href="#" onclick="openProject(2);return false;" class="cn-mosaic-gold-tile"><span>Calibration<br>de caméra</span><strong>Explorer la géométrie ↗</strong></a>
         <a href="#" onclick="openProject(3);return false;" class="cn-mosaic-picture"><img src="https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/topk_accuracy_line.png" alt="Précision Top-k CLAP" loading="lazy"><span>91,15 % de précision Top-1</span></a>
-        <a href="#" onclick="openProject(4);return false;" class="cn-mosaic-picture cn-mosaic-yellow"><img src="assets/visionlab-demo-input.svg" alt="Image synthétique utilisée dans la démonstration VisionLab" loading="lazy"><span>VisionLab · Image d’entrée</span></a>
-        <a href="#" onclick="openProject(4);return false;" class="cn-mosaic-picture cn-mosaic-wide"><img src="assets/visionlab-demo-detections.svg" alt="Illustration de détection d’objets dans VisionLab" loading="lazy"><span>De l’image à la détection · VisionLab</span></a>
+        <a href="#" onclick="openProject(1);return false;" class="cn-mosaic-picture cn-mosaic-yellow"><img src="https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/segmentation-comparison.png" alt="Comparaison de différentes méthodes de segmentation fluoroscopique" loading="lazy"><span>Segmentation · Comparaison des méthodes</span></a>
+        <a href="#" onclick="openProject(3);return false;" class="cn-mosaic-picture cn-mosaic-wide"><img src="https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/clap_complete_zero_shot_pipeline.png" alt="Pipeline de classification audio-texte du projet CLAP" loading="lazy"><span>CLAP · Pipeline audio-texte</span></a>
         <a href="#" onclick="openProject(2);return false;" class="cn-mosaic-picture cn-mosaic-yellow"><img src="https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/reprojection_results.png" alt="Résultats de reprojection en calibration" loading="lazy"><span>Précision géométrique</span></a>
       </section>
 
@@ -2435,7 +2435,7 @@ body:has(#home.active) .footer{display:none}
 
               <p>J'ai étudié l'informatique et l'électronique à Bengaluru, où j'ai acquis des bases en programmation, développement logiciel et systèmes embarqués. Aujourd'hui, je mets ces compétences en pratique sur des projets Python, avec une attention particulière à l'évaluation et à la reproductibilité.</p>
 
-              <p>Mes travaux comprennent la segmentation de microcathéters en fluoroscopie, la calibration de caméra, la classification audio zero-shot et le développement de VisionLab, un outil interactif de traitement d'images. Je recherche un stage de six mois à partir de février 2027 pour contribuer à des projets en équipe.</p>
+              <p>Mes travaux comprennent la segmentation de microcathéters en fluoroscopie, la calibration de caméra et la classification audio zero-shot. Je recherche un stage de six mois à partir de février 2027 pour contribuer à des projets en équipe.</p>
 
             </div>
 
@@ -2587,7 +2587,7 @@ body:has(#home.active) .footer{display:none}
 
             <span class="kicker">Travaux techniques — études de cas</span>
 
-            <h2>Quatre projets,<br><em>documentés.</em></h2>
+            <h2>Trois projets,<br><em>documentés.</em></h2>
 
           </div>
 
@@ -2826,35 +2826,6 @@ const projects = [
     ],
     "limitations": "Dix prompts évalués sur un jeu de données unique ; les scores dépendent du modèle pré-entraîné et du protocole.",
     "future": "Évaluer d’autres corpus audio et comparer des descriptions adaptées aux différents contextes de capture."
-  },
-  {
-    "id": 4,
-    "title": "VisionLab — laboratoire de traitement d’images",
-    "brief": "Application interactive Streamlit pour construire, visualiser, comparer et exporter des pipelines de traitement d’images.",
-    "year": "2026",
-    "tags": [
-      "Streamlit",
-      "OpenCV",
-      "scikit-image"
-    ],
-    "context": "Projet personnel open-source, version 2.0, développé et documenté dans le dépôt VisionLab.",
-    "introduction": "Pour comprendre les transformations d’images, il est utile de pouvoir enchaîner des opérations, inspecter les étapes et comparer les résultats dans une seule interface.",
-    "objective": "Centraliser des opérations de prétraitement, segmentation et analyse, avec visualisation et export reproductibles.",
-    "approach": [
-      "Import de fichiers PNG, JPEG et TIFF et inspection des propriétés des images.",
-      "Pipeline paramétrable : filtres, contraste, couleurs, contours, segmentation et morphologie.",
-      "Comparaison des étapes, histogrammes, métriques et extraction de caractéristiques.",
-      "Traitement par lot et export PNG, JSON, CSV ou ZIP selon les résultats."
-    ],
-    "code": "import cv2\n\ndef enhance_local_contrast(gray_image):\n    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))\n    return clahe.apply(gray_image)",
-    "results": [
-      "29 opérations de traitement d’images disponibles dans l’application.",
-      "Analyse d’objets : aire, centroïde, périmètre et boîte englobante.",
-      "Mesures de comparaison : PSNR, SSIM, Dice et IoU lorsque des références sont fournies.",
-      "Source : github.com/denoskume/VisionLab"
-    ],
-    "limitations": "La version documentée se concentre sur les images fixes ; les limites de résolution et de mémoire sont précisées dans le dépôt.",
-    "future": "Étendre progressivement le laboratoire à la vidéo et aux modèles pré-entraînés."
   }
 ];
 
@@ -2862,8 +2833,7 @@ const projects = [
 
 /* ============================================================
    CARROUSEL PAR PROJET — 2 images pertinentes / 5 secondes
-   Les trois premières galeries reprennent les figures originales
-   des dépôts. VisionLab illustre son exemple synthétique documenté.
+   Les trois galeries reprennent des figures originales des dépôts.
    ============================================================ */
 const carouselGroups = [
   {
@@ -2905,20 +2875,6 @@ const carouselGroups = [
       {
         "url": "https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/topk_accuracy_line.png",
         "label": "2 · Précision Top-k avec le meilleur prompt"
-      }
-    ]
-  },
-  {
-    "title": "VisionLab — Traitement d’images",
-    "story": "Image de démonstration · Détection illustrée",
-    "items": [
-      {
-        "url": "./assets/visionlab-demo-input.svg",
-        "label": "1 · Image synthétique de démonstration"
-      },
-      {
-        "url": "./assets/visionlab-demo-detections.svg",
-        "label": "2 · Localisation et mesure de cinq pièces (illustration)"
       }
     ]
   }
@@ -3047,7 +3003,7 @@ function buildProjects() {
 
         <div class="card-top">
 
-          <span class="card-num">Projet ${num} / 04</span>
+          <span class="card-num">Projet ${num} / ${String(projects.length).padStart(2, '0')}</span>
 
           <span class="card-year">${p.year}</span>
 
@@ -3113,7 +3069,7 @@ function openProject(id) {
 
       <span>Année <b>${p.year}</b></span>
 
-      <span>Projet <b>${n} / 04</b></span>
+      <span>Projet <b>${n} / ${String(projects.length).padStart(2, '0')}</b></span>
 
       <span>Étude de cas</span>
 
