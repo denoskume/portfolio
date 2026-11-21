@@ -623,88 +623,94 @@
     will-change: transform;
   }
 
+  /* Chaque slide présente trois visuels sélectionnés du MÊME projet. */
   .slide {
     flex: 0 0 100%;
     width: 100%;
     height: 100%;
     min-width: 0;
     margin: 0;
-    position: relative;
+    padding: clamp(10px, 1.6vw, 20px) var(--gutter);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.8vh, 18px);
     overflow: hidden;
-    background: var(--bone);
+    background: var(--paper);
   }
-
-  .slide img {
-
-    width: 100%; height: 100%;
-
-    object-fit: contain;
-
-    filter: saturate(0.85) contrast(1.05);
-
-    transition: transform 1.4s var(--ease), filter 0.7s var(--ease);
-
-    display: block;
-
+  .slide-project-header {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 8px;
   }
-
-  .slide .num {
-
-    position: absolute;
-
-    top: 16px; left: 18px;
-
+  .slide-project-header .project-number {
     font-family: var(--font-mono);
-
-    font-size: 0.68rem;
-
-    color: #fff;
-
-    letter-spacing: 0.08em;
-
-    z-index: 2;
-
-    mix-blend-mode: difference;
-
+    font-size: .67rem;
+    letter-spacing: .08em;
+    color: var(--tech);
+    white-space: nowrap;
   }
-
-  .slide .title {
-
-    position: absolute;
-
-    left: 20px; bottom: 18px;
-
-    right: 20px;
-
-    color: #fff;
-
+  .slide-project-header h3 {
     font-family: var(--font-display);
-
-    font-size: 1.18rem;
-
-    letter-spacing: -0.01em;
-
-    z-index: 2;
-
-    text-shadow: 0 2px 20px rgba(0,0,0,0.55);
-
+    font-weight: 400;
+    font-size: clamp(1.2rem, 2.1vw, 2rem);
+    line-height: 1.15;
+    color: var(--ink);
   }
-
-  .slide::after {
-
-    content: '';
-
-    position: absolute;
-
-    inset: 0;
-
-    background: linear-gradient(to top, rgba(11,14,19,0.66), transparent 55%);
-
-    pointer-events: none;
-
+  .slide-project-header .project-story {
+    font-family: var(--font-mono);
+    font-size: .67rem;
+    color: var(--smoke);
+    margin-left: auto;
   }
-
-
+  .slide-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    flex: 1 1 0;
+    gap: clamp(6px, 1.4vw, 20px);
+    min-height: 0;
+    width: 100%;
+  }
+  .showcase-panel {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+  }
+  .showcase-image {
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--chalk);
+    border: 1px solid var(--rule);
+  }
+  .showcase-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+    filter: none;
+  }
+  .showcase-panel figcaption {
+    flex: 0 0 auto;
+    padding: 9px 2px 0;
+    font-family: var(--font-mono);
+    color: var(--ink-2);
+    font-size: clamp(.59rem, .82vw, .8rem);
+    line-height: 1.3;
+  }
+  .showcase-panel figcaption span {
+    color: var(--tech);
+    margin-right: 5px;
+  }
 
   /* ============================================================
 
@@ -2008,7 +2014,12 @@
 
     .field-row { grid-template-columns: 1fr; }
 
-    .slide { height: 100%; }
+    .slide { padding: 8px 10px; }
+    .slide-project-header { gap: 3px 8px; }
+    .slide-project-header h3 { font-size: clamp(.9rem, 3vw, 1.2rem); }
+    .slide-project-header .project-story { display: none; }
+    .slide-gallery { gap: 4px; }
+    .showcase-panel figcaption { font-size: .55rem; }
 
   }
 
@@ -2096,7 +2107,7 @@
 
       <!-- CARROUSEL -->
 
-      <div class="carousel">
+      <div class="carousel" aria-label="Projets présentés par séries de trois images" aria-roledescription="carousel">
 
         <div class="carousel-track" id="carouselTrack"></div>
 
@@ -2574,74 +2585,145 @@ const projects = [
 
 
 /* ============================================================
-
-   CARROUSEL — défile droite -> gauche, 5s / image
-
+   CARROUSEL PAR PROJET — 3 images pertinentes / 5 secondes
+   Les trois premières galeries reprennent les figures originales
+   des dépôts. VisionLab illustre son exemple synthétique documenté.
    ============================================================ */
-
-const carouselItems = [
-  {"src": "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/segmentation-comparison.png", "label": "Segmentation de microcathéters"},
-  {"src": "https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/detected_chessboard_corners.png", "label": "Calibration — coins du damier"},
-  {"src": "https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/clap_complete_zero_shot_pipeline.png", "label": "Classification audio zero-shot"},
-  {"src": "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/grayscale-comparison.png", "label": "Prétraitement fluoroscopique"},
-  {"src": "https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/mean_reprojection_error_by_view.png", "label": "Erreurs de reprojection"},
-  {"src": "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/mask-cleanup.png", "label": "Reconstruction des instruments"}
+const carouselGroups = [
+  {
+    "title": "Segmentation de microcathéters",
+    "story": "Préparer · Segmenter · Évaluer",
+    "items": [
+      {
+        "url": "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/grayscale-comparison.png",
+        "label": "01 · Prétraitement et amélioration du contraste"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/segmentation-comparison.png",
+        "label": "02 · Segmentation sur la séquence fluoroscopique"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/mask-cleanup.png",
+        "label": "03 · Tracé reconstruit comparé aux annotations"
+      }
+    ]
+  },
+  {
+    "title": "Calibration de caméra",
+    "story": "Détecter · Estimer · Vérifier",
+    "items": [
+      {
+        "url": "https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/detected_chessboard_corners.png",
+        "label": "01 · Coins du damier détectés"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/mean_reprojection_error_by_view.png",
+        "label": "02 · Erreurs de reprojection par vue"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/held_out_view_errors.png",
+        "label": "03 · Validation sur les coins tenus à l'écart"
+      }
+    ]
+  },
+  {
+    "title": "Classification audio zero-shot — CLAP",
+    "story": "Pipeline · Prompts · Précision",
+    "items": [
+      {
+        "url": "https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/clap_complete_zero_shot_pipeline.png",
+        "label": "01 · Pipeline de classification audio-texte"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/prompt_strategy_comparison_table.png",
+        "label": "02 · Comparaison des dix formulations"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/topk_accuracy_line.png",
+        "label": "03 · Précision Top-k avec le meilleur prompt"
+      }
+    ]
+  },
+  {
+    "title": "VisionLab — Traitement d’images",
+    "story": "Entrée · Masque · Mesure",
+    "items": [
+      {
+        "url": "./assets/visionlab-demo-input.svg",
+        "label": "01 · Image synthétique de démonstration"
+      },
+      {
+        "url": "./assets/visionlab-demo-mask.svg",
+        "label": "02 · Segmentation : masque binaire illustratif"
+      },
+      {
+        "url": "./assets/visionlab-demo-detections.svg",
+        "label": "03 · Localisation et mesure de cinq pièces (illustration)"
+      }
+    ]
+  }
 ];
-
-
 
 function buildCarousel() {
   const track = document.getElementById('carouselTrack');
-  if (!track || !carouselItems.length) return;
+  if (!track || !carouselGroups.length) return;
 
-  const all = [...carouselItems, carouselItems[0]];
-  const duration = 5000;
+  const groups = [...carouselGroups, carouselGroups[0]]; // boucle transparente
+  const escaped = value => String(value).replace(/[&<>"']/g, ch =>
+    ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[ch]));
   let index = 0;
   let transitioning = false;
 
-  track.innerHTML = all.map((item, i) => {
-    const number = String((i % carouselItems.length) + 1).padStart(2, '0');
-    return `
-      <figure class="slide" aria-hidden="${i !== 0}">
-        <img src="${item.src}" alt="${item.label}" draggable="false" decoding="async">
-        <span class="num">${number}</span>
-        <figcaption class="title">${item.label}</figcaption>
-      </figure>
-    `;
-  }).join('');
+  track.innerHTML = groups.map((group, groupIndex) => `
+    <article class="slide" aria-label="${escaped(group.title)}" aria-hidden="${groupIndex !== 0}">
+      <div class="slide-project-header">
+        <span class="project-number">PROJET ${String(groupIndex % carouselGroups.length + 1).padStart(2, '0')} / ${String(carouselGroups.length).padStart(2, '0')}</span>
+        <h3>${escaped(group.title)}</h3>
+        <span class="project-story">${escaped(group.story)}</span>
+      </div>
+      <div class="slide-gallery">
+        ${group.items.map((item, i) => `
+          <figure class="showcase-panel">
+            <div class="showcase-image">
+              <img src="${escaped(item.url)}" alt="${escaped(item.label)}" loading="${groupIndex === 0 ? 'eager' : 'lazy'}" decoding="async">
+            </div>
+            <figcaption><span>${String(i + 1).padStart(2, '0')}</span> ${escaped(item.label.replace(/^\\d+ · /, ''))}</figcaption>
+          </figure>
+        `).join('')}
+      </div>
+    </article>
+  `).join('');
 
   const slides = Array.from(track.children);
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   function finishTransition() {
     if (!transitioning) return;
-    if (index === carouselItems.length) {
+    if (index === carouselGroups.length) {
       track.style.transition = 'none';
       index = 0;
       track.style.transform = 'translate3d(0, 0, 0)';
-      slides.forEach((slide, i) => slide.setAttribute('aria-hidden', String(i !== 0)));
-      void track.offsetWidth;
+      void track.offsetWidth; // réinitialiser sans mouvement inverse
       track.style.transition = '';
     }
+    slides.forEach((slide, i) => slide.setAttribute('aria-hidden', String(i !== index)));
     transitioning = false;
   }
 
-  function showNext() {
+  function advance() {
     if (transitioning) return;
     transitioning = true;
     index++;
     slides.forEach((slide, i) => slide.setAttribute('aria-hidden', String(i !== index)));
-    track.style.transition = reducedMotion.matches ? 'none' : '';
+    track.style.transition = prefersReducedMotion.matches ? 'none' : '';
     track.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
-    if (reducedMotion.matches) finishTransition();
+    if (prefersReducedMotion.matches) finishTransition();
   }
 
   track.addEventListener('transitionend', event => {
     if (event.target === track && event.propertyName === 'transform') finishTransition();
   });
-
-  // Une image visible pendant 5 s, puis transition vers la suivante.
-  window.setInterval(showNext, duration);
+  window.setInterval(advance, 5000);
 }
 
 
