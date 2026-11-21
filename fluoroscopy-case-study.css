@@ -44,6 +44,21 @@ body:has(#projectDetail.active .fluoro-study) .main-container{margin-top:var(--n
 .fl-method-copy p+p{margin-top:11px}
 .fl-method-row .fl-visual img{max-height:350px}
 
+/* Explain the baseline with its actual measurement, never the final prediction image. */
+.fl-baseline-table{min-width:0;border-top:1px solid #dce5eb;padding-top:12px}
+.fl-baseline-table h4{font-size:1.1rem;line-height:1.4;font-weight:600;color:#173e5b;margin:0 0 12px}
+.fl-baseline-table table{width:100%;border-collapse:collapse;font-size:1rem;line-height:1.55;color:#2f4d63}
+.fl-baseline-table th{padding:10px 12px;text-align:left;border-bottom:2px solid #a9becb;font-weight:600}
+.fl-baseline-table th:last-child,.fl-baseline-table td:last-child{text-align:right}
+.fl-baseline-table td{padding:13px 12px;border-bottom:1px solid #dce6ed}
+.fl-baseline-table td:last-child{color:#163f5d;font-weight:600;font-variant-numeric:tabular-nums}
+.fl-baseline-table p{margin-top:13px;font-size:.94rem;line-height:1.65;color:#526b7d}
+.fl-reconstruction-row .fl-visual img{max-height:390px}
+.fl-visual-results{max-width:100%;margin:2px auto 24px}
+.fl-visual-results img{max-height:530px}
+.fl-visual-results figcaption{font-size:.98rem}
+.fl-visual-results + .fl-chart{margin-top:27px}
+
 .fl-score{display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr);gap:0 clamp(18px,3vw,38px);align-items:center;padding:clamp(22px,3.5vw,36px);background:#0c2d47;color:#fff;margin-bottom:26px}
 .fl-score>div{display:flex;flex-direction:column;gap:5px;min-width:0}
 .fl-score small{font-size:1rem;color:#e2edf4;line-height:1.5;font-weight:500}
