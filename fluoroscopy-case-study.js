@@ -183,6 +183,68 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
 window.initFluoroCaseStudy = function initFluoroCaseStudy() {
   const root = document.querySelector(".fluoro-study");
   if (!root) return;
+
+  const tabButtons = Array.from(root.querySelectorAll("[data-fl-tab]"));
+  const panels = Array.from(root.querySelectorAll("[data-fl-panel]"));
+  const tocGroups = Array.from(root.querySelectorAll("[data-fl-toc]"));
+  let activeView = "report";
+
+  function selectTocEntry(id) {
+    root.querySelectorAll("[data-fl-target-id]").forEach(link => {
+      const selected = link.dataset.flTargetId === id;
+      link.classList.toggle("is-current", selected);
+      if (selected) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+  }
+
+  function activateView(view, options = {}) {
+    if (!["report", "figures", "metrics"].includes(view)) return;
+    activeView = view;
+    tabButtons.forEach(button => {
+      const selected = button.dataset.flTab === view;
+      button.classList.toggle("is-active", selected);
+      button.setAttribute("aria-selected", String(selected));
+      button.tabIndex = selected ? 0 : -1;
+    });
+    panels.forEach(panel => { panel.hidden = panel.dataset.flPanel !== view; });
+    tocGroups.forEach(group => { group.hidden = group.dataset.flToc !== view; });
+
+    const activeGroup = tocGroups.find(group => group.dataset.flToc === view);
+    const selectedAnchor = options.targetId || activeGroup?.querySelector("[data-fl-target-id]")?.dataset.flTargetId;
+    if (selectedAnchor) selectTocEntry(selectedAnchor);
+    if (options.targetId) {
+      requestAnimationFrame(() => {
+        const target = root.querySelector("#" + options.targetId);
+        if (target && !target.closest("[hidden]")) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    } else if (options.scroll) {
+      root.querySelector(".fl-paper-tabs")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  tabButtons.forEach((button, index) => {
+    button.addEventListener("click", () => activateView(button.dataset.flTab, { scroll: true }));
+    button.addEventListener("keydown", event => {
+      const keys = { ArrowRight: (index + 1) % tabButtons.length, ArrowLeft: (index + tabButtons.length - 1) % tabButtons.length, Home: 0, End: tabButtons.length - 1 };
+      if (!(event.key in keys)) return;
+      event.preventDefault();
+      const next = tabButtons[keys[event.key]];
+      next.focus();
+      activateView(next.dataset.flTab);
+    });
+  });
+  root.querySelectorAll("[data-fl-target-tab]").forEach(link => {
+    link.addEventListener("click", event => {
+      event.preventDefault();
+      activateView(link.dataset.flTargetTab, { targetId: link.dataset.flTargetId });
+    });
+  });
+  root.querySelectorAll("[data-fl-open-panel]").forEach(button => {
+    button.addEventListener("click", () => activateView(button.dataset.flOpenPanel, { targetId: button.dataset.flJump }));
+  });
+  activateView(activeView);
+
   const data = [
     {frame:201, baseline:0.0, continuous:0.9319323892, fp:86, missed:63},
     {frame:211, baseline:0.0834621329, continuous:0.9316827144, fp:94, missed:55},
