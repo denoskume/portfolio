@@ -162,6 +162,15 @@ body:has(#projectDetail.active .fluoro-study) .main-container{margin-top:var(--n
 .fl-keywords-section h2:not(:first-child){margin-top:31px;padding-top:22px;border-top:1px solid #e0e6eb}
 .fl-keywords{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 17px}
 .fl-keywords>span{display:inline-flex;align-items:center;padding:8px 12px;border-radius:3px;background:#edf0f2;color:#36566d;font-size:.9rem;line-height:1.3;font-weight:500}
+.fl-nomenclature{margin:27px 0 28px;padding:25px 0 2px;border-top:1px solid #dce5eb;scroll-margin-top:calc(var(--nav-h) + 85px)}
+.fl-keywords-section .fl-nomenclature h2{font:650 1.22rem/1.4 var(--font-body);color:#193951;margin:0 0 9px;padding:0;border:0}
+.fl-keywords-section .fl-nomenclature-intro{font-size:.96rem;line-height:1.6;color:#597082;margin:0 0 15px}
+.fl-terms{display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin:0;padding:0}
+.fl-terms>div{display:grid;grid-template-columns:minmax(0,1fr);gap:3px;padding:12px 0;border-bottom:1px solid #ebeff2}
+.fl-terms>div:last-child{border-bottom:0}
+.fl-terms dt{font:650 1rem/1.45 var(--font-body);color:#173c57}
+.fl-terms dd{font:400 .97rem/1.65 var(--font-body);color:#4b6377;margin:0;max-width:77ch}
+#fl-r-information{scroll-margin-top:calc(var(--nav-h) + 85px)}
 .fl-info-table{width:100%;border-top:1px solid #d8e1e7;margin-top:12px}
 .fl-info-table>div{display:grid;grid-template-columns:minmax(105px,25%) minmax(0,1fr);border-bottom:1px solid #dce5ea;background:#f9fafb;min-width:0}
 .fl-info-table>div:nth-child(even){background:#f2f5f7}
