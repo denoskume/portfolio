@@ -2348,6 +2348,12 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
 
 /* About Me: square portrait + opening paragraph, followed by full-width prose.
    Scoped to this page; the approved biography text is unchanged. */
+body:has(#about.active) .main-container {
+  margin-top: var(--nav-h);
+}
+#about .about {
+  padding-top: clamp(20px, 2.6vw, 32px);
+}
 #about .about-top {
   grid-template-columns: clamp(220px, 25vw, 300px) minmax(0, 1fr);
   gap: clamp(28px, 5vw, 72px);
@@ -2369,7 +2375,7 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
   margin-bottom: 16px;
 }
 #about .about-fullwidth {
-  margin-top: clamp(28px, 3.8vw, 46px);
+  margin-top: clamp(12px, 1.5vw, 20px);
   margin-bottom: clamp(60px, 9vh, 100px);
 }
 #about .about-fullwidth p:last-child,
@@ -2385,7 +2391,7 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
     width: min(100%, 280px);
   }
   #about .about-fullwidth {
-    margin-top: 24px;
+    margin-top: 16px;
   }
 }
 </style>
