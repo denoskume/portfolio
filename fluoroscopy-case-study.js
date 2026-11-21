@@ -14,7 +14,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
   <header class="fl-paper-header">
     <h1 id="fl-title">Microcatheter segmentation in fluoroscopy</h1>
     <p class="fl-paper-question">Can we detect a thin instrument in noisy X&#8209;ray images and reconstruct its full path accurately?</p>
-    <p class="fl-paper-authors">Denos Kume &amp; Oluwole Shokunbi · Master 1 project · Centrale Nantes</p>
+    <p class="fl-paper-authors">Master 1 project · Centrale Nantes · <strong>Collaborator:</strong> Oluwole Shokunbi</p>
   </header>
   <div class="fl-paper-shell">
     <div class="fl-paper-main">
@@ -48,7 +48,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
           <div class="fl-info-table" role="table" aria-label="Project information">
             <div role="row"><strong role="rowheader">Type</strong><span role="cell">Master 1 academic project</span></div>
             <div role="row"><strong role="rowheader">Institution</strong><span role="cell">Centrale Nantes · MSc Control &amp; Robotics</span></div>
-            <div role="row"><strong role="rowheader">Authors</strong><span role="cell">Denos Kume and Oluwole Shokunbi</span></div>
+            <div role="row"><strong role="rowheader">Collaborator</strong><span role="cell">Oluwole Shokunbi</span></div>
             <div role="row"><strong role="rowheader">Data</strong><span role="cell">10 frames (512 × 512), 20 manual tracings</span></div>
             <div role="row"><strong role="rowheader">Resources</strong><span role="cell"><a href="${repo}" target="_blank" rel="noopener noreferrer">GitHub repository</a> · <a href="${repo}/blob/main/Fluoroscopy_Instrument_Segmentation.ipynb" target="_blank" rel="noopener noreferrer">Notebook</a> · <a href="${repo}/blob/main/frame_comparison.csv" target="_blank" rel="noopener noreferrer">Results CSV</a></span></div>
           </div>
