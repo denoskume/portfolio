@@ -394,15 +394,14 @@ window.initFluoroCaseStudy = function initFluoroCaseStudy() {
     });
   });
   root.querySelector('[data-fl-action="save"]')?.addEventListener("click", () => {
-    const previousView = activeView;
-    activateView("report");
-    notify("Print dialog opened — select Save as PDF to download the illustrated report.");
-    const restore = () => {
-      if (previousView !== "report") activateView(previousView);
-      window.removeEventListener("afterprint", restore);
-    };
-    window.addEventListener("afterprint", restore);
-    window.print();
+    const link = document.createElement("a");
+    link.href = new URL("fluoroscopy-case-study.pdf", document.baseURI).href;
+    link.download = "Microcatheter-Segmentation-Master1-Report.pdf";
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    notify("Downloading the illustrated PDF report");
   });
 
   const data = [
