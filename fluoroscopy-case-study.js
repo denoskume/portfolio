@@ -8,7 +8,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
   <header class="fl-cover">
     <div class="fl-cover-copy">
       <h1 id="fl-title">Microcatheter segmentation in fluoroscopy</h1>
-      <p class="fl-lead">Detecting thin instruments in noisy X-ray images, then reconstructing their paths as continuous lines.</p>
+      <p class="fl-lead">An academic computer vision study: can we detect a microcatheter or guidewire in noisy X-ray images, then recover a continuous instrument path?</p>
       <div class="fl-cover-stats">
         <div><strong>0.876</strong><span>Mean Dice score</span></div>
         <div><strong>10</strong><span>Annotated frames</span></div>
@@ -21,10 +21,25 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
     </figure>
   </header>
 
+  <section class="fl-overview" aria-labelledby="fl-overview-title">
+    <h2 id="fl-overview-title">Project overview</h2>
+    <p>During the MSc Control &amp; Robotics programme at Centrale Nantes, we studied a short sequence of fluoroscopic X-ray images. The challenge was to identify very thin guidewires and microcatheters that can blend into anatomy. We first tested conventional background-subtraction methods, then investigated whether reconstructing a continuous path could overcome their fragmented predictions.</p>
+    <div class="fl-purpose-grid">
+      <div>
+        <h3>Our objective</h3>
+        <p>Detect the instrument in each frame, compare the predicted masks with manually traced references, and understand why initial methods miss parts of the tool.</p>
+      </div>
+      <div>
+        <h3>What success would look like</h3>
+        <p>A reproducible mask for all ten frames, one connected instrument path, and a measurable improvement in overlap with the manual annotations. The repository does not specify a predefined target Dice score.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="fl-chapter" id="fl-problem">
     <div class="fl-chapter-intro">
       <h2>The instrument almost disappears into the image.</h2>
-      <p>In fluoroscopy, the microcatheter or guidewire is thin, low contrast, and easily confused with anatomy. We need to distinguish the instrument from the background and compare its position against manual tracings.</p>
+      <p>Anatomical edges, image noise and weak contrast make the instrument difficult to separate from its surroundings. A simple subtraction mask can miss parts that barely move or mistake background structures for the instrument. This is why the quality of the <em>complete traced path</em>, not just isolated dark pixels, matters.</p>
     </div>
     <figure class="fl-visual fl-visual-wide">
       <a href="${raw}assets/grayscale-comparison.png" target="_blank" rel="noopener noreferrer">
@@ -37,7 +52,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
   <section class="fl-chapter" id="fl-method">
     <div class="fl-chapter-intro">
       <h2>Detect the instrument, then reconnect its path.</h2>
-      <p>We analysed ten 512 × 512 fluoroscopy frames. Frame 201 is the background reference; the other nine show the instrument moving.</p>
+      <p>We analysed ten annotated 512 × 512 frames. Frame 201 served as the background reference; the nine later frames were used for the reported motion-frame comparisons.</p>
     </div>
     <div class="fl-process" aria-label="Processing stages">
       <div>Prepare</div><div>Subtract</div><div>Segment</div><div>Reconnect</div>
@@ -46,7 +61,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
     <div class="fl-method-row fl-baseline-row">
       <div class="fl-method-copy">
         <h3>First, identify possible instrument pixels</h3>
-        <p>After contrast enhancement and background subtraction, we compared three segmentation methods. Each produces an initial mask, but the thin instrument is often fragmented or confused with surrounding anatomy.</p>
+        <p>We enhanced image contrast, filtered noise and subtracted the reference frame to highlight changes. Fixed thresholding, Otsu's threshold and a Gaussian mixture model then produced candidate masks. This established a baseline and exposed missed or disconnected instrument segments.</p>
       </div>
       <div class="fl-baseline-table">
         <h4>Initial segmentation performance</h4>
@@ -65,7 +80,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
     <div class="fl-method-row fl-reconstruction-row">
       <div class="fl-method-copy">
         <h3>Then, reconstruct a continuous path</h3>
-        <p>A supervised ExtraTrees model scores pixels using line appearance and changes over time. A path-search algorithm joins the strongest candidates into one connected centerline.</p>
+        <p>To address these gaps, a supervised ExtraTrees model used dark-line appearance, local changes and information across frames to score candidate pixels. Path search connected them into a single plausible centerline, assuming the instrument enters from the bottom of this image.</p>
         <p>The image compares the earlier fragmented prediction, reconstructed trace and manual annotation for the same frame.</p>
       </div>
       <figure class="fl-visual">
@@ -117,16 +132,29 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
     </details>
   </section>
 
-  <section class="fl-conclusion">
-    <div>
-      <h2>A stronger trace, with clear limits.</h2>
-      <p>Connected-path reconstruction improves segmentation on this one acquisition. Independent sequences and clinical review are still needed before the method can be considered generalizable.</p>
-      <p class="fl-credits">Academic project by Denos Kume and Oluwole Shokunbi at Centrale Nantes.</p>
+  <section class="fl-outcome" aria-labelledby="fl-outcome-title">
+    <div class="fl-outcome-intro">
+      <h2 id="fl-outcome-title">Did we meet the objective?</h2>
+      <p><strong>Yes, for this academic experiment.</strong> We generated instrument masks for all ten frames and the reconstructed predictions each formed one connected component. Across the nine motion frames, mean Dice rose from <strong>0.501 to 0.876</strong>, a gain of <strong>0.375 Dice points</strong>.</p>
+      <p>The reconstructed traces also reduced false-positive pixels from <strong>22,472 to 3,553</strong> and missed instrument pixels from <strong>5,240 to 2,511</strong>. These measurements support an improvement in this sequence, not clinical reliability across patients.</p>
     </div>
-    <div class="fl-conclusion-links">
-      <a class="fl-primary-link" href="${repo}" target="_blank" rel="noopener noreferrer">Explore repository</a>
-      <a href="${repo}/blob/main/Fluoroscopy_Instrument_Segmentation.ipynb" target="_blank" rel="noopener noreferrer">Read the notebook</a>
-      <a href="${repo}/blob/main/frame_comparison.csv" target="_blank" rel="noopener noreferrer">View experimental results</a>
+    <div class="fl-outcome-grid">
+      <div>
+        <h3>Why did it work better?</h3>
+        <p>Background subtraction alone can lose parts of a nearly stationary instrument and pick up anatomical edges. Scoring dark-line evidence and then enforcing a connected path helped preserve the instrument's shape instead of treating each candidate pixel independently.</p>
+      </div>
+      <div>
+        <h3>What remains unresolved?</h3>
+        <p>The data come from a single acquisition. Model settings were explored on that sequence, the path assumes entry from the lower image border, and independent patient-level or clinical review is unavailable. Further validation on unseen sequences is needed.</p>
+      </div>
+    </div>
+    <div class="fl-outcome-footer">
+      <p>Academic project by Denos Kume and Oluwole Shokunbi at Centrale Nantes.</p>
+      <div class="fl-conclusion-links">
+        <a class="fl-primary-link" href="${repo}" target="_blank" rel="noopener noreferrer">Explore repository</a>
+        <a href="${repo}/blob/main/Fluoroscopy_Instrument_Segmentation.ipynb" target="_blank" rel="noopener noreferrer">Executed notebook</a>
+        <a href="${repo}/blob/main/frame_comparison.csv" target="_blank" rel="noopener noreferrer">Experimental results</a>
+      </div>
     </div>
   </section>
 </article>`;
