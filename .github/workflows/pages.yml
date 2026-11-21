@@ -46,6 +46,27 @@ jobs:
           node --check lab/worker.js
           python -c 'from pathlib import Path; import re; html=Path("index.html").read_text(); Path("/tmp/portfolio-inline.js").write_text("\n".join(re.findall(r"<script[^>]*>([\s\S]*?)</script>", html, flags=re.I)), encoding="utf-8")'
           node --check /tmp/portfolio-inline.js
+          # Prevent decorative labels and fixed project counters from returning.
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          html = Path("index.html").read_text(encoding="utf-8")
+          forbidden = {
+              "decorative kicker": r'class="kicker"',
+              "project badge numbering": r'class="card-num"',
+              "card year micro-label": r'class="card-year"',
+              "detail eyebrow metadata": r'class="detail-eyebrow"',
+              "fixed project count heading": r'(?i)three\\s+projects',
+              "hardcoded index over project total": r'Project\\s+\\$\\{[^}]+\\}\\s*/\\s*\\$\\{',
+              "decorative case-study preheading": r'Technical Work\\s*[—-]\\s*Case Studies',
+              "redundant case-study blurb": r'Each case study presents the context',
+              "numbered blog note badge": r'NOTE\\s+\\$\\{',
+          }
+          for label, pattern in forbidden.items():
+              if re.search(pattern, html):
+                  raise SystemExit(f"Portfolio copy regression: {label}")
+          print("Portfolio copy audit passed (no decorative badges or fixed totals).")
+          PY
           mkdir -p _site/lab
           cp index.html app.js content.js styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css _site/
           cp lab/workspace.js lab/worker.js lab/compute.py _site/lab/
