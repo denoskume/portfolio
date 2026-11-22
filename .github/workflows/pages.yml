@@ -179,17 +179,17 @@ jobs:
           require('./assets/js/case-studies/scientific-case-studies.js');
           require('./assets/js/case-studies/software-case-studies.js');
           const studies = [
-            {html:fluoro,prefix:'fl',expected:5},
-            {html:window.renderScientificCaseStudy(2),prefix:'sc-cam',expected:5},
-            {html:window.renderScientificCaseStudy(3),prefix:'sc-clap',expected:11},
-            {html:window.renderScientificCaseStudy(4),prefix:'sc-flag',expected:6},
-            {html:window.renderScientificCaseStudy(5),prefix:'sc-card',expected:7},
-            {html:window.renderScientificCaseStudy(6),prefix:'sc-stage',expected:7}
+            {html:fluoro,prefix:'fl',expected:3},
+            {html:window.renderScientificCaseStudy(2),prefix:'sc-cam',expected:2},
+            {html:window.renderScientificCaseStudy(3),prefix:'sc-clap',expected:6},
+            {html:window.renderScientificCaseStudy(4),prefix:'sc-flag',expected:3},
+            {html:window.renderScientificCaseStudy(5),prefix:'sc-card',expected:2},
+            {html:window.renderScientificCaseStudy(6),prefix:'sc-stage',expected:4}
           ];
           for (const study of studies) {
             const sourceLinks = [...study.html.matchAll(/class="study-cite" href="#([^"]+)"/g)].map(match => match[1]);
             const bibliography = [...study.html.matchAll(/<li id="([^"]+-ref-[0-9]+)"/g)].map(match => match[1]);
-            if(sourceLinks.length < 5 || bibliography.length !== study.expected ||
+            if(bibliography.length !== study.expected ||
                sourceLinks.some(ref => !bibliography.includes(ref)) ||
                !study.html.includes('6.0 References') ||
                !study.html.includes('class="study-reference-list"')) {

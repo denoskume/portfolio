@@ -34,8 +34,6 @@
     authors:'Computer vision · Streamlit application',
     repository:R.flag,notebook:R.flag+'/blob/main/src/flag_recognition/flag_first_app.py',
     pdf:'flag-intelligence-case-study.pdf',downloadName:'Flag-Intelligence-Report.pdf',
-    citation:'Kume, D. (2026). Flag Intelligence: recognition and country facts [Python/Streamlit software project]. GitHub. '+R.flag,
-    bibtex:'@software{kume2026flag,author={Kume, Denos},title={Flag Intelligence},year={2026},url={'+R.flag+'}}',
     keywords:['Computer Vision','Flag Recognition','MobileNetV3','Streamlit','Image Matching','Data Provenance'],
     projectInfo:[
       ['Project','Flag recognition and country information application'],
@@ -53,25 +51,22 @@
       ['Data provenance','Metadata identifying the source, reference year and retrieval time for country facts.']
     ],
     summary:[
-      'Flag Intelligence is a Streamlit application that recognizes flags from uploads, camera pictures or examples and displays country facts. It combines visual reference matching with a <strong>250-class MobileNetV3-Small</strong> fallback. Similar-looking flags can be confirmed manually.'+cit('sc-flag',1),
-      'The documented human-reviewed real-world challenge for the original classifier yielded <strong>19.61% Top-1</strong> and <strong>27.45% Top-5</strong> accuracy. The later reference-matching route was introduced for clean and recognizable flags; the available evaluation evidence does not include a new independent photo benchmark for the combined pipeline.'+cit('sc-flag',2)
+      'Flag Intelligence is a Streamlit application that recognizes flags from uploads, camera pictures or examples and displays country facts. It combines visual reference matching with a <strong>250-class MobileNetV3-Small</strong> fallback. Similar-looking flags can be confirmed manually.',
+      'The documented human-reviewed real-world challenge for the original classifier yielded <strong>19.61% Top-1</strong> and <strong>27.45% Top-5</strong> accuracy. The later reference-matching route was introduced for clean and recognizable flags; the available evaluation evidence does not include a new independent photo benchmark for the combined pipeline.'
     ],
     references:[
-      {label:'Kume, D. (2026). Flag Intelligence: flag-first recognition application implementation.',url:R.flag+'/blob/main/src/flag_recognition/flag_first_app.py',linkLabel:'Application code'},
-      {label:'Kume, D. (2026). Real-world flag recognition review and classifier evaluation. Review script and results summary.',url:R.flag+'/blob/main/scripts/review_real_world_challenge.py',linkLabel:'Review pipeline'},
       {label:'PyTorch. MobileNet V3 Small model architecture. Torchvision documentation.',url:'https://docs.pytorch.org/vision/master/models/generated/torchvision.models.mobilenet_v3_small.html',linkLabel:'Model documentation'},
-      {label:'Kume, D. (2026). Flag-first classification, candidate handling and country-fact interface.',url:R.flag+'/blob/main/src/flag_recognition/flag_first_app.py',linkLabel:'Application code'},
       {label:'World Bank. Indicators API documentation and annual population indicator SP.POP.TOTL.',url:'https://datahelpdesk.worldbank.org/knowledgebase/articles/889392',linkLabel:'World Bank API'},
       {label:'mledoze/countries. Countries, capitals, geographic attributes and country codes. Open data project.',url:'https://github.com/mledoze/countries',linkLabel:'Country reference'}
     ],
     reportSections:[
       {key:'intro',title:'1.0 Introduction',body:
         '<h3>1.1 From a flag picture to a country</h3>'+
-        '<p>Recognizing a flag is not always as simple as looking for its colours. Several countries use almost identical patterns, and a photo can contain folds, shadows or only part of the flag. We built Flag Intelligence to make this recognition process accessible through a web interface and to connect the identified country with useful facts.'+cit('sc-flag',1)+'</p>'+
+        '<p>Recognizing a flag is not always as simple as looking for its colours. Several countries use almost identical patterns, and a photo can contain folds, shadows or only part of the flag. We built Flag Intelligence to make this recognition process accessible through a web interface and to connect the identified country with useful facts.'+'</p>'+
         '<p>The aim was to combine an image-recognition pipeline with clear user feedback. Instead of presenting an uncertain guess as a definitive answer, the application can show candidate countries and allow the user to confirm a visually ambiguous flag.</p>'},
       {key:'dataset',title:'2.0 Inputs and objectives',body:
         '<h3>2.1 What the application works with</h3>'+
-        '<p>The user can upload an image, take a camera picture or choose a sample. The recognition system supports <strong>250 classes</strong> covering ISO-coded entities plus Kosovo. The project also combines real-world flag photos with canonical designs and controlled presentation variants during dataset preparation.'+cit('sc-flag',1)+'</p>'+
+        '<p>The user can upload an image, take a camera picture or choose a sample. The recognition system supports <strong>250 classes</strong> covering ISO-coded entities plus Kosovo. The project also combines real-world flag photos with canonical designs and controlled presentation variants during dataset preparation.'+'</p>'+
         facts([['250','Flag classes'],['3','Input options'],['Top-5','Candidate ranking']])+
         '<h3>2.2 What a successful result should provide</h3>'+
         bullets(['Recognize the flag where the visual evidence is sufficiently distinctive.',
@@ -81,17 +76,17 @@
       {key:'method',title:'3.0 Methodology',body:
         steps(['Validate image','Compare flags','Use CNN fallback','Show country facts'])+
         '<h3>3.1 Recognition in two stages</h3>'+
-        '<p>After checking image size and format, the application first looks for recognizable flag patterns and compares the input with reference flags. This is particularly useful for clean, centred designs. If reference matching cannot confidently distinguish the flag, the application uses the MobileNetV3-Small classifier to rank candidate countries.'+cit('sc-flag',3)+cit('sc-flag',4)+'</p>'+
+        '<p>After checking image size and format, the application first looks for recognizable flag patterns and compares the input with reference flags. This is particularly useful for clean, centred designs. If reference matching cannot confidently distinguish the flag, the application uses the MobileNetV3-Small classifier to rank candidate countries.'+cit('sc-flag',1)+'</p>'+
         '<p>For instance, Côte d’Ivoire and Ireland have similar vertical tricolours with reversed outer colours. The final interaction allows a human to resolve an uncertain case rather than hiding the ambiguity.</p>'+
         fig(R.assets+'flag-intelligence-workflow.svg','<strong>Figure 1.</strong> Recognition and country-fact workflow, based on the application code.','Flag recognition pipeline with validation, reference matching, CNN and country facts.','sc-flag-r-fig1')+
         '<h3>3.2 Country facts and their sources</h3>'+
-        '<p>After country confirmation, the application retrieves its static geographic information from a bundled country reference and seeks the latest available <strong>annual</strong> population observation from the World Bank indicator API. The year and data source accompany that population value, so it can be interpreted correctly.'+cit('sc-flag',5)+cit('sc-flag',6)+'</p>'},
+        '<p>After country confirmation, the application retrieves its static geographic information from a bundled country reference and seeks the latest available <strong>annual</strong> population observation from the World Bank indicator API. The year and data source accompany that population value, so it can be interpreted correctly.'+cit('sc-flag',2)+cit('sc-flag',3)+'</p>'},
       {key:'results',title:'4.0 Evaluation and implementation results',body:
         '<h3>4.1 What the real-world benchmark measured</h3>'+
-        '<p>The human-reviewed real-world challenge for the original image classifier reported <strong>19.61% Top-1</strong> and <strong>27.45% Top-5</strong> accuracy. Top-1 counts first-choice correct predictions; Top-5 counts the cases where the correct country appears within the five suggested classes.'+cit('sc-flag',2)+'</p>'+
+        '<p>The human-reviewed real-world challenge for the original image classifier reported <strong>19.61% Top-1</strong> and <strong>27.45% Top-5</strong> accuracy. Top-1 counts first-choice correct predictions; Top-5 counts the cases where the correct country appears within the five suggested classes.'+'</p>'+
         '<p>These figures help explain the later design choice: clean reference matching and a manual confirmation step can make the application more usable when the model encounters closely related flag designs. A directly comparable accuracy score for the combined workflow is not established by the available evaluations.</p>'+
         '<h3>4.2 What the implemented product delivers</h3>'+
-        '<p>The current recognition-first interface supports image upload, camera input, examples, candidate correction and country information. The JSON export includes provenance fields such as population reference year, source and retrieval timestamp. Tests cover ambiguous tricolours, the country-fact fallback and the main application flow.'+cit('sc-flag',4)+'</p>'},
+        '<p>The current recognition-first interface supports image upload, camera input, examples, candidate correction and country information. The JSON export includes provenance fields such as population reference year, source and retrieval timestamp. Tests cover ambiguous tricolours, the country-fact fallback and the main application flow.'+'</p>'},
       {key:'discussion',title:'5.0 Discussion and next steps',body:
         '<h3>5.1 What we learned</h3>'+
         '<p>Flag recognition combines a computer-vision task with an information-retrieval task. Good application design needs both: a visual prediction that can be checked, and a country fact sheet whose numbers can be traced back to a source.</p>'+
@@ -104,7 +99,7 @@
     ],
     metrics:[
       {key:'accuracy',title:'Documented classifier benchmark',body:
-        '<p>The human-reviewed real-world challenge was conducted for the original classifier. The accuracy values describe that evaluation and provide a baseline for future combined-pipeline tests.'+cit('sc-flag',2)+'</p>'+
+        '<p>The human-reviewed real-world challenge was conducted for the original classifier. The accuracy values describe that evaluation and provide a baseline for future combined-pipeline tests.'+'</p>'+
         score([['Top-1','19.61%'],['Top-5','27.45%'],['Classes','250']])+
         table(['Measure','Recorded value','Interpretation'],[
           ['Top-1 accuracy','19.61%','Correct first-ranked country'],
@@ -131,8 +126,6 @@
     repository:R.card+'/tree/main/versions/v1',
     notebook:R.card+'/blob/main/versions/v1/code/main.py',
     pdf:'python-cardgame-case-study.pdf',downloadName:'CardGame-V1-ALPRO-Report.pdf',
-    citation:'Kume, D., & Fukabe, S. (2025). Rouge Gagne, Noir Perd [Master 1 Semester 1, Algorithmics and Programming (ALPRO) project]. Centrale Nantes. '+R.card+'/tree/main/versions/v1',
-    bibtex:'@software{kume2025cardgame,author={Kume, Denos and Fukabe, Sena},title={Rouge Gagne, Noir Perd},year={2025},url={'+R.card+'/tree/main/versions/v1}}',
     keywords:['Python','Pygame','Object-Oriented Programming','State Machine','UML','JSON Persistence','Software Design'],
     projectInfo:[
       ['Academic setting','Master 1 · Semester 1 · Centrale Nantes · Academic year 2025–2026'],
@@ -155,22 +148,17 @@
       ['JSON','A local text format used by the game to record round history.']
     ],
     summary:[
-      'Rouge Gagne, Noir Perd is a three-card memory game developed in <strong>Python and Pygame</strong> by Denos KUME and Sena FUKABE for the Master 1 (S1) <strong>Algorithmics and Programming (ALPRO)</strong> course at Centrale Nantes. The project addressed the challenge of coordinating animated card movements, timed decisions, player input and game rules while keeping track of the red card throughout each round.'+cit('sc-card',1),
-      'We implemented an event-driven desktop application using five Python modules to separate player and stake management, game-state transitions and interface rendering. The game provides player profiles, fictitious stakes and balances, observation and shuffle phases, timed card selection, result screens and local JSON history. The working application was documented with UML and sequence diagrams and a testing plan, then presented as part of the ALPRO assessment on <strong>12 December 2025</strong>. The project demonstrates how modular and object-oriented programming can support a complete interactive application.'+cit('sc-card',2)
+      'Rouge Gagne, Noir Perd is a three-card memory game developed in <strong>Python and Pygame</strong> by Denos KUME and Sena FUKABE for the Master 1 (S1) <strong>Algorithmics and Programming (ALPRO)</strong> course at Centrale Nantes. The project addressed the challenge of coordinating animated card movements, timed decisions, player input and game rules while keeping track of the red card throughout each round.',
+      'We implemented an event-driven desktop application using five Python modules to separate player and stake management, game-state transitions and interface rendering. The game provides player profiles, fictitious stakes and balances, observation and shuffle phases, timed card selection, result screens and local JSON history. The working application was documented with UML and sequence diagrams and a testing plan, then presented as part of the ALPRO assessment on <strong>12 December 2025</strong>. The project demonstrates how modular and object-oriented programming can support a complete interactive application.'
     ],
     references:[
-      {label:'Kume, D., & Fukabe, S. (2025). Rouge Gagne, Noir Perd. Original Master 1 ALPRO Python source.',url:R.card+'/tree/main/versions/v1/code',linkLabel:'Original Python files'},
-      {label:'Kume, D., & Fukabe, S. (2025). Rouge Gagne, Noir Perd. Original course-project metadata and run instructions.',url:R.card+'/blob/main/versions/v1/README.md',linkLabel:'Academic source metadata'},
-      {label:'Kume, D., & Fukabe, S. (2025). Rouge Gagne, Noir Perd. Original gameplay recording embedded in the academic presentation.',url:R.card+'/blob/main/versions/v1/assets/v1-presentation-demo.mp4',linkLabel:'Original presentation video'},
-      {label:'Kume, D., & Fukabe, S. (2025). SDLC Gantt chart from the ALPRO report.',url:R.card+'/blob/main/versions/v1/docs/figures/sdlc-gantt.webp',linkLabel:'Original Gantt chart'},
       {label:'Python Software Foundation. Python documentation.',url:'https://docs.python.org/3/',linkLabel:'Python documentation'},
-      {label:'Pygame Community. Pygame event reference.',url:'https://www.pygame.org/docs/ref/event.html',linkLabel:'Pygame events'},
-      {label:'Kume, D., & Fukabe, S. (2025). Class architecture diagram extracted from the original ALPRO report.',url:R.card+'/blob/main/versions/v1/docs/figures/alpro-v1-uml-classes.webp',linkLabel:'Original UML diagram'}
+      {label:'Pygame Community. Pygame event reference.',url:'https://www.pygame.org/docs/ref/event.html',linkLabel:'Pygame events'}
     ],
     reportSections:[
       {key:'intro',title:'1.0 Context and objectives',body:
         '<h3>1.1 Master 1 ALPRO assessment</h3>'+
-        '<p><strong>Rouge Gagne, Noir Perd</strong> was our Master 1 Semester 1 programming project at Centrale Nantes. We developed it together, <strong>Denos KUME and Sena FUKABE</strong>, as part of the <strong>Algorithmics and Programming (ALPRO)</strong> course taught by Mira Rizkallah. The submitted work included a functional Python game, a 22-page project report and a 20-slide presentation dated 12 December 2025.'+cit('sc-card',2)+'</p>'+
+        '<p><strong>Rouge Gagne, Noir Perd</strong> was our Master 1 Semester 1 programming project at Centrale Nantes. We developed it together, <strong>Denos KUME and Sena FUKABE</strong>, as part of the <strong>Algorithmics and Programming (ALPRO)</strong> course taught by Mira Rizkallah. The submitted work included a functional Python game, a 22-page project report and a 20-slide presentation dated 12 December 2025.'+'</p>'+
         '<h3>1.2 The problem</h3>'+
         '<p>A player has to identify the red card among three, watch the cards move, and select the correct position. A simple-looking game requires reliable coordination between timing, animations, user input, fictitious stakes, card identity and saved results.</p>'+
         '<h3>1.3 Our objectives</h3>'+
@@ -184,7 +172,7 @@
       {key:'dataset',title:'2.0 Requirements and game rules',body:
         '<h3>2.1 Gameplay: one complete round</h3>'+
         steps(['Create player profile','Configure stake','Observe cards','Track shuffle','Select card','Display result'])+
-        '<p>The interface collects a nickname and avatar, lets the player configure a stake using fictitious credits, and displays one red and two black cards. During the round, the player observes the cards, follows the shuffle and selects a position before the countdown ends. The outcome updates the balance and is recorded in local history.'+cit('sc-card',1)+'</p>'+
+        '<p>The interface collects a nickname and avatar, lets the player configure a stake using fictitious credits, and displays one red and two black cards. During the round, the player observes the cards, follows the shuffle and selects a position before the countdown ends. The outcome updates the balance and is recorded in local history.'+'</p>'+
         facts([['3','Cards'],['10 s','Each principal phase'],['60 FPS','Design target']])+
         '<h3>2.2 Player setup and observation</h3>'+
         '<p>The bet dashboard displays the available fictitious credit balance, allowed stake and turbo options. The observation screen then reveals which card is red and starts the countdown, giving the player time to memorize its position.</p>'+
@@ -213,22 +201,22 @@
           ['game.py','Controls the game states, round timing, card movements and outcomes'],
           ['dashboard.py','Draws menus, gameplay controls, status and result views']
         ],'<strong>Table 1.</strong> Source structure of the ALPRO project.')+
-        '<p>The program separates domain logic from screen rendering. This makes each responsibility easier to understand and gives the project a structure that can be discussed and tested.'+cit('sc-card',1)+'</p>'+
+        '<p>The program separates domain logic from screen rendering. This makes each responsibility easier to understand and gives the project a structure that can be discussed and tested.'+'</p>'+
         fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-module-overview.webp','<strong>Figure 6.</strong> The five Python modules and their connections in the project architecture.','Original ALPRO module architecture diagram','sc-card-r-v1-module-overview')+
         '<h3>3.2 Object-oriented model</h3>'+
-        '<p>The report describes a <strong>User</strong> class for player data, a <strong>Bet</strong> class for stakes, a <strong>Card</strong> class for visual representation and position, and a <strong>CardGame</strong> controller that composes these objects. The UML diagram explains how the classes work together, while the ER diagram documents how player and round records relate.'+cit('sc-card',7)+'</p>'+
+        '<p>The report describes a <strong>User</strong> class for player data, a <strong>Bet</strong> class for stakes, a <strong>Card</strong> class for visual representation and position, and a <strong>CardGame</strong> controller that composes these objects. The UML diagram explains how the classes work together, while the ER diagram documents how player and round records relate.'+'</p>'+
         fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-uml-classes.webp','<strong>Figure 7.</strong> UML class diagram showing the relationships between the game controller, domain objects and interface.','Original ALPRO UML class architecture','sc-card-r-v1-uml-classes')+
         fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-er-player-round.webp','<strong>Figure 8.</strong> Entity–relationship diagram describing player data and stored round records.','Original ALPRO player and round ER diagram','sc-card-r-v1-er-player-round')+
         '<h3>3.3 State-driven event handling</h3>'+
         '<p>The game moves through a series of explicit states for player setup, betting, card display, shuffle, selection and result. The Pygame loop collects events, updates the active state and redraws the screen. This structure is important because a selection should only be accepted in the correct phase and the chosen card must match its position after the shuffle.</p>'+
         fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-sequence-round.webp','<strong>Figure 9.</strong> The sequence diagram follows the interaction between player, game controller and stored results during a round.','Original V1 game round sequence diagram','sc-card-r-v1-sequence-round')+
         '<h3>3.4 Software development lifecycle</h3>'+
-        '<p>We documented the project in four stages: <strong>design</strong> (requirements and diagrams), <strong>implementation</strong> (modules and visual assets), <strong>testing</strong> (functional and non-functional checks) and <strong>documentation</strong> (report and presentation). The original planning diagram is reproduced below.'+cit('sc-card',4)+'</p>'+
+        '<p>We documented the project in four stages: <strong>design</strong> (requirements and diagrams), <strong>implementation</strong> (modules and visual assets), <strong>testing</strong> (functional and non-functional checks) and <strong>documentation</strong> (report and presentation). The original planning diagram is reproduced below.'+'</p>'+
         fig(raw+'Python-CardGame/main/versions/v1/docs/figures/sdlc-gantt.webp','<strong>Figure 10.</strong> Original ALPRO Gantt chart showing the project planning, implementation, testing and documentation schedule.','Original development timeline from the December 2025 academic report.','sc-card-r-v1-gantt')+
         '<p>'+a(R.card+'/tree/main/versions/v1/code','Read the original Python implementation')+'</p>'},
       {key:'results',title:'4.0 Demonstration and validation',body:
         '<h3>4.1 Delivered application</h3>'+
-        '<p>The submitted project demonstrates a working desktop Pygame game with player entry, bet configuration, card observation and shuffle, timed selection, result screens and JSON history. The original gameplay demonstration is reserved for the <strong>end of this report</strong>.'+cit('sc-card',3)+'</p>'+
+        '<p>The submitted project demonstrates a working desktop Pygame game with player entry, bet configuration, card observation and shuffle, timed selection, result screens and JSON history. The original gameplay demonstration is reserved for the <strong>end of this report</strong>.'+'</p>'+
         fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-result.webp','<strong>Figure 11.</strong> V1 game-over screen summarizes the completed rounds and fictitious credits.','Original 2025 CardGame result dashboard','sc-card-r-v1-result')+
         '<h3>4.2 What the report evaluates</h3>'+
         '<p>The report sets out both functional and non-functional validation. It discusses player-input checks, allowed stakes, state transitions, round outcome consistency, JSON persistence and animation smoothness. It also identifies possible risks and mitigation strategies. It does not provide a numerical accuracy benchmark or a measured frame-rate distribution.</p>'+
@@ -244,7 +232,7 @@
         fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-functional-tests.webp','<strong>Figure 12.</strong> Functional test matrix from the original submission, covering gameplay and validation checks.','V1 academic functional tests table','sc-card-r-v1-functional-tests')+
         fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-nonfunctional-tests.webp','<strong>Figure 13.</strong> Original non-functional testing table: responsiveness, usability, robustness and persistence.','V1 academic nonfunctional tests table','sc-card-r-v1-nonfunctional-tests')+
         '<h3>4.3 Academic presentation</h3>'+
-        '<p>We prepared and presented our implementation for the ALPRO assessment on <strong>12 December 2025</strong>. The accompanying report explains requirements, UML, ER and sequence diagrams, the development timeline, design choices, test strategy and future improvements.'+cit('sc-card',2)+'</p>'},
+        '<p>We prepared and presented our implementation for the ALPRO assessment on <strong>12 December 2025</strong>. The accompanying report explains requirements, UML, ER and sequence diagrams, the development timeline, design choices, test strategy and future improvements.'+'</p>'},
       {key:'discussion',title:'5.0 Discussion and conclusion',body:
         '<h3>5.1 What the project demonstrates</h3>'+
         '<p>This project shows how fundamental algorithms and programming concepts can be assembled into a small but complete software application. Object-oriented classes organize responsibilities, an explicit state machine manages the round, Pygame supplies event-driven interaction, and JSON records local game data.</p>'+
@@ -278,7 +266,7 @@
     ],
     metrics:[
       {key:'deliverables',title:'Academic deliverables',body:
-        '<p>These are documented deliverables and design parameters, not performance benchmark measurements.'+cit('sc-card',2)+'</p>'+
+        '<p>These are documented deliverables and design parameters, not performance benchmark measurements.'+'</p>'+
         score([['Python modules','5'],['Original report','22 pages'],['Presentation','20 slides']])+
         '<p>'+a(R.card+'/tree/main/versions/v1','Inspect the academic submission')+'</p>'},
       {key:'specifications',title:'Game design parameters',body:
@@ -292,7 +280,7 @@
           ['Execution mode','Single player, offline']
         ],'<strong>Table 3.</strong> Parameters and constraints in the submitted ALPRO report.')},
       {key:'validation',title:'Testing scope and evidence',body:
-        '<p>The academic documentation addresses input validation, stake checks, state transitions, result integrity, JSON storage risks and responsive animation. It does not provide a measured FPS time series, unit-test count or accuracy percentage. The evidence is the original report, project demonstration and Python source.'+cit('sc-card',1)+cit('sc-card',2)+'</p>'+
+        '<p>The academic documentation addresses input validation, stake checks, state transitions, result integrity, JSON storage risks and responsive animation. It does not provide a measured FPS time series, unit-test count or accuracy percentage. The evidence is the original report, project demonstration and Python source.'+'</p>'+
         '<p>'+a(R.card+'/tree/main/versions/v1/code','Inspect the original Python source and implementation')+'</p>'}
     ]
   };
@@ -303,8 +291,6 @@
     authors:'Web application · React · TypeScript · Cloudflare Worker',
     repository:R.stage,notebook:R.stage+'/blob/main/src/app/routes.tsx',
     pdf:'monstage-case-study.pdf',downloadName:'MonStage-Report.pdf',
-    citation:'Kume, D. (2026). MonStage: Internship Intelligence & Application OS [Web application]. GitHub. '+R.stage,
-    bibtex:'@software{kume2026monstage,author={Kume, Denos},title={MonStage: Internship Intelligence and Application OS},year={2026},url={'+R.stage+'}}',
     keywords:['React','TypeScript','Vite','Application Tracking','Google Sheets','Cloudflare Workers','Authentication'],
     projectInfo:[
       ['Product','Private internship search and application management'],
@@ -322,23 +308,20 @@
       ['Conversion rate','An outcome count divided by the relevant application count for a selected period.']
     ],
     summary:[
-      'MonStage is an internship intelligence and application workspace built with React, TypeScript and a private Google Sheets data source. It brings offer discovery, candidate fit, application dossiers, CV and letter preparation, follow-ups and outcomes into one responsive product.'+cit('sc-stage',1),
-      'Access is restricted using Google Sign-In and a Cloudflare Worker authorization gateway. The public portfolio uses a <strong>sanitized screenshot</strong> rather than exposing private offer records, authentication details or application notes.'+cit('sc-stage',2)
+      'MonStage is an internship intelligence and application workspace built with React, TypeScript and a private Google Sheets data source. It brings offer discovery, candidate fit, application dossiers, CV and letter preparation, follow-ups and outcomes into one responsive product.',
+      'Access is restricted using Google Sign-In and a Cloudflare Worker authorization gateway. The public portfolio uses a <strong>sanitized screenshot</strong> rather than exposing private offer records, authentication details or application notes.'
     ],
     references:[
-      {label:'Kume, D. (2026). MonStage: application routes and product workflow.',url:R.stage+'/blob/main/src/app/routes.tsx',linkLabel:'Application routes'},
-      {label:'Kume, D. (2026). Authentication and request gateway. Cloudflare Worker source.',url:R.stage+'/blob/main/worker/src/auth.ts',linkLabel:'Worker authorization'},
-      {label:'Kume, D. (2026). Application tracking and offer workspace. React frontend.',url:R.stage+'/blob/main/src/features/applications/ApplicationsPage.tsx',linkLabel:'Applications code'},
-      {label:'Kume, D. (2026). Dashboard and application outcome visualization.',url:R.stage+'/blob/main/src/features/dashboard/DashboardPage.tsx',linkLabel:'Dashboard code'},
-      {label:'Kume, D. (2026). Desktop and mobile layout regression tests.',url:R.stage+'/blob/main/e2e/responsive.spec.ts',linkLabel:'Responsive tests'},
-      {label:'Kume, D. (2026). Sanitized Jobs screen for public project communication.',url:R.stage+'/blob/main/docs/assets/monstage_preview_sanitized.png',linkLabel:'Public preview'},
-      {label:'Kume, D. (2026). Protected Apps Script backend implementation.',url:R.stage+'/blob/main/apps-script/Code.gs',linkLabel:'Backend code'}
+      {label:'React. Official documentation for building component-based web interfaces.',url:'https://react.dev/learn',linkLabel:'React documentation'},
+      {label:'Vite. Official frontend build and development guide.',url:'https://vite.dev/guide/',linkLabel:'Vite guide'},
+      {label:'Cloudflare. Workers documentation for request handling.',url:'https://developers.cloudflare.com/workers/',linkLabel:'Cloudflare Workers'},
+      {label:'Google. Apps Script documentation for Sheets integrations.',url:'https://developers.google.com/apps-script',linkLabel:'Google Apps Script'}
     ],
     reportSections:[
       {key:'intro',title:'1.0 Introduction',body:
         '<h3>1.1 The problem of scattered applications</h3>'+
         '<p>An internship search involves more than saving vacancy links. Each opportunity has different skill requirements, application documents, deadlines and follow-up actions. Managing those details across many pages and files makes it difficult to see what needs attention next.</p>'+
-        '<p>MonStage was created as one workspace where a candidate can move from discovering a role to preparing and tracking the application. The goal was to keep the process organized without losing the history attached to a particular offer.'+cit('sc-stage',1)+'</p>'},
+        '<p>MonStage was created as one workspace where a candidate can move from discovering a role to preparing and tracking the application. The goal was to keep the process organized without losing the history attached to a particular offer.'+'</p>'},
       {key:'dataset',title:'2.0 Product requirements',body:
         '<h3>2.1 Information handled by the product</h3>'+
         '<p>Each offer has an employer, job title, location, source, link, relevance information, dates and a status. An application dossier can also contain tailored documents and preparation notes. Aggregated data feeds search, prioritization and outcome indicators.</p>'+
@@ -352,18 +335,18 @@
       {key:'method',title:'3.0 Architecture and implementation',body:
         steps(['Discover offers','Evaluate fit','Prepare dossier','Track outcomes'])+
         '<h3>3.1 From the private dataset to the interface</h3>'+
-        '<p>A React/TypeScript frontend provides the interface. The offer data is held in a private Google Sheet and read through an Apps Script service. Between the browser and that service sits a Cloudflare Worker: it verifies the Google ID token, applies an account allowlist and forwards permitted requests. The browser does not query the private spreadsheet directly.'+cit('sc-stage',2)+cit('sc-stage',7)+'</p>'+
+        '<p>A React/TypeScript frontend provides the interface. The offer data is held in a private Google Sheet and read through an Apps Script service. Between the browser and that service sits a Cloudflare Worker: it verifies the Google ID token, applies an account allowlist and forwards permitted requests. The browser does not query the private spreadsheet directly.'+'</p>'+
         fig(R.assets+'monstage-workflow.svg','<strong>Figure 1.</strong> Candidate workflow from discovery to application follow-up, based on the product architecture.','Four steps of the MonStage internship application workflow.','sc-stage-r-fig1')+
         '<h3>3.2 One dossier per opportunity</h3>'+
-        '<p>After finding an offer, the user can examine its requirements, move it into an application status, and prepare an offer-specific CV, letter and interview notes. Maintaining distinct dossiers matters because one company may have several unrelated roles.'+cit('sc-stage',3)+'</p>'+
+        '<p>After finding an offer, the user can examine its requirements, move it into an application status, and prepare an offer-specific CV, letter and interview notes. Maintaining distinct dossiers matters because one company may have several unrelated roles.'+'</p>'+
         '<h3>3.3 Dashboard and privacy</h3>'+
-        '<p>The dashboard summarizes the pipeline and outcomes so the next action is easier to choose. Private records and notes are not copied into the public portfolio. The screenshot shown here has been sanitized for that purpose.'+cit('sc-stage',4)+cit('sc-stage',6)+'</p>'},
+        '<p>The dashboard summarizes the pipeline and outcomes so the next action is easier to choose. Private records and notes are not copied into the public portfolio. The screenshot shown here has been sanitized for that purpose.'+'</p>'},
       {key:'results',title:'4.0 Delivered features and verification',body:
         '<h3>4.1 Application flow</h3>'+
-        '<p>The implementation includes search, sorting, multi-criteria filtering, candidate fit, a shortlist, application dossiers and tracking views. Each offer can be reviewed with its own status and supporting documents, while the dashboard gives a view of progress and outcomes.'+cit('sc-stage',1)+'</p>'+
+        '<p>The implementation includes search, sorting, multi-criteria filtering, candidate fit, a shortlist, application dossiers and tracking views. Each offer can be reviewed with its own status and supporting documents, while the dashboard gives a view of progress and outcomes.'+'</p>'+
         fig(raw+'monstage/main/docs/assets/monstage_preview_sanitized.png','<strong>Figure 2.</strong> Sanitized Jobs view showing internship discovery and filtering.','Sanitized MonStage jobs interface preview.','sc-stage-r-fig2')+
         '<h3>4.2 Testing and responsive behaviour</h3>'+
-        '<p>The repository includes unit tests, authentication and Worker tests, TypeScript builds, and Playwright end-to-end checks. Responsive tests include narrow mobile widths down to <strong>360 pixels</strong> and verify that the interface remains navigable without horizontal overflow.'+cit('sc-stage',5)+'</p>'+
+        '<p>The repository includes unit tests, authentication and Worker tests, TypeScript builds, and Playwright end-to-end checks. Responsive tests include narrow mobile widths down to <strong>360 pixels</strong> and verify that the interface remains navigable without horizontal overflow.'+'</p>'+
         '<p>This case study reports product capabilities and verified test coverage rather than inventing a count of recruiter responses, applications or users.</p>'},
       {key:'discussion',title:'5.0 Discussion and next steps',body:
         '<h3>5.1 What was learned</h3>'+
@@ -386,7 +369,7 @@
           ['Access','Google token verification via Cloudflare Worker']
         ],'<strong>Table 1.</strong> Core product capabilities from the repository.')},
       {key:'verification',title:'Testing and interface coverage',body:
-        '<p>Verification spans the frontend, protected data gateway and responsive layouts.'+cit('sc-stage',5)+'</p>'+
+        '<p>Verification spans the frontend, protected data gateway and responsive layouts.'+'</p>'+
         table(['Check','Implementation'],[
           ['Frontend unit tests','Vitest'],
           ['Browser end-to-end tests','Playwright'],

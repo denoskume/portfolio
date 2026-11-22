@@ -79,8 +79,6 @@
       authors:'',
       repository:CAMERA, notebook:CAMERA+'/blob/main/Camera_Calibration.ipynb',
       pdf:'camera-calibration-case-study.pdf', downloadName:'Camera-Calibration-Report.pdf',
-      citation:'Kume, D. (2026). Camera Calibration [Academic case study, Centrale Nantes]. GitHub. '+CAMERA,
-      bibtex:'@misc{kume2026calibration,\n  author = {Kume, Denos},\n  title = {Camera Calibration},\n  year = {2026},\n  note = {Academic engineering case study, Centrale Nantes},\n  url = {'+CAMERA+'}\n}',
       keywords:['Computer Vision','Camera Calibration','Zhang Method','Homography','SVD','OpenCV','Reprojection Error','Held-out Evaluation'],
       projectInfo:[
         ['Type','Academic engineering case study'],
@@ -108,10 +106,7 @@
       questionLabel:'Project objective and evaluation',
       references:[
         {label:'Zhang, Z. (2000). A Flexible New Technique for Camera Calibration. IEEE Transactions on Pattern Analysis and Machine Intelligence, 22(11), 1330–1334. DOI: 10.1109/34.888718.',url:'https://doi.org/10.1109/34.888718',linkLabel:'Read paper'},
-        {label:'OpenCV. Camera Calibration with Square Chessboard. OpenCV Documentation.',url:'https://docs.opencv.org/4.12.0/dc/d43/tutorial_camera_calibration_square_chess.html',linkLabel:'Documentation'},
-        {label:'Kume, D. (2026). Camera Calibration. Executed Jupyter notebook and experiment, Centrale Nantes.',url:CAMERA+'/blob/main/Camera_Calibration.ipynb',linkLabel:'Project notebook'},
-        {label:'Kume, D. (2026). Calibration reprojection errors by view. Data output of Camera Calibration.',url:CAMERA+'/blob/main/outputs/view_errors.csv',linkLabel:'View error CSV'},
-        {label:'Kume, D. (2026). Held-out corner prediction errors for Zhang and refined OpenCV models. Data output of Camera Calibration.',url:CAMERA+'/blob/main/outputs/held_out_view_errors.csv',linkLabel:'Held-out CSV'}
+        {label:'OpenCV. Camera Calibration with Square Chessboard. OpenCV Documentation.',url:'https://docs.opencv.org/4.12.0/dc/d43/tutorial_camera_calibration_square_chess.html',linkLabel:'Documentation'}
       ],
       reportSections:[
         {key:'intro',title:'1.0 Introduction',body:
@@ -122,7 +117,7 @@
           '<p>Our aim was to recover the camera parameters and board poses from nine chessboard images, then measure how closely the model predicts the observed corner positions. We also asked whether a refined model could predict corners reserved from the fitting process more accurately.</p>'},
         {key:'dataset',title:'2.0 Dataset and objectives',body:
           '<h3>2.1 The images and reference geometry</h3>'+
-          '<p>The dataset contains <strong>nine photographs</strong>, each <strong>640 × 480 pixels</strong>. The chessboard has <strong>8 × 6 inner corners</strong>, so each image provides 48 measurable image-to-board correspondences. With a square spacing of <strong>30 mm</strong>, we can assign physical coordinates to those board corners. In total, we detected <strong>432 corners</strong> across the nine images.'+cited('sc-cam',3)+'</p>'+
+          '<p>The dataset contains <strong>nine photographs</strong>, each <strong>640 × 480 pixels</strong>. The chessboard has <strong>8 × 6 inner corners</strong>, so each image provides 48 measurable image-to-board correspondences. With a square spacing of <strong>30 mm</strong>, we can assign physical coordinates to those board corners. In total, we detected <strong>432 corners</strong> across the nine images.'+'</p>'+
           '<div class="fl-facts"><div><strong>9</strong><span>Views</span></div><div><strong>432</strong><span>Detected corners</span></div><div><strong>30 mm</strong><span>Square pitch</span></div></div>'+
           '<h3>2.2 What we needed to produce</h3>'+
           '<p>We organized the project around four concrete outputs:</p>'+
@@ -147,11 +142,11 @@
           '<p>We also repeated a held-out test nine times. In each fold, the camera intrinsics were fitted using eight images. For the remaining view, 24 alternating corners established the board pose and the other 24 were reserved to test the predictions. This gave <strong>216 test corners per model</strong>. We compared the linear Zhang model with nonlinear OpenCV refinement, which also estimates lens distortion.'+cited('sc-cam',2)+'</p>'},
         {key:'results',title:'4.0 Experimental results',body:
           '<h3>4.1 How well did the model reproduce the observed corners?</h3>'+
-          '<p>The average distance between detected and projected corners across the nine calibration views was <strong>0.434 pixels</strong>. The overall root-mean-square error (RMS), which gives more weight to larger errors, was <strong>0.534 pixels</strong>.'+cited('sc-cam',4)+' Both measures describe how closely the fitted camera model represents the observed chessboard points.</p>'+
+          '<p>The average distance between detected and projected corners across the nine calibration views was <strong>0.434 pixels</strong>. The overall root-mean-square error (RMS), which gives more weight to larger errors, was <strong>0.534 pixels</strong>.'+' Both measures describe how closely the fitted camera model represents the observed chessboard points.</p>'+
           '<p>We also examined the results separately for each photograph. <strong>img1.jpg</strong> had an RMS of <strong>0.277 px</strong>, while <strong>img7.jpg</strong> had <strong>0.859 px</strong>. The difference shows why it is useful to inspect individual views: a single average can hide which board positions are more difficult for the model to reproduce.</p>'+
           '<p>The complete table of nine image errors, the per-view chart and the source photos are available in the <strong>Metrics</strong> and <strong>Figures</strong> tabs.</p>'+
           '<h3>4.2 Can the camera model predict reserved corners?</h3>'+
-          '<p>The second experiment tested prediction rather than simply measuring a fit. For the <strong>216 reserved corners</strong>, the linear Zhang model produced a pooled RMS of <strong>0.395 px</strong>. With nonlinear OpenCV refinement, pooled RMS fell to <strong>0.352 px</strong>—a <strong>10.7% reduction</strong>. The refined model produced a lower error in each of the nine held-out folds.'+cited('sc-cam',5)+'</p>'+
+          '<p>The second experiment tested prediction rather than simply measuring a fit. For the <strong>216 reserved corners</strong>, the linear Zhang model produced a pooled RMS of <strong>0.395 px</strong>. With nonlinear OpenCV refinement, pooled RMS fell to <strong>0.352 px</strong>—a <strong>10.7% reduction</strong>. The refined model produced a lower error in each of the nine held-out folds.'+'</p>'+
           '<p>In practical terms, the refined camera parameters placed the predicted corners closer to their detected locations. The improvement comes from a refinement that includes nonlinear optimization and lens-distortion parameters, with a different skew constraint.</p>'+
           figure(rawCamera+'outputs/figures/held_out_view_errors.png','<strong>Figure 3.</strong> Held-out prediction errors for the linear and refined camera models. Lower bars indicate closer predictions of reserved corners.','Held-out camera model prediction error across nine views.','sc-cam-r-fig4')+
           '<p>The full held-out error table can be explored in <strong>Metrics</strong>, including the difference between the two methods for each board view.</p>'},
@@ -201,8 +196,6 @@
       collaborator:'Venkatesh Muthukrishnan',
       repository:CLAP, notebook:CLAP+'/blob/main/notebooks/main.ipynb',
       pdf:'clap-zero-shot-case-study.pdf',downloadName:'CLAP-Zero-Shot-Report.pdf',
-      citation:'Kume, D., & Muthukrishnan, V. (2026). CLAP zero-shot audio classification on ESC-50 [Academic project, Centrale Nantes]. GitHub. '+CLAP,
-      bibtex:'@misc{kume2026clap,\n  author = {Kume, Denos and Muthukrishnan, Venkatesh},\n  title = {CLAP Zero-Shot Audio Classification on ESC-50},\n  year = {2026},\n  note = {Academic project, Centrale Nantes},\n  url = {'+CLAP+'}\n}',
       keywords:['Audio Classification','CLAP','Zero-shot Learning','ESC-50','Prompt Engineering','Audio-text Embeddings','Cosine Similarity','Top-k Accuracy'],
       projectInfo:[
         ['Type','Academic multimodal machine-learning research project'],
@@ -233,11 +226,6 @@
         {label:'Piczak, K. J. (2015). ESC: Dataset for Environmental Sound Classification. Proceedings of the 23rd ACM International Conference on Multimedia, 1015–1018. DOI: 10.1145/2733373.2806390.',url:'https://doi.org/10.1145/2733373.2806390',linkLabel:'Read paper'},
         {label:'Wu, Y., Chen, K., Zhang, T., Hui, Y., et al. (2023). Large-Scale Contrastive Language-Audio Pretraining with Feature Fusion and Keyword-to-Caption Augmentation. ICASSP 2023.',url:'https://arxiv.org/abs/2211.06687',linkLabel:'Read paper'},
         {label:'Gemmeke, J. F., Ellis, D. P. W., Freedman, D., Jansen, A., et al. (2017). Audio Set: An Ontology and Human-Labeled Dataset for Audio Events. IEEE ICASSP 2017.',url:'https://research.google/pubs/audio-set-an-ontology-and-human-labeled-dataset-for-audio-events/',linkLabel:'Read paper'},
-        {label:'Kume, D., and Muthukrishnan, V. (2026). CLAP Zero-Shot Audio Classification on ESC-50. Executed Jupyter notebook, Centrale Nantes.',url:CLAP+'/blob/main/notebooks/main.ipynb',linkLabel:'Project notebook'},
-        {label:'Kume, D., and Muthukrishnan, V. (2026). Prompt-strategy comparison results. Experiment output.',url:CLAP+'/blob/main/outputs/tables/prompt_strategy_comparison_table.csv',linkLabel:'Prompt results CSV'},
-        {label:'Kume, D., and Muthukrishnan, V. (2026). Top-k accuracy results. Experiment output.',url:CLAP+'/blob/main/outputs/tables/topk_accuracy.csv',linkLabel:'Top-k results CSV'},
-        {label:'Kume, D., and Muthukrishnan, V. (2026). ESC-50 classwise accuracy results. Experiment figure.',url:CLAP+'/blob/main/outputs/figures/classwise_accuracy_tables.png',linkLabel:'Classwise table'},
-        {label:'Kume, D., and Muthukrishnan, V. (2026). Comparison with published ESC-50 classifiers. Compiled experiment table.',url:CLAP+'/blob/main/outputs/figures/published_classifier_comparison_table.png',linkLabel:'Comparison table'},
         {label:'Chen, S., Wu, Y., Wang, C., et al. (2023). BEATs: Audio Pre-Training with Acoustic Tokenizers. Proceedings of the 40th International Conference on Machine Learning, PMLR 202.',url:'https://proceedings.mlr.press/v202/chen23ag.html',linkLabel:'Read paper'},
         {label:'Chen, K., Du, X., Zhu, B., et al. (2022). HTS-AT: A Hierarchical Token-Semantic Audio Transformer for Sound Classification and Detection. ICASSP 2022.',url:'https://arxiv.org/abs/2202.00874',linkLabel:'Read paper'},
         {label:'Gong, Y., Chung, Y.-A., and Glass, J. (2021). AST: Audio Spectrogram Transformer. Interspeech 2021.',url:'https://arxiv.org/abs/2104.01778',linkLabel:'Read paper'}
@@ -275,20 +263,20 @@
           '<p><strong>Top-1 accuracy</strong> counts the recordings for which the highest-ranked class is correct. <strong>Top-k accuracy</strong> checks whether the correct answer appears within the first k suggestions. We also looked at individual class results to understand where recognition was strongest and where confusion remained.</p>'},
         {key:'results',title:'4.0 Experimental results',body:
           '<h3>4.1 The wording of the prompt changed accuracy</h3>'+
-          '<p>Starting with class names alone, CLAP correctly classified <strong>83.05%</strong> of the recordings. With the prompt <strong>"an audio recording of {}"</strong>, accuracy increased to <strong>91.15%</strong>. That is a gain of <strong>8.10 percentage points</strong>, achieved by changing the text descriptions without modifying the pretrained model.'+cited('sc-clap',5)+'</p>'+
+          '<p>Starting with class names alone, CLAP correctly classified <strong>83.05%</strong> of the recordings. With the prompt <strong>"an audio recording of {}"</strong>, accuracy increased to <strong>91.15%</strong>. That is a gain of <strong>8.10 percentage points</strong>, achieved by changing the text descriptions without modifying the pretrained model.'+'</p>'+
           '<p>The improvement is meaningful because the audio clips and the 50 possible answers were the same in both tests. The text supplied to CLAP was the difference. The comparison also shows that extra words do not automatically help: the tested prompt strategies produced different scores, and some performed below the class-name baseline.</p>'+
           figure(rawClap+'outputs/figures/prompt_strategy_comparison_table.png','<strong>Table 1.</strong> Top-1 accuracy for the ten prompt strategies. The class-name baseline and the best-performing prompt provide the key comparison.','Prompt strategy table with accuracies from the CLAP project.','sc-clap-r-fig2')+
           '<p>Among the alternative formulations, "a sound clip of {}" reached <strong>87.60%</strong> and "a recording of the sound of {}" reached <strong>87.55%</strong>. The results demonstrate why choosing a prompt is part of the classification method rather than a purely cosmetic wording decision.</p>'+
           '<h3 id="sc-clap-r-topk-section">4.2 What the Top-k results tell us</h3>'+
-          '<p>Top-1 accuracy tells us how often the first answer is correct, but it does not show how close other predictions were. With the best prompt, the correct class appeared in the top three for <strong>97.45%</strong> of clips and in the top five for <strong>99.00%</strong>.'+cited('sc-clap',6)+' So even when the first prediction was wrong, the correct label was often among the next few suggestions.</p>'+
+          '<p>Top-1 accuracy tells us how often the first answer is correct, but it does not show how close other predictions were. With the best prompt, the correct class appeared in the top three for <strong>97.45%</strong> of clips and in the top five for <strong>99.00%</strong>.'+' So even when the first prediction was wrong, the correct label was often among the next few suggestions.</p>'+
           '<p>This matters for interpreting a similarity-based classifier: its ranking can still contain useful information beyond the first label. The complete Top-1 through Top-10 table is available in <strong>Figures</strong> and <strong>Metrics</strong>.</p>'+
           figure(rawClap+'outputs/figures/topk_accuracy_line.png','<strong>Figure 2.</strong> The rise from Top-1 to Top-5 accuracy shows how often the correct class appears among the highest-ranked suggestions.','Top-k accuracy curve for the best CLAP prompt.','sc-clap-r-fig3')+
           '<h3 id="sc-clap-r-classwise-section">4.3 Differences between sound categories</h3>'+
-          '<p>We then examined accuracy separately for each of the 50 categories. Some sounds were recognized consistently, while others produced more incorrect first choices. Looking at classwise results helps identify the types of recordings that are more difficult for this model, rather than relying only on one overall percentage.'+cited('sc-clap',7)+'</p>'+
+          '<p>We then examined accuracy separately for each of the 50 categories. Some sounds were recognized consistently, while others produced more incorrect first choices. Looking at classwise results helps identify the types of recordings that are more difficult for this model, rather than relying only on one overall percentage.'+'</p>'+
           '<p>We also compared the classwise accuracy scores with AudioSet quality statistics and class video counts.'+cited('sc-clap',3)+' The measured Pearson correlations were <strong>0.081</strong> for quality and <strong>−0.181</strong> for log10 video counts. These small values show that neither metadata variable closely tracked the differences in recognition accuracy across classes. The classwise tables and scatter plots can be inspected in <strong>Figures</strong>.</p>'+
           '<h3 id="sc-clap-r-published-section">4.4 Putting the result in context</h3>'+
-          '<p>Our <strong>91.15%</strong> Top-1 accuracy was measured in a zero-shot setting, without training an ESC-50 classifier. We also examined other audio classification approaches: BEATs uses acoustic-tokenizer pretraining'+cited('sc-clap',9)+', HTS-AT uses a hierarchical audio transformer'+cited('sc-clap',10)+', and AST uses an attention-based spectrogram transformer'+cited('sc-clap',11)+'. Their methods provide context for our CLAP experiment.</p>'+
-          '<p>The comparison table compiled during this project appears in <strong>Figures</strong>.'+cited('sc-clap',8)+'</p>'+
+          '<p>Our <strong>91.15%</strong> Top-1 accuracy was measured in a zero-shot setting, without training an ESC-50 classifier. We also examined other audio classification approaches: BEATs uses acoustic-tokenizer pretraining'+cited('sc-clap',4)+', HTS-AT uses a hierarchical audio transformer'+cited('sc-clap',5)+', and AST uses an attention-based spectrogram transformer'+cited('sc-clap',6)+'. Their methods provide context for our CLAP experiment.</p>'+
+          '<p>The comparison table compiled during this project appears in <strong>Figures</strong>.'+'</p>'+
           '<p>The complete model comparison appears in the <strong>Figures</strong> tab, alongside the classwise tables and Top-k results.</p>'},
         {key:'discussion',title:'5.0 Discussion and conclusion',body:
           '<h3>5.1 What did we learn?</h3>'+
@@ -400,14 +388,10 @@
       '<div class="fl-modal-head"><h2 id="'+p+'-'+name+'-title">'+title+
       '</h2><button type="button" class="fl-modal-close" data-sc-close aria-label="Close dialog">×</button></div>'+
       body+'</dialog>';
-    const cite = modal('cite','Cite this project',
-      '<p>Use the following reference for the academic work and its reported results.</p>'+
-      '<label for="'+p+'-citation">APA-style reference</label>'+
-      '<textarea id="'+p+'-citation" readonly rows="4">'+safe(d.citation)+'</textarea>'+
-      '<button type="button" data-sc-copy="citation">Copy citation</button>'+
-      '<label for="'+p+'-bibtex">BibTeX</label>'+
-      '<textarea id="'+p+'-bibtex" readonly rows="8">'+safe(d.bibtex)+'</textarea>'+
-      '<button type="button" data-sc-copy="bibtex">Copy BibTeX</button>');
+    const cite = modal('cite','Project resources',
+      '<p>Project code, data, and figures are available as technical resources. External research is cited in the report bibliography.</p>'+
+      '<p>'+link(d.repository,'Browse project repository')+'</p>'+
+      '<p>'+link(d.notebook,'Open project source')+'</p>');
     const rights = modal('rights','License & rights',
       '<p><strong>Academic source project.</strong> The repository does not publish an explicit open license. Publicly available source code and figures are not automatically licensed for redistribution.</p>'+
       '<p>Third-party model, dataset and image materials may have their own conditions. Contact the relevant rights holders for uses not otherwise permitted.</p>'+
@@ -422,7 +406,7 @@
       '<div class="fl-paper-tabs" role="tablist" aria-label="Project case study views">'+tabs+'</div>'+
       '<div class="fl-paper-actions" role="group" aria-label="Report actions">'+pdfLabel+
       '<button type="button" data-sc-action="share">↗ Share</button>'+
-      '<button type="button" data-sc-action="cite">“ ” Cite</button>'+
+      '<button type="button" data-sc-action="cite">Project resources</button>'+
       '<button type="button" data-sc-action="rights">License &amp; Rights</button>'+
       '<a class="sc-source-link" href="'+safe(d.notebook)+'" target="_blank" rel="noopener noreferrer">'+(project>=4?'Source code':'Source notebook')+'</a>'+
       '<span class="fl-action-status" role="status" aria-live="polite"></span></div>'+
@@ -541,12 +525,6 @@
       const worked=document.execCommand('copy');area.remove();
       if(!worked)throw new Error('Clipboard unavailable');
     }
-    root.querySelectorAll('[data-sc-copy]').forEach(button=>button.addEventListener('click',async()=>{
-      try{
-        await copyText(button.dataset.scCopy==='citation'?config.citation:config.bibtex);
-        button.textContent='Copied';setStatus('Citation copied');
-      }catch(e){setStatus('Select the text above to copy it manually.');}
-    }));
     root.querySelector('[data-sc-action="share"]')?.addEventListener('click',async()=>{
       const url=location.origin+location.pathname+'#/projects/'+config.slug;
       try{
