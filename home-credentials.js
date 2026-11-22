@@ -13,9 +13,6 @@
   if (!stage || !stack || cards.length !== 4 || dots.length !== cards.length) return;
 
   const DURATION = 2050;   // An observable 2.05-second card transition.
-  const AUTOPLAY = 6300;   // Rest between movements; not continuous jitter.
-  const reducedMotion = !!(window.matchMedia &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   let current = 0;
   let sliding = false;
   let touchStartX = null, touchStartY = null;
@@ -55,7 +52,10 @@
     // Respect OS-level reduced-motion settings and older browsers.
     const outgoing = cards[current];
     const incoming = cards[target];
-    if (reducedMotion || typeof outgoing.animate !== 'function') {
+    // The user explicitly requested the visible slide effect. A lack of
+    // Web Animations support falls back to a direct card change, but OS-level
+    // reduced-motion settings must not silently disable autoplay entirely.
+    if (typeof outgoing.animate !== 'function') {
       current = target;
       render();
       return;
@@ -172,19 +172,47 @@
     suppressClick = false;
   });
 
-  // The user can WATCH the movement without clicking. Do not autoplay
-  // when Home is hidden, the tab is inactive or the element is offscreen.
-  if (!reducedMotion) {
-    const timer = window.setInterval(() => {
-      if (document.hidden || sliding || touchStartX !== null ||
-          Date.now() - lastManual < AUTOPLAY ||
-          !root.closest('#home.active')) return;
-      const rect = root.getBoundingClientRect();
-      if (rect.bottom <= 0 || rect.top >= window.innerHeight) return;
-      show(current + 1);
-    }, AUTOPLAY);
-    window.addEventListener('pagehide', () => window.clearInterval(timer), {once:true});
+  // Start a visible transition shortly AFTER the carousel enters the viewport.
+  // A long interval started at page load can be skipped while a visitor scrolls,
+  // making autoplay appear broken. This short heartbeat fixes that issue.
+  const TICK = 250;
+  const FIRST_SLIDE_DELAY = 900;   // first visible movement, not 6.3s later
+  const REST_BETWEEN_SLIDES = 3000; // pause after each 2.05s transition
+  let nextSlideAt = Infinity;
+  let wasVisible = false;
+
+  function isActuallyVisible() {
+    const home = root.closest('#home');
+    if (document.hidden || !home || !home.classList.contains('active')) return false;
+    const box = stage.getBoundingClientRect();
+    const screenHeight = window.innerHeight || document.documentElement.clientHeight;
+    const visibleHeight = Math.max(0, Math.min(box.bottom, screenHeight) - Math.max(box.top, 0));
+    return visibleHeight >= Math.min(Math.max(box.height || 340, 200) * .30, screenHeight * .30);
   }
+  function autoplayTick() {
+    const visible = isActuallyVisible();
+    const now = Date.now();
+    if (visible && !wasVisible) {
+      nextSlideAt = now + FIRST_SLIDE_DELAY;
+    } else if (!visible) {
+      nextSlideAt = Infinity;
+    }
+    wasVisible = visible;
+    if (!visible || sliding || touchStartX !== null) return;
+    if (now - lastManual < REST_BETWEEN_SLIDES) {
+      nextSlideAt = Math.max(nextSlideAt, lastManual + REST_BETWEEN_SLIDES);
+      return;
+    }
+    if (now < nextSlideAt) return;
+    show(current + 1);
+    nextSlideAt = now + DURATION + REST_BETWEEN_SLIDES;
+  }
+
+  const timer = window.setInterval(autoplayTick, TICK);
+  window.addEventListener('pagehide', () => window.clearInterval(timer), {once:true});
+  // Run once on initialization, and again after the page becomes visible.
+  autoplayTick();
+  document.addEventListener('visibilitychange', autoplayTick);
 
   render();
 })();
