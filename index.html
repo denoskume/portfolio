@@ -52,7 +52,7 @@
 
 
 
-    --nav-h: 90px;
+    --nav-h: 76px;
 
     --gutter: clamp(20px, 5vw, 64px);
 
@@ -1955,7 +1955,7 @@
 
 
 /* HOME — fidèle aux proportions de la vidéo : banner, stats, cards, mosaic, news, footer */
-body:has(#home.active){--nav-h:90px;--gutter:clamp(20px,2.35vw,38px);background:#fff}
+body:has(#home.active){--nav-h:76px;--gutter:clamp(20px,2.35vw,38px);background:#fff}
 body:has(#home.active) .navbar{background:#fff;border-top:5px solid #081e33;border-bottom:1px solid #d9dee4;backdrop-filter:none}
 body:has(#home.active) .navbar.solid{background:#fff}
 body:has(#home.active) .navbar .nav-links a{color:#10273c}
@@ -2142,36 +2142,37 @@ body:has(#home.active) .navbar .nav-links a{color:#10273c}
 
 .cn-top-button{font-size:.65rem;font-weight:600;letter-spacing:.02em;text-transform:uppercase}
 
-/* Two-tier editorial header: dark social ribbon, white section navigation. */
+/* Single white navigation row: section links, social links, CV and search. */
 .navbar,.navbar.solid,body:has(#home.active) .navbar,body:has(#home.active) .navbar.solid{
   height:var(--nav-h);background:#fff;border:0;border-bottom:1px solid #e7ebf1;
-  padding:0;display:block;backdrop-filter:none;-webkit-backdrop-filter:none;
+  padding:0 clamp(20px,3vw,48px);display:flex;align-items:center;gap:clamp(16px,2vw,28px);
+  backdrop-filter:none;-webkit-backdrop-filter:none;
 }
-.navbar::before{
-  content:"";position:absolute;z-index:0;top:0;right:0;left:25%;height:40px;
-  background:#0b2745;clip-path:polygon(40px 0,100% 0,100% 100%,0 100%);
-}
+.navbar::before{content:none;display:none}
 .navbar .logo{
-  position:absolute;z-index:2;top:15px;left:clamp(22px,4.8vw,70px);
-  width:60px;height:60px;display:flex;align-items:center;justify-content:center;
+  position:static;z-index:2;flex:0 0 56px;
+  width:56px;height:56px;display:flex;align-items:center;justify-content:center;
 }
 .dk-monogram{
-  width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   background:#0b2745;color:#fff;font-family:var(--font-display);
-  font-size:25px;font-weight:600;letter-spacing:-.065em;line-height:1;
+  font-size:24px;font-weight:600;letter-spacing:-.065em;line-height:1;
+}
+.nav-lower{
+  position:static;flex:1;min-width:0;height:100%;display:flex;align-items:center;
+  justify-content:space-between;gap:clamp(12px,1.5vw,22px);
 }
 .nav-upper{
-  position:absolute;top:0;right:clamp(22px,4.8vw,70px);height:40px;z-index:2;
-  display:flex;align-items:center;gap:20px;
+  position:static;z-index:2;flex:0 0 auto;height:auto;
+  display:flex;align-items:center;gap:clamp(8px,1.1vw,16px);white-space:nowrap;
 }
-.nav-upper a{font-size:15.6px;color:#fff;text-decoration:none;font-weight:600;letter-spacing:0}
-.nav-upper a:hover,.nav-upper a:focus-visible{text-decoration:underline;text-underline-offset:4px}
-.nav-divider{display:block;background:rgba(255,255,255,.75);width:1px;height:12px}
-.nav-lower{
-  position:absolute;top:40px;bottom:0;left:clamp(320px,28.5vw,405px);
-  right:clamp(22px,4.8vw,70px);display:flex;align-items:center;justify-content:space-between;gap:20px;
+.nav-upper a{font-size:clamp(12px,1vw,14px);color:#183553;text-decoration:none;font-weight:600;letter-spacing:0;padding:8px 0}
+.nav-upper a:hover,.nav-upper a:focus-visible{color:#2445b5;text-decoration:underline;text-underline-offset:4px}
+.nav-divider{display:block;background:#bac6d3;width:1px;height:14px;flex:0 0 1px}
+.navbar .nav-links{
+  display:flex;align-items:center;justify-content:flex-start;
+  flex:1;min-width:0;gap:clamp(12px,1.6vw,26px);white-space:nowrap;margin:0
 }
-.navbar .nav-links{display:flex;align-items:center;gap:clamp(20px,2.6vw,44px);white-space:nowrap;margin:0}
 .navbar .nav-links li{position:relative;display:flex;align-items:center;gap:7px}
 .navbar .nav-links a,body:has(#home.active) .navbar .nav-links a{
   color:#50546a;font-family:var(--font-body);font-size:15.6px;letter-spacing:.015em;
@@ -2252,30 +2253,38 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
 .resume-actions{margin:20px 0 0;display:flex;gap:16px;flex-wrap:wrap}
 .resume-actions a{display:inline-block;background:#0b2745;color:#fff;text-decoration:none;font-size:.82rem;font-weight:600;padding:12px 18px}
 @media(max-width:1100px){
-  .nav-lower{left:clamp(240px,28vw,320px)}
-  .navbar .nav-links{gap:clamp(13px,1.8vw,26px)}
+  .navbar{gap:14px}
+  .nav-lower{gap:12px}
+  .navbar .nav-links{gap:clamp(10px,1.2vw,18px)}
+  .navbar .nav-links a,body:has(#home.active) .navbar .nav-links a{font-size:clamp(12px,1.25vw,15px)}
 }
-@media(max-width:760px){
-  :root,body:has(#home.active){--nav-h:114px}
-  .navbar::before{left:92px;height:44px;clip-path:polygon(27px 0,100% 0,100% 100%,0 100%)}
-  .navbar .logo{left:16px;top:9px;width:50px;height:50px}
-  .dk-monogram{width:50px;height:50px;font-size:21px}
-  .nav-upper{right:17px;top:0;height:44px;gap:12px}
-  .nav-upper a{font-size:14.3px}
-  .nav-lower{top:69px;left:12px;right:12px;height:38px;bottom:auto;gap:8px}
-  .navbar .nav-links{gap:18px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;padding-right:4px}
+@media(max-width:820px){
+  :root,body:has(#home.active){--nav-h:108px}
+  .navbar,.navbar.solid,body:has(#home.active) .navbar,body:has(#home.active) .navbar.solid{
+    flex-wrap:wrap;align-content:center;align-items:center;justify-content:space-between;
+    gap:4px 10px;padding:7px 14px 5px;
+  }
+  .navbar .logo{order:0;flex:0 0 48px;width:48px;height:48px}
+  .dk-monogram{width:48px;height:48px;font-size:21px}
+  .nav-lower{display:contents}
+  .nav-upper{order:1;margin-left:auto;gap:10px}
+  .nav-upper a{font-size:13px;padding:7px 0}
+  .nav-divider{height:12px}
+  .nav-search{order:2;height:35px;width:35px;flex:0 0 35px}
+  .navbar .nav-links{
+    order:3;flex:0 0 100%;height:39px;min-width:0;
+    gap:19px;overflow-x:auto;scrollbar-width:none;padding:0 2px;
+  }
   .navbar .nav-links::-webkit-scrollbar{display:none}
-  .navbar .nav-links a,body:has(#home.active) .navbar .nav-links a{font-size:14.3px}
-  .nav-search{height:34px;width:34px;flex-basis:34px}
-  .nav-dropdown{position:fixed;top:108px;left:12px;right:12px;min-width:0}
+  .navbar .nav-links a,body:has(#home.active) .navbar .nav-links a{font-size:13px}
+  .nav-dropdown{position:fixed;top:103px;left:12px;right:12px;min-width:0}
   .blog-grid{grid-template-columns:1fr}
   .resume-sheet .resume-item{display:block}
 }
 @media(max-width:400px){
-  .nav-upper{gap:9px;right:13px}
-  .nav-upper a{font-size:13px}
-  .nav-lower{gap:6px}
-  .navbar .nav-links{gap:14px}
+  .navbar .nav-links{gap:15px}
+  .nav-upper{gap:8px}
+  .nav-upper a{font-size:12px}
 }
 
 
@@ -2589,13 +2598,6 @@ body:has(#about.active) .main-container {
 
 <nav class="navbar" id="navbar" aria-label="Main navigation">
   <a href="#" class="logo" data-target="home" aria-label="Denos Kume — Home"><span class="dk-monogram" aria-hidden="true">DK</span></a>
-  <div class="nav-upper" aria-label="Social and CV links">
-    <a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <span class="nav-divider" aria-hidden="true"></span>
-    <a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <span class="nav-divider" aria-hidden="true"></span>
-    <a href="#" data-target="resume">CV</a>
-  </div>
   <div class="nav-lower">
     <ul class="nav-links">
       <li><a href="#" data-target="home" class="active">HOME</a></li>
@@ -2620,6 +2622,13 @@ body:has(#about.active) .main-container {
       <li><a href="#" data-target="blog">BLOG</a></li>
       <li><a href="#" data-target="contact">CONTACT</a></li>
     </ul>
+    <div class="nav-upper" aria-label="Social and CV links">
+      <a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <a href="#" data-target="resume">CV</a>
+    </div>
     <button class="nav-search" type="button" id="openPortfolioSearch" aria-label="Search portfolio" title="Search portfolio">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
         <circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.5 4.5"></path>
