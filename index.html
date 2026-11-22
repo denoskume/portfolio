@@ -1986,10 +1986,9 @@ body:has(#home.active) .navbar .nav-links a{color:#10273c}
 .cn-news-more{color:#0a2b49;display:inline-block;text-decoration:none;font-size:.8rem;border-bottom:1px solid #0a2b49;margin-top:26px}
 .cn-news-more{float:right}
 .cn-site-footer{background:#051d34;color:#fff;padding:38px var(--gutter) 18px}
-.cn-footer-grid{display:grid;grid-template-columns:1.05fr 1.3fr 1.05fr .9fr;gap:0}
+.cn-footer-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,1fr);gap:0}
 .cn-footer-grid>div{padding:5px 28px 30px;border-left:1px solid #243f55}
 .cn-footer-grid>div:first-child{border-left:0;padding-left:0}
-.cn-footer-brand img{display:block;max-width:170px;filter:grayscale(1) brightness(0) invert(1);margin-bottom:18px}
 .cn-site-footer h3{font-size:1rem;margin-bottom:17px;font-weight:600;color:#eaf0f6}
 .cn-site-footer p,.cn-site-footer a{font-size:.82rem;line-height:1.7;color:#becddb}
 .cn-site-footer p{margin-bottom:12px}
@@ -1999,7 +1998,6 @@ body:has(#home.active) .navbar .nav-links a{color:#10273c}
 .cn-site-footer .cn-footer-email{overflow-wrap:anywhere}
 .cn-site-footer .cn-footer-email a{display:inline;margin:0;text-decoration:none}
 .cn-site-footer a:hover{color:#f2c33b}
-.cn-footer-brand small{font:.63rem var(--font-mono);color:#9bafc1}
 .cn-footer-bottom{display:flex;justify-content:center;align-items:center;text-align:center;gap:18px;border-top:1px solid #263e52;padding-top:16px;font:.64rem var(--font-mono);letter-spacing:.045em;color:#a6b8c9}
 .cn-top-button{position:fixed;z-index:60;bottom:30px;right:25px;width:38px;height:38px;display:grid;place-items:center;background:#fff;color:#082944;border:1px solid #adc1d0;border-radius:50%;font-size:1.6rem;line-height:1;box-shadow:0 4px 16px #001c3240;cursor:pointer}
 .cn-top-button:hover{background:#e3ad0e}
@@ -2034,7 +2032,7 @@ body:has(#home.active) .navbar .nav-links a{color:#10273c}
   
   .cn-news-list{grid-template-columns:1fr;gap:24px}
   .cn-news-card img{height:220px;object-fit:contain;background:#f3f5f7}
-  .cn-footer-grid{grid-template-columns:1fr 1fr;gap:20px 8px}
+  .cn-footer-grid{grid-template-columns:1fr;gap:18px}
   .cn-footer-grid>div{border:0;padding:0 8px 14px}
   .cn-site-footer{padding:35px 18px}
   .cn-site-footer h3{font-size:.9rem}
@@ -3070,7 +3068,6 @@ body:has(#about.active) .main-container {
 
 <footer class="cn-site-footer">
         <div class="cn-footer-grid">
-          <div class="cn-footer-brand"><img src="assets/denos-kume-signature.svg" alt="Denos Kume signature" width="170" height="55" loading="lazy"><p>Technical project portfolio<br>Vision · Signal · Image</p></div>
           <div><h3>Information</h3><p>Chemin Launay-Violette<br>44300 Nantes, France</p><p class="cn-footer-phone">Tel: <a href="tel:+33662919468">+33 6 62 91 94 68</a></p><p class="cn-footer-email">Email: <a href="mailto:kamena.kume@eleves.ec-nantes.fr">kamena.kume@eleves.ec-nantes.fr</a></p></div>
           <div><h3>Navigation</h3><a href="#" data-target="home">Home</a><a href="#" data-target="about">About Me</a><a href="#" data-target="projects">Projects</a><a href="#" data-target="contact">Contact</a></div>
           <div><h3>Connect</h3><a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="#" data-target="contact">Discuss a Project</a></div>
