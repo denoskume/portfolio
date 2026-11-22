@@ -254,7 +254,7 @@ def build(study_id: int, filename: str) -> Path:
                             capture_output=True, text=True, check=True)
     soup = BeautifulSoup(result.stdout, "html.parser")
     root = soup.select_one("article.scientific-study, article.fluoro-study")
-    panel = root.select_one('[data-sc-panel="report"]') if root else None
+    panel = root.select_one('[data-sc-panel="report"],[data-fl-panel="report"]') if root else None
     if not root or not panel:
         raise RuntimeError(f"Case study {study_id}: no report content generated")
     story = []
