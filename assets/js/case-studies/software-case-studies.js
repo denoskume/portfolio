@@ -181,7 +181,7 @@
           'Document requirements, architecture, test strategy and development stages.',
           'Present the implemented project and explain the technical decisions made.'
         ])+
-        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-menu.webp','<strong>Figure 1.</strong> The original V1 menu collects the player's nickname and avatar before the first round.','Original 2025 CardGame player menu','sc-card-r-v1-menu')},
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-menu.webp','<strong>Figure 1.</strong> The original V1 menu collects a nickname and avatar before the first round.','Original 2025 CardGame player menu','sc-card-r-v1-menu')},
       {key:'dataset',title:'2.0 Requirements and game rules',body:
         '<h3>2.1 Gameplay: one complete round</h3>'+
         steps(['Create player profile','Configure stake','Observe cards','Track shuffle','Select card','Display result'])+
