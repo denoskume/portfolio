@@ -146,10 +146,15 @@ jobs:
           for (const id of [2,3]) {
             const markup=window.renderScientificCaseStudy(id);
             if ((markup.match(/data-sc-tab=/g)||[]).length!==3 ||
-                (markup.match(/fl-index-figure/g)||[]).length!==6 ||
+                (markup.match(/fl-index-figure/g)||[]).length!==(id===2?6:8) ||
                 !markup.includes('Abstract') || !markup.includes('Nomenclature') ||
                 !markup.includes('Experimental results') ||
-                !markup.includes('data-sc-action="save"'))
+                !markup.includes('data-sc-action="save"') ||
+                (id===3 && (!markup.includes('prompt_strategy_comparison_table.png') ||
+                            !markup.includes('topk_accuracy_table.png') ||
+                            !markup.includes('classwise_accuracy_tables.png') ||
+                            !markup.includes('published_classifier_comparison_table.png') ||
+                            markup.includes('ordered by descending Top-1 accuracy'))))
               throw new Error('Incomplete scientific case study '+id);
           }
           """
