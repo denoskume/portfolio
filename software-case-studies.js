@@ -198,7 +198,8 @@
     ],
     figures:[
       {title:'Welcome screen',description:'V2 start interface from the project repository.',url:raw+'Python-CardGame/main/docs/screenshots/v2-home.png',kind:'figure',reportId:'sc-card-r-intro'},
-      {title:'Gameplay table',description:'Responsive in-game table and controls.',url:raw+'Python-CardGame/main/docs/screenshots/v2-table.png',kind:'figure',reportId:'sc-card-r-fig1'}
+      {title:'Gameplay table',description:'Responsive in-game table and controls.',url:raw+'Python-CardGame/main/docs/screenshots/v2-table.png',kind:'figure',reportId:'sc-card-r-fig1'},
+      {title:'CardGame V1 recording',description:'An animated gameplay demonstration of the original CardGame V1 interface. The screenshots above document the newer V2 version.',url:raw+'Python-CardGame/main/docs/cardgame_demo.gif',kind:'demo'}
     ],
     metrics:[
       {key:'timing',title:'Measured desktop rendering',body:
