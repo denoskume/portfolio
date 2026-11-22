@@ -125,10 +125,10 @@ window.PORTFOLIO_DATA = {
     },
     {
       "slug": "camera-calibration",
-      "title": "Calibrating an inspection camera",
-      "subtitle": "Zhang camera calibration for an industrial inspection station",
+      "title": "Camera Calibration",
+      "subtitle": "Camera calibration using chessboard images and Zhang’s method",
       "category": "Computer Vision",
-      "kind": "Engineering case study",
+      "kind": "Academic case study",
       "year": "2026",
       "featured": true,
       "summary": "Recovering camera intrinsics and board poses from nine chessboard views, with a reproducible reprojection-error review.",
@@ -175,14 +175,14 @@ window.PORTFOLIO_DATA = {
           "context": "Laboratory dataset"
         }
       ],
-      "challenge": "Before a fixed camera measures a part on a planar inspection fixture, image coordinates must be mapped to the same geometric model as the board.",
+      "challenge": "A camera’s intrinsic parameters and the position of a calibration target are unknown. The challenge is to recover them from nine photographs of a chessboard with known geometry.",
       "approach": [
         "Detect 8 × 6 inner chessboard corners from nine photographs with known 30 mm spacing.",
         "Estimate normalized DLT homographies, recover intrinsics using Zhang constraints and reconstruct nine extrinsic poses.",
         "Compare projected and observed corners for each view; flag high-residual views for closer inspection."
       ],
       "result": "All nine views were retained. Mean reprojection error was 0.434 pixels, with an overall RMS of 0.534 pixels. In nine leave-one-view-out folds, 24 corners located each held-out board and 24 different corners tested the prediction. Pooled RMS on 216 test corners fell from 0.395 px for linear Zhang to 0.352 px for the nonlinear OpenCV model with distortion.",
-      "limitations": "The pinhole model omits lens distortion. Production-grade dimensional inspection would need independent tolerance checks.",
+      "limitations": "The linear pinhole model omits lens distortion. Results use nine chessboard photographs and do not establish performance on independent datasets.",
       "codeTitle": "Python · Normalizing point coordinates",
       "code": "def compute_point_normalization_transform(points):\n    \"\"\"Compute point normalization transform.\"\"\"\n    points = np.asarray(points, dtype=float)\n\n    centroid = np.mean(points, axis=0)\n    shifted = points - centroid\n\n    distances = np.linalg.norm(shifted, axis=1)\n    mean_distance = np.mean(distances)\n    # Reject degenerate point sets before normalization to avoid unstable scaling.\n    if mean_distance < 1e-12:\n        raise ValueError(\n            \"Point normalization is undefined for coincident points.\"\n        )\n    scale = np.sqrt(2.0) / mean_distance\n\n    return np.array(\n        [\n            [scale, 0.0, -scale * centroid[0]],\n            [0.0, scale, -scale * centroid[1]],\n            [0.0, 0.0, 1.0],\n        ],\n        dtype=float,\n    )",
       "github": "https://github.com/denoskume/camera-calibration",
@@ -807,9 +807,9 @@ window.PORTFOLIO_DATA = {
       "link": "clap-zero-shot"
     },
     {
-      "title": "Geometric calibration and visual inspection",
+      "title": "Geometric camera calibration",
       "stage": "Completed academic case study",
-      "summary": "Studying calibration residuals, corner detection and geometry for a hypothetical industrial inspection station.",
+      "summary": "Estimating camera geometry from chessboard images and evaluating reprojection errors and held-out corner predictions.",
       "method": "Zhang calibration · nine planar views · reprojection diagnostics",
       "link": "camera-calibration"
     },
