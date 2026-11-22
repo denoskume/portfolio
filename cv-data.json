@@ -49,9 +49,10 @@
       "dates": "Aug - Oct 2026",
       "summary": "Evaluation of AI-generated responses against defined quality criteria.",
       "bullets": [
-        "Assessed relevance, accuracy, completeness and instruction adherence across model responses.",
-        "Compared outputs from different AI models to identify errors and inconsistencies.",
-        "Documented evidence-based evaluations to support ongoing model improvement."
+        "Evaluated AI-generated responses against relevance, accuracy, completeness and instruction-adherence criteria.",
+        "Compared outputs from different AI models to identify errors, inconsistencies and missing information.",
+        "Documented evidence-based observations and justifications for evaluation decisions.",
+        "Provided structured evaluations to support continuous model improvement."
       ]
     },
     {
@@ -59,9 +60,10 @@
       "dates": "Sep - Dec 2024",
       "summary": "Final-year Bachelor internship focused on preparing datasets for analysis and reporting.",
       "bullets": [
-        "Cleaned and preprocessed structured datasets with Python, pandas and NumPy.",
-        "Performed exploratory data analysis to examine trends, distributions and anomalies.",
-        "Prepared reliable datasets and findings for Business Intelligence analysis and reporting."
+        "Preprocessed structured datasets using Python, pandas and NumPy.",
+        "Cleaned data and checked consistency to improve dataset quality and reliability.",
+        "Performed exploratory data analysis to identify trends, distributions and anomalies.",
+        "Created Matplotlib visualizations and prepared datasets for Business Intelligence reporting."
       ]
     }
   ],
@@ -69,20 +71,12 @@
     {
       "title": "Microcatheter Segmentation in Fluoroscopy | Python, OpenCV",
       "dates": "2026",
-      "summary": "Academic image-processing pipeline for detecting thin instruments in noisy fluoroscopy images.",
+      "summary": "Academic image-processing project detecting thin instruments in noisy fluoroscopy sequences.",
       "bullets": [
-        "Implemented denoising, background subtraction and segmentation methods in Python.",
-        "Evaluated predicted masks against manual annotations using Dice and IoU metrics."
-      ]
-    },
-    {
-      "title": "MonStage - Internship Data Platform | Python, Google Sheets",
-      "dates": "2026 - ongoing",
-      "summary": "Deployed application for collecting, organizing and visualizing multi-source internship listings.",
-      "bullets": [
-        "Connected data sources, structured listings and detected duplicate opportunities.",
-        "Built interactive dashboards, filters and status indicators to support decision-making.",
-        "Implemented application workflows for tracking offers and managing supporting documents."
+        "Co-developed a Python pipeline using ten annotated fluoroscopy frames.",
+        "Applied denoising, contrast enhancement and background subtraction to isolate thin instruments.",
+        "Compared fixed-threshold, Otsu and Gaussian-mixture segmentation approaches.",
+        "Evaluated predicted masks against manual annotations using Dice, IoU and PSNR metrics."
       ]
     }
   ],
