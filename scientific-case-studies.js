@@ -584,6 +584,22 @@
     }
   }
 
+  // Register additional documented software projects without duplicating the
+  // Report / Figures / Metrics renderer or allowing existing studies to be overwritten.
+  window.registerScientificCaseStudies = function registerScientificCaseStudies(entries) {
+    for (const [key, study] of Object.entries(entries || {})) {
+      const id = Number(key);
+      if (!Number.isInteger(id) || id < 4 || studies[id]) {
+        throw new Error('Invalid or duplicate case-study id: ' + key);
+      }
+      for (const field of ['slug','prefix','title','question','repository','notebook',
+          'pdf','downloadName','citation','bibtex','keywords','projectInfo',
+          'glossary','summary','reportSections','figures','metrics','references']) {
+        if (!study[field]) throw new Error('Case study '+id+' missing '+field);
+      }
+      studies[id] = study;
+    }
+  };
   window.renderScientificCaseStudy=renderStudy;
   window.initScientificCaseStudy=initStudy;
 })();
