@@ -66,13 +66,13 @@
 
   const studies = {
     2: {
-      slug:'camera-calibration', prefix:'sc-cam', title:'Camera calibration for an industrial inspection station',
+      slug:'camera-calibration', prefix:'sc-cam', title:'Camera Calibration',
       question:'How accurately can nine chessboard views recover a camera model and predict previously unused corner positions?',
       authors:'Academic engineering case study · Centrale Nantes · Denos Kume',
       repository:CAMERA, notebook:CAMERA+'/blob/main/Camera_Calibration.ipynb',
       pdf:'camera-calibration-case-study.pdf', downloadName:'Camera-Calibration-Report.pdf',
-      citation:'Kume, D. (2026). Camera calibration for an industrial inspection station [Academic engineering case study, Centrale Nantes]. GitHub. '+CAMERA,
-      bibtex:'@misc{kume2026calibration,\n  author = {Kume, Denos},\n  title = {Camera Calibration for an Industrial Inspection Station},\n  year = {2026},\n  note = {Academic engineering case study, Centrale Nantes},\n  url = {'+CAMERA+'}\n}',
+      citation:'Kume, D. (2026). Camera Calibration [Academic case study, Centrale Nantes]. GitHub. '+CAMERA,
+      bibtex:'@misc{kume2026calibration,\n  author = {Kume, Denos},\n  title = {Camera Calibration},\n  year = {2026},\n  note = {Academic engineering case study, Centrale Nantes},\n  url = {'+CAMERA+'}\n}',
       keywords:['Computer Vision','Camera Calibration','Zhang Method','Homography','SVD','OpenCV','Reprojection Error','Held-out Evaluation'],
       projectInfo:[
         ['Type','Academic engineering case study'],
@@ -94,13 +94,13 @@
         ['Held-out corners','Corner points excluded from model fitting for a specific fold and used to test prediction quality.']
       ],
       summary: [
-        'A geometric camera model is needed before pixel measurements can be interpreted for a fixed inspection setup. This academic experiment calibrated a camera using nine photographs of a planar chessboard, not production hardware. Its goal was to estimate intrinsic parameters and board poses, then test whether the model predicts corners not used for fitting.',
-        'An 8 × 6 pattern gave 48 detected inner corners per image (432 total). The linear Zhang pipeline produced <strong>0.434 px mean reprojection error</strong> and <strong>0.534 px overall RMS</strong> on the calibration views. In a separate held-out test, a nonlinear OpenCV refinement reduced pooled RMS from <strong>0.395 px to 0.352 px</strong>. These results support the laboratory model; dimensional inspection tolerances were not qualified.'
+        'Camera calibration uses image observations of a pattern with known geometry to estimate camera parameters. This academic project used nine chessboard photographs to estimate intrinsic parameters and board poses, then tested how accurately the model predicts corners not used during fitting.',
+        'An 8 × 6 pattern gave 48 detected inner corners per image (432 total). The linear Zhang pipeline produced <strong>0.434 px mean reprojection error</strong> and <strong>0.534 px overall RMS</strong> on the calibration views. In a separate held-out test, a nonlinear OpenCV refinement reduced pooled RMS from <strong>0.395 px to 0.352 px</strong>. These results describe the supplied nine-image dataset; accuracy on other acquisitions has not yet been assessed.'
       ],
       questionLabel:'Project objective and evaluation',
       reportSections:[
         {key:'intro',title:'1.0 Introduction',body:
-          '<p>A vision system cannot convert image locations into meaningful geometric measurements until its camera parameters are known. A planar chessboard offers known physical coordinates that can be matched to detected corners in each photograph. The inspection station is an <strong>industrial motivation</strong>, not a deployed testing facility.</p>'+
+          '<p>Camera calibration estimates the geometric relationship between a 3D scene and its projection in an image. A planar chessboard provides known coordinates that can be matched to detected image corners in multiple photographs.</p>'+
           '<p>The question is whether a model estimated from different board poses can explain measured image points and predict other points accurately. <a class="fl-figure-ref" href="#sc-cam-r-fig1">Figure 1</a> illustrates the detected corner locations.</p>'+
           figure(rawCamera+'outputs/figures/detected_chessboard_corners.png','<strong>Figure 1.</strong> Detected chessboard corners across the source calibration images.','Chessboard photographs with detected calibration corners.','sc-cam-r-fig1')},
         {key:'dataset',title:'2.0 Dataset and objectives',body:
@@ -111,7 +111,7 @@
             'Estimate normalized planar homographies, intrinsics, rotation and translation for each board pose.',
             'Quantify reprojection residuals view by view and export camera parameters and diagnostic figures.',
             'Use withheld corner points to compare the linear camera model with an independently refined OpenCV variant.'])+
-          '<p>The repository records no certified dimensional-accuracy acceptance threshold. Success is assessed using recovered parameters, residuals and held-out prediction error; a production metrology qualification is outside this study.</p>'},
+          '<p>The repository does not specify a minimum required reprojection error. The results are assessed using recovered model parameters, reprojection residuals and the held-out prediction errors.</p>'},
         {key:'method',title:'3.0 Methodology',body:
           '<div class="fl-method-steps"><span>Detect</span><span>Fit homographies</span><span>Recover camera</span><span>Validate</span></div>'+
           '<h3>3.1 Calibration pipeline</h3>'+
@@ -139,7 +139,7 @@
           '<h3>5.2 What deserves further investigation?</h3>'+
           '<p>The large residual in img7.jpg indicates that some board poses fit less consistently than others. Comparing this view with img1.jpg helps identify variation in the measured projections. The linear fit does not estimate lens distortion; results are sensitive to geometry and model assumptions.</p>'+
           '<h3>5.3 Limitations and future work</h3>'+
-          '<p>The images are laboratory photographs. There is no certified physical reference measurement or part tolerance study. A next phase would calibrate a fixed industrial camera, independently check dimensional error across its working field and confirm the required tolerance.</p>'}
+          '<p>The evaluation uses only nine chessboard photographs and does not assess the model on independent image collections. Further work could test additional camera views, different target orientations and new image sets to evaluate robustness.</p>'}
       ],
       figures:[
         ['Corner detection','Detected corners in the nine photographs','outputs/figures/detected_chessboard_corners.png','intro','sc-cam-r-fig1'],
