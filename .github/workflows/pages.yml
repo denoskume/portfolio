@@ -64,8 +64,9 @@ jobs:
           assert "Data Analysis" in text, "Missing secondary direction"
           assert "MonStage" not in text, "MonStage must not appear in the selected CV projects"
           assert "Microcatheter Segmentation" in text, "Missing selected computer vision project"
-          assert "Google Advanced Data Analytics" in text, "Missing verified certification"
-          assert "SQL Certification Course" in text, "Missing verified SQL certification"
+          assert "CERTIFICATIONS" not in text.upper(), "CV certifications section should be removed"
+          assert "Google Advanced Data Analytics" not in text, "Removed certification must not appear"
+          assert "SQL Certification Course" not in text, "Removed certification must not appear"
           assert "EXPERIENCE" in text and "SELECTED PROJECTS" in text, "Missing reference sections"
           assert text.index("EDUCATION") < text.index("EXPERIENCE") < text.index("SELECTED PROJECTS") < text.index("TECHNICAL SKILLS"), "Incorrect reference CV section order"
           import json
@@ -75,7 +76,7 @@ jobs:
           assert all(len(entry["bullets"]) == 4 for entry in cv["experience"] + cv["projects"]), "Every experience and selected project needs exactly 4 bullets"
           assert not any("MonStage" in entry["title"] for entry in cv["projects"])
           assert cv["career_headline"] == "Data Science | Computer Vision & Image Processing | Data Analysis"
-          assert len(cv["certifications"]) == 2
+          assert "certifications" not in cv, "CV data must not contain removed certifications"
           assert len(cv["experience"]) == 2
           print(f"Validated one-page text-based A4 Harvard CV: {len(text)} extracted characters")
           PY
