@@ -237,7 +237,10 @@
         {label:'Kume, D., and Muthukrishnan, V. (2026). Prompt-strategy comparison results. Experiment output.',url:CLAP+'/blob/main/outputs/tables/prompt_strategy_comparison_table.csv',linkLabel:'Prompt results CSV'},
         {label:'Kume, D., and Muthukrishnan, V. (2026). Top-k accuracy results. Experiment output.',url:CLAP+'/blob/main/outputs/tables/topk_accuracy.csv',linkLabel:'Top-k results CSV'},
         {label:'Kume, D., and Muthukrishnan, V. (2026). ESC-50 classwise accuracy results. Experiment figure.',url:CLAP+'/blob/main/outputs/figures/classwise_accuracy_tables.png',linkLabel:'Classwise table'},
-        {label:'Kume, D., and Muthukrishnan, V. (2026). Comparison with published ESC-50 classifiers. Compiled experiment table.',url:CLAP+'/blob/main/outputs/figures/published_classifier_comparison_table.png',linkLabel:'Comparison table'}
+        {label:'Kume, D., and Muthukrishnan, V. (2026). Comparison with published ESC-50 classifiers. Compiled experiment table.',url:CLAP+'/blob/main/outputs/figures/published_classifier_comparison_table.png',linkLabel:'Comparison table'},
+        {label:'Chen, S., Wu, Y., Wang, C., et al. (2023). BEATs: Audio Pre-Training with Acoustic Tokenizers. Proceedings of the 40th International Conference on Machine Learning, PMLR 202.',url:'https://proceedings.mlr.press/v202/chen23ag.html',linkLabel:'Read paper'},
+        {label:'Chen, K., Du, X., Zhu, B., et al. (2022). HTS-AT: A Hierarchical Token-Semantic Audio Transformer for Sound Classification and Detection. ICASSP 2022.',url:'https://arxiv.org/abs/2202.00874',linkLabel:'Read paper'},
+        {label:'Gong, Y., Chung, Y.-A., and Glass, J. (2021). AST: Audio Spectrogram Transformer. Interspeech 2021.',url:'https://arxiv.org/abs/2104.01778',linkLabel:'Read paper'}
       ],
       reportSections:[
         {key:'intro',title:'1.0 Introduction',body:
@@ -284,7 +287,8 @@
           '<p>We then examined accuracy separately for each of the 50 categories. Some sounds were recognized consistently, while others produced more incorrect first choices. Looking at classwise results helps identify the types of recordings that are more difficult for this model, rather than relying only on one overall percentage.'+cited('sc-clap',7)+'</p>'+
           '<p>We also compared the classwise accuracy scores with AudioSet quality statistics and class video counts.'+cited('sc-clap',3)+' The measured Pearson correlations were <strong>0.081</strong> for quality and <strong>−0.181</strong> for log10 video counts. These small values show that neither metadata variable closely tracked the differences in recognition accuracy across classes. The classwise tables and scatter plots can be inspected in <strong>Figures</strong>.</p>'+
           '<h3 id="sc-clap-r-published-section">4.4 Putting the result in context</h3>'+
-          '<p>Our <strong>91.15%</strong> Top-1 accuracy comes from zero-shot classification: we used the pretrained CLAP representations without fitting a classifier on ESC-50. The project also presents published ESC-50 accuracies for BEATs (98.61%), HTS-AT (96.20%) and AST (95.30%). Those results come from supervised or fine-tuned approaches and provide a useful reference for understanding the performance of different audio classification strategies.'+cited('sc-clap',8)+'</p>'+
+          '<p>Our <strong>91.15%</strong> Top-1 accuracy was measured in a zero-shot setting, without training an ESC-50 classifier. We also examined other audio classification approaches: BEATs uses acoustic-tokenizer pretraining'+cited('sc-clap',9)+', HTS-AT uses a hierarchical audio transformer'+cited('sc-clap',10)+', and AST uses an attention-based spectrogram transformer'+cited('sc-clap',11)+'. Their methods provide context for our CLAP experiment.</p>'+
+          '<p>The comparison table compiled during this project appears in <strong>Figures</strong>.'+cited('sc-clap',8)+'</p>'+
           '<p>The complete model comparison appears in the <strong>Figures</strong> tab, alongside the classwise tables and Top-k results.</p>'},
         {key:'discussion',title:'5.0 Discussion and conclusion',body:
           '<h3>5.1 What did we learn?</h3>'+
