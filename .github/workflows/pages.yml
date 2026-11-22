@@ -144,8 +144,8 @@ jobs:
           assert 'id="credentials"' in about and 'Credentials &amp; Recognition' in about
           assert about.count('class="credential-card"') == 4, "Exactly four original credentials required"
           assert about.index('id="credentials"') > about.index('education-experience'), "Credentials must follow the education timeline"
-          assert "grid-template-columns: repeat(2, 10cm)" in html
-          assert "width: 10cm;" in html and "height: 10cm;" in html
+          assert "grid-template-columns: repeat(2, 15cm)" in html
+          assert "width: 15cm;" in html and "height: 15cm;" in html
           for image in (
               "SimpliLearn_Data_Science_Certificate.png",
               "Google_Advance_DA_Certificate.png",
@@ -153,7 +153,7 @@ jobs:
               "ISDC.jpg",
           ):
               assert image in about, f"Credential image missing: {image}"
-          print("About credentials: four original assets in two 10 cm columns.")
+          print("About credentials: four original assets in two 15 cm columns.")
           PY
           # Guard against previously deleted Home components reappearing.
           python - <<'PY'
