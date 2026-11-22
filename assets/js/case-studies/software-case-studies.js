@@ -121,7 +121,7 @@
 
   const card = {
     slug:'python-cardgame',prefix:'sc-card',title:'Rouge Gagne, Noir Perd · CardGame V1',
-    question:'How can we design, program and explain a complete interactive card game using Python for the Master 1 Algorithms and Programming (ALPRO) course?',
+    question:'Applying object-oriented programming in Python to design and implement an event-driven card game.',
     authors:'Master 1 (S1) project · Centrale Nantes',
     collaborator:'Sena FUKABE',
     repository:R.card+'/tree/main/versions/v1',
@@ -149,7 +149,7 @@
       ['JSON','A local text format used by the game to record round history.']
     ],
     summary:[
-      'Rouge Gagne, Noir Perd is a three-card memory game developed in <strong>Python and Pygame</strong> by Denos KUME and Sena FUKABE for the Master 1 (S1) <strong>Algorithmics and Programming (ALPRO)</strong> course at Centrale Nantes. The project addressed the challenge of coordinating animated card movements, timed decisions, player input and game rules while keeping track of the red card throughout each round.',
+      'Rouge Gagne, Noir Perd is a three-card memory game developed in <strong>Python and Pygame</strong> by Denos KUME and Sena FUKABE for the Master 1 (S1) <strong>Algorithmics and Programming (ALPRO)</strong> course at Centrale Nantes. The project provided a practical application of object-oriented programming, modular design and event-driven logic, using player interactions, card animations, timed rounds and game-state transitions.',
       'We implemented an event-driven desktop application using five Python modules to separate player and stake management, game-state transitions and interface rendering. The game provides player profiles, fictitious stakes and balances, observation and shuffle phases, timed card selection, result screens and local JSON history. The working application was documented with UML and sequence diagrams and a testing plan, then presented as part of the ALPRO assessment on <strong>12 December 2025</strong>. The project demonstrates how modular and object-oriented programming can support a complete interactive application.'
     ],
     references:[
