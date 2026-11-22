@@ -22,7 +22,6 @@ jobs:
         continue-on-error: true
         run: |
           python -m pip install --quiet reportlab pypdf beautifulsoup4 pillow
-          python scripts/build_fluoroscopy_pdf.py
           python scripts/build_scientific_reports.py
           test -s build/fluoroscopy-case-study.pdf
           test -s build/camera-calibration-case-study.pdf
@@ -30,6 +29,7 @@ jobs:
           python - <<'PY'
           from pypdf import PdfReader
           for path, expected in [
+            ("build/fluoroscopy-case-study.pdf", ["Abstract", "Nomenclature", "Methodology", "Experimental results", "0.501", "0.876"]),
             ("build/camera-calibration-case-study.pdf", ["Abstract", "Nomenclature", "Methodology", "Experimental results", "0.434", "0.352"]),
             ("build/clap-zero-shot-case-study.pdf", ["Abstract", "Nomenclature", "Methodology", "Experimental results", "91.15", "83.05"])
           ]:
