@@ -2647,10 +2647,21 @@ body:has(#about.active) .main-container {
   min-height:111px;
 }
 #projects .project-card-actions {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
   padding:0 18px 20px;
   margin-top:auto;
 }
+#projects .project-card-type {
+  min-width:0;
+  color:#516780;
+  font:500 .83rem/1.45 var(--font-body);
+}
 #projects .project-card-explore {
+  flex-shrink:0;
+  margin-left:auto;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -2698,6 +2709,11 @@ body:has(#about.active) .main-container {
   #projects .projects-grid { grid-template-columns:minmax(0,1fr);gap:16px; }
   #projects .project-card-figure { height:clamp(210px,57vw,280px); }
   #projects .project-card-copy { min-height:0; }
+}
+@media(max-width:380px) {
+  #projects .project-card-actions { gap:8px; }
+  #projects .project-card-type { font-size:.76rem; }
+  #projects .project-card-explore { padding:9px 11px; font-size:.76rem; }
 }
 
 </style>
@@ -3498,36 +3514,42 @@ function buildCarousel() {
 const projectCardPreviews = {
   1: {
     title: "Microcatheter Segmentation",
+    type: "Master 1 Project",
     description: "Preprocessing, background subtraction, and evaluation against manual annotations.",
     image: "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/mask-cleanup.png",
     alt: "Microcatheter trajectories compared with segmentation masks and manual tracing."
   },
   2: {
     title: "Camera Calibration",
+    type: "Case Study",
     description: "Chessboard-based geometric calibration and reprojection error analysis.",
     image: "https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/mean_reprojection_error_by_view.png",
     alt: "Bar chart showing reprojection error for nine camera calibration views."
   },
   3: {
     title: "CLAP: Zero-Shot Audio Classification",
+    type: "Master 1 Project",
     description: "Comparing prompt formulations and audio-text classification accuracy on ESC-50.",
     image: "https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/clap_complete_zero_shot_pipeline.png",
     alt: "Flowchart of the CLAP zero-shot audio classification and prompt engineering pipeline."
   },
   4: {
     title: "Flag Intelligence",
+    type: "Personal Project",
     description: "Recognizing national flags and exploring sourced country information.",
     image: "https://raw.githubusercontent.com/denoskume/Flag-Intelligence/main/assets/flag-intelligence-logo.png",
     alt: "Flag Intelligence project logo."
   },
   5: {
     title: "Python CardGame",
+    type: "Personal Project",
     description: "A real-time three-card memory game for desktop and the browser.",
     image: "https://raw.githubusercontent.com/denoskume/Python-CardGame/main/docs/screenshots/v2-table.png",
     alt: "Python CardGame V2 interface showing the gameplay table."
   },
   6: {
     title: "MonStage",
+    type: "Personal Project",
     description: "A private internship search and application management workspace.",
     image: "https://raw.githubusercontent.com/denoskume/monstage/main/docs/assets/monstage_preview_sanitized.png",
     alt: "Sanitized MonStage Jobs interface with application search and filtering."
@@ -3541,6 +3563,7 @@ function buildProjects() {
     const preview = projectCardPreviews[p.id] || {};
     const title = escapeHtml(preview.title || p.title);
     const description = escapeHtml(preview.description || p.brief);
+    const type = escapeHtml(preview.type || 'Project');
     const figure = preview.image
       ? '<figure class="project-card-figure"><img src="' + escapeHtml(preview.image) +
         '" alt="' + escapeHtml(preview.alt || p.title) +
@@ -3551,7 +3574,8 @@ function buildProjects() {
       ');return false;" aria-label="Explore ' + title + '">' +
       figure + '<div class="project-card-copy"><h3>' + title + '</h3>' +
       '<p class="brief">' + description + '</p></div></a>' +
-      '<div class="project-card-actions"><button class="project-card-explore" type="button" ' +
+      '<div class="project-card-actions"><span class="project-card-type">' + type + '</span>' +
+      '<button class="project-card-explore" type="button" ' +
       'onclick="openProject(' + Number(p.id) + ')" aria-label="Explore project: ' + title + '">' +
       'Explore Project</button></div></article>';
   }).join('');
