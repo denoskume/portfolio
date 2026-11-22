@@ -2471,6 +2471,8 @@ body:has(#about.active) .main-container {
 <link rel="stylesheet" href="fluoroscopy-case-study.css?v=20261121-article-layout-v21">
 
 <link rel="stylesheet" href="harvard-cv.css?v=20261122-header-download">
+<link rel="stylesheet" href="contact-modern.css?v=20261122-contact-v2">
+<script src="contact-form.js?v=20261122-contact-v2" defer></script>
 </head>
 
 <body>
@@ -2854,85 +2856,88 @@ body:has(#about.active) .main-container {
   <!-- ============ CONTACT ============ -->
 
   <section id="contact" class="section">
-
-    <div class="contact">
-
+    <div class="contact contact-modern">
       <div class="wrap">
+        <div class="contact-layout">
+          <aside class="contact-aside" aria-labelledby="contactHeading">
+            <div class="contact-availability"><span class="contact-dot" aria-hidden="true"></span>Open to internships from February 2027</div>
+            <h2 id="contactHeading">Let's discuss an internship or a <em>collaboration.</em></h2>
+            <p class="contact-lead">I am seeking a six-month internship starting in February 2027, with interests spanning computer vision, image processing, applied machine learning, data science and data analysis. I am also open to technical discussions and collaboration opportunities.</p>
+            <div class="contact-methods">
+              <a class="contact-method" href="mailto:kamenan.kume@eleves.ec-nantes.fr">
+                <span class="contact-method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                <span class="contact-method-copy"><small>Direct email</small><strong>kamenan.kume@eleves.ec-nantes.fr</strong></span>
+                <svg class="contact-method-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+              </a>
+              <div class="contact-method">
+                <span class="contact-method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+                <span class="contact-method-copy"><small>Based in</small><strong>Nantes, France</strong></span>
+              </div>
+            </div>
+            <div class="contact-socials">
+              <a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+              <a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+          </aside>
 
-        <div class="contact-grid">
-
-          <div class="contact-left">
-
-            
-
-            <h2>Let's discuss an internship or a <em>collaboration.</em></h2>
-
-            <p class="intro">I am seeking a six-month internship starting in February 2027, with interests spanning computer vision, image processing, applied machine learning, data science and data analysis. I am also open to technical discussions and collaboration opportunities.</p>
-
-            <div class="contact-info">
-
-              <div class="row"><span class="k">Email</span><span class="v"><a href="mailto:kamenan.kume@eleves.ec-nantes.fr">kamenan.kume@eleves.ec-nantes.fr</a></span></div>
-
-              <div class="row"><span class="k">Location</span><span class="v">Nantes, France</span></div>
-
-              <div class="row"><span class="k">LinkedIn</span><span class="v"><a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">linkedin.com/in/denoskume</a></span></div>
-
-              <div class="row"><span class="k">GitHub</span><span class="v"><a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">github.com/denoskume</a></span></div>
-
-              <div class="row"><span class="k">Status</span><span class="v">Seeking a six-month internship — February 2027</span></div>
-
+          <div class="contact-form-card">
+            <div class="contact-form-heading">
+              <div>
+                <h3>Send a message</h3>
+                <p>Have an internship opportunity, project idea or question? Share the details below.</p>
+              </div>
+              <span class="contact-heading-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4L22 2Z"/><path d="M22 2 11 13"/></svg></span>
             </div>
 
+            <form id="portfolioContactForm" class="contact-form" action="https://formsubmit.co/kamenan.kume@eleves.ec-nantes.fr" method="POST">
+              <input type="hidden" name="_template" value="table">
+              <div class="contact-honeypot" aria-hidden="true">
+                <label for="contactWebsite">Leave blank</label>
+                <input id="contactWebsite" type="text" name="_honey" tabindex="-1" autocomplete="off">
+              </div>
+              <div class="contact-field-row">
+                <div class="contact-field">
+                  <label for="contactName">Full name <span class="required" aria-hidden="true">*</span></label>
+                  <input id="contactName" name="name" type="text" placeholder="Your full name" autocomplete="name" maxlength="100" minlength="2" required>
+                </div>
+                <div class="contact-field">
+                  <label for="contactEmail">Email address <span class="required" aria-hidden="true">*</span></label>
+                  <input id="contactEmail" name="email" type="email" placeholder="you@company.com" autocomplete="email" maxlength="180" required>
+                </div>
+              </div>
+              <div class="contact-field">
+                <label for="contactTopic">What is this about? <span class="required" aria-hidden="true">*</span></label>
+                <select id="contactTopic" name="topic" required>
+                  <option value="" selected disabled>Select a topic</option>
+                  <option value="Internship opportunity">Internship opportunity</option>
+                  <option value="Project collaboration">Project collaboration</option>
+                  <option value="Technical question">Technical question</option>
+                  <option value="Other inquiry">Other inquiry</option>
+                </select>
+              </div>
+              <div class="contact-field">
+                <label for="contactSubject">Subject <span class="required" aria-hidden="true">*</span></label>
+                <input id="contactSubject" name="subject" type="text" placeholder="A short subject for your message" minlength="4" maxlength="150" required>
+              </div>
+              <div class="contact-field">
+                <label for="contactMessage">Your message <span class="required" aria-hidden="true">*</span></label>
+                <textarea id="contactMessage" name="message" rows="5" placeholder="Tell me about the opportunity, collaboration or question…" minlength="20" maxlength="4000" aria-describedby="contactCounter" required></textarea>
+                <span id="contactCounter" class="contact-counter">0 / 4000</span>
+              </div>
+              <label class="contact-consent">
+                <input type="checkbox" name="consent" value="yes" required>
+                <span>I agree to send this information through <a href="https://formsubmit.co/" target="_blank" rel="noopener noreferrer">FormSubmit</a>, a third-party email delivery service.</span>
+              </label>
+              <div class="contact-actions">
+                <button id="contactSubmit" class="contact-send" type="submit"><span data-submit-label>Send message</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
+                <span class="contact-alt">Prefer email? <a href="mailto:kamenan.kume@eleves.ec-nantes.fr">Write directly</a></span>
+              </div>
+              <div id="contactFeedback" class="contact-feedback" role="status" aria-live="polite" aria-atomic="true"></div>
+            </form>
           </div>
-
-          <form class="contact-form" onsubmit="handleContact(event)">
-
-            <div class="field-row">
-
-              <div class="field">
-
-                <label for="name">Full Name</label>
-
-                <input type="text" id="name" placeholder="Your name" required>
-
-              </div>
-
-              <div class="field">
-
-                <label for="email">Email</label>
-
-                <input type="email" id="email" placeholder="you@example.com" required>
-
-              </div>
-
-            </div>
-
-            <div class="field">
-
-              <label for="subject">Subject</label>
-
-              <input type="text" id="subject" placeholder="Subject of your message" required>
-
-            </div>
-
-            <div class="field">
-
-              <label for="message">Message</label>
-
-              <textarea id="message" placeholder="Tell me about your project or internship opportunity…" required></textarea>
-
-            </div>
-
-            <button type="submit" class="submit">Send Message</button>
-
-          </form>
-
         </div>
-
       </div>
-
     </div>
-
   </section>
 
 
@@ -3450,15 +3455,7 @@ window.addEventListener('scroll', () => {
 
    ============================================================ */
 
-function handleContact(e) {
-  e.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const from = document.getElementById('email').value.trim();
-  const subject = document.getElementById('subject').value.trim();
-  const message = document.getElementById('message').value.trim();
-  const body = `From: ${name} (${from})\n\n${message}`;
-  window.location.href = `mailto:kamenan.kume@eleves.ec-nantes.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
+/* Contact form submission and status feedback are handled in contact-form.js. */
 
 
 /* Header menus, search and article reader. */
