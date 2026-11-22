@@ -11,11 +11,11 @@ A modern portfolio presenting verified engineering work in **Computer Vision**, 
 ## Explore
 
 - **Home** — cinematic full-width featured projects, automatic five-second right-to-left carousel, manual controls and pause.
-- **Projects** — seven detailed case studies with image-led cards, **Explore Project** actions and the same **Report · Figures · Metrics** navigation. Every report explains the context, objectives, approach and results, and provides scholarly citations or source-code evidence where relevant.
+- **Projects** — six detailed case studies with image-led cards, **Explore Project** actions and the same **Report · Figures · Metrics** navigation. Every report explains the context, objectives, approach and results, and provides scholarly citations or source-code evidence where relevant.
 - **Research** — research questions and work in progress, including industrial predictive maintenance.
 - **Blog** — technical field notes with full article pages.
 - **Contact** — interactive form with validation and fallback to email.
-- **Source-backed reports** — Microcatheter Segmentation, Camera Calibration, CLAP Zero-Shot Audio, Flag Intelligence, Python CardGame, MonStage and VisionLab. Each has a direct route, figures, measured results or verified feature tables, references and a downloadable PDF.
+- **Source-backed reports** — Microcatheter Segmentation, Camera Calibration, CLAP Zero-Shot Audio, Flag Intelligence, Python CardGame, MonStage. Each has a direct route, figures, measured results or verified feature tables, references and a downloadable PDF.
 
 Product details include fixed horizontal navigation, responsive layouts, dark theme, keyboard search, accessible image lightbox, review notes and CSV/JSON/PNG exports.
 
@@ -31,9 +31,8 @@ All original code, laboratory datasets and experimental figures stay in their so
 | Flag Intelligence | [Flag-Intelligence](https://github.com/denoskume/Flag-Intelligence) | Recognition workflow and real-world challenge scores |
 | Python CardGame | [Python-CardGame](https://github.com/denoskume/Python-CardGame) | V2 interface, state machine and verification results |
 | MonStage | [monstage](https://github.com/denoskume/monstage) | Sanitized interface and documented application workflow |
-| VisionLab | [VisionLab](https://github.com/denoskume/VisionLab) | 29 operations, V2 tests and reproducible benchmarks |
 
-The public MonStage screenshot is sanitized and the application requires authorization. VisionLab V2 measurements refer to the repository validation, not a new live-production performance claim.
+The public MonStage screenshot is sanitized and the application requires authorization.
 
 ## Local development
 
@@ -50,9 +49,9 @@ index.html               Semantic shell, horizontal navigation
 styles.css / atelier.css  Responsive design system
 content.js               Home, research and article content
 scientific-case-studies.js  Shared case-study report renderer
-software-case-studies.js    Flag Intelligence, CardGame, MonStage, VisionLab reports
+software-case-studies.js    Flag Intelligence, CardGame and MonStage reports
 fluoroscopy-case-study.js   Microcatheter Segmentation report
-scripts/build_scientific_reports.py  Build seven illustrated PDFs
+scripts/build_scientific_reports.py  Build six illustrated PDFs
 app.js                   Frontend interactions and shared views
 lab/workspace.js         Interactive experiment UI
 lab/worker.js            Background browser worker
