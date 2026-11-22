@@ -56,6 +56,7 @@
       root.innerHTML =
         '<header class="harvard-header"><h1>' + escapeHtml(data.name) + '</h1>' +
         '<p class="harvard-headline">' + escapeHtml(data.headline) + '</p>' +
+        '<p class="harvard-direction">' + escapeHtml(data.direction) + '</p>' +
         '<div class="harvard-contact">' + contacts + '</div></header>' +
         sectionMarkup('Profile', '<p>' + escapeHtml(data.profile) + '</p>') +
         sectionMarkup('Education', data.education.map(itemMarkup).join('')) +
