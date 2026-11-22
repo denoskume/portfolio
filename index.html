@@ -3214,6 +3214,7 @@ body:has(#about.active) .main-container {
 <script src="harvard-cv.js?v=20261122-match-project-format" defer></script>
 <script src="fluoroscopy-case-study.js?v=20261122-citations-v25"></script>
 <script src="scientific-case-studies.js?v=20261122-primary-sources-v7"></script>
+<script src="software-case-studies.js?v=20261122-four-projects-v1"></script>
 <script>
 
 /* ============================================================
@@ -3309,6 +3310,34 @@ const projects = [
     ],
     "limitations": "Ten prompt strategies were compared on ESC-50 using pretrained LAION-CLAP.",
     "future": "Evaluate additional audio datasets and compare descriptions tailored to different recording conditions."
+  },
+  {
+    "id": 4,
+    "title": "Flag Intelligence",
+    "brief": "Flag recognition with reference matching, MobileNetV3 and sourced country facts.",
+    "year": "2026",
+    "tags": ["Computer Vision","PyTorch","Streamlit"]
+  },
+  {
+    "id": 5,
+    "title": "Python CardGame",
+    "brief": "Event-driven three-card memory game with desktop and browser interfaces.",
+    "year": "2026",
+    "tags": ["Python","Pygame","Finite-State Machine"]
+  },
+  {
+    "id": 6,
+    "title": "MonStage",
+    "brief": "Private internship discovery, application management, document preparation and follow-up workspace.",
+    "year": "2026",
+    "tags": ["React","TypeScript","Product Engineering"]
+  },
+  {
+    "id": 7,
+    "title": "VisionLab",
+    "brief": "Interactive image-processing pipelines, segmentation, metrics, experiments and exports.",
+    "year": "2026",
+    "tags": ["OpenCV","Streamlit","Image Processing"]
   }
 ];
 
@@ -3491,6 +3520,30 @@ const projectCardPreviews = {
     description: "Comparing prompt formulations and audio-text classification accuracy on ESC-50.",
     image: "https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/clap_complete_zero_shot_pipeline.png",
     alt: "Flowchart of the CLAP zero-shot audio classification and prompt engineering pipeline."
+  },
+  4: {
+    title: "Flag Intelligence",
+    description: "Recognizing national flags and exploring sourced country information.",
+    image: "https://raw.githubusercontent.com/denoskume/Flag-Intelligence/main/assets/flag-intelligence-logo.png",
+    alt: "Flag Intelligence project logo."
+  },
+  5: {
+    title: "Python CardGame",
+    description: "A real-time three-card memory game for desktop and the browser.",
+    image: "https://raw.githubusercontent.com/denoskume/Python-CardGame/main/docs/screenshots/v2-table.png",
+    alt: "Python CardGame V2 interface showing the gameplay table."
+  },
+  6: {
+    title: "MonStage",
+    description: "A private internship search and application management workspace.",
+    image: "https://raw.githubusercontent.com/denoskume/monstage/main/docs/assets/monstage_preview_sanitized.png",
+    alt: "Sanitized MonStage Jobs interface with application search and filtering."
+  },
+  7: {
+    title: "VisionLab",
+    description: "Image-processing pipelines, comparisons, measurements and experiments.",
+    image: "https://raw.githubusercontent.com/denoskume/portfolio/main/assets/case-studies/visionlab-workflow.svg",
+    alt: "VisionLab input, processing, evaluation and export workflow."
   }
 };
 
@@ -3542,12 +3595,16 @@ function openProject(id) {
 
   // Camera calibration and CLAP now use the same journal-style three-tab
   // article template as the fluoroscopy case study, with authentic figures.
-  if (p.id === 2 || p.id === 3) {
+  if ([2, 3, 4, 5, 6, 7].includes(p.id)) {
     const content = document.getElementById('projectDetailContent');
     content.innerHTML = renderScientificCaseStudy(p.id);
     initScientificCaseStudy();
     showSection('projectDetail');
-    const slug = p.id === 2 ? 'camera-calibration' : 'clap-zero-shot';
+    const slugs = {
+      2:'camera-calibration',3:'clap-zero-shot',4:'flag-intelligence',
+      5:'python-cardgame',6:'monstage',7:'visionlab'
+    };
+    const slug = slugs[p.id];
     history.replaceState(null, '', location.pathname + location.search + '#/projects/' + slug);
     return;
   }
@@ -3657,7 +3714,7 @@ function escapeHtml(str) {
 function showSection(id) {
   if (id !== 'projectDetail') {
     document.querySelectorAll('#projectDetailContent video').forEach(video => video.pause());
-    if (/^#\/projects\/(fluoroscopy-instrument-segmentation|camera-calibration|clap-zero-shot)$/.test(location.hash)) {
+    if (/^#\/projects\/(fluoroscopy-instrument-segmentation|camera-calibration|clap-zero-shot|flag-intelligence|python-cardgame|monstage|visionlab)$/.test(location.hash)) {
       history.replaceState(null, '', location.pathname + location.search);
     }
   }
@@ -3853,7 +3910,11 @@ buildBlog();
 const projectDeepLinks = {
   '#/projects/fluoroscopy-instrument-segmentation': 1,
   '#/projects/camera-calibration': 2,
-  '#/projects/clap-zero-shot': 3
+  '#/projects/clap-zero-shot': 3,
+  '#/projects/flag-intelligence': 4,
+  '#/projects/python-cardgame': 5,
+  '#/projects/monstage': 6,
+  '#/projects/visionlab': 7
 };
 if (projectDeepLinks[location.hash]) openProject(projectDeepLinks[location.hash]);
 
