@@ -2572,6 +2572,8 @@ body:has(#about.active) .main-container {
 
 <link rel="stylesheet" href="harvard-cv.css?v=20261122-header-download">
 <link rel="stylesheet" href="contact-modern.css?v=20261122-centered-form-v5">
+<link rel="stylesheet" href="home-credentials.css?v=20261122-stacked-v1">
+<script src="home-credentials.js?v=20261122-stacked-v1" defer></script>
 <script src="contact-form.js?v=20261122-contact-v2" defer></script>
 </head>
 
@@ -2682,6 +2684,84 @@ body:has(#about.active) .main-container {
         </div>
       </section>
 
+      <!-- Credentials carousel: layered cards as demonstrated in Demo_cards.mp4. -->
+      <section id="homeCredentials" class="hc-showcase" aria-label="Credentials and Recognition carousel" aria-roledescription="carousel">
+        <div class="hc-wrap">
+          <header class="hc-intro">
+            <div>
+              <span class="hc-eyebrow">Evidence of learning and achievement</span>
+              <h2 class="hc-title">Credentials <em>&amp;</em> Recognition</h2>
+              <p>Verified qualifications, a robotics competition award and professional recognition.</p>
+            </div>
+            <a class="hc-about-link" href="#" data-target="about">Explore About Me ↗</a>
+          </header>
+          <div class="hc-carousel" tabindex="0" aria-label="Use left and right arrow keys to browse credentials">
+            <div class="hc-stack">
+            <article class="hc-card" data-place="active" aria-label="Credential 1 of 4: Data Scientist" aria-hidden="false">
+              <span class="hc-type">Certificate · Simplilearn</span>
+              <h3>Data Scientist</h3>
+              <p class="hc-issuer">Simplilearn Masters Program</p>
+              <a class="hc-document" href="https://raw.githubusercontent.com/denoskume/denoskume/main/credentials/awards/SimpliLearn_Data_Science_Certificate.png" target="_blank" rel="noopener noreferrer" aria-label="Open original Data Scientist document">
+                <img src="https://raw.githubusercontent.com/denoskume/denoskume/main/credentials/awards/SimpliLearn_Data_Science_Certificate.png" alt="Data Scientist — original document" loading="lazy" decoding="async">
+              </a>
+              <div class="hc-meta">
+                <span>Professional certificate</span>
+                <a href="https://success.simplilearn.com/0b363659-1995-4fbf-8a95-a4157ef15fe2" target="_blank" rel="noopener noreferrer">Verify certificate ↗</a>
+              </div>
+            </article>
+            <article class="hc-card" data-place="next" aria-label="Credential 2 of 4: Advanced Data Analytics" aria-hidden="true">
+              <span class="hc-type">Certificate · Google</span>
+              <h3>Advanced Data Analytics</h3>
+              <p class="hc-issuer">Google Professional Certificate</p>
+              <a class="hc-document" href="https://raw.githubusercontent.com/denoskume/denoskume/main/credentials/awards/Google_Advance_DA_Certificate.png" target="_blank" rel="noopener noreferrer" aria-label="Open original Advanced Data Analytics document" tabindex="-1">
+                <img src="https://raw.githubusercontent.com/denoskume/denoskume/main/credentials/awards/Google_Advance_DA_Certificate.png" alt="Advanced Data Analytics — original document" loading="lazy" decoding="async">
+              </a>
+              <div class="hc-meta">
+                <span>Career certificate</span>
+                <a href="https://www.coursera.org/account/accomplishments/specialization/5ZOKXCS6B7RR" target="_blank" rel="noopener noreferrer" tabindex="-1">Verify certificate ↗</a>
+              </div>
+            </article>
+            <article class="hc-card" data-place="back" aria-label="Credential 3 of 4: 3rd Place" aria-hidden="true">
+              <span class="hc-type">Award · GALAXIA 2022</span>
+              <h3>3rd Place</h3>
+              <p class="hc-issuer">Fire-Fighting Robot Competition</p>
+              <a class="hc-document" href="https://raw.githubusercontent.com/denoskume/denoskume/main/credentials/awards/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png" target="_blank" rel="noopener noreferrer" aria-label="Open original 3rd Place document" tabindex="-1">
+                <img src="https://raw.githubusercontent.com/denoskume/denoskume/main/credentials/awards/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png" alt="3rd Place — original document" loading="lazy" decoding="async">
+              </a>
+              <div class="hc-meta">
+                <span>Competition award · 2022</span>
+                <a href="https://github.com/denoskume/denoskume/blob/main/credentials/awards/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png" target="_blank" rel="noopener noreferrer" tabindex="-1">View award ↗</a>
+              </div>
+            </article>
+            <article class="hc-card" data-place="previous" aria-label="Credential 4 of 4: Star of the Month" aria-hidden="true">
+              <span class="hc-type">Recognition · ISDC Learning</span>
+              <h3>Star of the Month</h3>
+              <p class="hc-issuer">ISDC Learning</p>
+              <a class="hc-document" href="https://raw.githubusercontent.com/denoskume/denoskume/main/credentials/awards/ISDC.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open original Star of the Month document" tabindex="-1">
+                <img src="https://raw.githubusercontent.com/denoskume/denoskume/main/credentials/awards/ISDC.jpg" alt="Star of the Month — original document" loading="lazy" decoding="async">
+              </a>
+              <div class="hc-meta">
+                <span>Recognition</span>
+                <a href="https://www.linkedin.com/posts/isdc-learning_starofthemonth-isdclearning_appreciation-activity-7172875899204300801-g55R" target="_blank" rel="noopener noreferrer" tabindex="-1">View recognition ↗</a>
+              </div>
+            </article>
+            </div>
+            <button type="button" class="hc-arrow hc-prev" aria-label="Previous credential">‹</button>
+            <button type="button" class="hc-arrow hc-next" aria-label="Next credential">›</button>
+          </div>
+          <div class="hc-nav" aria-label="Carousel navigation">
+            <div class="hc-dots" role="group" aria-label="Select credential">
+              <button class="hc-dot" type="button" aria-label="Show Data Scientist" aria-current="true"></button>
+              <button class="hc-dot" type="button" aria-label="Show Advanced Data Analytics" aria-current="false"></button>
+              <button class="hc-dot" type="button" aria-label="Show 3rd Place" aria-current="false"></button>
+              <button class="hc-dot" type="button" aria-label="Show Star of the Month" aria-current="false"></button>
+            </div>
+            <span class="hc-count" aria-live="polite">01 / 04</span>
+            <button class="hc-play" type="button" aria-label="Pause automatic credential carousel" aria-pressed="false">Pause</button>
+          </div>
+          <p class="hc-footnote">Select a card to view the original certificate or recognition in full size.</p>
+        </div>
+      </section>
 
     </div>
   </section>
