@@ -73,7 +73,16 @@
 #resume .resume-harvard .harvard-headline {
   font: 400 12px/1.4 Arial, Helvetica, sans-serif;
   color: #516276;
-  margin: 0 0 7px;
+  margin: 0 0 4px;
+  text-align: center;
+  max-width: none;
+}
+#resume .resume-harvard .harvard-direction {
+  font: 700 12.8px/1.45 Arial, Helvetica, sans-serif;
+  color: #174a76;
+  text-align: center;
+  max-width: none;
+  margin: 0 0 10px;
 }
 #resume .resume-harvard .harvard-contact {
   display: flex;
