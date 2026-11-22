@@ -122,7 +122,8 @@
   const card = {
     slug:'python-cardgame',prefix:'sc-card',title:'Rouge Gagne, Noir Perd · CardGame V1',
     question:'How can we design, program and explain a complete interactive card game using Python for the Master 1 Algorithms and Programming (ALPRO) course?',
-    authors:'Master 1 · Semester 1 (2025–2026) · Centrale Nantes · Denos KUME & Sena FUKABE',
+    authors:'Master 1 (S1) project · Centrale Nantes',
+    collaborator:'Sena FUKABE',
     repository:R.card+'/tree/main/versions/v1',
     notebook:R.card+'/blob/main/versions/v1/code/main.py',
     pdf:'python-cardgame-case-study.pdf',downloadName:'CardGame-V1-ALPRO-Report.pdf',
@@ -130,7 +131,7 @@
     projectInfo:[
       ['Academic setting','Master 1 · Semester 1 · Centrale Nantes · Academic year 2025–2026'],
       ['Course','Algorithmics and Programming (ALPRO), Python'],
-      ['Authors','Denos KUME and Sena FUKABE'],
+      ['Collaborator','Sena FUKABE'],
       ['Instructor','Mira Rizkallah'],
       ['Submission and presentation','12 December 2025 · collaborative coursework'],
       ['Project objective','Develop and present a working Python game to validate ALPRO'],
