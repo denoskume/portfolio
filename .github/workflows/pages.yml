@@ -21,9 +21,25 @@ jobs:
         # Remote evidence download is useful, but must not stop HTML corrections from going live.
         continue-on-error: true
         run: |
-          python -m pip install --quiet reportlab pypdf
+          python -m pip install --quiet reportlab pypdf beautifulsoup4 pillow
           python scripts/build_fluoroscopy_pdf.py
+          python scripts/build_scientific_reports.py
           test -s build/fluoroscopy-case-study.pdf
+          test -s build/camera-calibration-case-study.pdf
+          test -s build/clap-zero-shot-case-study.pdf
+          python - <<'PY'
+          from pypdf import PdfReader
+          for path, expected in [
+            ("build/camera-calibration-case-study.pdf", ["Abstract", "Nomenclature", "Methodology", "Experimental results", "0.434", "0.352"]),
+            ("build/clap-zero-shot-case-study.pdf", ["Abstract", "Nomenclature", "Methodology", "Experimental results", "91.15", "83.05"])
+          ]:
+              reader = PdfReader(path)
+              text = " ".join((page.extract_text() or "") for page in reader.pages)
+              assert len(reader.pages) >= 3, f"{path} is unexpectedly short"
+              for term in expected:
+                  assert term in text, f"{path}: missing {term}"
+              print(f"Validated {path}: {len(reader.pages)} illustrated pages")
+          PY
           python - <<'PY'
           from pathlib import Path
           from pypdf import PdfReader
@@ -109,10 +125,37 @@ jobs:
           node --check home-credentials.js
           node --check content.js
           node --check fluoroscopy-case-study.js
+          node --check scientific-case-studies.js
           node --check lab/workspace.js
           node --check lab/worker.js
           python -c 'from pathlib import Path; import re; html=Path("index.html").read_text(); Path("/tmp/portfolio-inline.js").write_text("\n".join(re.findall(r"<script[^>]*>([\s\S]*?)</script>", html, flags=re.I)), encoding="utf-8")'
           node --check /tmp/portfolio-inline.js
+          # Both additional project pages reuse the fluoroscopy report structure.
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess
+          html = Path("index.html").read_text(encoding="utf-8")
+          assert 'scientific-case-studies.js?v=' in html
+          assert 'scientific-case-studies.css?v=' in html
+          assert 'renderScientificCaseStudy(p.id)' in html and 'initScientificCaseStudy()' in html
+          for slug in ('camera-calibration', 'clap-zero-shot'):
+              assert "#/projects/" + slug in html
+          script = """
+          global.window=globalThis;
+          require('./scientific-case-studies.js');
+          for (const id of [2,3]) {
+            const markup=window.renderScientificCaseStudy(id);
+            if ((markup.match(/data-sc-tab=/g)||[]).length!==3 ||
+                (markup.match(/fl-index-figure/g)||[]).length!==6 ||
+                !markup.includes('Abstract') || !markup.includes('Nomenclature') ||
+                !markup.includes('Experimental results') ||
+                !markup.includes('data-sc-action="save"'))
+              throw new Error('Incomplete scientific case study '+id);
+          }
+          """
+          subprocess.run(["node","-e",script],check=True)
+          print("Camera Calibration and CLAP report structure validated.")
+          PY
           # Contact form must be accessible, designed, and actually wired to an email relay.
           python - <<'PY'
           from pathlib import Path
@@ -197,12 +240,12 @@ jobs:
           print("Portfolio copy audit passed (no decorative badges or fixed totals).")
           PY
           mkdir -p _site/lab
-          cp index.html app.js content.js cv-data.json harvard-cv.js harvard-cv.css contact-form.js contact-modern.css home-credentials.js home-credentials.css styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css _site/
+          cp index.html app.js content.js cv-data.json harvard-cv.js harvard-cv.css contact-form.js contact-modern.css home-credentials.js home-credentials.css styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css scientific-case-studies.js scientific-case-studies.css _site/
           cp lab/workspace.js lab/worker.js lab/compute.py _site/lab/
           cp -r assets _site/
           # Always publish the HTML even if an optional document rebuild fails.
           # Fall back to the last published copy of each PDF where available.
-          for pdf in fluoroscopy-case-study.pdf Denos_Kume_Harvard_CV.pdf; do
+          for pdf in fluoroscopy-case-study.pdf camera-calibration-case-study.pdf clap-zero-shot-case-study.pdf Denos_Kume_Harvard_CV.pdf; do
             if [ -s "build/$pdf" ]; then
               cp "build/$pdf" "_site/$pdf"
             elif curl --fail --location --silent --show-error --retry 2 --max-time 30                 "https://denoskume.github.io/portfolio/$pdf?previous=1" -o "_site/$pdf"                 && head -c 5 "_site/$pdf" | grep -q '%PDF-'; then
@@ -223,6 +266,8 @@ jobs:
           test -f _site/assets/denos-kume-signature.svg
           test -s _site/fluoroscopy-case-study.js
           test -s _site/fluoroscopy-case-study.css
+          test -s _site/scientific-case-studies.js
+          test -s _site/scientific-case-studies.css
           touch _site/.nojekyll
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -268,6 +313,8 @@ jobs:
                       and html.count('class="credential-card"') == 4
                       and 'id="homeCredentials"' in html
                       and html.count('class="hc-card"') == 4
+                      and 'scientific-case-studies.js?v=' in html
+                      and 'scientific-case-studies.css?v=' in html
                       and 'home-credentials.js?v=20261122-autoplay-visible-v5' in html
                       and 'home-credentials.css?v=' in html):
                       # Fetch the published script too: index.html being current
