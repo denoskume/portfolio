@@ -3249,8 +3249,8 @@ const projects = [
       "Intra-sequence evaluation against manual annotations.",
       "Code and experiments: github.com/denoskume/Background-Subtraction-Fluoroscopy"
     ],
-    "limitations": "Results were obtained from one academic image sequence; robustness on independent sequences has not yet been evaluated.",
-    "future": "Evaluate on independent sequences and improve robustness to anatomical structures and changes in contrast."
+    "limitations": "The evaluation covers one annotated image sequence, with further validation possible on additional recordings.",
+    "future": "Compare additional sequences and improve robustness across different image conditions."
   },
   {
     "id": 2,
@@ -3278,8 +3278,8 @@ const projects = [
       "Held-out corner RMS: 0.395 pixels (linear Zhang model) and 0.352 pixels (refined OpenCV model).",
       "Notebook and figures: github.com/denoskume/camera-calibration"
     ],
-    "limitations": "Laboratory data only; dimensional accuracy on a real industrial part has not been qualified.",
-    "future": "Evaluate calibration using a certified reference target at different positions within the camera field of view."
+    "limitations": "The calibration evaluates nine chessboard views using image reprojection errors and held-out corner predictions.",
+    "future": "Evaluate additional chessboard images and target orientations to assess calibration consistency."
   },
   {
     "id": 3,
@@ -3307,7 +3307,7 @@ const projects = [
       "Improvement: 8.10 percentage points; Top-5 accuracy: 99.00%.",
       "Notebook: github.com/denoskume/CLAP-Zero-Shot-Audio-Classification"
     ],
-    "limitations": "Only ten prompts were evaluated on one dataset; scores depend on the pretrained model and evaluation protocol.",
+    "limitations": "Ten prompt strategies were compared on ESC-50 using pretrained LAION-CLAP.",
     "future": "Evaluate additional audio datasets and compare descriptions tailored to different recording conditions."
   }
 ];
