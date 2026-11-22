@@ -268,9 +268,22 @@ jobs:
                       and html.count('class="credential-card"') == 4
                       and 'id="homeCredentials"' in html
                       and html.count('class="hc-card"') == 4
-                      and 'home-credentials.js?v=' in html
+                      and 'home-credentials.js?v=20261122-autoplay-visible-v5' in html
                       and 'home-credentials.css?v=' in html):
-                      print(f"Verified public Pages deployment at {url}")
+                      # Fetch the published script too: index.html being current
+                      # is not sufficient if the asset is cached or missing.
+                      script_url = f"{base}/home-credentials.js?build={sha}"
+                      script_request = urllib.request.Request(
+                          script_url,
+                          headers={"Cache-Control": "no-cache",
+                                   "User-Agent": "Portfolio-Deployment-Check/1.0"}
+                      )
+                      with urllib.request.urlopen(script_request, timeout=20) as js_response:
+                          published_js = js_response.read().decode("utf-8")
+                      assert "FIRST_SLIDE_DELAY = 900" in published_js, "Old autoplay script is still served"
+                      assert "window.setInterval(autoplayTick, TICK)" in published_js, "Live autoplay is missing"
+                      assert "outgoing.animate(" in published_js and "incoming.animate(" in published_js
+                      print(f"Verified public Home and automatic carousel script at {url}")
                       break
                   print(f"Published HTML is still stale on attempt {attempt + 1}")
               except Exception as exc:
