@@ -73,9 +73,9 @@
   ],
   "projects": [
     {
-      "title": "Microcatheter Segmentation in Fluoroscopy | Python, OpenCV",
-      "dates": "2026",
-      "summary": "Academic image-processing project detecting thin instruments in noisy fluoroscopy sequences.",
+      "title": "Microcatheter Segmentation in Fluoroscopy",
+      "dates": "Feb - Apr 2026",
+      "summary": "Centrale Nantes — Master 1 project | Nantes, France (3 months).",
       "bullets": [
         "Pipeline: Co-developed a Python pipeline using ten annotated fluoroscopy frames.",
         "Processing: Applied denoising, contrast enhancement and background subtraction to isolate thin instruments.",
