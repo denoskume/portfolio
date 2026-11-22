@@ -174,7 +174,8 @@
     3: {
       slug:'clap-zero-shot',prefix:'sc-clap', title:'CLAP zero-shot audio classification on ESC-50',
       question:'How much can carefully chosen text prompts improve sound recognition without training a new classifier?',
-      authors:'Academic research project · Centrale Nantes · Denos Kume and Venkatesh Muthukrishnan',
+      authors:'Master 1 project · Centrale Nantes',
+      collaborator:'Venkatesh Muthukrishnan',
       repository:CLAP, notebook:CLAP+'/blob/main/notebooks/main.ipynb',
       pdf:'clap-zero-shot-case-study.pdf',downloadName:'CLAP-Zero-Shot-Report.pdf',
       citation:'Kume, D., & Muthukrishnan, V. (2026). CLAP zero-shot audio classification on ESC-50 [Academic project, Centrale Nantes]. GitHub. '+CLAP,
@@ -343,7 +344,7 @@
       '<div class="fl-backbar"><button type="button" onclick="showSection(\'projects\')">Back to projects</button></div>'+
       '<header class="fl-paper-header"><h1 id="'+p+'-title">'+safe(d.title)+'</h1>'+
       '<p class="fl-paper-question">'+safe(d.question)+'</p>'+
-      (d.authors ? '<p class="fl-paper-authors">'+safe(d.authors)+'</p>' : '')+'</header>'+
+      (d.authors ? '<p class="fl-paper-authors">'+safe(d.authors)+(d.collaborator ? ' · <strong>Collaborator:</strong> '+safe(d.collaborator) : '')+'</p>' : '')+'</header>'+
       '<div class="fl-paper-shell"><div class="fl-paper-main">'+
       '<div class="fl-paper-tabs" role="tablist" aria-label="Project case study views">'+tabs+'</div>'+
       '<div class="fl-paper-actions" role="group" aria-label="Report actions">'+pdfLabel+
