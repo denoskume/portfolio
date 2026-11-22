@@ -36,7 +36,7 @@ jobs:
             ("build/camera-calibration-case-study.pdf", ["Abstract", "Nomenclature", "Methodology", "Experimental results", "References", "Zhang", "OpenCV", "0.434", "0.352"]),
             ("build/clap-zero-shot-case-study.pdf", ["Abstract", "Nomenclature", "Methodology", "Experimental results", "References", "Piczak", "Wu", "Gemmeke", "91.15", "83.05"]),
             ("build/flag-intelligence-case-study.pdf", ["Abstract", "References", "MobileNet", "19.61", "27.45"]),
-            ("build/python-cardgame-case-study.pdf", ["Abstract", "References", "Pygame", "0.59", "0.95"]),
+            ("build/python-cardgame-case-study.pdf", ["Abstract", "References", "Pygame", "ALPRO", "Sena", "UML", "December 2025"]),
             ("build/monstage-case-study.pdf", ["Abstract", "References", "Cloudflare", "TypeScript"])
           ]:
               reader = PdfReader(path)
@@ -154,7 +154,7 @@ jobs:
           for (const id of [2,3,4,5,6]) {
             const markup=window.renderScientificCaseStudy(id);
             if ((markup.match(/data-sc-tab=/g)||[]).length!==3 ||
-                (markup.match(/fl-index-figure/g)||[]).length!==(id===2?6:id===3?8:id===5?4:2) ||
+                (markup.match(/fl-index-figure/g)||[]).length!==(id===2?6:id===3?8:id===5?13:2) ||
                 !markup.includes('Abstract') || !markup.includes('Nomenclature') ||
                 !markup.includes('r-results') ||
                 !markup.includes('data-sc-action="save"') ||
