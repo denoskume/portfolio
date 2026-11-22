@@ -157,6 +157,12 @@
   color: #333c45;
   min-width: 0;
 }
+#resume .resume-harvard .cv-affiliation {
+  color: #334556;
+  font: 400 11.5px/1.38 Arial, Helvetica, sans-serif;
+  margin: 0 0 2px;
+}
+
 #resume .resume-harvard .cv-location {
   color: #263b4e;
   flex: 0 0 auto;
