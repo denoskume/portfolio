@@ -2646,6 +2646,33 @@ body:has(#about.active) .main-container {
   padding:17px 18px 20px;
   min-height:111px;
 }
+#projects .project-card-actions {
+  padding:0 18px 20px;
+  margin-top:auto;
+}
+#projects .project-card-explore {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  min-height:40px;
+  padding:10px 16px;
+  background:#0b2946;
+  border:1px solid #0b2946;
+  border-radius:4px;
+  color:#fff;
+  font:600 .81rem/1.4 var(--font-body);
+  cursor:pointer;
+  transition:background .18s ease,transform .18s ease;
+}
+#projects .project-card-explore:hover {
+  background:#2445b8;
+  transform:translateY(-1px);
+}
+#projects .project-card-explore:focus-visible {
+  outline:3px solid #2445b8;
+  outline-offset:3px;
+}
 #projects .project-card h3 {
   max-width:none;
   margin:0 0 8px;
@@ -3482,7 +3509,10 @@ function buildProjects() {
       '<a class="project-card-link" href="#" onclick="openProject(' + Number(p.id) +
       ');return false;" aria-label="Explore ' + title + '">' +
       figure + '<div class="project-card-copy"><h3>' + title + '</h3>' +
-      '<p class="brief">' + description + '</p></div></a></article>';
+      '<p class="brief">' + description + '</p></div></a>' +
+      '<div class="project-card-actions"><button class="project-card-explore" type="button" ' +
+      'onclick="openProject(' + Number(p.id) + ')" aria-label="Explore project: ' + title + '">' +
+      'Explore Project <span aria-hidden="true">→</span></button></div></article>';
   }).join('');
 }
 
