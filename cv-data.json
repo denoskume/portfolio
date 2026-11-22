@@ -50,7 +50,7 @@
   "experience": [
     {
       "title": "Data Analysis Intern",
-      "dates": "Sep - Dec 2024",
+      "dates": "Sep - Dec 2024 (3 months)",
       "summary": "Final-year Bachelor internship focused on preparing datasets for analysis and reporting.",
       "bullets": [
         "Preprocessed structured datasets using Python, pandas and NumPy.",
@@ -58,11 +58,11 @@
         "Performed exploratory data analysis to identify trends, distributions and anomalies.",
         "Created Matplotlib visualizations and prepared datasets for Business Intelligence reporting."
       ],
-      "organization": "Unified Mentor Pvt. Ltd. - Bangalore, India (3-month final-year Bachelor internship)"
+      "organization": "Unified Mentor Pvt. Ltd. - Bangalore, India"
     },
     {
       "title": "AI Response Evaluator - Freelance",
-      "dates": "Aug - Oct 2026",
+      "dates": "Aug - Oct 2026 (3 months)",
       "summary": "Evaluation of AI-generated responses against defined quality criteria.",
       "bullets": [
         "Evaluated AI-generated responses against relevance, accuracy, completeness and instruction-adherence criteria.",
@@ -70,7 +70,7 @@
         "Documented evidence-based observations and justifications for evaluation decisions.",
         "Provided structured evaluations to support continuous model improvement."
       ],
-      "organization": "RWS TrainAI - Remote (3 months)"
+      "organization": "RWS TrainAI - Remote"
     }
   ],
   "projects": [
