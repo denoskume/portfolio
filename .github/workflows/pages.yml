@@ -172,7 +172,7 @@ jobs:
           const studies = [
             {html:fluoro,prefix:'fl',expected:5},
             {html:window.renderScientificCaseStudy(2),prefix:'sc-cam',expected:5},
-            {html:window.renderScientificCaseStudy(3),prefix:'sc-clap',expected:8}
+            {html:window.renderScientificCaseStudy(3),prefix:'sc-clap',expected:11}
           ];
           for (const study of studies) {
             const sourceLinks = [...study.html.matchAll(/class="study-cite" href="#([^"]+)"/g)].map(match => match[1]);
