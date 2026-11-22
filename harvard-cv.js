@@ -38,7 +38,6 @@
     return '<div class="cv-entry">' +
       heading(row.title, row.dates) +
       '<p class="cv-affiliation">' + esc(row.organization) + '</p>' +
-      '<p>' + esc(row.summary) + '</p>' +
       bulletList(row.bullets) + '</div>';
   }
 
