@@ -84,13 +84,14 @@ jobs:
           assert all("organization" in job for job in cv["experience"]), "Experience affiliations must be present"
           assert all("|" not in job["title"] for job in cv["experience"]), "Job titles must not include employer and location"
           assert "Unified Mentor Pvt. Ltd." in text and "Bangalore, India" in text, "Missing internship affiliation and location"
-          assert "RWS TrainAI - Remote" in text, "Missing remote freelance affiliation"
-          assert "Sep - Dec 2024 (3 months)" in text, "Internship dates must show concise numeric duration"
-          assert "Aug - Oct 2026 (3 months)" in text, "Missing freelance duration beside the dates"
-          assert cv["experience"][0]["dates"].endswith("(3 months)"), "Use only numeric month duration in dates"
-          assert cv["experience"][1]["dates"].endswith("(3 months)"), "RWS experience duration must be preserved"
-          assert "Final-year Bachelor internship" in cv["experience"][0]["summary"], "Retain internship academic context in summary, not dates"
-          assert all("months" not in job["organization"] for job in cv["experience"]), "Do not repeat duration on employer line"
+          assert "RWS TrainAI" in text and "Remote (3 months)" in text, "Remote freelance affiliation and duration missing"
+          assert "Sep - Dec 2024" in text and "Aug - Oct 2026" in text, "Experience date ranges must appear"
+          assert cv["experience"][0]["dates"] == "Sep - Dec 2024", "Dates at right must not contain a month count"
+          assert cv["experience"][1]["dates"] == "Aug - Oct 2026", "Dates at right must not contain a month count"
+          assert all(job["organization"].endswith("(3 months)") for job in cv["experience"]), "Month count belongs on affiliation line, like the selected project"
+          assert "Bangalore, India (3 months)" in text, "Missing duration in Unified Mentor affiliation"
+          assert "Final-year Bachelor internship" in text, "Must retain Bachelor final-year internship qualification"
+          assert "Final-year Bachelor internship" in cv["experience"][0]["summary"], "Preserve original summary data"
           print(f"Validated one-page text-based A4 Harvard CV: {len(text)} extracted characters")
           PY
       - name: Validate and prepare static site
