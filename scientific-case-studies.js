@@ -68,7 +68,7 @@
     2: {
       slug:'camera-calibration', prefix:'sc-cam', title:'Camera Calibration',
       question:'How accurately can nine chessboard views recover a camera model and predict previously unused corner positions?',
-      authors:'Academic engineering case study · Centrale Nantes · Denos Kume',
+      authors:'',
       repository:CAMERA, notebook:CAMERA+'/blob/main/Camera_Calibration.ipynb',
       pdf:'camera-calibration-case-study.pdf', downloadName:'Camera-Calibration-Report.pdf',
       citation:'Kume, D. (2026). Camera Calibration [Academic case study, Centrale Nantes]. GitHub. '+CAMERA,
@@ -343,7 +343,7 @@
       '<div class="fl-backbar"><button type="button" onclick="showSection(\'projects\')">Back to projects</button></div>'+
       '<header class="fl-paper-header"><h1 id="'+p+'-title">'+safe(d.title)+'</h1>'+
       '<p class="fl-paper-question">'+safe(d.question)+'</p>'+
-      '<p class="fl-paper-authors">'+safe(d.authors)+'</p></header>'+
+      (d.authors ? '<p class="fl-paper-authors">'+safe(d.authors)+'</p>' : '')+'</header>'+
       '<div class="fl-paper-shell"><div class="fl-paper-main">'+
       '<div class="fl-paper-tabs" role="tablist" aria-label="Project case study views">'+tabs+'</div>'+
       '<div class="fl-paper-actions" role="group" aria-label="Report actions">'+pdfLabel+
