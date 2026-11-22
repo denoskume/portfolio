@@ -227,14 +227,14 @@
           '<p>The audio encoder produces one embedding for each clip; the text encoder produces one embedding for each of the 50 prompted class labels. After L2 normalization, cosine similarity ranks text candidates by proximity to the audio vector. The highest-scoring candidate is the Top-1 prediction.</p>'+
           '<h3>3.2 Prompt design</h3>'+
           '<p>The comparison covers ten templates, including the raw class name, "the sound of {}", "a sound clip of {}" and "an audio recording of {}". No task-specific labels update the pretrained weights.</p>'+
-          '<p><a class="fl-figure-ref" href="#sc-clap-r-fig2">Figure 2</a> summarizes the tested prompt formulations.</p>'+
-          figure(rawClap+'outputs/figures/prompt_strategy_comparison_table.png','<strong>Figure 2.</strong> Measured performance for the ten text-prompt strategies.','Original table comparing prompt strategies and their Top-1 classification accuracy.','sc-clap-r-fig2')+
+          '<p>Measured accuracy for the ten prompt templates is presented in Section 4.1 using the original table exported by the project.</p>'+
           '<h3>3.3 Evaluation protocol</h3>'+
           '<p>Accuracy is recorded over ESC-50. Top-k checks whether the true class appears among the first k ranked text candidates. The analysis also looks at per-class performance and exploratory correlations with AudioSet metadata.</p>'},
         {key:'results',title:'4.0 Experimental results',body:
           '<h3>4.1 Prompt strategy comparison</h3>'+
           '<p>The best prompt ("an audio recording of {}") achieved <strong>91.15% Top-1</strong>, versus <strong>83.05%</strong> for class names alone, or <strong>+8.10 percentage points</strong>. The scores varied widely across the ten tested formulations.</p>'+
-          table(['Prompt strategy','Top-1 accuracy'],promptResults,'<strong>Table 1.</strong> Prompt results from the project benchmark, ordered by descending Top-1 accuracy.')+
+          figure(rawClap+'outputs/figures/prompt_strategy_comparison_table.png','<strong>Table 1.</strong> Original prompt-strategy comparison exported by the CLAP project, with the class-only baseline and best prompt highlighted.','Original project table of ten prompt strategies: baseline 83.05%, best strategy 91.15%.','sc-clap-r-fig2')+
+          '<p>'+link(CLAP+'/blob/main/outputs/tables/prompt_strategy_comparison_table.csv','Open the original results CSV')+'</p>'+
           '<h3>4.2 Top-k evaluation</h3>'+
           '<p>With the best prompt, Top-1 was 91.15%, Top-3 was 97.45%, and Top-5 reached <strong>99.00%</strong>. This shows the correct class is frequently among the highest-scoring alternatives even when not ranked first.</p>'+
           figure(rawClap+'outputs/figures/topk_accuracy_line.png','<strong>Figure 3.</strong> Top-k accuracy for k = 1 through 10 using the best tested prompt.','Original Top-k accuracy line chart from the CLAP project.','sc-clap-r-fig3')+
@@ -265,8 +265,8 @@
           figure(rawClap+'outputs/figures/prompt_strategy_comparison_table.png','<strong>Prompt comparison.</strong> Ten tested strategies, ranked by measured Top-1 accuracy.','Original CLAP prompt-accuracy comparison table.','sc-clap-m-overview')},
         {key:'prompts',title:'Accuracy by prompt strategy',body:
           '<p>The prompt text changes while the pretrained model, dataset and candidate categories are held fixed. Note that 91.15% is the best of the ten tested formulations, not a guaranteed score for other datasets.</p>'+
-          table(['Strategy','Top-1 accuracy'],promptResults,'<strong>Table 2.</strong> Ten text prompt formulations and their measured Top-1 scores.')+
-          '<p>'+link(CLAP+'/blob/main/outputs/tables/prompt_strategy_comparison_table.csv','Open source CSV')+'</p>'},
+          figure(rawClap+'outputs/figures/prompt_strategy_comparison_table.png','<strong>Original table.</strong> Directly from the CLAP notebook, retaining the baseline and best-prompt emphasis.','Original CLAP prompt-strategy comparison table.','sc-clap-m-prompts')+
+          '<p>'+link(CLAP+'/blob/main/outputs/tables/prompt_strategy_comparison_table.csv','Open original source CSV')+'</p>'},
         {key:'topk',title:'Top-k classification accuracy',body:
           '<p>Top-k is the proportion of clips whose true class is among the first k predicted categories. This value increases with k and should be reported with the chosen evaluation protocol.</p>'+
           table(['k','Measured accuracy'],topK,'<strong>Table 3.</strong> Top-1 through Top-10 accuracy using the best prompt.')+
