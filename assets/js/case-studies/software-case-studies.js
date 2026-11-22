@@ -167,9 +167,9 @@
     reportSections:[
       {key:'intro',title:'1.0 Context, problem and objective',body:
         '<h3>1.1 Master 1 ALPRO assessment</h3>'+
-        '<p><strong>Rouge Gagne, Noir Perd</strong> was developed by Denos KUME and Sena FUKABE during Master 1 Semester 1 at Centrale Nantes for the Algorithms and Programming (ALPRO) course in Python. We developed the game collaboratively and presented it on 12 December 2025. The original submission included an implemented Python program, a 22-page report and a 20-slide classroom presentation.</p>'+
+        '<p><strong>Rouge Gagne, Noir Perd</strong> was developed by Denos KUME and Sena FUKABE during Master 1 Semester 1 at Centrale Nantes for the Algorithms and Programming (ALPRO) course in Python. We developed the game collaboratively and presented it on 12 December 2025. The original submission included an implemented Python program, a 22-page report and a 20-slide classroom presentation.'+cit('sc-card',2)+'</p>'+
         '<h3>1.2 Why this problem?</h3>'+
-        '<p>We wanted to turn fundamental programming concepts into an interactive application. A player must remember which of three cards is red while the cards change positions. The implementation must coordinate player input, a countdown, animated card movement, game rules and saved results without losing the red card identity.</p>'+
+        '<p>We wanted to turn fundamental programming concepts into an interactive application. A player must remember which of three cards is red while the cards change positions. The implementation must coordinate player input, a countdown, animated card movement, game rules and saved results without losing the red card identity.'+cit('sc-card',1)+'</p>'+
         '<h3>1.3 Objective and expected deliverables</h3>'+
         bullets(['Build a working Python/Pygame application with explicit game phases.',
           'Apply object-oriented programming and maintainable module separation.',
@@ -179,7 +179,7 @@
       {key:'dataset',title:'2.0 Game requirements and flow (V1)',body:
         '<h3>2.1 What the player does</h3>'+
         steps(['Create or select a player','Choose a fictitious stake','Observe the red card','Track the shuffle','Select a card','Review the result'])+
-        '<p>The three cards contain one red target and two black alternatives. The player makes a choice after the shuffle. The game updates fictitious credits and records local outcomes. The original V1 implementation uses timed stages rather than a static card-selection screen.</p>'+
+        '<p>The three cards contain one red target and two black alternatives. The player makes a choice after the shuffle. The game updates fictitious credits and records local outcomes. The original V1 implementation uses timed stages rather than a static card-selection screen.'+cit('sc-card',1)+'</p>'+
         facts([['3','Cards'],['5','Python modules'],['10 s','Main timed phases']])+
         '<h3>2.2 Software requirements</h3>'+
         bullets(['Reject invalid input and stakes instead of letting them corrupt the round.',
@@ -197,16 +197,16 @@
           ['dashboard.py','Draw menus, game screens, controls and results']
         ],'<strong>Table 1.</strong> Files preserved from the original ALPRO submission.')+
         '<h3>3.2 Game controller and event loop</h3>'+
-        '<p>V1 uses a state-driven controller to keep each phase explicit. The main loop receives events, updates the current game state and redraws the interface. Keeping rendering in a separate dashboard module helps prevent screen code from becoming the source of game rules.</p>'+
+        '<p>V1 uses a state-driven controller to keep each phase explicit. The main loop receives events, updates the current game state and redraws the interface. Keeping rendering in a separate dashboard module helps prevent screen code from becoming the source of game rules.'+cit('sc-card',1)+'</p>'+
         '<p>'+a(R.card+'/tree/main/versions/v1/code','Inspect the original V1 Python source')+'</p>'+
         '<h3>3.3 Planning and system diagrams</h3>'+
-        '<p>The academic report includes a UML class diagram, an entity–relationship (ER) diagram, an SDLC Gantt chart and a sequence diagram of a complete round. These explain the architecture, data relationships, schedule and order of interactions, rather than serving merely as illustrations.</p>'+
+        '<p>The academic report includes a UML class diagram, an entity–relationship (ER) diagram, an SDLC Gantt chart and a sequence diagram of a complete round. These explain the architecture, data relationships, schedule and order of interactions, rather than serving merely as illustrations.'+cit('sc-card',2)+'</p>'+
         fig(raw+'Python-CardGame/main/versions/v1/docs/figures/sdlc-gantt.webp','<strong>Figure 1.</strong> Original ALPRO SDLC Gantt chart (October–December 2025). It organizes requirements, design, implementation, testing and final presentation.','Academic 2025 SDLC Gantt chart extracted from the submitted ALPRO report.','sc-card-r-v1-gantt')+
         '<h3>3.4 Later V2 changes</h3>'+
         '<p>The application was subsequently extended into V2 with a browser-compatible build and additional features. V2 lives under the repository-root <code>src/</code> folder; it is not the original code submitted for ALPRO.'+a(R.card+'/tree/main/src',' Explore V2 source')+'</p>'},
       {key:'results',title:'4.0 Tests, presentation and later results',body:
         '<h3>4.1 What the original submission established</h3>'+
-        '<p>The V1 report documents a functioning desktop Pygame game with a round lifecycle, player input, fictitious stakes, animations, outcome calculation and local JSON records. It discusses functional testing and risks such as invalid input, inconsistent state, lag and corrupted history. The project was also presented as part of the course assessment.</p>'+
+        '<p>The V1 report documents a functioning desktop Pygame game with a round lifecycle, player input, fictitious stakes, animations, outcome calculation and local JSON records. It discusses functional testing and risks such as invalid input, inconsistent state, lag and corrupted history. The project was also presented as part of the course assessment.'+cit('sc-card',2)+'</p>'+
         '<p>The original academic materials do <strong>not</strong> report the later V2 browser test results or the 0.59 ms and 0.95 ms rendering measurements. We therefore do not attribute those numbers to V1.</p>'+
         '<h3>4.2 Later V2 verification</h3>'+
         '<p>V2 added desktop and Chromium browser checks, responsive layouts, protected round settlement and further tests. Its reported 300-frame desktop rendering measurements are a <strong>0.59 ms median</strong> and <strong>0.95 ms p95</strong>, in the documented test environment.'+cit('sc-card',5)+'</p>'+

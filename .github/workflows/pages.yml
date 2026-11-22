@@ -183,7 +183,7 @@ jobs:
             {html:window.renderScientificCaseStudy(2),prefix:'sc-cam',expected:5},
             {html:window.renderScientificCaseStudy(3),prefix:'sc-clap',expected:11},
             {html:window.renderScientificCaseStudy(4),prefix:'sc-flag',expected:6},
-            {html:window.renderScientificCaseStudy(5),prefix:'sc-card',expected:6},
+            {html:window.renderScientificCaseStudy(5),prefix:'sc-card',expected:7},
             {html:window.renderScientificCaseStudy(6),prefix:'sc-stage',expected:7}
           ];
           for (const study of studies) {
