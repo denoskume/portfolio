@@ -2438,7 +2438,7 @@ body:has(#about.active) .main-container {
   #about .edu-exp-entry { padding-bottom: 30px; }
 }
 
-/* About Me · original certificate & recognition gallery (two 10 cm squares per row). */
+/* About Me · original certificate & recognition gallery, 15 × 15 cm HD cards. */
 #about .credentials-section {
   margin-top: clamp(42px, 6vw, 76px);
   padding-bottom: clamp(22px, 4vw, 52px);
@@ -2458,20 +2458,21 @@ body:has(#about.active) .main-container {
 }
 #about .credentials-grid {
   display: grid;
-  grid-template-columns: repeat(2, 10cm);
+  grid-template-columns: repeat(2, 15cm);
   justify-content: center;
-  gap: clamp(16px, 2.5vw, 28px);
+  align-items: start;
+  gap: 24px;
   max-width: 100%;
 }
 #about .credential-card {
   box-sizing: border-box;
-  width: 10cm;
-  height: 10cm;
+  width: 15cm;
+  height: 15cm;
   min-width: 0;
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding: clamp(14px, 1.6vw, 20px);
+  padding: 14px;
   border: 1px solid #cfd7e2;
   border-radius: 18px;
   background: #fff;
@@ -2485,37 +2486,40 @@ body:has(#about.active) .main-container {
 }
 #about .credential-type {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: #61728a;
-  font-size: .68rem;
+  font-size: .72rem;
   font-weight: 700;
   letter-spacing: .075em;
   text-transform: uppercase;
   line-height: 1.3;
 }
 #about .credential-card h4 {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   color: #11243d;
   font-family: var(--font-body);
-  font-size: clamp(1.05rem, 1.6vw, 1.4rem);
+  font-size: clamp(1.25rem, 1.8vw, 1.8rem);
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 #about .credential-picture {
-  display: block;
-  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
   min-height: 0;
   overflow: hidden;
   background: #f7f9fc;
   border: 1px solid #e1e6ed;
   border-radius: 12px;
-  padding: 6px;
+  padding: 4px;
 }
 #about .credential-picture img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: center;
 }
 #about .credential-picture:focus-visible,
 #about .credential-caption a:focus-visible {
@@ -2524,32 +2528,36 @@ body:has(#about.active) .main-container {
 }
 #about .credential-caption {
   display: grid;
-  gap: 4px;
-  margin-top: 11px;
+  gap: 3px;
+  margin-top: 8px;
   text-align: center;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 #about .credential-caption span {
   color: #334d69;
-  font-size: .75rem;
+  font-size: .82rem;
 }
 #about .credential-caption a,
 #about .credential-caption span:last-child:not(:first-child) {
   color: #58729b;
-  font-size: .7rem;
+  font-size: .76rem;
   text-decoration: none;
 }
 #about .credential-caption a:hover {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-@media (max-width: 850px) {
-  #about .credentials-grid { grid-template-columns: minmax(0, 10cm); }
+@media (max-width: 1280px) {
+  #about .credentials-grid {
+    grid-template-columns: minmax(0, 15cm);
+  }
 }
-@media (max-width: 440px) {
-  #about .credentials-grid { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 660px) {
+  #about .credentials-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
   #about .credential-card {
-    width: min(100%, 10cm);
+    width: min(100%, 15cm);
     height: auto;
     aspect-ratio: 1 / 1;
     justify-self: center;
