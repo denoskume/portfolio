@@ -81,6 +81,10 @@ jobs:
           assert cv["career_headline"] == "Data Science | Computer Vision & Image Processing | Data Analysis"
           assert "certifications" not in cv, "CV data must not contain removed certifications"
           assert len(cv["experience"]) == 2
+          assert all("organization" in job for job in cv["experience"]), "Experience affiliations must be present"
+          assert all("|" not in job["title"] for job in cv["experience"]), "Job titles must not include employer and location"
+          assert "Unified Mentor Pvt. Ltd." in text and "Bangalore, India" in text, "Missing internship affiliation and location"
+          assert "RWS TrainAI - Remote (3 months)" in text, "Missing remote freelance affiliation and duration"
           print(f"Validated one-page text-based A4 Harvard CV: {len(text)} extracted characters")
           PY
       - name: Validate and prepare static site
