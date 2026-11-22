@@ -122,3 +122,8 @@
  .scientific-study .fl-paper-panel[data-sc-panel="figures"],
  .scientific-study .fl-paper-panel[data-sc-panel="metrics"] {display:none!important;}
 }
+
+/* Original ALPRO demo appears at the end of the CardGame Report. */
+.sc-demo-cta { margin:18px 0 6px; }
+.sc-demo-cta a {display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 18px;border-radius:4px;background:#0b2946;color:#fff!important;text-decoration:none;font-weight:600;}
+.sc-demo-cta a:hover,.sc-demo-cta a:focus-visible {background:#24507d;color:#fff!important;}

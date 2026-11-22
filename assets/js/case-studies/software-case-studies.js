@@ -142,7 +142,7 @@
       ['Submission and presentation','12 December 2025 · collaborative coursework'],
       ['Project objective','Develop and present a working Python game to validate ALPRO'],
       ['Original code',a(R.card+'/tree/main/versions/v1/code','Explore the five Python modules')],
-      ['Project documentation',a(R.card+'/blob/main/versions/v1/docs/academic-report.md','Academic report and presentation notes')]
+      ['Original figures',a(R.card+'/tree/main/versions/v1/docs/figures','Open V1 images and diagrams')]
     ],
     glossary:[
       ['ALPRO','Algorithmics and Programming, the Master 1 course assessed by this project.'],
@@ -161,11 +161,12 @@
     ],
     references:[
       {label:'Kume, D., & Fukabe, S. (2025). Rouge Gagne, Noir Perd. Original Master 1 ALPRO Python source.',url:R.card+'/tree/main/versions/v1/code',linkLabel:'Original Python files'},
-      {label:'Kume, D., & Fukabe, S. (2025). Rouge Gagne, Noir Perd. Academic report and presentation notes.',url:R.card+'/blob/main/versions/v1/docs/academic-report.md',linkLabel:'Academic source notes'},
+      {label:'Kume, D., & Fukabe, S. (2025). Rouge Gagne, Noir Perd. Original course-project metadata and run instructions.',url:R.card+'/blob/main/versions/v1/README.md',linkLabel:'Academic source metadata'},
       {label:'Kume, D., & Fukabe, S. (2025). Rouge Gagne, Noir Perd. Original gameplay demonstration.',url:R.card+'/blob/main/docs/cardgame_demo.gif',linkLabel:'Gameplay demo'},
       {label:'Kume, D., & Fukabe, S. (2025). SDLC Gantt chart from the ALPRO report.',url:R.card+'/blob/main/versions/v1/docs/figures/sdlc-gantt.webp',linkLabel:'Original Gantt chart'},
       {label:'Python Software Foundation. Python documentation.',url:'https://docs.python.org/3/',linkLabel:'Python documentation'},
-      {label:'Pygame Community. Pygame event reference.',url:'https://www.pygame.org/docs/ref/event.html',linkLabel:'Pygame events'}
+      {label:'Pygame Community. Pygame event reference.',url:'https://www.pygame.org/docs/ref/event.html',linkLabel:'Pygame events'},
+      {label:'Kume, D., & Fukabe, S. (2025). Class architecture diagram extracted from the original ALPRO report.',url:R.card+'/blob/main/versions/v1/docs/figures/alpro-v1-uml-classes.webp',linkLabel:'Original UML diagram'}
     ],
     reportSections:[
       {key:'intro',title:'1.0 Context and objectives',body:
@@ -179,13 +180,18 @@
           'Apply object-oriented programming, modular design and clear state transitions.',
           'Document requirements, architecture, test strategy and development stages.',
           'Present the implemented project and explain the technical decisions made.'
-        ])},
+        ])+
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-menu.webp','<strong>Figure 1.</strong> The original V1 menu collects the player's nickname and avatar before the first round.','Original 2025 CardGame player menu','sc-card-r-v1-menu')},
       {key:'dataset',title:'2.0 Requirements and game rules',body:
         '<h3>2.1 Gameplay: one complete round</h3>'+
         steps(['Create player profile','Configure stake','Observe cards','Track shuffle','Select card','Display result'])+
         '<p>The interface collects a nickname and avatar, lets the player configure a stake using fictitious credits, and displays one red and two black cards. During the round, the player observes the cards, follows the shuffle and selects a position before the countdown ends. The outcome updates the balance and is recorded in local history.'+cit('sc-card',1)+'</p>'+
         facts([['3','Cards'],['10 s','Each principal phase'],['60 FPS','Design target']])+
-        '<h3>2.2 Functional requirements</h3>'+
+        '<h3>2.2 Player setup and observation</h3>'+
+        '<p>The bet dashboard displays the available fictitious credit balance, allowed stake and turbo options. The observation screen then reveals which card is red and starts the countdown, giving the player time to memorize its position.</p>'+
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-bet-dashboard.webp','<strong>Figure 2.</strong> The V1 betting dashboard shows balance, stake controls and turbo choice.','Original V1 bet configuration screenshot','sc-card-r-v1-bet-dashboard')+
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-observation.webp','<strong>Figure 3.</strong> Observation phase: the red target card is visible before shuffling.','Original V1 card observation screenshot','sc-card-r-v1-observation')+
+        '<h3>2.3 Functional requirements</h3>'+
         bullets([
           'Create a player profile using nickname and avatar selection.',
           'Enforce minimum and maximum stake values and apply the turbo multiplier.',
@@ -193,7 +199,11 @@
           'Calculate win/loss outcomes and transition to Game Over when credits are insufficient.',
           'Store round history in a local JSON file.'
         ])+
-        '<h3>2.3 Constraints</h3>'+
+        '<h3>2.4 Shuffle and selection stages</h3>'+
+        '<p>During the shuffle, the same card identities move between positions. After the movement ends, the selection stage hides the target and gives the player a limited time to choose one of the three cards.</p>'+
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-shuffle.webp','<strong>Figure 4.</strong> V1 shuffle phase: the player follows card movements within the countdown.','Original V1 shuffle screenshot','sc-card-r-v1-shuffle')+
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-selection.webp','<strong>Figure 5.</strong> V1 selection phase: the player chooses one card before time expires.','Original V1 card selection screenshot','sc-card-r-v1-selection')+
+        '<h3>2.5 Constraints</h3>'+
         '<p>The submitted implementation targets a <strong>single-player, offline desktop game</strong> built in Python/Pygame. The report specifies a fixed Pygame window and a 60 FPS smoothness objective. This is a design target, not an independently measured frame-rate result.</p>'},
       {key:'method',title:'3.0 Architecture and implementation',body:
         '<h3>3.1 Five Python modules</h3>'+
@@ -205,17 +215,22 @@
           ['dashboard.py','Draws menus, gameplay controls, status and result views']
         ],'<strong>Table 1.</strong> Source structure of the ALPRO project.')+
         '<p>The program separates domain logic from screen rendering. This makes each responsibility easier to understand and gives the project a structure that can be discussed and tested.'+cit('sc-card',1)+'</p>'+
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-module-overview.webp','<strong>Figure 6.</strong> The five Python modules and their connections in the project architecture.','Original ALPRO module architecture diagram','sc-card-r-v1-module-overview')+
         '<h3>3.2 Object-oriented model</h3>'+
-        '<p>The report describes a <strong>User</strong> class for player data, a <strong>Bet</strong> class for stakes, a <strong>Card</strong> class for visual representation and position, and a <strong>CardGame</strong> controller that composes these objects. The UML diagram explains how the classes work together, while the ER diagram documents how player and round records relate.</p>'+
+        '<p>The report describes a <strong>User</strong> class for player data, a <strong>Bet</strong> class for stakes, a <strong>Card</strong> class for visual representation and position, and a <strong>CardGame</strong> controller that composes these objects. The UML diagram explains how the classes work together, while the ER diagram documents how player and round records relate.'+cit('sc-card',7)+'</p>'+
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-uml-classes.webp','<strong>Figure 7.</strong> UML class diagram showing the relationships between the game controller, domain objects and interface.','Original ALPRO UML class architecture','sc-card-r-v1-uml-classes')+
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-er-player-round.webp','<strong>Figure 8.</strong> Entity–relationship diagram describing player data and stored round records.','Original ALPRO player and round ER diagram','sc-card-r-v1-er-player-round')+
         '<h3>3.3 State-driven event handling</h3>'+
         '<p>The game moves through a series of explicit states for player setup, betting, card display, shuffle, selection and result. The Pygame loop collects events, updates the active state and redraws the screen. This structure is important because a selection should only be accepted in the correct phase and the chosen card must match its position after the shuffle.</p>'+
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-sequence-round.webp','<strong>Figure 9.</strong> The sequence diagram follows the interaction between player, game controller and stored results during a round.','Original V1 game round sequence diagram','sc-card-r-v1-sequence-round')+
         '<h3>3.4 Software development lifecycle</h3>'+
         '<p>We documented the project in four stages: <strong>design</strong> (requirements and diagrams), <strong>implementation</strong> (modules and visual assets), <strong>testing</strong> (functional and non-functional checks) and <strong>documentation</strong> (report and presentation). The original planning diagram is reproduced below.'+cit('sc-card',4)+'</p>'+
-        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/sdlc-gantt.webp','<strong>Figure 1.</strong> Original ALPRO Gantt chart showing the project planning, implementation, testing and documentation schedule.','Original development timeline from the December 2025 academic report.','sc-card-r-v1-gantt')+
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/sdlc-gantt.webp','<strong>Figure 10.</strong> Original ALPRO Gantt chart showing the project planning, implementation, testing and documentation schedule.','Original development timeline from the December 2025 academic report.','sc-card-r-v1-gantt')+
         '<p>'+a(R.card+'/tree/main/versions/v1/code','Read the original Python implementation')+'</p>'},
       {key:'results',title:'4.0 Demonstration and validation',body:
         '<h3>4.1 Delivered application</h3>'+
-        '<p>The submitted project demonstrates a working desktop Pygame game with player entry, bet configuration, card observation and shuffle, timed selection, result screens and JSON history. The original gameplay recording is available in the <strong>Figures</strong> tab.'+cit('sc-card',3)+'</p>'+
+        '<p>The submitted project demonstrates a working desktop Pygame game with player entry, bet configuration, card observation and shuffle, timed selection, result screens and JSON history. The original gameplay demonstration is reserved for the <strong>end of this report</strong>.'+cit('sc-card',3)+'</p>'+
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-result.webp','<strong>Figure 11.</strong> V1 game-over screen summarizes the completed rounds and fictitious credits.','Original 2025 CardGame result dashboard','sc-card-r-v1-result')+
         '<h3>4.2 What the report evaluates</h3>'+
         '<p>The report sets out both functional and non-functional validation. It discusses player-input checks, allowed stakes, state transitions, round outcome consistency, JSON persistence and animation smoothness. It also identifies possible risks and mitigation strategies. It does not provide a numerical accuracy benchmark or a measured frame-rate distribution.</p>'+
         table(['Validation area','Expected behaviour'],[
@@ -226,6 +241,9 @@
           ['Local history','Preserve round information in JSON and handle file errors'],
           ['Rendering','Maintain a responsive animation and readable interface']
         ],'<strong>Table 2.</strong> Test areas described in the academic report; not a claim of a quantified automated test suite.')+
+        '<p>The source report also includes a functional test matrix and a non-functional test table. These show what was verified or expected, without converting the course results into invented performance metrics.</p>'+
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-functional-tests.webp','<strong>Figure 12.</strong> Functional test matrix from the original submission, covering gameplay and validation checks.','V1 academic functional tests table','sc-card-r-v1-functional-tests')+
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-nonfunctional-tests.webp','<strong>Figure 13.</strong> Original non-functional testing table: responsiveness, usability, robustness and persistence.','V1 academic nonfunctional tests table','sc-card-r-v1-nonfunctional-tests')+
         '<h3>4.3 Academic presentation</h3>'+
         '<p>We prepared and presented our implementation for the ALPRO assessment on <strong>12 December 2025</strong>. The accompanying report explains requirements, UML, ER and sequence diagrams, the development timeline, design choices, test strategy and future improvements.'+cit('sc-card',2)+'</p>'},
       {key:'discussion',title:'5.0 Discussion and conclusion',body:
@@ -235,14 +253,25 @@
         '<p>The original implementation is a local, single-player desktop application. The report highlights possible issues with invalid inputs, low-end hardware, corrupted JSON data and inconsistent shuffle transitions. The proposed safeguards include validation, defensive file handling, controlled animation complexity and clear separation between game states.</p>'+
         '<h3>5.3 Conclusion and perspectives</h3>'+
         '<p>Our ALPRO submission met its academic objective of producing and presenting a modular Python game with documented design and testing. The report identifies additional difficulty modes, multiplayer, language localization and mobile support as potential future improvements, not as completed deliverables.</p>'+
-        '<p>'+a(R.card+'/blob/main/versions/v1/docs/academic-report.md','Read the academic report and presentation notes')+'</p>'}
+        '<h3>5.4 Original gameplay demonstration</h3>'+
+        '<p>This is the recorded demonstration of the ALPRO game we built and presented in 2025. It is placed after the technical explanations, diagrams and test evidence so it can be viewed with the full project context.</p>'+
+        fig(raw+'Python-CardGame/main/docs/cardgame_demo.gif','<strong>Figure 14.</strong> Animated demonstration of the original CardGame V1 interface and gameplay.','Original ALPRO CardGame V1 gameplay animation','sc-card-r-v1-demo')+
+        '<p class="sc-demo-cta">'+a(R.card+'/blob/main/docs/cardgame_demo.gif','Open full gameplay demonstration')+'</p>'}
     ],
     figures:[
-      {title:'Original CardGame gameplay demonstration',description:'Animated recording of the Python/Pygame game developed for the Master 1 ALPRO project.',url:raw+'Python-CardGame/main/docs/cardgame_demo.gif',kind:'demo'},
-      {title:'ALPRO SDLC Gantt chart',description:'Original development planning diagram from the submitted 2025 project report.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/sdlc-gantt.webp',kind:'figure',reportId:'sc-card-r-v1-gantt'},
-      {title:'Original red-card artwork',description:'Red card used for the target identity in the three-card game.',url:raw+'Python-CardGame/main/versions/v1/code/assets/card_back_red.png',kind:'figure'},
-      {title:'Original black-card artwork',description:'Black card graphic used alongside the red target card.',url:raw+'Python-CardGame/main/versions/v1/code/assets/card_back_black.png',kind:'figure'},
-      {title:'Original player avatar',description:'One of the avatar illustrations included for player profile selection.',url:raw+'Python-CardGame/main/versions/v1/code/assets/avatar1.png',kind:'figure'}
+      {title:'Original V1 game menu',description:'Nickname, avatar and initial player setup, from the ALPRO report.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-menu.webp',kind:'figure',reportId:'sc-card-r-v1-menu'},
+      {title:'V1 bet configuration dashboard',description:'Fictitious stake limits, balance, and turbo controls.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-bet-dashboard.webp',kind:'figure',reportId:'sc-card-r-v1-bet-dashboard'},
+      {title:'V1 observation phase',description:'Red card revealed before animated movement.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-observation.webp',kind:'figure',reportId:'sc-card-r-v1-observation'},
+      {title:'V1 shuffle phase',description:'Cards change positions during the timed round.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-shuffle.webp',kind:'figure',reportId:'sc-card-r-v1-shuffle'},
+      {title:'V1 card selection',description:'The player chooses one position before the timer expires.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-selection.webp',kind:'figure',reportId:'sc-card-r-v1-selection'},
+      {title:'Five-module architecture',description:'The original code structure and module responsibilities.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-module-overview.webp',kind:'figure',reportId:'sc-card-r-v1-module-overview'},
+      {title:'UML class diagram',description:'Class responsibilities and inheritance/composition relationships.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-uml-classes.webp',kind:'figure',reportId:'sc-card-r-v1-uml-classes'},
+      {title:'ER diagram',description:'Player and round record data relationships.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-er-player-round.webp',kind:'figure',reportId:'sc-card-r-v1-er-player-round'},
+      {title:'Game-round sequence diagram',description:'Interaction ordering and game state transitions.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-sequence-round.webp',kind:'figure',reportId:'sc-card-r-v1-sequence-round'},
+      {title:'ALPRO SDLC Gantt chart',description:'Original academic planning chart showing design, development, testing and report preparation.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/sdlc-gantt.webp',kind:'figure',reportId:'sc-card-r-v1-gantt'},
+      {title:'V1 results screen',description:'Game-over screen with original summary statistics.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-result.webp',kind:'figure',reportId:'sc-card-r-v1-result'},
+      {title:'Original functional test matrix',description:'Gameplay, validation and outcome checks from the academic report.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-functional-tests.webp',kind:'figure',reportId:'sc-card-r-v1-functional-tests'},
+      {title:'Original non-functional test table',description:'Robustness, usability and responsiveness testing goals.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-nonfunctional-tests.webp',kind:'figure',reportId:'sc-card-r-v1-nonfunctional-tests'}
     ],
     metrics:[
       {key:'deliverables',title:'Academic deliverables',body:
@@ -261,7 +290,7 @@
         ],'<strong>Table 3.</strong> Parameters and constraints in the submitted ALPRO report.')},
       {key:'validation',title:'Testing scope and evidence',body:
         '<p>The academic documentation addresses input validation, stake checks, state transitions, result integrity, JSON storage risks and responsive animation. It does not provide a measured FPS time series, unit-test count or accuracy percentage. The evidence is the original report, project demonstration and Python source.'+cit('sc-card',1)+cit('sc-card',2)+'</p>'+
-        '<p>'+a(R.card+'/blob/main/versions/v1/docs/academic-report.md','Read the academic testing summary')+'</p>'}
+        '<p>'+a(R.card+'/tree/main/versions/v1/code','Inspect the original Python source and implementation')+'</p>'}
     ]
   };
 
