@@ -107,8 +107,12 @@
   color: #536578;
 }
 #resume .resume-harvard .cv-section {
-  padding-top: 6px;
+  padding-top: 0;
   margin: 0;
+}
+/* Explicit physical spacing for the Harvard CV */
+#resume .resume-harvard .cv-section + .cv-section {
+  margin-top: 1cm;
 }
 #resume .resume-harvard .cv-section h2 {
   margin: 0 0 5px;
@@ -120,9 +124,11 @@
   text-transform: uppercase;
 }
 #resume .resume-harvard .cv-entry {
-  margin: 0 0 7px;
+  margin: 0;
 }
-#resume .resume-harvard .cv-entry:last-child { margin-bottom: 0; }
+#resume .resume-harvard .cv-entry + .cv-entry {
+  margin-top: 0.5cm;
+}
 #resume .resume-harvard .cv-entry-title {
   display: flex;
   align-items: baseline;
