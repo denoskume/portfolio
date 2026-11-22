@@ -112,7 +112,7 @@
 }
 /* Explicit physical spacing for the Harvard CV */
 #resume .resume-harvard .cv-section + .cv-section {
-  margin-top: 1cm;
+  margin-top: 0.35cm;
 }
 #resume .resume-harvard .cv-section h2 {
   margin: 0 0 5px;
@@ -127,7 +127,7 @@
   margin: 0;
 }
 #resume .resume-harvard .cv-entry + .cv-entry {
-  margin-top: 0.5cm;
+  margin-top: 0.2cm;
 }
 #resume .resume-harvard .cv-entry-title {
   display: flex;
