@@ -1,150 +1,141 @@
 #!/usr/bin/env python3
-"""Build a selected, one-page, text-based Harvard-style A4 CV from cv-data.json."""
-from __future__ import annotations
-import json
-from html import escape
+"""Build a one-page, selectable-text A4 CV matching the user's supplied reference."""
 from pathlib import Path
+from html import escape
+import json
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
-from reportlab.lib.enums import TA_LEFT
-from reportlab.pdfbase.pdfmetrics import stringWidth
 from reportlab.platypus import Paragraph
 from reportlab.pdfgen import canvas
+from reportlab.pdfbase.pdfmetrics import stringWidth
 
-ROOT = Path(__file__).resolve().parents[1]
-DATA = json.loads((ROOT / 'cv-data.json').read_text(encoding='utf-8'))
-OUT = ROOT / 'build' / DATA['pdf_filename']
-OUT.parent.mkdir(parents=True, exist_ok=True)
-W, H = A4
-LEFT, RIGHT, TOP, BOTTOM = 43, 43, 34, 37
-WIDTH = W-LEFT-RIGHT
-NAVY = colors.HexColor('#122c47')
-BODY = colors.HexColor('#29394a')
-MUTED = colors.HexColor('#536479')
-ACCENT = colors.HexColor('#1d507a')
-RULE = colors.HexColor('#b8c6d3')
-C = canvas.Canvas(str(OUT), pagesize=A4, pageCompression=1)
-C.setTitle('Denos Kume | Harvard-Style Curriculum Vitae')
+ROOT=Path(__file__).resolve().parents[1]
+DATA=json.loads((ROOT/'cv-data.json').read_text(encoding='utf-8'))
+OUT=ROOT/'build'/DATA['pdf_filename']
+OUT.parent.mkdir(parents=True,exist_ok=True)
+W,H=A4
+LEFT,RIGHT=43,43
+FULL=W-LEFT-RIGHT
+NAVY=colors.HexColor('#264b70')
+BLACK=colors.HexColor('#151c24')
+GREY=colors.HexColor('#44515d')
+RULE=colors.HexColor('#8ea9bf')
+C=canvas.Canvas(str(OUT),pagesize=A4,pageCompression=1)
 C.setAuthor(DATA['name'])
-C.setSubject('Internship CV - Data Science, Computer Vision, Image Processing and Data Analysis')
-TEXT = ParagraphStyle('text', fontName='Helvetica', fontSize=9.2, leading=13.0,
-                      textColor=BODY, alignment=TA_LEFT, spaceAfter=0)
-SMALL = ParagraphStyle('small', parent=TEXT, fontSize=9.0, leading=12.3)
-BULLET = ParagraphStyle('bullet', parent=TEXT, fontSize=9.0, leading=12.2)
+C.setTitle(DATA['name']+' - Curriculum Vitae')
+C.setSubject('Data Science | Computer Vision & Image Processing | Data Analysis')
 
+BODY=ParagraphStyle('body',fontName='Helvetica',fontSize=8.85,leading=11.8,textColor=BLACK,spaceAfter=0)
+SHORT=ParagraphStyle('short',parent=BODY,fontSize=8.65,leading=11.4)
+BUL=ParagraphStyle('bullet',parent=BODY,fontSize=8.8,leading=11.5)
 
-def para(text, style, x, y, width, after=0):
-    p = Paragraph(escape(text), style)
-    _, h = p.wrap(width, H)
-    p.drawOn(C, x, y-h)
-    return y-h-after
+def txt(text,x,y,width=FULL,style=BODY,after=0,raw=False):
+    p=Paragraph(text if raw else escape(text),style)
+    _,ht=p.wrap(width,H)
+    p.drawOn(C,x,y-ht)
+    return y-ht-after
 
-
-def headline(text, y, size, color, font='Helvetica'):
-    assert stringWidth(text, font, size) <= WIDTH, f'Centered headline exceeds printable width: {text}'
-    C.setFont(font, size)
+def center(text,y,size=9,font='Helvetica',color=BLACK):
+    assert stringWidth(text,font,size)<FULL+2,(text,stringWidth(text,font,size))
+    C.setFont(font,size)
     C.setFillColor(color)
-    C.drawCentredString(W/2, y, text)
+    C.drawCentredString(W/2,y,text)
 
-
-def section(title, y):
-    y -= 12.2
-    C.setFont('Helvetica-Bold', 9.55)
-    C.setFillColor(ACCENT)
-    C.drawString(LEFT, y, title.upper())
+def heading(name,y):
+    y-=10.7
+    C.setFont('Helvetica-Bold',9.75)
+    C.setFillColor(NAVY)
+    C.drawString(LEFT,y,name.upper())
     C.setStrokeColor(RULE)
-    C.setLineWidth(.62)
-    C.line(LEFT, y-5.2, W-RIGHT, y-5.2)
-    return y-16.0
+    C.setLineWidth(0.55)
+    C.line(LEFT,y-4.4,W-RIGHT,y-4.4)
+    return y-8.3
 
+def heading_row(text,dates,y):
+    y-=11.0
+    sz=9.05
+    if stringWidth(text,'Helvetica-Bold',sz)>FULL-stringWidth(dates,'Helvetica',8.4)-13:
+        raise RuntimeError('Entry headline too long: '+text)
+    C.setFont('Helvetica-Bold',sz)
+    C.setFillColor(BLACK)
+    C.drawString(LEFT,y,text)
+    C.setFont('Helvetica',8.3)
+    C.drawRightString(W-RIGHT,y,dates)
+    return y-2.8
 
-def entry(row, y, after=5.5):
-    dates = row['dates']
-    size = 9.25
-    title = row['title']
-    date_width = stringWidth(dates, 'Helvetica', 8.35)
-    assert stringWidth(title, 'Helvetica-Bold', size) <= WIDTH-date_width-18, f'CV title overflows: {title}'
-    C.setFont('Helvetica-Bold', size)
-    C.setFillColor(NAVY)
-    C.drawString(LEFT, y-9.6, title)
-    C.setFillColor(MUTED)
-    C.setFont('Helvetica', 8.35)
-    C.drawRightString(W-RIGHT, y-9.6, dates)
-    y -= 14.0
-    y = para(row['organization'], SMALL, LEFT, y, WIDTH, after=3)
-    for bullet in row.get('bullets', []):
-        C.setFillColor(ACCENT)
-        C.circle(LEFT+4.5, y-6.6, 1.3, fill=1, stroke=0)
-        y = para(bullet, BULLET, LEFT+15, y, WIDTH-15, after=2.0)
-    return y-after
+def line_with_bold(label,value,y):
+    return txt(f'<b>{escape(label)}</b>: {escape(value)}',LEFT,y,raw=True,style=SHORT,after=0.65)
 
+def bullet(sentence,y):
+    C.setFillColor(BLACK)
+    C.circle(LEFT+2.2,y-5.6,1.15,stroke=0,fill=1)
+    return txt(sentence,LEFT+12,y,FULL-12,style=BUL,after=0.8)
 
-y = H-TOP
-headline(DATA['name'].upper(), y-16, 20.2, NAVY, 'Helvetica-Bold')
-y -= 27
-headline(DATA['headline'], y-7, 9.5, MUTED)
-y -= 17
-headline(DATA['direction'], y-8, 10.25, ACCENT, 'Helvetica-Bold')
-y -= 20
-
-# Two centered contact lines, each link retained as clickable PDF annotation.
-for links in (DATA['contact'][:2], DATA['contact'][2:]):
-    divider='  |  '
-    text=divider.join(item['label'] for item in links)
-    size=8.15
-    full=stringWidth(text,'Helvetica',size)
-    assert full < WIDTH, f'Contact line exceeds page width: {text}'
-    x=(W-full)/2
-    for idx, item in enumerate(links):
-        label=item['label']
-        w=stringWidth(label,'Helvetica',size)
+def links_on_line(items,y,size=8.55):
+    sep='  |  '
+    full=sep.join(t['label'] for t in items)
+    x=(W-stringWidth(full,'Helvetica',size))/2
+    for i,t in enumerate(items):
+        label=t['label']
+        width=stringWidth(label,'Helvetica',size)
         C.setFont('Helvetica',size)
-        C.setFillColor(ACCENT if item['url'] else MUTED)
-        C.drawString(x,y-6.8,label)
-        if item['url']:
-            C.linkURL(item['url'],(x,y-8,x+w,y+2),relative=0,thickness=0)
-        x += w
-        if idx < len(links)-1:
-            C.setFillColor(MUTED)
-            C.drawString(x,y-6.8,divider)
-            x += stringWidth(divider,'Helvetica',size)
-    y -= 13
+        C.setFillColor(BLACK)
+        C.drawString(x,y,label)
+        if t['url']:
+            C.linkURL(t['url'],(x,y-1,x+width,y+size+2),relative=0,thickness=0)
+        x+=width
+        if i<len(items)-1:
+            C.drawString(x,y,sep)
+            x+=stringWidth(sep,'Helvetica',size)
 
-y -= 7
-C.setStrokeColor(ACCENT)
-C.setLineWidth(.95)
-C.line(LEFT,y,W-RIGHT,y)
+y=H-35
+center(DATA['name'],y,19.0,'Helvetica-Bold',NAVY)
+y-=19.5
+center(DATA['academic_headline'],y,9.4,'Helvetica',NAVY)
+y-=12.0
+center(DATA['career_headline'],y,10.2,'Helvetica-Bold',NAVY)
+y-=13.0
+links_on_line(DATA['contact'],y,8.65)
+y-=12.5
+links_on_line(DATA['social'],y,8.6)
+y-=13.5
 
-y=section('Profile',y)
-y=para(DATA['profile'],TEXT,LEFT,y,WIDTH,after=2)
+y=heading('Profile',y)
+y=txt(DATA['profile'],LEFT,y,after=1.0)
+y=heading('Education',y)
+for e in DATA['education']:
+    y=heading_row(e['school'],e['dates'],y)
+    y=txt(e['track'],LEFT,y,style=SHORT,after=1.4)
+    y=txt(e['description'],LEFT,y,style=SHORT,after=0.75)
+    y=txt('<b>Relevant coursework:</b> '+escape(e['courses']),LEFT,y,style=SHORT,raw=True,after=3.2)
 
-y=section('Education',y)
-for row in DATA['education']:
-    y=entry(row,y,after=5)
+y=heading('Experience',y)
+for e in DATA['experience']:
+    y=heading_row(e['title'],e['dates'],y)
+    y=txt(e['summary'],LEFT,y,style=SHORT,after=1.1)
+    for b in e['bullets']:
+        y=bullet(b,y)
+    y-=2.6
 
-y=section('Selected Technical Projects',y)
-for proj in DATA['projects']:
-    C.setFont('Helvetica-Bold',9.25)
-    C.setFillColor(NAVY)
-    C.drawString(LEFT,y-9.3,proj['title'])
-    y -= 13
-    y=para(proj['details'],SMALL,LEFT,y,WIDTH,after=8)
+y=heading('Selected projects',y)
+for e in DATA['projects']:
+    y=heading_row(e['title'],e['dates'],y)
+    y=txt(e['summary'],LEFT,y,style=SHORT,after=1.0)
+    for b in e['bullets']:
+        y=bullet(b,y)
+    y-=2.8
 
-y=section('Professional Experience',y)
-for row in DATA['experience']:
-    y=entry(row,y,after=5)
-
-y=section('Technical Skills',y)
-for row in DATA['technical_skills']:
-    p=Paragraph(f'<b>{escape(row["category"])}:</b> {escape(row["items"])}',SMALL)
-    _,h=p.wrap(WIDTH,H)
-    p.drawOn(C,LEFT,y-h)
-    y -= h+3
-
-y=section('Languages',y)
-y=para(DATA['languages'].replace(' | ','  |  '),SMALL,LEFT,y,WIDTH)
-if y<BOTTOM:
-    raise RuntimeError(f'Content overflow: last baseline {y:.1f} pt < {BOTTOM} pt bottom margin')
+y=heading('Technical skills',y)
+for e in DATA['skills']:
+    y=line_with_bold(e['label'],e['value'],y)
+y=heading('Certifications & training',y)
+for c in DATA['certifications']:
+    y=txt(c,LEFT,y,style=SHORT,after=0.8)
+y=heading('Languages & interests',y)
+y=line_with_bold('Languages',DATA['languages'],y)
+y=line_with_bold('Interests',DATA['interests'],y)
+if y<36:
+    raise RuntimeError(f'CV contents overflow bottom margin: {y:.2f} pt')
 C.save()
-print(f'Generated {OUT} | A4 | one page | bottom {y:.1f} pt | {OUT.stat().st_size} bytes')
+print(f'{OUT} A4 | one page | final y={y:.1f}pt | bytes={OUT.stat().st_size}')
