@@ -1,79 +1,93 @@
-/* One verified CV data source for both the Harvard HTML preview and PDF. */
+/* Reference-matched professional CV, using the same structured data as the PDF. */
 (function () {
   'use strict';
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+  })[char]);
 
-  function escapeHtml(value) {
-    return String(value ?? '').replace(/[&<>"']/g, char => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-    })[char]);
+  function section(title, content) {
+    return '<section class="cv-section"><h2>' + esc(title) + '</h2>' + content + '</section>';
   }
 
-  function itemMarkup(row) {
-    const bullets = (row.bullets || []).length
-      ? '<ul class="harvard-bullets">' +
-        row.bullets.map(text => '<li>' + escapeHtml(text) + '</li>').join('') +
-        '</ul>'
-      : '';
-
-    return '<div class="harvard-item">' +
-      '<div class="harvard-item-heading"><strong>' + escapeHtml(row.title) + '</strong>' +
-      '<span class="harvard-dates">' + escapeHtml(row.dates) + '</span></div>' +
-      '<p class="harvard-organization">' + escapeHtml(row.organization) + '</p>' +
-      bullets + '</div>';
+  function heading(title, dates) {
+    return '<div class="cv-entry-title"><h3>' + esc(title) +
+      '</h3><span class="cv-dates">' + esc(dates) + '</span></div>';
   }
 
-  function sectionMarkup(title, content) {
-    return '<section class="harvard-section"><h2>' + escapeHtml(title) + '</h2>' +
-      content + '</section>';
+  function bulletList(bullets) {
+    return '<ul class="cv-bullets">' +
+      bullets.map(line => '<li>' + esc(line) + '</li>').join('') + '</ul>';
   }
 
-  async function renderHarvardCV() {
+  function educationItem(row) {
+    return '<div class="cv-entry">' +
+      heading(row.school, row.dates) +
+      '<p class="cv-track">' + esc(row.track) + '</p>' +
+      '<p>' + esc(row.description) + '</p>' +
+      '<p><strong>Relevant coursework:</strong> ' + esc(row.courses) + '</p>' +
+      '</div>';
+  }
+
+  function experienceItem(row) {
+    return '<div class="cv-entry">' +
+      heading(row.title, row.dates) +
+      '<p>' + esc(row.summary) + '</p>' +
+      bulletList(row.bullets) + '</div>';
+  }
+
+  function projectItem(row) {
+    return '<div class="cv-entry">' +
+      heading(row.title, row.dates) +
+      '<p>' + esc(row.summary) + '</p>' +
+      bulletList(row.bullets) + '</div>';
+  }
+
+  function contacts(items) {
+    return items.map(item => item.url
+      ? '<a href="' + esc(item.url) + '"' +
+        (item.url.startsWith('https:') ? ' target="_blank" rel="noopener noreferrer"' : '') +
+        '>' + esc(item.label) + '</a>'
+      : '<span>' + esc(item.label) + '</span>'
+    ).join('<span class="cv-separator" aria-hidden="true">|</span>');
+  }
+
+  async function render() {
     const root = document.getElementById('harvardCvDocument');
     if (!root) return;
-
     try {
-      const response = await fetch('./cv-data.json', { cache: 'no-cache' });
+      const response = await fetch('./cv-data.json', {cache:'no-cache'});
       if (!response.ok) throw new Error('CV data unavailable');
-      const data = await response.json();
-
-      const contacts = data.contact.map(item => item.url
-        ? '<a href="' + escapeHtml(item.url) + '" target="' +
-          (item.url.startsWith('mailto:') ? '_self' : '_blank') +
-          '" rel="noopener noreferrer">' + escapeHtml(item.label) + '</a>'
-        : '<span>' + escapeHtml(item.label) + '</span>'
-      ).join('<span aria-hidden="true">·</span>');
-
-      const skills = data.technical_skills.map(item =>
-        '<p class="harvard-skill-line"><strong>' + escapeHtml(item.category) +
-        ':</strong> ' + escapeHtml(item.items) + '</p>'
-      ).join('');
-
-      const projects = data.projects.map(item =>
-        '<div class="harvard-project"><strong>' + escapeHtml(item.title) +
-        '</strong><p>' + escapeHtml(item.details) + '</p></div>'
-      ).join('');
-
+      const d = await response.json();
       root.innerHTML =
-        '<header class="harvard-header"><h1>' + escapeHtml(data.name) + '</h1>' +
-        '<p class="harvard-headline">' + escapeHtml(data.headline) + '</p>' +
-        '<p class="harvard-direction">' + escapeHtml(data.direction) + '</p>' +
-        '<div class="harvard-contact">' + contacts + '</div></header>' +
-        sectionMarkup('Profile', '<p>' + escapeHtml(data.profile) + '</p>') +
-        sectionMarkup('Education', data.education.map(itemMarkup).join('')) +
-        sectionMarkup('Selected Technical Projects', projects) +
-        sectionMarkup('Professional Experience', data.experience.map(itemMarkup).join('')) +
-        sectionMarkup('Technical Skills', skills) +
-        sectionMarkup('Languages', '<p>' + escapeHtml(data.languages.replace(/ \| /g, ' · ')) + '</p>');
+        '<header class="cv-header">' +
+        '<h1>' + esc(d.name) + '</h1>' +
+        '<p class="cv-academic">' + esc(d.academic_headline) + '</p>' +
+        '<p class="cv-focus">' + esc(d.career_headline) + '</p>' +
+        '<div class="cv-contacts">' + contacts(d.contact) + '</div>' +
+        '<div class="cv-social">' + contacts(d.social) + '</div>' +
+        '</header>' +
+        section('Profile', '<p>' + esc(d.profile) + '</p>') +
+        section('Education', d.education.map(educationItem).join('')) +
+        section('Experience', d.experience.map(experienceItem).join('')) +
+        section('Selected Projects', d.projects.map(projectItem).join('')) +
+        section('Technical Skills', d.skills.map(row =>
+          '<p><strong>' + esc(row.label) + ':</strong> ' + esc(row.value) + '</p>'
+        ).join('')) +
+        section('Certifications & Training', d.certifications.map(line =>
+          '<p>' + esc(line) + '</p>'
+        ).join('')) +
+        section('Languages & Interests',
+          '<p><strong>Languages:</strong> ' + esc(d.languages) + '</p>' +
+          '<p><strong>Interests:</strong> ' + esc(d.interests) + '</p>');
     } catch (error) {
-      root.innerHTML = '<p class="harvard-loading">CV preview unavailable. ' +
-        'Please use Download PDF above to view the latest document.</p>';
-      console.error('Unable to load Harvard CV:', error);
+      console.error('Cannot render CV:',error);
+      root.innerHTML = '<p class="cv-error">The CV preview is unavailable. Please use the Download PDF link.</p>';
     }
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', renderHarvardCV, { once: true });
+    document.addEventListener('DOMContentLoaded',render,{once:true});
   } else {
-    renderHarvardCV();
+    render();
   }
 })();
