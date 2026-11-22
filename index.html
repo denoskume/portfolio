@@ -2654,7 +2654,6 @@ body:has(#about.active) .main-container {
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:12px;
   min-height:40px;
   padding:10px 16px;
   background:#0b2946;
@@ -3512,7 +3511,7 @@ function buildProjects() {
       '<p class="brief">' + description + '</p></div></a>' +
       '<div class="project-card-actions"><button class="project-card-explore" type="button" ' +
       'onclick="openProject(' + Number(p.id) + ')" aria-label="Explore project: ' + title + '">' +
-      'Explore Project <span aria-hidden="true">→</span></button></div></article>';
+      'Explore Project</button></div></article>';
   }).join('');
 }
 
