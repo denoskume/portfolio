@@ -263,3 +263,9 @@ body:has(#projectDetail.active .fluoro-study) .main-container{margin-top:var(--n
  .fl-info-table strong,.fl-info-table span,.fl-metric-table th,.fl-metric-table td{font-size:9pt!important}
  .fl-paper-section a{color:#115376!important}
 }
+
+/* Embedded archived CardGame V1 GIF, presented like the fluoroscopy demo. */
+.sc-animated-demo a{display:block}
+.sc-animated-demo img{display:block;width:100%;height:auto;max-height:75vh;object-fit:contain;background:#071c2d}
+.sc-animated-demo figcaption{padding:12px 17px;font-size:.9rem;line-height:1.6;color:#dbe7ef;background:#09283e}
+.sc-animated-demo figcaption a{display:inline;color:#e4f4ff;text-decoration:underline;text-underline-offset:3px}
