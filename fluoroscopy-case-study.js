@@ -4,7 +4,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
   const repo = "https://github.com/denoskume/Background-Subtraction-Fluoroscopy";
   const frames = [201,211,221,231,241,251,261,271,281,291];
   const toc = [
-    {key:"report",entries:[["fl-r-abstract","Abstract"],["fl-r-keywords","Keywords"],["fl-r-information","Project information"],["fl-r-nomenclature","Nomenclature"],["fl-r-intro","1.0 Introduction"],["fl-r-dataset","2.0 Dataset & objectives"],["fl-r-method","3.0 Methodology"],["fl-r-results","4.0 Experimental results"],["fl-r-discussion","5.0 Discussion & conclusion"]]},
+    {key:"report",entries:[["fl-r-abstract","Abstract"],["fl-r-keywords","Keywords"],["fl-r-information","Project information"],["fl-r-nomenclature","Nomenclature"],["fl-r-intro","1.0 Introduction"],["fl-r-dataset","2.0 Dataset & objectives"],["fl-r-method","3.0 Methodology"],["fl-r-results","4.0 Experimental results"],["fl-r-discussion","5.0 Discussion & conclusion"],["fl-r-references","6.0 References"]]},
     {key:"figures",entries:[["fl-f-input","Figure 1 · Input images"],["fl-f-method","Figure 2 · Reconstruction"],["fl-f-results","Figure 3 · Predictions"],["fl-f-demo","Video demonstration"]]},
     {key:"metrics",entries:[["fl-m-dice","Dice comparison"],["fl-m-baselines","Initial methods"],["fl-m-errors","Detection errors"],["fl-m-frames","Frame explorer"]]}
   ];
@@ -87,7 +87,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
         <section class="fl-paper-section" id="fl-r-dataset">
           <h2>2.0 Dataset and project objectives</h2>
           <h3>2.1 Dataset</h3>
-          <p>The dataset contains <strong>ten grayscale images</strong> of <strong>512 × 512 pixels</strong> and <strong>twenty manual instrument tracings</strong>. We converted the tracings into reference masks, providing a way to measure each prediction. Frame 201 was used as the background reference; frames 211–291 provided the nine motion frames for evaluation.</p>
+          <p>The dataset contains <strong>ten grayscale images</strong> of <strong>512 × 512 pixels</strong> and <strong>twenty manual instrument tracings</strong>. We converted the tracings into reference masks, providing a way to measure each prediction. Frame 201 was used as the background reference; frames 211–291 provided the nine motion frames for evaluation.<a class="study-cite" href="#fl-ref-1" aria-label="Reference 1">[1]</a></p>
           <div class="fl-facts" aria-label="Dataset summary">
             <div><strong>10</strong><span>Images</span></div>
             <div><strong>512 × 512</strong><span>Pixels each</span></div>
@@ -104,10 +104,10 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
           <h2>3.0 Methodology</h2>
           <div class="fl-method-steps" aria-label="Processing pipeline"><span>Prepare</span><span>Subtract</span><span>Segment</span><span>Reconnect</span></div>
           <h3>3.1 Preprocessing and initial segmentation</h3>
-          <p>First, we enhanced contrast and reduced noise, then subtracted the reference frame to reveal changes. We tested a <strong>fixed threshold (0.10)</strong>, <strong>Otsu thresholding</strong> and a <strong>two-component Gaussian mixture</strong> to decide which changed pixels were likely to belong to the instrument.</p>
+          <p>First, we enhanced contrast and reduced noise, then subtracted the reference frame to reveal changes. We tested a <strong>fixed threshold (0.10)</strong>, <strong>Otsu thresholding</strong> and a <strong>two-component Gaussian mixture</strong> to decide which changed pixels were likely to belong to the instrument.<a class="study-cite" href="#fl-ref-2" aria-label="Reference 2">[2]</a></p>
           <p>The fixed threshold had the highest mean Dice (<strong>0.416</strong>), followed closely by Otsu (<strong>0.412</strong>); the Gaussian mixture reached <strong>0.385</strong>. We retained the fixed threshold as the classical reference and investigated its remaining gaps and false detections. The detailed comparison is available in <strong>Metrics</strong>.</p>
           <h3>3.2 Continuous-path reconstruction</h3>
-          <p>Threshold-based masks often missed parts of the instrument that barely moved. We used an <strong>ExtraTrees</strong> model to score likely instrument pixels from dark-line appearance, intensity derivatives and temporal changes. A path-search step then joined those candidates into one continuous centreline, starting from the lower image border where the instrument enters this sequence.</p>
+          <p>Threshold-based masks often missed parts of the instrument that barely moved. We used an <strong>ExtraTrees</strong> model to score likely instrument pixels from dark-line appearance, intensity derivatives and temporal changes. A path-search step then joined those candidates into one continuous centreline, starting from the lower image border where the instrument enters this sequence.<a class="study-cite" href="#fl-ref-3" aria-label="Reference 3">[3]</a></p>
           <p><a class="fl-figure-ref" href="#fl-r-fig2">Figure 2</a> compares the earlier fragmented prediction with the reconstructed line on frame 291. The manual tracing is shown beside them, so the improvement in continuity can be judged against a reference rather than appearance alone.</p>
           <figure class="fl-report-figure" id="fl-r-fig2">
             <a href="${raw}assets/mask-cleanup.png" target="_blank" rel="noopener noreferrer"><img loading="lazy" decoding="async" src="${raw}assets/mask-cleanup.png" alt="Previous prediction compared with the reconstructed connected path and manual tracing"></a>
@@ -118,7 +118,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
         <section class="fl-paper-section" id="fl-r-results">
           <h2>4.0 Experimental results</h2>
           <h3>4.1 Agreement with the reference</h3>
-          <p><strong>Dice</strong> measures how much the predicted instrument overlaps the manual reference, from 0 (no overlap) to 1 (perfect overlap). Across the same nine motion frames, the previous prediction averaged <strong>0.501</strong>; continuous-path reconstruction raised the mean to <strong>0.876</strong>. That is a gain of <strong>0.375 Dice points</strong>. This comparison evaluates the reconstruction extension, separately from the earlier threshold-method comparison.</p>
+          <p><strong>Dice</strong> measures how much the predicted instrument overlaps the manual reference, from 0 (no overlap) to 1 (perfect overlap). Across the same nine motion frames, the previous prediction averaged <strong>0.501</strong>; continuous-path reconstruction raised the mean to <strong>0.876</strong>. That is a gain of <strong>0.375 Dice points</strong>. This comparison evaluates the reconstruction extension, separately from the earlier threshold-method comparison.<a class="study-cite" href="#fl-ref-4" aria-label="Reference 4">[4]</a></p>
           <div class="fl-score" aria-label="Mean Dice comparison">
             <div><span>Previous prediction</span><strong>0.501</strong></div>
             <div><span>Continuous trace</span><strong>0.876</strong></div>
@@ -127,7 +127,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
           <p>The change is based on the whole evaluated sequence, not one example image. The <strong>Figures</strong> and <strong>Metrics</strong> tabs provide every reconstruction and per-frame score for closer inspection.</p>
           
           <h3>4.2 False detections and missed segments</h3>
-          <p>Across the nine motion frames, <strong>false positives</strong> (background marked as instrument) fell from <strong>22,472 to 3,553 pixels</strong>. <strong>False negatives</strong> (missed instrument pixels) fell from <strong>5,240 to 2,511</strong>. Every final mask also had one connected component. Together, these measurements show fewer stray detections, fewer gaps and a more complete path.</p>
+          <p>Across the nine motion frames, <strong>false positives</strong> (background marked as instrument) fell from <strong>22,472 to 3,553 pixels</strong>. <strong>False negatives</strong> (missed instrument pixels) fell from <strong>5,240 to 2,511</strong>. Every final mask also had one connected component. Together, these measurements show fewer stray detections, fewer gaps and a more complete path.<a class="study-cite" href="#fl-ref-5" aria-label="Reference 5">[5]</a></p>
         </section>
 
         <section class="fl-paper-section" id="fl-r-discussion">
@@ -138,6 +138,17 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
           <p>Background subtraction mainly detects changes, so it can miss an instrument shaft that hardly moves. The ExtraTrees scores add evidence about thin dark lines, and the path-continuity rule links those pixel candidates into a plausible instrument shape. Combining these two ideas explains the improvement over disconnected masks.</p>
           <h3>5.3 Limitations and future work</h3>
           <p>A useful next step is to test additional fluoroscopy sequences with different image quality, movement patterns and instrument positions. This would also allow us to investigate path tracing when the instrument enters the image from another direction.</p>
+        </section>
+
+        <section class="fl-paper-section study-references" id="fl-r-references">
+          <h2>6.0 References</h2>
+          <ol class="study-reference-list">
+            <li id="fl-ref-1"><span>Kume, D., &amp; Shokunbi, O. (2026). Fluoroscopy Instrument Segmentation. Executed notebook and experiment, Centrale Nantes.</span> <a href="https://github.com/denoskume/Background-Subtraction-Fluoroscopy/blob/main/Fluoroscopy_Instrument_Segmentation.ipynb" target="_blank" rel="noopener noreferrer">Project notebook</a></li>
+            <li id="fl-ref-2"><span>Otsu, N. (1979). A Threshold Selection Method from Gray-Level Histograms. IEEE Transactions on Systems, Man, and Cybernetics, 9(1), 62–66. DOI: 10.1109/TSMC.1979.4310076.</span> <a href="https://doi.org/10.1109/TSMC.1979.4310076" target="_blank" rel="noopener noreferrer">Read paper</a></li>
+            <li id="fl-ref-3"><span>Geurts, P., Ernst, D., &amp; Wehenkel, L. (2006). Extremely Randomized Trees. Machine Learning, 63, 3–42. DOI: 10.1007/s10994-006-6226-1.</span> <a href="https://doi.org/10.1007/s10994-006-6226-1" target="_blank" rel="noopener noreferrer">Read paper</a></li>
+            <li id="fl-ref-4"><span>Dice, L. R. (1945). Measures of the Amount of Ecologic Association Between Species. Ecology, 26(3), 297–302. DOI: 10.2307/1932409.</span> <a href="https://doi.org/10.2307/1932409" target="_blank" rel="noopener noreferrer">Read paper</a></li>
+            <li id="fl-ref-5"><span>Kume, D., &amp; Shokunbi, O. (2026). Frame-level instrument segmentation evaluation and error counts. Experimental data.</span> <a href="https://github.com/denoskume/Background-Subtraction-Fluoroscopy/blob/main/frame_comparison.csv" target="_blank" rel="noopener noreferrer">Frame results CSV</a></li>
+          </ol>
         </section>
       </div>
 
