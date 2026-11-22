@@ -1,6 +1,6 @@
 /* Contact — modern, accessible inquiry form. Scoped to the active portfolio page. */
 #contact .contact-modern {
-  padding: clamp(28px, 4.5vw, 64px) 0 clamp(44px, 7vw, 100px);
+  padding: clamp(12px, 2vw, 24px) 0 clamp(44px, 7vw, 100px);
 }
 #contact .contact-layout {
   display: grid;
@@ -120,48 +120,49 @@
   margin-left: auto;
   flex-shrink: 0;
 }
-/* One centered social-link group at the top of the Contact panel. */
+/* A single centered link group ABOVE both Contact cards, never inside a card. */
 #contact .contact-social-nav {
-  align-self: center;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+  display: flex;
+  width: max-content;
   max-width: 100%;
+  align-items: center;
+  justify-content: center;
   gap: 0;
-  margin-bottom: clamp(22px, 2.5vw, 32px);
-  padding: 5px;
-  border: 1px solid rgba(209,227,251,.24);
+  margin: 0 auto clamp(20px, 2.5vw, 28px);
+  padding: 4px;
+  border: 1px solid #d7e0ec;
   border-radius: 999px;
-  background: rgba(255,255,255,.075);
+  background: #fff;
+  box-shadow: 0 6px 22px rgba(15,35,58,.055);
 }
 #contact .contact-social-nav a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 8px 14px;
+  padding: 8px clamp(12px, 2vw, 20px);
   border-radius: 999px;
-  color: #e3efff;
-  font: 500 .82rem/1.4 var(--font-body);
+  color: #163f6b;
+  font: 500 .83rem/1.4 var(--font-body);
   white-space: nowrap;
   text-decoration: none;
   transition: color .2s, background .2s;
 }
 #contact .contact-social-nav a:hover,
 #contact .contact-social-nav a:focus-visible {
-  color: #fff;
-  background: rgba(255,255,255,.14);
+  color: #0d2c4a;
+  background: #e9f1fb;
 }
 #contact .contact-social-nav a:focus-visible {
-  outline: 2px solid #a3c7ff;
+  outline: 2px solid #2563eb;
   outline-offset: 1px;
 }
 #contact .contact-social-divider {
   flex: 0 0 1px;
   height: 17px;
-  background: rgba(209,227,251,.24);
+  background: #d7e0ec;
 }
-#contact .contact-aside h2 { margin-top: 0; }
+#contact .contact-aside h2 { margin-top: clamp(30px, 5vw, 70px); }
 #contact .contact-form-card {
   min-width: 0;
   border: 1px solid #dce4ec;
@@ -342,7 +343,7 @@
 }
 @media (max-width: 1030px) {
   #contact .contact-layout { grid-template-columns: 1fr; }
-  #contact .contact-aside h2 { margin-top: 0; max-width: 16ch; }
+  #contact .contact-aside h2 { margin-top: 30px; max-width: 16ch; }
   #contact .contact-methods { margin-top: 0; }
 }
 @media (max-width: 610px) {
