@@ -297,7 +297,11 @@
       'nomenclature':'Nomenclature','intro':'1.0 Introduction','dataset':'2.0 Dataset & objectives',
       'method':'3.0 Methodology','results':'4.0 Results','discussion':'5.0 Discussion & conclusion'};
     const reportToc = primary.map(k=>({id:p+'-r-'+k,title:names[k]||k}));
-    const figuresToc = d.figures.map((f,i)=>({id:p+'-f-'+i,title:'Figure '+(i+1)+' · '+f.title}));
+    const figuresToc = d.figures.map((f,i) => {
+      const kind = f.kind === 'table' ? 'Table' : 'Figure';
+      const num = d.figures.slice(0, i+1).filter(x => (x.kind||'figure') === (f.kind||'figure')).length;
+      return {id:p+'-f-'+i,title:kind+' '+num+' · '+f.title};
+    });
     const metricsToc = d.metrics.map(m=>({id:p+'-m-'+m.key,title:m.title}));
     const section = (id,title,body,cls) =>
       '<section class="'+(cls||'fl-paper-section')+'" id="'+id+'"><h2>'+title+'</h2>'+body+'</section>';
@@ -309,13 +313,16 @@
       '<h2>Nomenclature</h2><p class="fl-nomenclature-intro">Definitions used in this project report.</p>'+
       terms(d.glossary)+'</div></section>'+
       d.reportSections.map(row=>section(p+'-r-'+row.key,row.title,row.body)).join('');
-    const indexedFigures = d.figures.map((f,i) =>
-      '<section class="fl-figure-section fl-index-figure" id="'+p+'-f-'+i+'">'+
-      '<a class="fl-index-thumb" href="'+safe(f.url)+'" target="_blank" rel="noopener noreferrer" aria-label="Open Figure '+(i+1)+' at full size">'+
-      '<img src="'+safe(f.url)+'" loading="lazy" decoding="async" alt="'+safe(f.title)+'"></a>'+
-      '<div class="fl-index-description"><h3>Figure '+(i+1)+'. '+safe(f.title)+'</h3><p>'+safe(f.description)+'</p>'+
-      '<button class="fl-view-content" type="button" data-sc-open-panel="report" data-sc-jump="'+safe(f.reportId)+'">View in report</button>'+
-      '</div></section>').join('');
+    const indexedFigures = d.figures.map((f,i) => {
+      const kind = f.kind === 'table' ? 'Table' : 'Figure';
+      const num = d.figures.slice(0, i+1).filter(x => (x.kind||'figure') === (f.kind||'figure')).length;
+      return '<section class="fl-figure-section fl-index-figure" id="'+p+'-f-'+i+'">'+
+        '<a class="fl-index-thumb" href="'+safe(f.url)+'" target="_blank" rel="noopener noreferrer" aria-label="Open '+kind+' '+num+' at full size">'+
+        '<img src="'+safe(f.url)+'" loading="lazy" decoding="async" alt="'+safe(f.title)+'"></a>'+
+        '<div class="fl-index-description"><h3>'+kind+' '+num+'. '+safe(f.title)+'</h3><p>'+safe(f.description)+'</p>'+
+        '<button class="fl-view-content" type="button" data-sc-open-panel="report" data-sc-jump="'+safe(f.reportId)+'">View in report</button>'+
+        '</div></section>';
+    }).join('');
     const metrics = d.metrics.map(m=>section(p+'-m-'+m.key,m.title,m.body,'fl-metric-section')).join('');
     const tabs = ['report','figures','metrics'].map((tab,i)=>
       '<button type="button" id="'+p+'-tab-'+tab+'" class="fl-paper-tab'+(i===0?' is-active':'')+
