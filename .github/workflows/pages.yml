@@ -107,7 +107,6 @@ jobs:
           node --check harvard-cv.js
           node --check contact-form.js
           node --check content.js
-          node --check projects-dashboard.js
           node --check fluoroscopy-case-study.js
           node --check lab/workspace.js
           node --check lab/worker.js
@@ -127,11 +126,8 @@ jobs:
           assert 'name="_honey"' in html
           assert 'name="consent"' in html
           assert 'class="contact-layout"' in html and '#contact .contact-layout' in style
-          assert 'id="projectsDashboard"' in html, "Missing Home project dashboard"
-          assert 'projects-dashboard.js?v=' in html and 'projects-dashboard.css?v=' in html
-          assert all(x in html for x in ('data-pd-table', 'data-pd-kpis', 'data-pd-refresh', 'data-pd-status')), "Missing live dashboard controls"
-          dashboard_js=Path("projects-dashboard.js").read_text(encoding="utf-8")
-          assert 'PORTFOLIO_DATA' in dashboard_js and 'API+' in dashboard_js and 'Promise.allSettled' in dashboard_js, "Live GitHub data client missing"
+          assert 'id="projectsDashboard"' not in html, "Removed dashboard must stay absent"
+          assert 'projects-dashboard.js?v=' not in html and 'projects-dashboard.css?v=' not in html, "Obsolete dashboard assets linked"
           assert 'contact-form.js?v=' in html and 'contact-modern.css?v=' in html
           assert 'function handleContact(e)' not in html
           assert "fetch(ENDPOINT" in script
@@ -145,12 +141,12 @@ jobs:
           start = html.index('<section id="home"')
           end = html.index('<!-- ============ ABOUT ME', start)
           home = html[start:end]
-          assert 'id="projectsDashboard"' in home, "The Projects dashboard is missing"
+          assert 'id="projectsDashboard"' not in home, "Removed dashboard returned to Home"
           assert 'class="cn-hero"' in home, "The Home hero is missing"
           assert 'class="cn-news"' in home, "Recent Work is missing"
           for forbidden in ('class="cn-evidence"', 'class="cn-journey"'):
               assert forbidden not in home, f"An obsolete Home section returned: {forbidden}"
-          print("Home regression check passed: redundant metric cards and My Journey absent")
+          print("Home regression check passed: dashboard, metric cards and My Journey absent")
           PY
           # Prevent decorative labels and fixed project counters from returning.
           python - <<'PY'
@@ -174,7 +170,7 @@ jobs:
           print("Portfolio copy audit passed (no decorative badges or fixed totals).")
           PY
           mkdir -p _site/lab
-          cp index.html app.js content.js cv-data.json harvard-cv.js harvard-cv.css contact-form.js contact-modern.css projects-dashboard.js projects-dashboard.css styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css _site/
+          cp index.html app.js content.js cv-data.json harvard-cv.js harvard-cv.css contact-form.js contact-modern.css styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css _site/
           cp lab/workspace.js lab/worker.js lab/compute.py _site/lab/
           cp -r assets _site/
           # Always publish the HTML even if an optional document rebuild fails.
@@ -194,8 +190,6 @@ jobs:
           test -s _site/harvard-cv.css
           test -s _site/contact-form.js
           test -s _site/contact-modern.css
-          test -s _site/projects-dashboard.css
-          test -s _site/projects-dashboard.js
           # Optional downloadable documents are checked independently from site publication.
           test -f _site/assets/denos-kume-signature.svg
           test -s _site/fluoroscopy-case-study.js
@@ -237,7 +231,8 @@ jobs:
                   )
                   with urllib.request.urlopen(request, timeout=20) as response:
                       html = response.read().decode("utf-8")
-                  if ("id=\"projectsDashboard\"" in html
+                  if ('id="projectsDashboard"' not in html
+                      and 'projects-dashboard.js' not in html
                       and 'class="cn-evidence"' not in html
                       and 'class="cn-journey"' not in html):
                       print(f"Verified public Pages deployment at {url}")
