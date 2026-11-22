@@ -127,7 +127,7 @@
   const card = {
     slug:'python-cardgame',prefix:'sc-card',title:'Python CardGame · V2',
     question:'How can a real-time three-card memory game remain consistent across animations, timers, user input and desktop/browser interfaces?',
-    authors:'Software engineering project · Pygame · Collaborator: Sena FUKABE',
+    authors:'ALPRO course project · Case study · Pygame · Collaborator: Sena FUKABE',
     repository:R.card,notebook:R.card+'/blob/main/src/game.py',
     pdf:'python-cardgame-case-study.pdf',downloadName:'Python-CardGame-Report.pdf',
     citation:'Kume, D., & Fukabe, S. (2026). Python CardGame V2 [Python/Pygame software project]. GitHub. '+R.card,
@@ -135,6 +135,7 @@
     keywords:['Python','Pygame','Finite-State Machine','Event Loop','Animation','WebAssembly','Testing'],
     projectInfo:[
       ['Project','Three-card visual memory game with fictitious credits'],
+      ['Academic context','ALPRO course project · Case study'],
       ['Platforms','Desktop Python/Pygame and browser build using Pygbag'],
       ['Player journey','Profile → stake → observation → shuffle → selection → result'],
       ['Controls','Mouse, touch, keyboard; difficulty and pause options'],
