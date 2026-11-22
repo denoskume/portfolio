@@ -75,6 +75,10 @@ jobs:
           import json
           cv = json.loads(Path("cv-data.json").read_text(encoding="utf-8"))
           assert len(cv["education"]) == 2, "Show only higher education"
+          assert cv["education"][0]["courses"] == "Artificial Intelligence | Machine Learning | Numerical Optimization | Data Analysis | Image Processing", "MSc coursework must match its description"
+          assert cv["education"][1]["courses"] == "Programming | Database Systems | Data Analysis | Digital Electronics | Embedded Systems", "Bachelor coursework must match its description"
+          assert "Digital Electronics" in text and "Embedded Systems" in text, "Bachelor electronics coursework must appear in the PDF"
+          assert "Artificial Intelligence" in text and "Numerical Optimization" in text, "MSc AI and optimization coursework must appear in the PDF"
           assert len(cv["projects"]) == 1, "CV should showcase only one selected project"
           assert all(len(entry["bullets"]) == 4 for entry in cv["experience"] + cv["projects"]), "Every experience and selected project needs exactly 4 bullets"
           assert not any("MonStage" in entry["title"] for entry in cv["projects"])
