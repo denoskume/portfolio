@@ -255,13 +255,15 @@
           '<p>The experiment used one pretrained model checkpoint, ten manually selected prompts and a single 50-class dataset. The published-model comparisons used different protocols. Future tests should consider more audio domains, multiple checkpoints and prompts reflecting recording conditions before making generalization claims.</p>'}
       ],
       figures:[
-        ['Zero-shot pipeline','Audio and text embedding flow through similarity-based classification','outputs/figures/clap_complete_zero_shot_pipeline.png','intro','sc-clap-r-fig1'],
-        ['Prompt strategy table','Top-1 performance for ten prompt templates','outputs/figures/prompt_strategy_comparison_table.png','method','sc-clap-r-fig2'],
-        ['Top-k accuracy','Prediction accuracy as the number of accepted ranks increases','outputs/figures/topk_accuracy_line.png','results','sc-clap-r-fig3'],
-        ['Classwise accuracy','Per-class evaluation table across ESC-50','outputs/figures/classwise_accuracy_tables.png','results','sc-clap-r-results'],
-        ['AudioSet quality','Accuracy compared with AudioSet quality metadata for all classes','outputs/figures/all50_esc50_accuracy_vs_audioset_quality.png','results','sc-clap-r-results'],
-        ['AudioSet coverage','Accuracy compared with AudioSet class video counts','outputs/figures/all50_esc50_accuracy_vs_audioset_coverage.png','results','sc-clap-r-results']
-      ].map(x=>({title:x[0],description:x[1],url:rawClap+x[2],section:x[3],reportId:x[4]})),
+        ['Zero-shot pipeline','Audio and text embedding flow through similarity-based classification','outputs/figures/clap_complete_zero_shot_pipeline.png','intro','sc-clap-r-fig1','figure'],
+        ['Prompt strategy comparison','Original project table: ten tested prompts, with baseline and best-performing strategy highlighted','outputs/figures/prompt_strategy_comparison_table.png','results','sc-clap-r-fig2','table'],
+        ['Top-k accuracy table','Original project accuracy table for k = 1 through 10','outputs/figures/topk_accuracy_table.png','results','sc-clap-r-topk-table','table'],
+        ['Top-k accuracy curve','Prediction accuracy as the number of accepted ranks increases','outputs/figures/topk_accuracy_line.png','results','sc-clap-r-fig3','figure'],
+        ['Classwise accuracy','Original tables comparing the lowest- and highest-performing classes','outputs/figures/classwise_accuracy_tables.png','results','sc-clap-r-classwise-table','table'],
+        ['Published ESC-50 classifiers','Original table comparing CLAP with published benchmark values','outputs/figures/published_classifier_comparison_table.png','results','sc-clap-r-model-table','table'],
+        ['AudioSet quality','Accuracy compared with AudioSet quality metadata for all classes','outputs/figures/all50_esc50_accuracy_vs_audioset_quality.png','results','sc-clap-r-results','figure'],
+        ['AudioSet coverage','Accuracy compared with AudioSet class video counts','outputs/figures/all50_esc50_accuracy_vs_audioset_coverage.png','results','sc-clap-r-results','figure']
+      ].map(x=>({title:x[0],description:x[1],url:rawClap+x[2],section:x[3],reportId:x[4],kind:x[5]})),
       metrics:[
         {key:'overview',title:'Key accuracy results',body:
           '<p>Accuracy is the fraction of ESC-50 clips classified correctly. <strong>Higher is better.</strong> These are measured values for a pretrained LAION-CLAP model in the specified zero-shot experiment.</p>'+
