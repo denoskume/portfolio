@@ -12,7 +12,7 @@ from reportlab.pdfgen import canvas
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
 ROOT=Path(__file__).resolve().parents[1]
-DATA=json.loads((ROOT/'cv-data.json').read_text(encoding='utf-8'))
+DATA=json.loads((ROOT/'data/cv-data.json').read_text(encoding='utf-8'))
 OUT=ROOT/'build'/DATA['pdf_filename']
 OUT.parent.mkdir(parents=True,exist_ok=True)
 W,H=A4

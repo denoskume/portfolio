@@ -240,14 +240,14 @@ def build(study_id: int, filename: str) -> Path:
         # Render the same HTML as the live Background Subtraction Report.
         js = (
             "global.window = globalThis;"
-            "require('./fluoroscopy-case-study.js');"
+            "require('./assets/js/case-studies/fluoroscopy-case-study.js');"
             "process.stdout.write(window.renderFluoroCaseStudy());"
         )
     else:
         js = (
             "global.window = globalThis;"
-            "require('./scientific-case-studies.js');"
-            "require('./software-case-studies.js');"
+            "require('./assets/js/case-studies/scientific-case-studies.js');"
+            "require('./assets/js/case-studies/software-case-studies.js');"
             f"process.stdout.write(window.renderScientificCaseStudy({study_id}));"
         )
     result = subprocess.run(["node", "-e", js], cwd=ROOT,

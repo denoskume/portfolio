@@ -98,7 +98,7 @@ jobs:
           assert "EXPERIENCE" in text and "SELECTED PROJECTS" in text, "Missing reference sections"
           assert text.index("EDUCATION") < text.index("EXPERIENCE") < text.index("SELECTED PROJECTS") < text.index("TECHNICAL SKILLS"), "Incorrect reference CV section order"
           import json
-          cv = json.loads(Path("cv-data.json").read_text(encoding="utf-8"))
+          cv = json.loads(Path("data/cv-data.json").read_text(encoding="utf-8"))
           assert len(cv["education"]) == 2, "Show only higher education"
           assert cv["education"][0]["courses"] == "Artificial Intelligence | Machine Learning | Numerical Optimization | Data Analysis | Image Processing", "MSc coursework must match its description"
           assert cv["education"][1]["courses"] == "Programming | Database Systems | Data Analysis | Digital Electronics | Embedded Systems", "Bachelor coursework must match its description"
@@ -125,14 +125,14 @@ jobs:
           PY
       - name: Validate and prepare static site
         run: |
-          node --check app.js
-          node --check harvard-cv.js
-          node --check contact-form.js
-          node --check home-credentials.js
-          node --check content.js
-          node --check fluoroscopy-case-study.js
-          node --check scientific-case-studies.js
-          node --check software-case-studies.js
+          node --check archive/legacy/app.js
+          node --check assets/js/components/harvard-cv.js
+          node --check assets/js/components/contact-form.js
+          node --check assets/js/components/home-credentials.js
+          node --check assets/js/content.js
+          node --check assets/js/case-studies/fluoroscopy-case-study.js
+          node --check assets/js/case-studies/scientific-case-studies.js
+          node --check assets/js/case-studies/software-case-studies.js
           node --check lab/workspace.js
           node --check lab/worker.js
           python -c 'from pathlib import Path; import re; html=Path("index.html").read_text(); Path("/tmp/portfolio-inline.js").write_text("\n".join(re.findall(r"<script[^>]*>([\s\S]*?)</script>", html, flags=re.I)), encoding="utf-8")'
@@ -142,15 +142,15 @@ jobs:
           from pathlib import Path
           import subprocess
           html = Path("index.html").read_text(encoding="utf-8")
-          assert 'scientific-case-studies.js?v=' in html
-          assert 'scientific-case-studies.css?v=' in html
+          assert 'assets/js/case-studies/scientific-case-studies.js?v=' in html
+          assert 'assets/css/case-studies/scientific-case-studies.css?v=' in html
           assert 'renderScientificCaseStudy(p.id)' in html and 'initScientificCaseStudy()' in html
           for slug in ('camera-calibration', 'clap-zero-shot'):
               assert "#/projects/" + slug in html
           script = """
           global.window=globalThis;
-          require('./scientific-case-studies.js');
-          require('./software-case-studies.js');
+          require('./assets/js/case-studies/scientific-case-studies.js');
+          require('./assets/js/case-studies/software-case-studies.js');
           for (const id of [2,3,4,5,6]) {
             const markup=window.renderScientificCaseStudy(id);
             if ((markup.match(/data-sc-tab=/g)||[]).length!==3 ||
@@ -174,10 +174,10 @@ jobs:
           import re, subprocess
           script = """
           global.window=globalThis;
-          require('./fluoroscopy-case-study.js');
+          require('./assets/js/case-studies/fluoroscopy-case-study.js');
           const fluoro = window.renderFluoroCaseStudy();
-          require('./scientific-case-studies.js');
-          require('./software-case-studies.js');
+          require('./assets/js/case-studies/scientific-case-studies.js');
+          require('./assets/js/case-studies/software-case-studies.js');
           const studies = [
             {html:fluoro,prefix:'fl',expected:5},
             {html:window.renderScientificCaseStudy(2),prefix:'sc-cam',expected:5},
@@ -205,7 +205,7 @@ jobs:
           from pathlib import Path
           import re
           page = Path("index.html").read_text(encoding="utf-8")
-          studies = Path("software-case-studies.js").read_text(encoding="utf-8")
+          studies = Path("assets/js/case-studies/software-case-studies.js").read_text(encoding="utf-8")
           assert not re.search(r"visionlab", page + studies, re.I), "Removed VisionLab project returned"
           assert len(re.findall(r'"id": [1-6],', page)) == 6, "Expected six portfolio project cards"
           assert "'#/projects/visionlab'" not in page, "Removed direct link returned"
@@ -216,8 +216,8 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           html=Path("index.html").read_text(encoding="utf-8")
-          style=Path("contact-modern.css").read_text(encoding="utf-8")
-          script=Path("contact-form.js").read_text(encoding="utf-8")
+          style=Path("assets/css/components/contact-modern.css").read_text(encoding="utf-8")
+          script=Path("assets/js/components/contact-form.js").read_text(encoding="utf-8")
           assert 'id="portfolioContactForm"' in html
           assert 'action="https://formsubmit.co/kamenan.kume@eleves.ec-nantes.fr"' in html
           for field in ("contactName","contactEmail","contactTopic","contactSubject","contactMessage"):
@@ -228,7 +228,7 @@ jobs:
           assert 'class="contact-layout"' in html and '#contact .contact-layout' in style
           assert 'id="projectsDashboard"' not in html, "Removed dashboard must stay absent"
           assert 'projects-dashboard.js?v=' not in html and 'projects-dashboard.css?v=' not in html, "Obsolete dashboard assets linked"
-          assert 'contact-form.js?v=' in html and 'contact-modern.css?v=' in html
+          assert 'assets/js/components/contact-form.js?v=' in html and 'assets/css/components/contact-modern.css?v=' in html
           assert 'function handleContact(e)' not in html
           assert "fetch(ENDPOINT" in script
           assert "Open email draft" in script
@@ -268,7 +268,7 @@ jobs:
           assert 'id="homeCredentials"' in home, "Home credential carousel is missing"
           assert home.index('id="homeCredentials"') > home.index('class="cn-news"'), "Credential carousel must follow Recent Work"
           assert home.count('class="hc-card"') == 4 and home.count('class="hc-dot"') == 4, "Wrong carousel card or navigation count"
-          assert 'home-credentials.js?v=' in html and 'home-credentials.css?v=' in html, "Carousel assets not linked"
+          assert 'assets/js/components/home-credentials.js?v=' in html and 'assets/css/components/home-credentials.css?v=' in html, "Carousel assets not linked"
           assert 'id="credentials"' in html, "About credentials gallery must be retained"
           for forbidden in ('class="cn-evidence"', 'class="cn-journey"'):
               assert forbidden not in home, f"An obsolete Home section returned: {forbidden}"
@@ -296,9 +296,10 @@ jobs:
           print("Portfolio copy audit passed (no decorative badges or fixed totals).")
           PY
           mkdir -p _site/lab
-          cp index.html app.js content.js cv-data.json harvard-cv.js harvard-cv.css contact-form.js contact-modern.css home-credentials.js home-credentials.css styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css scientific-case-studies.js scientific-case-studies.css software-case-studies.js _site/
-          cp lab/workspace.js lab/worker.js lab/compute.py _site/lab/
-          cp -r assets _site/
+          mkdir -p _site
+          cp index.html favicon.svg _site/
+          cp -R assets data lab _site/
+
           # Always publish the HTML even if an optional document rebuild fails.
           # Fall back to the last published copy of each PDF where available.
           for pdf in fluoroscopy-case-study.pdf camera-calibration-case-study.pdf clap-zero-shot-case-study.pdf flag-intelligence-case-study.pdf python-cardgame-case-study.pdf monstage-case-study.pdf Denos_Kume_Harvard_CV.pdf; do
@@ -311,22 +312,48 @@ jobs:
               echo "::warning::Could not generate or recover $pdf; deploying current website without this optional document."
             fi
           done
-          test -s _site/cv-data.json
-          test -s _site/harvard-cv.js
-          test -s _site/harvard-cv.css
-          test -s _site/contact-form.js
-          test -s _site/contact-modern.css
-          test -s _site/home-credentials.js
-          test -s _site/home-credentials.css
+          test -s _site/data/cv-data.json
+          test -s _site/assets/js/components/harvard-cv.js
+          test -s _site/assets/css/components/harvard-cv.css
+          test -s _site/assets/js/components/contact-form.js
+          test -s _site/assets/css/components/contact-modern.css
+          test -s _site/assets/js/components/home-credentials.js
+          test -s _site/assets/css/components/home-credentials.css
           # Optional downloadable documents are checked independently from site publication.
           test -f _site/assets/denos-kume-signature.svg
-          test -s _site/fluoroscopy-case-study.js
-          test -s _site/fluoroscopy-case-study.css
-          test -s _site/scientific-case-studies.js
-          test -s _site/scientific-case-studies.css
-          test -s _site/software-case-studies.js
+          test -s _site/assets/js/case-studies/fluoroscopy-case-study.js
+          test -s _site/assets/css/case-studies/fluoroscopy-case-study.css
+          test -s _site/assets/js/case-studies/scientific-case-studies.js
+          test -s _site/assets/css/case-studies/scientific-case-studies.css
+          test -s _site/assets/js/case-studies/software-case-studies.js
           test -s _site/assets/case-studies/flag-intelligence-workflow.svg
           test -s _site/assets/case-studies/monstage-workflow.svg
+          # Verify that all bundled local CSS and JS references resolve after reorganization.
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.parse import urlsplit, unquote
+          from bs4 import BeautifulSoup
+          site = Path("_site").resolve()
+          doc = BeautifulSoup((site / "index.html").read_text(encoding="utf-8"), "html.parser")
+          required = []
+          for kind, attr in (("script", "src"), ("link", "href")):
+              for tag in doc.find_all(kind):
+                  value = tag.get(attr)
+                  if not value: continue
+                  parsed = urlsplit(value)
+                  if parsed.scheme or parsed.netloc or value.startswith(("//", "#", "mailto:", "data:")):
+                      continue
+                  path = unquote(parsed.path)
+                  if not path: continue
+                  item = (site / path.lstrip("/")).resolve()
+                  assert item.is_relative_to(site), f"Invalid site asset path: {value}"
+                  assert item.is_file() and item.stat().st_size, f"Missing site asset: {value}"
+                  required.append(path)
+          assert len(required) >= 12, f"Unexpected number of local static assets: {required}"
+          assert (site / "data/cv-data.json").is_file()
+          assert (site / "lab/compute.py").is_file()
+          print(f"Checked {len(required)} local links, CV JSON and laboratory files.")
+          PY
           touch _site/.nojekyll
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -372,13 +399,13 @@ jobs:
                       and html.count('class="credential-card"') == 4
                       and 'id="homeCredentials"' in html
                       and html.count('class="hc-card"') == 4
-                      and 'scientific-case-studies.js?v=' in html
-                      and 'scientific-case-studies.css?v=' in html
-                      and 'home-credentials.js?v=20261122-autoplay-visible-v5' in html
-                      and 'home-credentials.css?v=' in html):
+                      and 'assets/js/case-studies/scientific-case-studies.js?v=' in html
+                      and 'assets/css/case-studies/scientific-case-studies.css?v=' in html
+                      and 'assets/js/components/home-credentials.js?v=20261122-autoplay-visible-v5' in html
+                      and 'assets/css/components/home-credentials.css?v=' in html):
                       # Fetch the published script too: index.html being current
                       # is not sufficient if the asset is cached or missing.
-                      script_url = f"{base}/home-credentials.js?build={sha}"
+                      script_url = f"{base}/assets/js/components/home-credentials.js?build={sha}"
                       script_request = urllib.request.Request(
                           script_url,
                           headers={"Cache-Control": "no-cache",

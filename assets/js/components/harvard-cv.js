@@ -61,7 +61,7 @@
     const root = document.getElementById('harvardCvDocument');
     if (!root) return;
     try {
-      const response = await fetch('./cv-data.json', {cache:'no-cache'});
+      const response = await fetch('./data/cv-data.json', {cache:'no-cache'});
       if (!response.ok) throw new Error('CV data unavailable');
       const d = await response.json();
       root.innerHTML =
