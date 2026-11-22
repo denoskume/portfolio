@@ -37,6 +37,30 @@ jobs:
           assert len(reader.pages) >= 4, "PDF report unexpectedly short"
           print(f"Validated downloadable report: {len(reader.pages)} pages, {pdf.stat().st_size} bytes")
           PY
+      - name: Build and validate Harvard CV
+        run: |
+          python scripts/build_harvard_cv.py
+          python - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader
+          pdf = Path("build/Denos_Kume_Harvard_CV.pdf")
+          assert pdf.exists() and pdf.stat().st_size > 3000
+          reader = PdfReader(str(pdf))
+          assert len(reader.pages) == 1, "Harvard CV must fit exactly one page"
+          page = reader.pages[0]
+          assert abs(float(page.mediabox.width) - 595.28) < 1
+          assert abs(float(page.mediabox.height) - 841.89) < 1
+          text = " ".join((page.extract_text() or "").split())
+          for required in (
+              "Denos Kume", "Centrale Nantes", "Kristu Jayanti University",
+              "RWS TrainAI", "Unified Mentor", "Data Science",
+              "microcontroller hardware interfacing", "Business Intelligence",
+              "February 2027", "Microcatheter Segmentation",
+          ):
+              assert required.lower() in text.lower(), f"Harvard PDF missing {required}"
+          assert len(page.get("/Annots", [])) >= 3, "CV links are not clickable"
+          print(f"Validated one-page text-based A4 Harvard CV: {len(text)} extracted characters")
+          PY
       - name: Validate and prepare static site
         run: |
           node --check app.js
@@ -68,10 +92,13 @@ jobs:
           print("Portfolio copy audit passed (no decorative badges or fixed totals).")
           PY
           mkdir -p _site/lab
-          cp index.html app.js content.js styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css _site/
+          cp index.html app.js content.js cv-data.json styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css _site/
           cp lab/workspace.js lab/worker.js lab/compute.py _site/lab/
           cp -r assets _site/
           cp build/fluoroscopy-case-study.pdf _site/fluoroscopy-case-study.pdf
+          cp build/Denos_Kume_Harvard_CV.pdf _site/Denos_Kume_Harvard_CV.pdf
+          test -s _site/Denos_Kume_Harvard_CV.pdf
+          test -s _site/cv-data.json
           test -s _site/fluoroscopy-case-study.pdf
           test -f _site/assets/denos-kume-signature.svg
           test -s _site/fluoroscopy-case-study.js
