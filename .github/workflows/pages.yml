@@ -104,6 +104,7 @@ jobs:
           node --check harvard-cv.js
           node --check contact-form.js
           node --check content.js
+          node --check projects-dashboard.js
           node --check fluoroscopy-case-study.js
           node --check lab/workspace.js
           node --check lab/worker.js
@@ -123,6 +124,11 @@ jobs:
           assert 'name="_honey"' in html
           assert 'name="consent"' in html
           assert 'class="contact-layout"' in html and '#contact .contact-layout' in style
+          assert 'id="projectsDashboard"' in html, "Missing Home project dashboard"
+          assert 'projects-dashboard.js?v=' in html and 'projects-dashboard.css?v=' in html
+          assert 'data-pd-projects' in html and 'data-pd-kpis' in html
+          dashboard_js=Path("projects-dashboard.js").read_text(encoding="utf-8")
+          assert 'PORTFOLIO_DATA' in dashboard_js and 'source.projects' in dashboard_js
           assert 'contact-form.js?v=' in html and 'contact-modern.css?v=' in html
           assert 'function handleContact(e)' not in html
           assert "fetch(ENDPOINT" in script
@@ -151,7 +157,7 @@ jobs:
           print("Portfolio copy audit passed (no decorative badges or fixed totals).")
           PY
           mkdir -p _site/lab
-          cp index.html app.js content.js cv-data.json harvard-cv.js harvard-cv.css contact-form.js contact-modern.css styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css _site/
+          cp index.html app.js content.js cv-data.json harvard-cv.js harvard-cv.css contact-form.js contact-modern.css projects-dashboard.js projects-dashboard.css styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css _site/
           cp lab/workspace.js lab/worker.js lab/compute.py _site/lab/
           cp -r assets _site/
           cp build/fluoroscopy-case-study.pdf _site/fluoroscopy-case-study.pdf
@@ -162,6 +168,8 @@ jobs:
           test -s _site/harvard-cv.css
           test -s _site/contact-form.js
           test -s _site/contact-modern.css
+          test -s _site/projects-dashboard.css
+          test -s _site/projects-dashboard.js
           test -s _site/fluoroscopy-case-study.pdf
           test -f _site/assets/denos-kume-signature.svg
           test -s _site/fluoroscopy-case-study.js
