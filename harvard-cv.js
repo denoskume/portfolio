@@ -16,15 +16,21 @@
 
   function bulletList(bullets) {
     return '<ul class="cv-bullets">' +
-      bullets.map(line => '<li>' + esc(line) + '</li>').join('') + '</ul>';
+      bullets.map(line => {
+        const match = /^([A-Za-z ]{2,16}):\s*(.*)$/.exec(line);
+        return '<li>' + (match
+          ? '<strong>' + esc(match[1]) + ':</strong> ' + esc(match[2])
+          : esc(line)) + '</li>';
+      }).join('') + '</ul>';
   }
 
   function educationItem(row) {
     return '<div class="cv-entry">' +
       heading(row.school, row.dates) +
-      '<p class="cv-track">' + esc(row.track) + '</p>' +
+      '<div class="cv-edu-meta"><p class="cv-track">' + esc(row.track_label) + ': ' +
+      esc(row.track) + '</p><span class="cv-location">' + esc(row.location) + '</span></div>' +
       '<p>' + esc(row.description) + '</p>' +
-      '<p><strong>Relevant coursework:</strong> ' + esc(row.courses) + '</p>' +
+      '<p><strong>Relevant coursework:</strong> ' + row.courses.split(' | ').map(esc).join(' &bull; ') + '</p>' +
       '</div>';
   }
 
@@ -66,7 +72,9 @@
         '<div class="cv-contacts">' + contacts(d.contact) + '</div>' +
         '<div class="cv-social">' + contacts(d.social) + '</div>' +
         '</header>' +
-        section('Profile', '<p>' + esc(d.profile) + '</p>') +
+        section('Profile', '<p>' +
+          esc(d.profile).replace('six-month internship from February 2027',
+            '<strong>six-month internship from February 2027</strong>') + '</p>') +
         section('Education', d.education.map(educationItem).join('')) +
         section('Experience', d.experience.map(experienceItem).join('')) +
         section('Selected Projects', d.projects.map(projectItem).join('')) +
