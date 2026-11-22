@@ -129,9 +129,9 @@ jobs:
           assert 'class="contact-layout"' in html and '#contact .contact-layout' in style
           assert 'id="projectsDashboard"' in html, "Missing Home project dashboard"
           assert 'projects-dashboard.js?v=' in html and 'projects-dashboard.css?v=' in html
-          assert 'data-pd-projects' in html and 'data-pd-kpis' in html
+          assert all(x in html for x in ('data-pd-table', 'data-pd-kpis', 'data-pd-refresh', 'data-pd-status')), "Missing live dashboard controls"
           dashboard_js=Path("projects-dashboard.js").read_text(encoding="utf-8")
-          assert 'PORTFOLIO_DATA' in dashboard_js and 'source.projects' in dashboard_js
+          assert 'PORTFOLIO_DATA' in dashboard_js and 'API+' in dashboard_js and 'Promise.allSettled' in dashboard_js, "Live GitHub data client missing"
           assert 'contact-form.js?v=' in html and 'contact-modern.css?v=' in html
           assert 'function handleContact(e)' not in html
           assert "fetch(ENDPOINT" in script
