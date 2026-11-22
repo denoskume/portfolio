@@ -7,7 +7,7 @@
   const raw = 'https://raw.githubusercontent.com/denoskume/';
   const R = {
     flag:host+'Flag-Intelligence', card:host+'Python-CardGame',
-    stage:host+'monstage', vision:host+'VisionLab',
+    stage:host+'monstage',
     assets:raw+'portfolio/main/assets/case-studies/'
   };
   const e = s => String(s).replace(/[&<>"']/g,t=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[t]));
@@ -320,104 +320,7 @@
     ]
   };
 
-  const vision = {
-    slug:'visionlab',prefix:'sc-vision',title:'VisionLab · Image Processing Workspace',
-    question:'How can different image-processing methods be combined, compared and evaluated in one reproducible interactive workspace?',
-    authors:'Image processing · OpenCV · Streamlit · Version 2',
-    repository:R.vision,notebook:R.vision+'/blob/main/visionlab/pipeline.py',
-    pdf:'visionlab-case-study.pdf',downloadName:'VisionLab-Report.pdf',
-    citation:'Kume, D. (2026). VisionLab V2: interactive image processing workspace [Python/Streamlit software project]. GitHub. '+R.vision,
-    bibtex:'@software{kume2026visionlab,author={Kume, Denos},title={VisionLab V2},year={2026},url={'+R.vision+'}}',
-    keywords:['Image Processing','OpenCV','Streamlit','Pipelines','Segmentation','Dice','IoU','SSIM','Reproducibility'],
-    projectInfo:[
-      ['Application','Interactive image-processing laboratory, VisionLab V2'],
-      ['Stack','Python 3.12 · Streamlit · OpenCV · scikit-image · NumPy'],
-      ['Operations','29 supported image processing operations'],
-      ['Workflow','Import → configure → process → evaluate → export'],
-      ['Project',a(R.vision,'Source and setup')+' · '+a(R.vision+'/blob/main/docs/VALIDATION_V2.md','Validation notes')]
-    ],
-    glossary:[
-      ['Pipeline','An ordered list of configurable operations applied to an input image.'],
-      ['Watershed','A segmentation method used to separate touching objects.'],
-      ['Morphology','Operations that modify shapes in a binary image, including cleaning and filling.'],
-      ['Dice / IoU','Measures of overlap between predicted and reference segmentation masks.'],
-      ['SSIM','A structural image-similarity metric for comparing an output and a reference image.'],
-      ['Session cache','Previously computed results retained during the current workspace session.'],
-      ['Batch processing','Applying a chosen pipeline to several input files in sequence.']
-    ],
-    summary:[
-      'VisionLab V2 is an interactive workspace that combines <strong>29 image-processing operations</strong> with adjustable pipelines, intermediate results, measurements, experiments and exports. Users can work from an uploaded image or from supplied synthetic demonstrations.'+cit('sc-vision',1),
-      'In the recorded six-step synthetic benchmark, retaining the full image-array history used <strong>8.64 MB</strong>, versus <strong>1.44 MB</strong> when the batch workflow kept only the final output. Both modes produced the same final result, with <strong>6× fewer retained-array bytes</strong> in final-only mode.'+cit('sc-vision',3)
-    ],
-    references:[
-      {label:'Kume, D. (2026). VisionLab V2: product features, architecture and run instructions.',url:R.vision+'/blob/main/README.md',linkLabel:'README'},
-      {label:'Kume, D. (2026). Image-processing operation registry and configurable parameters.',url:R.vision+'/blob/main/visionlab/operations.py',linkLabel:'Operation registry'},
-      {label:'Kume, D. (2026). VisionLab reproducible performance measurements. Local synthetic inputs.',url:R.vision+'/blob/main/benchmarks/results.json',linkLabel:'Benchmark results'},
-      {label:'Kume, D. (2026). V2 validation and automated test coverage.',url:R.vision+'/blob/main/docs/VALIDATION_V2.md',linkLabel:'Validation report'},
-      {label:'OpenCV. Image processing and watershed segmentation. OpenCV documentation.',url:'https://docs.opencv.org/4.x/d3/db4/tutorial_py_watershed.html',linkLabel:'Method documentation'},
-      {label:'Kume, D. (2026). Segmentation metrics, components and image measurements.',url:R.vision+'/blob/main/visionlab/metrics.py',linkLabel:'Metrics implementation'}
-    ],
-    reportSections:[
-      {key:'intro',title:'1.0 Introduction',body:
-        '<h3>1.1 Why build an all-in-one image workspace?</h3>'+
-        '<p>Image analysis often requires a sequence of small operations: adjusting contrast, removing noise, detecting edges, cleaning a mask and measuring the result. When every step lives in a different script, it can be difficult to compare settings and reproduce a successful pipeline.</p>'+
-        '<p>VisionLab brings these steps into an interactive application. The user selects an input, assembles operations in order, sees the result and evaluates it. The main design question was how to keep this workflow flexible without losing track of the original image or the parameters that produced an output.'+cit('sc-vision',1)+'</p>'},
-      {key:'dataset',title:'2.0 Inputs and objectives',body:
-        '<h3>2.1 Images and demo cases</h3>'+
-        '<p>The workspace accepts PNG, JPEG and TIFF images and provides five synthetic demonstrations: coin counting, denoising, edge detection, contrast enhancement and surface defects. These let a reader experiment with common image-processing tasks without first collecting a dataset.</p>'+
-        facts([['29','Operations'],['5','Demo scenarios'],['3','Experiments compared']])+
-        '<h3>2.2 What the user should be able to do</h3>'+
-        bullets(['Arrange, configure, duplicate, disable and reorder processing steps.',
-          'Inspect the original image and any intermediate results.',
-          'Measure objects and compare segmentation or image quality to a reference.',
-          'Save named experiments and compare different parameter choices.',
-          'Export images, configuration and a reproducible ZIP package.'])+
-        '<p>These operations are defined by the processing registry and the supporting measurement functions.'+cit('sc-vision',2)+cit('sc-vision',6)+'</p>'},
-      {key:'method',title:'3.0 Implementation approach',body:
-        steps(['Load input','Apply pipeline','Measure results','Export and repeat'])+
-        '<h3>3.1 Processing from pixels to objects</h3>'+
-        '<p>Users build an ordered pipeline of transformations, filters and segmentation operations. For example, a coin-counting experiment converts the image to grayscale, smooths it, applies Otsu thresholding and cleans the mask with morphological opening. Connected-component measurements can then report each object’s size, position and outline.</p>'+
-        '<p>The application also includes watershed segmentation for separating objects that touch, plus optional reference-based Dice, IoU and SSIM comparisons.'+cit('sc-vision',5)+cit('sc-vision',6)+'</p>'+
-        fig(R.assets+'visionlab-workflow.svg','<strong>Figure 1.</strong> Image input, configurable processing, evaluation and exports in VisionLab.','Source-derived workflow diagram for the VisionLab image processing workspace.','sc-vision-r-fig1')+
-        '<h3>3.2 Keeping experiments reproducible</h3>'+
-        '<p>The source image is preserved while pipeline parameters are stored in a structured JSON configuration. Named experiments let users return to prior settings and compare up to three results. A ZIP export includes the normalized input, output, configuration and reproduction script.'+cit('sc-vision',1)+'</p>'},
-      {key:'results',title:'4.0 Testing and performance results',body:
-        '<h3>4.1 Measured batch memory reduction</h3>'+
-        '<p>We compared two ways of retaining image arrays after a six-step pipeline on a <strong>1200 × 1200</strong> synthetic input. Storing all intermediate arrays required <strong>8.64 MB</strong>; keeping only the final result required <strong>1.44 MB</strong>, with an identical output. The change reduced retained-array storage by a factor of six.'+cit('sc-vision',3)+'</p>'+
-        fig(R.assets+'visionlab-retained-arrays.svg','<strong>Figure 2.</strong> Stored image-array sizes in the benchmark: full history versus final-only batch mode.','Benchmarked image array sizes showing 8.64 MB history and 1.44 MB final only.','sc-vision-r-fig2')+
-        '<h3>4.2 Results reuse and correctness tests</h3>'+
-        '<p>A second benchmark measured analysis and PNG derivation on a fixed synthetic mask containing <strong>361 objects</strong>: median cold recomputation took approximately <strong>19.876 ms</strong> in the local environment, while a warm session cache reused the result. This concerns cached derived analysis, not the end-to-end UI response time.'+cit('sc-vision',3)+'</p>'+
-        '<p>The V2 validation report documents <strong>37 automated pytest tests</strong> covering operations, scientific outputs, session restoration, batch behaviour and Streamlit interaction.'+cit('sc-vision',4)+'</p>'},
-      {key:'discussion',title:'5.0 Discussion and next steps',body:
-        '<h3>5.1 What the project demonstrates</h3>'+
-        '<p>VisionLab combines image-processing theory with a usable workflow. It provides a consistent place to choose methods, understand their effect, record settings and check results, rather than treating each operation as an isolated script.</p>'+
-        '<h3>5.2 Further development</h3>'+
-        '<p>Video analysis, pretrained models and long-term workspaces are possible extensions. The existing V2 provides a foundation for those features through its operation registry, pipeline execution and session-based experiments.</p>'}
-    ],
-    figures:[
-      {title:'Image processing workflow',description:'Pipeline architecture derived from the implemented workspace.',url:R.assets+'visionlab-workflow.svg',kind:'figure',reportId:'sc-vision-r-fig1'},
-      {title:'Retained array benchmark',description:'Measured 8.64 MB and 1.44 MB final-only array sizes.',url:R.assets+'visionlab-retained-arrays.svg',kind:'figure',reportId:'sc-vision-r-fig2'}
-    ],
-    metrics:[
-      {key:'benchmark',title:'Reproducible V2 benchmark',body:
-        '<p>The local synthetic benchmark compared six processing steps and retained-array memory. The output was the same in both modes.'+cit('sc-vision',3)+'</p>'+
-        score([['Full history','8.64 MB'],['Final-only','1.44 MB'],['Reduction','6×']])+
-        fig(R.assets+'visionlab-retained-arrays.svg','<strong>Benchmark.</strong> Final-only batch output retains one-sixth the image-array bytes.','VisionLab memory chart from source JSON.','sc-vision-m-chart')+
-        '<p>'+a(R.vision+'/blob/main/benchmarks/compare_v1_v2.py','Reproduce the comparison')+'</p>'},
-      {key:'coverage',title:'Operations and verification',body:
-        table(['Measure','Recorded result or capability'],[
-          ['Registered operations','29'],
-          ['Automated pytest tests documented','37'],
-          ['Named experiments retained','Up to 6 per session'],
-          ['Experiment comparison','Up to 3 configurations'],
-          ['Derived analysis cache','Up to 32 MB in session'],
-          ['Synthetic mask analysis','361 objects, 19.876 ms median recompute']
-        ],'<strong>Table 1.</strong> V2 capabilities and reproducible measurements.')+
-        '<p>'+a(R.vision+'/blob/main/docs/VALIDATION_V2.md','Validation details')+'</p>'}
-    ]
-  };
-
-  const studies={4:flag,5:card,6:monstage,7:vision};
+  const studies={4:flag,5:card,6:monstage};
   if(typeof window.registerScientificCaseStudies!=='function'){
     throw new Error('Load scientific-case-studies.js before software-case-studies.js');
   }
