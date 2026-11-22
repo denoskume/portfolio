@@ -134,6 +134,27 @@ jobs:
           assert "Open email draft" in script
           print("Contact form markup, design, relay handling and fallback validated.")
           PY
+          # Original credentials must appear directly after Education & Experience in About.
+          python - <<'PY'
+          from pathlib import Path
+          html = Path("index.html").read_text(encoding="utf-8")
+          about_start = html.index('<section id="about"')
+          about_end = html.index('<!-- ============ PROJECTS', about_start)
+          about = html[about_start:about_end]
+          assert 'id="credentials"' in about and 'Credentials &amp; Recognition' in about
+          assert about.count('class="credential-card"') == 4, "Exactly four original credentials required"
+          assert about.index('id="credentials"') > about.index('class="education-experience"'), "Credentials must follow the education timeline"
+          assert "grid-template-columns: repeat(2, 10cm)" in html
+          assert "width: 10cm;" in html and "height: 10cm;" in html
+          for image in (
+              "SimpliLearn_Data_Science_Certificate.png",
+              "Google_Advance_DA_Certificate.png",
+              "Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png",
+              "ISDC.jpg",
+          ):
+              assert image in about, f"Credential image missing: {image}"
+          print("About credentials: four original assets in two 10 cm columns.")
+          PY
           # Guard against previously deleted Home components reappearing.
           python - <<'PY'
           from pathlib import Path
@@ -234,7 +255,9 @@ jobs:
                   if ('id="projectsDashboard"' not in html
                       and 'projects-dashboard.js' not in html
                       and 'class="cn-evidence"' not in html
-                      and 'class="cn-journey"' not in html):
+                      and 'class="cn-journey"' not in html
+                      and 'id="credentials"' in html
+                      and html.count('class="credential-card"') == 4):
                       print(f"Verified public Pages deployment at {url}")
                       break
                   print(f"Published HTML is still stale on attempt {attempt + 1}")
