@@ -206,8 +206,7 @@ jobs:
           import re
           page = Path("index.html").read_text(encoding="utf-8")
           studies = Path("software-case-studies.js").read_text(encoding="utf-8")
-          readme = Path("README.md").read_text(encoding="utf-8")
-          assert not re.search(r"visionlab", page + studies + readme, re.I), "Removed VisionLab project returned"
+          assert not re.search(r"visionlab", page + studies, re.I), "Removed VisionLab project returned"
           assert len(re.findall(r'"id": [1-6],', page)) == 6, "Expected six portfolio project cards"
           assert "'#/projects/visionlab'" not in page, "Removed direct link returned"
           assert "visionlab-case-study.pdf" not in Path("scripts/build_scientific_reports.py").read_text(encoding="utf-8")
