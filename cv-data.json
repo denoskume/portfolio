@@ -1,6 +1,7 @@
 {
   "name": "Denos Kume",
   "headline": "MSc Control and Robotics | Data Science, Signal and Image Processing",
+  "direction": "Data Science — Computer Vision & Image Processing | Data Analysis",
   "contact": [
     {
       "label": "Nantes, France",
@@ -19,77 +20,68 @@
       "url": "https://github.com/denoskume"
     }
   ],
-  "profile": "Final-year MSc student at Centrale Nantes seeking a six-month final-year internship starting in February 2027 in Data Science, particularly computer vision and image processing. Also open to data analysis opportunities in industrial environments; motivated to contribute to technical projects while developing my skills.",
+  "profile": "Final-year MSc student combining Python-based image processing with data analysis and an electronics background. Seeking a six-month internship from February 2027 to contribute to computer vision, image processing or industrial data analysis within an established technical team.",
   "education": [
     {
       "title": "MSc in Control and Robotics",
       "organization": "Centrale Nantes | Nantes, France",
-      "dates": "Sep 2025 – 2027",
+      "dates": "Sep 2025 - 2027",
       "bullets": [
-        "Final-year track: Data Science, Signal and Image Processing.",
-        "Artificial intelligence, machine learning and numerical optimization methods applied to data analysis and image processing."
+        "Data Science, Signal and Image Processing track; AI, machine learning and numerical optimization applied to data analysis and images."
       ]
     },
     {
-      "title": "Bachelor’s degree in Computer Science and Electronics",
+      "title": "Bachelor's Degree in Computer Science and Electronics",
       "organization": "Kristu Jayanti University | Bangalore, India",
-      "dates": "2021 – Jun 2025",
+      "dates": "2021 - Jun 2025",
       "bullets": [
-        "Two majors: Computer Science and Electronics; programming, databases, data analysis, digital electronics and embedded systems.",
-        "Practical experience in microcontroller hardware interfacing with peripheral devices."
+        "Dual major in Computer Science (programming, databases, data analysis) and Electronics (digital electronics, embedded systems).",
+        "Hands-on microcontroller hardware interfacing with peripheral devices."
       ]
-    },
-    {
-      "title": "Scientific Baccalaureate — Series D",
-      "organization": "Lycée Moderne M'Batto | Côte d'Ivoire",
-      "dates": "2020",
-      "bullets": []
     }
   ],
   "experience": [
     {
-      "title": "AI Response Evaluation — Freelance",
+      "title": "AI Response Evaluator | Freelance",
       "organization": "RWS TrainAI",
-      "dates": "Aug – Oct 2026",
+      "dates": "Aug - Oct 2026",
       "bullets": [
-        "Evaluated AI-generated responses for relevance, accuracy, completeness and instruction adherence.",
-        "Compared responses across different AI models and documented evaluation results.",
-        "Contributed evaluation findings to support continuous model improvement."
+        "Assessed AI-generated responses for relevance, accuracy, completeness and instruction adherence.",
+        "Compared outputs across models and documented quality evaluations to support model improvement."
       ]
     },
     {
-      "title": "Data Analysis Intern — Final-Year Bachelor Internship",
+      "title": "Data Analysis Intern | Final-Year Bachelor Internship",
       "organization": "Unified Mentor",
-      "dates": "Sep – Dec 2024",
+      "dates": "Sep - Dec 2024",
       "bullets": [
-        "Performed data preprocessing, cleaning and exploratory data analysis (EDA) using Python.",
-        "Improved dataset quality and reliability through cleaning and preparation workflows.",
-        "Prepared datasets for Business Intelligence analysis and reporting."
+        "Cleaned and preprocessed datasets in Python, improving data quality and reliability.",
+        "Performed exploratory data analysis (EDA) and prepared analysis-ready datasets for Business Intelligence reporting."
       ]
     }
   ],
   "technical_skills": [
     {
       "category": "Programming & data",
-      "items": "Python, pandas, NumPy, SQL, data cleaning, EDA"
+      "items": "Python, NumPy, pandas, SQL, data preprocessing, EDA"
     },
     {
       "category": "Computer vision & ML",
-      "items": "OpenCV, image processing, computer vision, machine learning, PyTorch"
+      "items": "OpenCV, image processing, background subtraction, segmentation, camera calibration, PyTorch"
     },
     {
       "category": "Tools & reporting",
-      "items": "Power BI, Git, Jupyter Notebook"
+      "items": "Power BI, Jupyter Notebook, Git"
     }
   ],
   "projects": [
     {
-      "title": "Microcatheter Segmentation in Fluoroscopy",
-      "details": "Co-developed a Python pipeline for denoising, background subtraction and segmentation of microcatheters in fluoroscopic images; evaluated masks against manual annotations using Dice and IoU."
+      "title": "Microcatheter Segmentation in Fluoroscopy | Python, OpenCV",
+      "details": "Co-developed an image-processing pipeline for denoising, background subtraction and segmentation of thin instruments in fluoroscopy; evaluated predicted masks against manual annotations using Dice and IoU."
     },
     {
-      "title": "Camera Calibration",
-      "details": "Estimated camera parameters from nine chessboard images and analysed reprojection errors using Python and OpenCV."
+      "title": "Camera Calibration | Python, OpenCV",
+      "details": "Estimated camera parameters using nine chessboard images (432 corners) and analyzed reprojection accuracy; overall RMS error: 0.534 pixels."
     }
   ],
   "languages": "French (native) | English (C1)",
