@@ -201,6 +201,7 @@
         '<p>'+a(R.card+'/tree/main/versions/v1/code','Inspect the original V1 Python source')+'</p>'+
         '<h3>3.3 Planning and system diagrams</h3>'+
         '<p>The academic report includes a UML class diagram, an entity–relationship (ER) diagram, an SDLC Gantt chart and a sequence diagram of a complete round. These explain the architecture, data relationships, schedule and order of interactions, rather than serving merely as illustrations.</p>'+
+        fig(raw+'Python-CardGame/main/versions/v1/docs/figures/sdlc-gantt.webp','<strong>Figure 1.</strong> Original ALPRO SDLC Gantt chart (October–December 2025). It organizes requirements, design, implementation, testing and final presentation.','Academic 2025 SDLC Gantt chart extracted from the submitted ALPRO report.','sc-card-r-v1-gantt')+
         '<h3>3.4 Later V2 changes</h3>'+
         '<p>The application was subsequently extended into V2 with a browser-compatible build and additional features. V2 lives under the repository-root <code>src/</code> folder; it is not the original code submitted for ALPRO.'+a(R.card+'/tree/main/src',' Explore V2 source')+'</p>'},
       {key:'results',title:'4.0 Tests, presentation and later results',body:
@@ -220,6 +221,7 @@
     ],
     figures:[
       {title:'Original V1 gameplay demonstration (2025)',description:'Rouge Gagne, Noir Perd — the original Master 1 ALPRO game. The animation shows its gameplay interface before the later V2 evolution.',url:raw+'Python-CardGame/main/docs/cardgame_demo.gif',kind:'demo'},
+      {title:'V1 SDLC Gantt chart (original report)',description:'Original timeline from the submitted 2025 ALPRO report: planning, design, development, functional tests and documentation, October–December 2025.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/sdlc-gantt.webp',kind:'figure',reportId:'sc-card-r-v1-gantt'},
       {title:'V1 red card artwork',description:'Original red-card asset used in the Python/Pygame game, retained in the 2025 V1 source folder.',url:raw+'Python-CardGame/main/versions/v1/code/assets/card_back_red.png',kind:'figure'},
       {title:'V2 welcome screen (later evolution)',description:'V2 welcome interface; this is not a screenshot from the original ALPRO submission.',url:raw+'Python-CardGame/main/docs/screenshots/v2-home.png',kind:'figure',reportId:'sc-card-r-intro'},
       {title:'V2 gameplay table (later evolution)',description:'Responsive game table from V2, kept separate from the original V1 demonstration.',url:raw+'Python-CardGame/main/docs/screenshots/v2-table.png',kind:'figure',reportId:'sc-card-r-fig1'}
