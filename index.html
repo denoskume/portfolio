@@ -1971,33 +1971,6 @@ body:has(#home.active) .navbar .nav-links a{color:#10273c}
 .cn-slider-dots{background:#082039;border-radius:25px;padding:8px 10px;display:flex;align-items:center;gap:8px}
 .cn-slider-dots i{display:block;height:8px;width:8px;border-radius:50%;background:#8294a7;border:1px solid white}
 .cn-slider-dots i.active{background:#fff;width:10px;height:10px}
-/* Evidence gallery — genuine output figures and reproducible project metrics. */
-.cn-evidence{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#dfe7ed;border-block:1px solid #dfe7ed}
-.cn-evidence-card{display:flex;flex-direction:column;min-width:0;background:#fff;color:#082b48;text-decoration:none;transition:background .2s ease}
-.cn-evidence-card:hover,.cn-evidence-card:focus-visible{background:#f8fbfe}
-.cn-evidence-card:focus-visible{outline:3px solid #2146af;outline-offset:-3px}
-.cn-evidence-art{height:clamp(160px,15vw,235px);padding:12px 16px;background:#f5f7fa;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.cn-evidence-art img{display:block;width:100%;height:100%;object-fit:contain;filter:none}
-.cn-evidence-result{display:flex;flex-direction:column;align-items:flex-start;flex:1;padding:19px clamp(15px,2.1vw,30px) 23px}
-.cn-evidence-project{font-size:.8rem;font-weight:600;line-height:1.35;color:#27445f}
-.cn-evidence-number{font:400 clamp(2.15rem,3.6vw,3.65rem)/1.15 var(--font-display);letter-spacing:-.04em;color:#082947;margin:12px 0 4px}
-.cn-evidence-number span{font-size:.58em;letter-spacing:0}
-.cn-evidence-measure{font-size:.91rem;font-weight:600;line-height:1.42;color:#153956}
-.cn-evidence-result small{margin-top:7px;font-size:.75rem;line-height:1.45;color:#5d7284}
-@media(max-width:780px){
- .cn-evidence{grid-template-columns:1fr}
- .cn-evidence-card{display:grid;grid-template-columns:minmax(0,45%) minmax(0,55%);align-items:stretch}
- .cn-evidence-art{height:100%;min-height:215px}
- .cn-evidence-result{justify-content:center;padding:18px 20px}
- .cn-evidence-number{font-size:clamp(2rem,6vw,3.25rem)}
-}
-@media(max-width:490px){
- .cn-evidence-card{grid-template-columns:1fr}
- .cn-evidence-art{height:195px;min-height:0}
- .cn-evidence-result{padding:15px 20px 20px}
- .cn-evidence-number{margin:7px 0 3px}
-}
-
 .cn-news{padding:62px var(--gutter) 70px;display:grid;grid-template-columns:minmax(0,3fr) minmax(240px,1fr);gap:34px;background:#fff}
 .cn-news h2{font-size:clamp(1.22rem,1.5vw,1.5rem);font-weight:500;color:#072943;margin-bottom:20px}
 .cn-news-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
@@ -2296,31 +2269,6 @@ body:has(#home.active) .navbar .nav-links a.active{color:#2445b5}
   .nav-upper a{font-size:13px}
   .nav-lower{gap:6px}
   .navbar .nav-links{gap:14px}
-}
-
-
-/* My Journey — real city photographs, visual academic timeline. */
-.home-cn .cn-journey{padding:clamp(48px,5vw,74px) var(--gutter) clamp(46px,5vw,68px);background:#f7f9fb;color:#102b44}
-.cn-journey-heading{margin-bottom:28px}
-.cn-journey-heading h2{font:400 clamp(2rem,3.4vw,3.15rem)/1.06 var(--font-display);letter-spacing:-.025em;color:#0b2946}
-.cn-journey-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.65vw,24px)}
-.cn-journey-card{display:flex;flex-direction:column;min-width:0;background:#fff;border:1px solid #e0e7ee;transition:transform .25s ease,box-shadow .25s ease}
-.cn-journey-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(10,37,66,.09)}
-.cn-journey-photo{position:relative;aspect-ratio:3/2;overflow:hidden;background:transparent;padding:0}
-.cn-journey-photo img{width:100%;height:100%;display:block;object-fit:cover}
-.cn-journey-body{padding:22px clamp(18px,2vw,28px) 20px;display:flex;flex:1;flex-direction:column;align-items:flex-start}
-.cn-journey-body h3{font:400 clamp(1.75rem,2.3vw,2.25rem)/1.15 var(--font-display);color:#082843;margin:8px 0 12px}
-.cn-journey-body>p{font-size:.82rem;color:#4f6376;line-height:1.7;margin:0 0 22px;flex:1}
-.cn-journey-education{display:block;margin:25px auto 0;width:max-content;max-width:100%;padding:11px 18px;border:1px solid #0b2946;color:#0b2946;background:transparent;font-size:.8rem;font-weight:600;text-decoration:none}
-.cn-journey-education:hover,.cn-journey-education:focus-visible{background:#0b2946;color:#fff}
-@media(max-width:850px){
- .cn-journey-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
- .cn-journey-card:last-child{grid-column:1/-1;width:calc((100% - clamp(14px,1.65vw,24px))/2);justify-self:center}
-}
-@media(max-width:570px){
- .home-cn .cn-journey{padding:42px 18px 44px}
- .cn-journey-grid{grid-template-columns:1fr;gap:15px}
- .cn-journey-card:last-child{grid-column:auto;width:auto;justify-self:stretch}
 }
 
 
@@ -2656,84 +2604,6 @@ body:has(#about.active) .main-container {
           </article>
           <p class="pd-provenance">Source: portfolio project records (content.js). Figures are linked gallery assets. Performance measures belong to individual projects and are not averaged across experiments.</p>
         </div>
-      </section>
-
-      <!-- 02 / Les faits en deux colonnes + chiffre phare + image bleue -->
-      <section class="cn-evidence" aria-label="Measured results from my research projects">
-        <a class="cn-evidence-card" href="#" onclick="openProject(1);return false;" aria-label="View microcatheter segmentation study and its measured Dice score">
-          <div class="cn-evidence-art">
-            <img src="https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/segmentation-comparison.png"
-                 alt="Real experimental comparison of predicted microcatheter masks and reference annotations" loading="lazy" decoding="async">
-          </div>
-          <div class="cn-evidence-result">
-            <span class="cn-evidence-project">Microcatheter Segmentation</span>
-            <div class="cn-evidence-number">0.876</div>
-            <span class="cn-evidence-measure">Mean Dice score · 9 motion frames</span>
-            <small>Continuous-trace reconstruction · single acquisition</small>
-          </div>
-        </a>
-        <a class="cn-evidence-card" href="#" onclick="openProject(2);return false;" aria-label="View camera calibration study and reprojection error">
-          <div class="cn-evidence-art">
-            <img src="https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/mean_reprojection_error_by_view.png"
-                 alt="Actual mean reprojection error measured across the nine calibration images" loading="lazy" decoding="async">
-          </div>
-          <div class="cn-evidence-result">
-            <span class="cn-evidence-project">Camera Calibration</span>
-            <div class="cn-evidence-number">0.434 <span>px</span></div>
-            <span class="cn-evidence-measure">Mean reprojection error</span>
-            <small>Measured across 9 chessboard views</small>
-          </div>
-        </a>
-        <a class="cn-evidence-card" href="#" onclick="openProject(3);return false;" aria-label="View CLAP zero-shot classification study and accuracy">
-          <div class="cn-evidence-art">
-            <img src="https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/topk_accuracy_line.png"
-                 alt="Actual Top-k classification accuracy plot from the CLAP ESC-50 experiment" loading="lazy" decoding="async">
-          </div>
-          <div class="cn-evidence-result">
-            <span class="cn-evidence-project">CLAP · Zero-Shot Audio</span>
-            <div class="cn-evidence-number">91.15<span>%</span></div>
-            <span class="cn-evidence-measure">Top-1 classification accuracy</span>
-            <small>ESC-50 · 2,000 clips · best tested prompt</small>
-          </div>
-        </a>
-      </section>
-
-
-      <!-- My Journey — three countries represented by their national flags. -->
-      <section class="cn-journey" id="journey" aria-labelledby="journey-heading">
-        <div class="cn-journey-heading">
-          <h2 id="journey-heading">My Journey</h2>
-        </div>
-        <div class="cn-journey-grid">
-          <article class="cn-journey-card">
-            <div class="cn-journey-photo">
-              <img src="https://flagcdn.com/w640/ci.png" alt="Flag of Côte d’Ivoire" loading="lazy" decoding="async" width="640" height="427">
-            </div>
-            <div class="cn-journey-body">
-              <h3>Côte d’Ivoire</h3>
-              <p>Côte d’Ivoire is where my journey began. I grew up there and built a foundation in mathematics, physics and scientific reasoning before continuing my studies abroad.</p>
-            </div>
-          </article>
-          <article class="cn-journey-card">
-            <div class="cn-journey-photo">
-              <img src="https://flagcdn.com/w640/in.png" alt="Flag of India" loading="lazy" decoding="async" width="640" height="427">
-            </div>
-            <div class="cn-journey-body">
-              <h3>India</h3>
-              <p>From 2021 to 2025, I lived and studied in Bengaluru. This chapter introduced me to a different culture while I developed skills in computer science, electronics and embedded systems.</p>
-            </div>
-          </article>
-          <article class="cn-journey-card">
-            <div class="cn-journey-photo">
-              <img src="https://flagcdn.com/w640/fr.png" alt="Flag of France" loading="lazy" decoding="async" width="640" height="427">
-            </div>
-            <div class="cn-journey-body">
-              <h3>France</h3>
-              <p>Since 2025, I have been based in Nantes, pursuing advanced studies in engineering and developing my skills in computer vision, signal and image processing, and applied machine learning.</p>
-            </div>
-          </article>
-        </div>
-        <a class="cn-journey-education" href="#" data-target="about" data-scroll="education">Explore my education</a>
       </section>
 
       <!-- 03 / Travaux récents -->
