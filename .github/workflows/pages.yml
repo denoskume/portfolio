@@ -158,7 +158,7 @@ jobs:
             if ((markup.match(/data-sc-tab=/g)||[]).length!==3 ||
                 (markup.match(/fl-index-figure/g)||[]).length!==(id===2?6:id===3?8:2) ||
                 !markup.includes('Abstract') || !markup.includes('Nomenclature') ||
-                !markup.includes('Experimental results') ||
+                !markup.includes('r-results') ||
                 !markup.includes('data-sc-action="save"') ||
                 (id===3 && (!markup.includes('prompt_strategy_comparison_table.png') ||
                             !markup.includes('topk_accuracy_table.png') ||
