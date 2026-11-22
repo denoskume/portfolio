@@ -144,7 +144,7 @@ def add_figure(fig: Tag, story: list) -> None:
 
 def add_section(section: Tag, story: list) -> None:
     # Walk in document order; process only outermost semantic blocks.
-    blocks = {"h2", "h3", "p", "ul", "figure", "table", "dl"}
+    blocks = {"h2", "h3", "p", "ul", "ol", "figure", "table", "dl"}
     custom = {"fl-info-table", "fl-facts", "fl-keywords", "fl-method-steps"}
     for node in section.descendants:
         if not isinstance(node, Tag):
@@ -164,9 +164,30 @@ def add_section(section: Tag, story: list) -> None:
             if node.find_parent("figcaption"):
                 continue
             story.append(paragraph(text_of(node), "body"))
-        elif node.name == "ul":
-            for li in node.find_all("li", recursive=False):
-                story.append(paragraph("• " + text_of(li), "small"))
+        elif node.name in {"ul", "ol"}:
+            for index, li in enumerate(node.find_all("li", recursive=False), start=1):
+                if node.name == "ol":
+                    # Keep the bibliography numbers and live, clickable source links.
+                    citation = li.find("span")
+                    reference = text_of(citation) if citation else text_of(li)
+                    source_link = li.find("a", href=True)
+                    url = source_link.get("href", "") if source_link else ""
+                    if url.startswith("https://"):
+                        link_markup = (
+                            ' <link href="' + html.escape(url, quote=True) +
+                            '" color="#185e9c"><u>' +
+                            html.escape(text_of(source_link), quote=False) +
+                            '</u></link>'
+                        )
+                    else:
+                        link_markup = ""
+                    markup = (
+                        "<b>[" + str(index) + "]</b> " +
+                        html.escape(reference, quote=False) + link_markup
+                    )
+                    story.append(Paragraph(markup, styles["small"]))
+                else:
+                    story.append(paragraph("• " + text_of(li), "small"))
             story.append(Spacer(1, 7))
         elif node.name == "figure":
             add_figure(node, story)
