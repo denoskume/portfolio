@@ -1121,6 +1121,11 @@
 
   /* Projects section keeps a single, evergreen heading without editorial microcopy. */
   #projects .projects-head, #blog .projects-head, #resume .projects-head { display: block; }
+/* Consistent full-width editorial headings on About, Projects, Blog and Contact. */
+#about .section-page-head, #contact .section-page-head {
+  display: block;
+}
+
 
   .projects-head .kicker { margin-bottom: 18px; }
 
@@ -2559,6 +2564,10 @@ body:has(#about.active) .main-container {
 
       <div class="wrap">
 
+        <div class="projects-head section-page-head">
+          <h2>About Me</h2>
+        </div>
+
         <div class="about-flow">
 
           <div class="about-top">
@@ -2571,7 +2580,6 @@ body:has(#about.active) .main-container {
             </div>
 
             <div class="about-text">
-              <h2>About Me</h2>
               <div class="body">
                 <p>In June 2025, I graduated with a <strong>Bachelor’s degree in Computer Science and Electronics</strong> from Kristu Jayanti University, Bangalore, India. The program combined two majors: Computer Science and Electronics. It covered programming, databases, and data analysis, alongside digital electronics and embedded systems. I also gained practical experience in microcontroller hardware interfacing with peripheral devices.</p>
 
@@ -2729,6 +2737,9 @@ body:has(#about.active) .main-container {
   <section id="contact" class="section">
     <div class="contact contact-modern">
       <div class="wrap">
+        <div class="projects-head section-page-head">
+          <h2>Contact</h2>
+        </div>
         <div class="contact-layout">
           <div class="contact-form-card">
             <div class="contact-form-heading">
