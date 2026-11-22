@@ -84,7 +84,11 @@ jobs:
           assert all("organization" in job for job in cv["experience"]), "Experience affiliations must be present"
           assert all("|" not in job["title"] for job in cv["experience"]), "Job titles must not include employer and location"
           assert "Unified Mentor Pvt. Ltd." in text and "Bangalore, India" in text, "Missing internship affiliation and location"
-          assert "RWS TrainAI - Remote (3 months)" in text, "Missing remote freelance affiliation and duration"
+          assert "RWS TrainAI - Remote" in text, "Missing remote freelance affiliation"
+          assert "Sep - Dec 2024 (3 months)" in text, "Missing internship duration beside the dates"
+          assert "Aug - Oct 2026 (3 months)" in text, "Missing freelance duration beside the dates"
+          assert all(job["dates"].endswith("(3 months)") for job in cv["experience"]), "Experience dates must carry the duration"
+          assert all("months" not in job["organization"] for job in cv["experience"]), "Do not repeat duration on employer line"
           print(f"Validated one-page text-based A4 Harvard CV: {len(text)} extracted characters")
           PY
       - name: Validate and prepare static site
