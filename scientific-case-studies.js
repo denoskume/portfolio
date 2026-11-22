@@ -100,51 +100,59 @@
       questionLabel:'Project objective and evaluation',
       reportSections:[
         {key:'intro',title:'1.0 Introduction',body:
-          '<p>Camera calibration estimates the geometric relationship between a 3D scene and its projection in an image. A planar chessboard provides known coordinates that can be matched to detected image corners in multiple photographs.</p>'+
-          '<p>The question is whether a model estimated from different board poses can explain measured image points and predict other points accurately. <a class="fl-figure-ref" href="#sc-cam-r-fig1">Figure 1</a> illustrates the detected corner locations.</p>'+
-          figure(rawCamera+'outputs/figures/detected_chessboard_corners.png','<strong>Figure 1.</strong> Detected chessboard corners across the source calibration images.','Chessboard photographs with detected calibration corners.','sc-cam-r-fig1')},
+          '<h3>1.1 What is camera calibration?</h3>'+
+          '<p>When a camera takes a photograph, a point in the scene becomes a point in the image. The image gives us pixel coordinates, but those pixels alone do not tell us how the camera formed the image. <strong>Camera calibration</strong> estimates the parameters of that projection: for example, the focal lengths in pixels and the location of the image centre.</p>'+
+          '<p>To estimate these parameters, we need objects whose geometry we already know. A chessboard is useful because its black-and-white intersections are easy to locate and form a regular pattern with known spacing. By photographing the same board in several positions, we obtain different views of the same geometry.</p>'+
+          '<h3>1.2 The question we investigated</h3>'+
+          '<p>Our aim was to recover the camera parameters and board poses from nine chessboard images, then measure how closely the model predicts the observed corner positions. We also asked whether a refined model could predict corners reserved from the fitting process more accurately.</p>'},
         {key:'dataset',title:'2.0 Dataset and objectives',body:
-          '<h3>2.1 Data and geometry</h3><p>The dataset contains nine 640 × 480 photographs. The board has eight by six <em>inner corners</em>, giving 48 geometric correspondences per image. The 30 mm checkerboard pitch supplies the world-coordinate scale. All nine views were retained and 432 corners were detected.</p>'+
+          '<h3>2.1 The images and reference geometry</h3>'+
+          '<p>The dataset contains <strong>nine photographs</strong>, each <strong>640 × 480 pixels</strong>. The chessboard has <strong>8 × 6 inner corners</strong>, so each image provides 48 measurable image-to-board correspondences. With a square spacing of <strong>30 mm</strong>, we can assign physical coordinates to those board corners. In total, we detected <strong>432 corners</strong> across the nine images.</p>'+
           '<div class="fl-facts"><div><strong>9</strong><span>Views</span></div><div><strong>432</strong><span>Detected corners</span></div><div><strong>30 mm</strong><span>Square pitch</span></div></div>'+
-          '<h3>2.2 Requirements and expected outputs</h3>'+
-          bullets(['Detect and refine corner coordinates in all images; map the 8 × 6 target into physical units.',
-            'Estimate normalized planar homographies, intrinsics, rotation and translation for each board pose.',
-            'Quantify reprojection residuals view by view and export camera parameters and diagnostic figures.',
-            'Use withheld corner points to compare the linear camera model with an independently refined OpenCV variant.'])+
-          '<p>Calibration quality is evaluated through recovered parameters, reprojection residuals and held-out prediction errors.</p>'},
+          '<h3>2.2 What we needed to produce</h3>'+
+          '<p>We organized the project around four concrete outputs:</p>'+
+          bullets([
+            'Detect the chessboard corners and improve their pixel positions using subpixel refinement.',
+            'Recover one set of camera intrinsic parameters and the position of the board in each photograph.',
+            'Project the known board points back into the images and measure the difference from the detected corners.',
+            'Test prediction on held-out corners and compare the linear method with nonlinear OpenCV refinement.'
+          ])+
+          '<p>The resulting camera parameters, per-image errors and diagnostic figures were exported from the notebook, so each step can be inspected and compared.</p>'},
         {key:'method',title:'3.0 Methodology',body:
-          '<div class="fl-method-steps"><span>Detect</span><span>Fit homographies</span><span>Recover camera</span><span>Validate</span></div>'+
-          '<h3>3.1 Calibration pipeline</h3>'+
-          '<p>Subpixel chessboard corners are located in all nine views. Each image-to-board mapping is estimated using a normalized DLT procedure and singular value decomposition. Zhang constraints combine the resulting homographies into one intrinsic camera matrix, after which board-to-camera rotation and translation are recovered.</p>'+
-          '<p><a class="fl-figure-ref" href="#sc-cam-r-fig2">Figure 2</a> shows the geometric processing sequence.</p>'+
-          figure(rawCamera+'outputs/figures/homography_estimation_pipeline.png','<strong>Figure 2.</strong> Homography and camera-calibration pipeline.','Diagram of homography estimation and geometric camera calibration.','sc-cam-r-fig2')+
-          '<h3>3.2 Evaluation on unseen corners</h3>'+
-          '<p>Each held-out fold fits intrinsics using eight images. In the ninth view, 24 alternating board corners recover the pose; the remaining 24 are predicted. The experiment repeats over all nine views, totaling <strong>216 scored test corners per model</strong>. The comparison uses the linear Zhang method and an OpenCV refinement with distortion parameters and a different optimization constraint.</p>'+
-          '<p>The refined model estimates lens distortion and uses nonlinear optimization with a different skew constraint.</p>'},
+          '<div class="fl-method-steps"><span>Find corners</span><span>Estimate mappings</span><span>Recover camera</span><span>Test predictions</span></div>'+
+          '<h3>3.1 Finding the same points in every photograph</h3>'+
+          '<p>We first detected the 48 internal chessboard intersections in each image. We then refined their locations to subpixel precision. Every detected corner was paired with its known position on the board. These correspondences are the input to the calibration: they tell the algorithm where a known physical point appears in the photograph.</p>'+
+          figure(rawCamera+'outputs/figures/detected_chessboard_corners.png','<strong>Figure 1.</strong> Detected chessboard intersections provide the matching image and board points needed for calibration.','Calibration photos with detected checkerboard corner positions.','sc-cam-r-fig1')+
+          '<h3>3.2 Recovering the camera geometry</h3>'+
+          '<p>For each photograph, we estimated a <strong>homography</strong>, a mapping that explains how the flat chessboard appears in the image. We used normalized point coordinates, Direct Linear Transform (DLT) and Singular Value Decomposition (SVD) to calculate these mappings.</p>'+
+          '<p>Because all nine photographs were taken with the same camera, they share the same intrinsic parameters. <strong>Zhang calibration</strong> combines information from the different homographies to estimate those parameters. We then recovered the rotation and translation of the chessboard for each view.</p>'+
+          figure(rawCamera+'outputs/figures/homography_estimation_pipeline.png','<strong>Figure 2.</strong> From detected board points to homographies, camera intrinsics and board poses.','Project diagram of the camera calibration processing pipeline.','sc-cam-r-fig2')+
+          '<h3>3.3 Checking predictions instead of stopping at a fitted matrix</h3>'+
+          '<p>Once we had a camera model, we projected the known corners back into each image. We measured the distance in pixels between the detected location and the location predicted by the model; this is the <strong>reprojection error</strong>. A smaller value means the predicted corner is closer to its observed position.</p>'+
+          '<p>We also repeated a held-out test nine times. In each fold, the camera intrinsics were fitted using eight images. For the remaining view, 24 alternating corners established the board pose and the other 24 were reserved to test the predictions. This gave <strong>216 test corners per model</strong>. We compared the linear Zhang model with nonlinear OpenCV refinement, which also estimates lens distortion.</p>'},
         {key:'results',title:'4.0 Experimental results',body:
-          '<h3>4.1 Calibration fit</h3>'+
-          '<p>Across all nine views, the mean pointwise reprojection error was <strong>0.434 px</strong>, while pooled RMS was <strong>0.534 px</strong>. View-level RMS ranged from <strong>0.277 px</strong> (img1.jpg) to <strong>0.859 px</strong> (img7.jpg). RMS and average distances are different aggregates and should not be confused.</p>'+
-          table(['Image','Mean error (px)','RMS error (px)'],calibrationErrors,'<strong>Table 1.</strong> Error by calibration view, from outputs/view_errors.csv.')+
-          figure(rawCamera+'outputs/figures/mean_reprojection_error_by_view.png','<strong>Figure 3.</strong> Mean reprojection error for each of the nine calibration views.','Source bar chart of calibration reprojection errors by image.','sc-cam-r-fig3')+
-          '<h3>4.2 Prediction on held-out corners</h3>'+
-          '<p>The pooled held-out RMS fell from <strong>0.395 px</strong> for linear Zhang to <strong>0.352 px</strong> for the refined model (a <strong>10.7% relative reduction</strong>). The refined method improved all nine folds.</p>'+
-          table(['Model','Held-out pooled RMS','Highest fold RMS'],[
-            ['Linear Zhang','0.395 px','0.589 px (img3.jpg)'],
-            ['Refined OpenCV','0.352 px','0.521 px (img3.jpg)']
-          ],'<strong>Table 2.</strong> Independent corner prediction, 216 test corners per model.')+
-          figure(rawCamera+'outputs/figures/held_out_view_errors.png','<strong>Figure 4.</strong> Held-out prediction error by board pose for two calibration models.','Held-out corner prediction error plot for linear and refined models.','sc-cam-r-fig4')},
+          '<h3>4.1 How well did the model reproduce the observed corners?</h3>'+
+          '<p>The average distance between detected and projected corners across the nine calibration views was <strong>0.434 pixels</strong>. The overall root-mean-square error (RMS), which gives more weight to larger errors, was <strong>0.534 pixels</strong>. Both measures describe how closely the fitted camera model represents the observed chessboard points.</p>'+
+          '<p>We also examined the results separately for each photograph. <strong>img1.jpg</strong> had an RMS of <strong>0.277 px</strong>, while <strong>img7.jpg</strong> had <strong>0.859 px</strong>. The difference shows why it is useful to inspect individual views: a single average can hide which board positions are more difficult for the model to reproduce.</p>'+
+          '<p>The complete table of nine image errors, the per-view chart and the source photos are available in the <strong>Metrics</strong> and <strong>Figures</strong> tabs.</p>'+
+          '<h3>4.2 Can the camera model predict reserved corners?</h3>'+
+          '<p>The second experiment tested prediction rather than simply measuring a fit. For the <strong>216 reserved corners</strong>, the linear Zhang model produced a pooled RMS of <strong>0.395 px</strong>. With nonlinear OpenCV refinement, pooled RMS fell to <strong>0.352 px</strong>—a <strong>10.7% reduction</strong>. The refined model produced a lower error in each of the nine held-out folds.</p>'+
+          '<p>In practical terms, the refined camera parameters placed the predicted corners closer to their detected locations. The improvement comes from a refinement that includes nonlinear optimization and lens-distortion parameters, with a different skew constraint.</p>'+
+          figure(rawCamera+'outputs/figures/held_out_view_errors.png','<strong>Figure 3.</strong> Held-out prediction errors for the linear and refined camera models. Lower bars indicate closer predictions of reserved corners.','Held-out camera model prediction error across nine views.','sc-cam-r-fig4')+
+          '<p>The full held-out error table can be explored in <strong>Metrics</strong>, including the difference between the two methods for each board view.</p>'},
         {key:'discussion',title:'5.0 Discussion and conclusion',body:
-          '<h3>5.1 Were the objectives met?</h3>'+
-          '<p><strong>Yes, within the academic camera-calibration experiment.</strong> The notebook recovers a camera matrix and board poses, publishes diagnostics for all nine images and evaluates held-out corner prediction. The refined model improves the measured held-out error.</p>'+
-          '<h3>5.2 What deserves further investigation?</h3>'+
-          '<p>The large residual in img7.jpg indicates that some board poses fit less consistently than others. Comparing this view with img1.jpg helps identify variation in the measured projections. The linear fit does not estimate lens distortion; results are sensitive to geometry and model assumptions.</p>'+
-          '<h3>5.3 Limitations and future work</h3>'+
-          '<p>Additional chessboard views, varied target orientations and independent image sets would extend the robustness analysis.</p>'}
+          '<h3>5.1 What did the experiments show?</h3>'+
+          '<p>We recovered a common camera matrix and nine chessboard poses, then checked the results in two ways: reproduction of the observed corners and prediction of reserved corners. The fitted model achieved <strong>0.434 px mean reprojection error</strong>, while refinement lowered the held-out RMS from <strong>0.395 to 0.352 px</strong>.</p>'+
+          '<p>The per-view results also show that accuracy varies with the photograph. Comparing img1.jpg with img7.jpg is a useful next diagnostic step because the same camera parameters are applied to different board positions.</p>'+
+          '<h3>5.2 What we learned from the project</h3>'+
+          '<p>This project connects the mathematics of a camera model with measurable image results. It demonstrates corner detection, normalized homography estimation, the Zhang method, pose recovery and an evaluation based on reserved image points—not simply the calculation of a matrix.</p>'+
+          '<h3>5.3 Next steps</h3>'+
+          '<p>Additional images with varied chessboard positions, angles and image conditions would extend the evaluation. They would also make it possible to study how consistently the estimated camera parameters perform across a wider range of observations.</p>'}
       ],
       figures:[
         ['Corner detection','Detected corners in the nine photographs','outputs/figures/detected_chessboard_corners.png','intro','sc-cam-r-fig1'],
         ['Homography estimation','From board correspondences to the recovered camera model','outputs/figures/homography_estimation_pipeline.png','method','sc-cam-r-fig2'],
-        ['Reprojection by view','Average pixel error for each input image','outputs/figures/mean_reprojection_error_by_view.png','results','sc-cam-r-fig3'],
+        ['Reprojection by view','Average pixel error for each input image','outputs/figures/mean_reprojection_error_by_view.png','results','sc-cam-r-results'],
         ['Held-out error','Prediction error on withheld corners, Zhang versus refined OpenCV','outputs/figures/held_out_view_errors.png','results','sc-cam-r-fig4'],
         ['Estimated camera poses','Recovered orientation and position for the nine board views','outputs/figures/estimated_camera_poses.png','method','sc-cam-r-method'],
         ['Residual distribution','Distribution of corner reprojection residuals','outputs/figures/reprojection_error_distribution.png','results','sc-cam-r-results']
