@@ -344,6 +344,9 @@
       'references':'6.0 References'};
     const reportToc = primary.map(k=>({id:p+'-r-'+k,title:names[k]||k}));
     const figuresToc = d.figures.map((f,i) => {
+      if (f.kind === 'demo') {
+        return {id:p+'-f-'+i,title:'Gameplay demonstration · '+f.title};
+      }
       const kind = f.kind === 'table' ? 'Table' : 'Figure';
       const num = d.figures.slice(0, i+1).filter(x => (x.kind||'figure') === (f.kind||'figure')).length;
       return {id:p+'-f-'+i,title:kind+' '+num+' · '+f.title};
@@ -361,6 +364,16 @@
       d.reportSections.map(row=>section(p+'-r-'+row.key,row.title,row.body)).join('')+
       section(p+'-r-references','6.0 References',bibliography(p,d.references),'fl-paper-section study-references');
     const indexedFigures = d.figures.map((f,i) => {
+      if (f.kind === 'demo') {
+        return '<section class="fl-figure-section sc-demo-section" id="'+p+'-f-'+i+'">'+
+          '<h3>Gameplay demonstration · CardGame V1</h3>'+
+          '<p>'+safe(f.description)+'</p>'+
+          '<figure class="fl-scientific-video sc-animated-demo">'+
+          '<a href="'+safe(f.url)+'" target="_blank" rel="noopener noreferrer" aria-label="Open the CardGame V1 demo separately">'+
+          '<img src="'+safe(f.url)+'" loading="lazy" decoding="async" alt="Animated CardGame V1 gameplay demonstration"></a>'+
+          '<figcaption>Original CardGame V1 animated recording · '+link(f.url,'Open demo separately')+'</figcaption>'+
+          '</figure></section>';
+      }
       const kind = f.kind === 'table' ? 'Table' : 'Figure';
       const num = d.figures.slice(0, i+1).filter(x => (x.kind||'figure') === (f.kind||'figure')).length;
       return '<section class="fl-figure-section fl-index-figure" id="'+p+'-f-'+i+'">'+
