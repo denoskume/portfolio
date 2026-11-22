@@ -102,12 +102,33 @@ jobs:
         run: |
           node --check app.js
           node --check harvard-cv.js
+          node --check contact-form.js
           node --check content.js
           node --check fluoroscopy-case-study.js
           node --check lab/workspace.js
           node --check lab/worker.js
           python -c 'from pathlib import Path; import re; html=Path("index.html").read_text(); Path("/tmp/portfolio-inline.js").write_text("\n".join(re.findall(r"<script[^>]*>([\s\S]*?)</script>", html, flags=re.I)), encoding="utf-8")'
           node --check /tmp/portfolio-inline.js
+          # Contact form must be accessible, designed, and actually wired to an email relay.
+          python - <<'PY'
+          from pathlib import Path
+          html=Path("index.html").read_text(encoding="utf-8")
+          style=Path("contact-modern.css").read_text(encoding="utf-8")
+          script=Path("contact-form.js").read_text(encoding="utf-8")
+          assert 'id="portfolioContactForm"' in html
+          assert 'action="https://formsubmit.co/kamenan.kume@eleves.ec-nantes.fr"' in html
+          for field in ("contactName","contactEmail","contactTopic","contactSubject","contactMessage"):
+              assert f'id="{field}"' in html, f"Missing required form field {field}"
+          assert 'role="status" aria-live="polite"' in html
+          assert 'name="_honey"' in html
+          assert 'name="consent"' in html
+          assert 'class="contact-layout"' in html and '#contact .contact-layout' in style
+          assert 'contact-form.js?v=' in html and 'contact-modern.css?v=' in html
+          assert 'function handleContact(e)' not in html
+          assert "fetch(ENDPOINT" in script
+          assert "Open email draft" in script
+          print("Contact form markup, design, relay handling and fallback validated.")
+          PY
           # Prevent decorative labels and fixed project counters from returning.
           python - <<'PY'
           from pathlib import Path
@@ -130,7 +151,7 @@ jobs:
           print("Portfolio copy audit passed (no decorative badges or fixed totals).")
           PY
           mkdir -p _site/lab
-          cp index.html app.js content.js cv-data.json harvard-cv.js harvard-cv.css styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css _site/
+          cp index.html app.js content.js cv-data.json harvard-cv.js harvard-cv.css contact-form.js contact-modern.css styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css _site/
           cp lab/workspace.js lab/worker.js lab/compute.py _site/lab/
           cp -r assets _site/
           cp build/fluoroscopy-case-study.pdf _site/fluoroscopy-case-study.pdf
@@ -139,6 +160,8 @@ jobs:
           test -s _site/cv-data.json
           test -s _site/harvard-cv.js
           test -s _site/harvard-cv.css
+          test -s _site/contact-form.js
+          test -s _site/contact-modern.css
           test -s _site/fluoroscopy-case-study.pdf
           test -f _site/assets/denos-kume-signature.svg
           test -s _site/fluoroscopy-case-study.js
