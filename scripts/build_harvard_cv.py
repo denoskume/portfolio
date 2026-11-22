@@ -141,9 +141,6 @@ for e in DATA['projects']:
 y=heading('Technical skills',y)
 for e in DATA['skills']:
     y=line_with_bold(e['label'],e['value'],y)
-y=heading('Certifications & training',y)
-for c in DATA['certifications']:
-    y=txt(c,LEFT,y,style=SHORT,after=0.8)
 y=heading('Languages & interests',y)
 y=line_with_bold('Languages',DATA['languages'],y)
 y=line_with_bold('Interests',DATA['interests'],y)
