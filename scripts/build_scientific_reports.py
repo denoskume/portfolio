@@ -124,6 +124,11 @@ def add_figure(fig: Tag, story: list) -> None:
             req = urllib.request.Request(img["src"], headers={"User-Agent": "PortfolioReportBuilder/1.0"})
             with urllib.request.urlopen(req, timeout=25) as response:
                 data = response.read(4_000_000)
+            if img["src"].lower().split("?")[0].endswith(".svg"):
+                import cairosvg
+                # Convert vector diagrams into PDF-compatible raster images
+                # at high resolution while retaining their source geometry.
+                data = cairosvg.svg2png(bytestring=data, output_width=1600)
             from PIL import Image as PILImage
             with PILImage.open(io.BytesIO(data)) as photo:
                 w, h = photo.size
@@ -242,6 +247,7 @@ def build(study_id: int, filename: str) -> Path:
         js = (
             "global.window = globalThis;"
             "require('./scientific-case-studies.js');"
+            "require('./software-case-studies.js');"
             f"process.stdout.write(window.renderScientificCaseStudy({study_id}));"
         )
     result = subprocess.run(["node", "-e", js], cwd=ROOT,
@@ -274,6 +280,10 @@ def build(study_id: int, filename: str) -> Path:
 if __name__ == "__main__":
     for ident, filename in [(1, "fluoroscopy-case-study.pdf"),
                             (2, "camera-calibration-case-study.pdf"),
-                            (3, "clap-zero-shot-case-study.pdf")]:
+                            (3, "clap-zero-shot-case-study.pdf"),
+                            (4, "flag-intelligence-case-study.pdf"),
+                            (5, "python-cardgame-case-study.pdf"),
+                            (6, "monstage-case-study.pdf"),
+                            (7, "visionlab-case-study.pdf")]:
         path = build(ident, filename)
         print(f"Built {path.name}: {path.stat().st_size} bytes")
