@@ -1,0 +1,76 @@
+/* Additional styles for the Camera Calibration and CLAP journal-style case studies.
+   Structural layout, typography, tabs, sidebar, tables and dialogs intentionally reuse
+   the existing fluoroscopy-case-study.css so the three projects look consistent. */
+.scientific-study .sc-list {
+  margin:12px 0 20px 20px;
+  padding:0;
+  color:#274459;
+  font-size:.97rem;
+  line-height:1.75;
+}
+.scientific-study .sc-list li { padding-left:4px; margin:7px 0; }
+.scientific-study .fl-report-table { margin:22px 0; }
+.scientific-study .fl-score.sc-score { margin:22px 0 27px; }
+.scientific-study .fl-score.sc-score strong { white-space:nowrap; }
+.scientific-study .sc-source-link {
+  display:inline-flex;
+  align-items:center;
+  color:#1a587b;
+  text-underline-offset:3px;
+  font:600 .86rem/1.5 var(--font-body);
+  padding:9px 10px;
+  border:1px solid #d4e0e9;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.scientific-study .sc-source-link:hover,
+.scientific-study .sc-source-link:focus-visible {
+  background:#ecf4fa;
+  color:#123d5f;
+}
+.scientific-study .sc-viewer { margin:24px 0 18px; }
+.scientific-study .sc-view-selector {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-start;
+  gap:8px;
+  margin:0 0 18px;
+}
+.scientific-study .sc-view-selector button {
+  min-width:55px;
+  padding:9px 11px;
+  font:600 .81rem/1.3 var(--font-body);
+}
+.scientific-study #sc-view-image {
+  display:block;
+  object-fit:contain;
+  width:100%;
+  max-width:680px;
+  max-height:500px;
+  height:auto;
+  margin:0 auto;
+  background:#fff;
+}
+.scientific-study .fl-figure-section p,
+.scientific-study .fl-paper-section>p,
+.scientific-study .fl-metric-section>p { max-width:81ch; }
+.scientific-study .fl-modal .fl-modal-head h2 { margin:0; }
+.scientific-study .fl-paper-actions .fl-action-status {
+  flex-basis:100%;
+}
+@media(max-width:760px) {
+ .scientific-study .sc-source-link { font-size:.78rem;padding:8px 9px; }
+ .scientific-study .sc-list { font-size:.88rem;margin-left:17px; }
+ .scientific-study .fl-score.sc-score strong{font-size:clamp(1.35rem,5vw,2rem)}
+ .scientific-study .sc-view-selector button { min-width:49px; }
+}
+@media print {
+ .scientific-study .fl-paper-actions,
+ .scientific-study .fl-paper-sidebar,
+ .scientific-study .fl-paper-tabs,
+ .scientific-study .fl-backbar,
+ .scientific-study .fl-modal { display:none!important; }
+ .scientific-study .fl-paper-panel[data-sc-panel="report"] {display:block!important;}
+ .scientific-study .fl-paper-panel[data-sc-panel="figures"],
+ .scientific-study .fl-paper-panel[data-sc-panel="metrics"] {display:none!important;}
+}
