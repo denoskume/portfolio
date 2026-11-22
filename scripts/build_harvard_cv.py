@@ -22,8 +22,8 @@ NAVY=colors.HexColor('#264b70')
 BLACK=colors.HexColor('#151c24')
 GREY=colors.HexColor('#44515d')
 RULE=colors.HexColor('#8ea9bf')
-SECTION_GAP = 1.0 * cm  # between CV sections
-BLOCK_GAP = 0.5 * cm    # between entries in the same section
+SECTION_GAP = 0.35 * cm  # compact separation between CV sections
+BLOCK_GAP = 0.20 * cm    # compact separation between entries in a section
 C=canvas.Canvas(str(OUT),pagesize=A4,pageCompression=1)
 C.setAuthor(DATA['name'])
 C.setTitle(DATA['name']+' - Curriculum Vitae')
