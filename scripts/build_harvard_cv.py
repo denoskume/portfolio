@@ -1,19 +1,13 @@
 #!/usr/bin/env python3
-"""Generate a one-page ATS-readable Harvard-style CV from cv-data.json.
-
-The website preview and the downloadable PDF use the same JSON source.
-PDF text uses real, selectable text (not a screenshot or browser printing).
-"""
+"""Build a selected, one-page, text-based Harvard-style A4 CV from cv-data.json."""
 from __future__ import annotations
-
 import json
 from html import escape
 from pathlib import Path
-
 from reportlab.lib import colors
-from reportlab.lib.enums import TA_LEFT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.enums import TA_LEFT
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from reportlab.platypus import Paragraph
 from reportlab.pdfgen import canvas
@@ -22,144 +16,135 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = json.loads((ROOT / 'cv-data.json').read_text(encoding='utf-8'))
 OUT = ROOT / 'build' / DATA['pdf_filename']
 OUT.parent.mkdir(parents=True, exist_ok=True)
-
-PAGE_W, PAGE_H = A4
-LEFT, RIGHT, TOP, BOTTOM = 43, 43, 39, 38
-WIDTH = PAGE_W - LEFT - RIGHT
-INK = colors.HexColor('#12243b')
-TEXT = colors.HexColor('#2d3b4e')
-SUBTLE = colors.HexColor('#516276')
-RULE = colors.HexColor('#aebac8')
-ACCENT = colors.HexColor('#173c65')
-
-PDF = canvas.Canvas(str(OUT), pagesize=A4, pageCompression=1)
-PDF.setTitle('Denos Kume | Harvard-style Curriculum Vitae')
-PDF.setAuthor(DATA['name'])
-PDF.setSubject('One-page CV | Data Science, Computer Vision, Image Processing')
-
-NORMAL = ParagraphStyle('normal', fontName='Helvetica', fontSize=8.75, leading=13.0,
-                        textColor=TEXT, alignment=TA_LEFT, spaceAfter=0,
-                        allowWidows=0, allowOrphans=0)
-BULLET = ParagraphStyle('bullet', parent=NORMAL, fontSize=8.65, leading=12.6)
-SMALL = ParagraphStyle('small', parent=NORMAL, fontSize=8.55, leading=12.2)
+W, H = A4
+LEFT, RIGHT, TOP, BOTTOM = 43, 43, 34, 37
+WIDTH = W-LEFT-RIGHT
+NAVY = colors.HexColor('#122c47')
+BODY = colors.HexColor('#29394a')
+MUTED = colors.HexColor('#536479')
+ACCENT = colors.HexColor('#1d507a')
+RULE = colors.HexColor('#b8c6d3')
+C = canvas.Canvas(str(OUT), pagesize=A4, pageCompression=1)
+C.setTitle('Denos Kume | Harvard-Style Curriculum Vitae')
+C.setAuthor(DATA['name'])
+C.setSubject('Internship CV - Data Science, Computer Vision, Image Processing and Data Analysis')
+TEXT = ParagraphStyle('text', fontName='Helvetica', fontSize=9.2, leading=13.0,
+                      textColor=BODY, alignment=TA_LEFT, spaceAfter=0)
+SMALL = ParagraphStyle('small', parent=TEXT, fontSize=9.0, leading=12.3)
+BULLET = ParagraphStyle('bullet', parent=TEXT, fontSize=9.0, leading=12.2)
 
 
-def paragraph_text(text: str, style: ParagraphStyle, x: float, y_top: float,
-                   avail_width: float, after: float = 0) -> float:
-    """Draw a selectable PDF text paragraph and return the next top baseline."""
+def para(text, style, x, y, width, after=0):
     p = Paragraph(escape(text), style)
-    _, height = p.wrap(avail_width, PAGE_H)
-    p.drawOn(PDF, x, y_top - height)
-    return y_top - height - after
+    _, h = p.wrap(width, H)
+    p.drawOn(C, x, y-h)
+    return y-h-after
 
 
-def fit_text(text: str, max_width: float, font: str = 'Helvetica', size: float = 8.2) -> str:
-    if stringWidth(text, font, size) <= max_width:
-        return text
-    while text and stringWidth(text + '…', font, size) > max_width:
-        text = text[:-1]
-    return text + '…'
+def headline(text, y, size, color, font='Helvetica'):
+    assert stringWidth(text, font, size) <= WIDTH, f'Centered headline exceeds printable width: {text}'
+    C.setFont(font, size)
+    C.setFillColor(color)
+    C.drawCentredString(W/2, y, text)
 
 
-def section(title: str, y: float) -> float:
-    y -= 11
-    PDF.setFont('Helvetica-Bold', 9.25)
-    PDF.setFillColor(ACCENT)
-    PDF.drawString(LEFT, y, title.upper())
-    PDF.setStrokeColor(RULE)
-    PDF.setLineWidth(0.6)
-    PDF.line(LEFT, y - 4.5, PAGE_W - RIGHT, y - 4.5)
-    return y - 14.5
+def section(title, y):
+    y -= 12.2
+    C.setFont('Helvetica-Bold', 9.55)
+    C.setFillColor(ACCENT)
+    C.drawString(LEFT, y, title.upper())
+    C.setStrokeColor(RULE)
+    C.setLineWidth(.62)
+    C.line(LEFT, y-5.2, W-RIGHT, y-5.2)
+    return y-16.0
 
 
-def item(row: dict, y: float, pad: float = 5) -> float:
-    date = row['dates']
-    date_width = stringWidth(date, 'Helvetica', 8)
-    title = fit_text(row['title'], WIDTH - date_width - 16, 'Helvetica-Bold', 9)
-    PDF.setFillColor(INK)
-    PDF.setFont('Helvetica-Bold', 9)
-    PDF.drawString(LEFT, y - 8.9, title)
-    PDF.setFont('Helvetica', 8)
-    PDF.setFillColor(SUBTLE)
-    PDF.drawRightString(PAGE_W - RIGHT, y - 8.9, date)
-    y -= 12.5
-    y = paragraph_text(row['organization'], SMALL, LEFT, y, WIDTH, after=3)
+def entry(row, y, after=5.5):
+    dates = row['dates']
+    size = 9.25
+    title = row['title']
+    date_width = stringWidth(dates, 'Helvetica', 8.35)
+    assert stringWidth(title, 'Helvetica-Bold', size) <= WIDTH-date_width-18, f'CV title overflows: {title}'
+    C.setFont('Helvetica-Bold', size)
+    C.setFillColor(NAVY)
+    C.drawString(LEFT, y-9.6, title)
+    C.setFillColor(MUTED)
+    C.setFont('Helvetica', 8.35)
+    C.drawRightString(W-RIGHT, y-9.6, dates)
+    y -= 14.0
+    y = para(row['organization'], SMALL, LEFT, y, WIDTH, after=3)
     for bullet in row.get('bullets', []):
-        PDF.setFillColor(ACCENT)
-        PDF.circle(LEFT + 4, y - 5.5, 1.45, fill=1, stroke=0)
-        y = paragraph_text(bullet, BULLET, LEFT + 14, y, WIDTH - 14, after=2.5)
-    return y - pad
+        C.setFillColor(ACCENT)
+        C.circle(LEFT+4.5, y-6.6, 1.3, fill=1, stroke=0)
+        y = para(bullet, BULLET, LEFT+15, y, WIDTH-15, after=2.0)
+    return y-after
 
 
-# Modern academic Harvard style: one column, no images, icons, or ATS-unreadable tables.
-y = PAGE_H - TOP
-PDF.setFillColor(INK)
-PDF.setFont('Helvetica-Bold', 19.5)
-PDF.drawCentredString(PAGE_W / 2, y - 17, DATA['name'].upper())
-y -= 26
-PDF.setFont('Helvetica', 9.1)
-PDF.setFillColor(SUBTLE)
-PDF.drawCentredString(PAGE_W / 2, y - 10, DATA['headline'])
-y -= 18
+y = H-TOP
+headline(DATA['name'].upper(), y-16, 20.2, NAVY, 'Helvetica-Bold')
+y -= 27
+headline(DATA['headline'], y-7, 9.5, MUTED)
+y -= 17
+headline(DATA['direction'], y-8, 10.25, ACCENT, 'Helvetica-Bold')
+y -= 20
 
-contacts = DATA['contact']
-for links in (contacts[:2], contacts[2:]):
-    full = '  |  '.join(x['label'] for x in links)
-    font_size = 8.0
-    PDF.setFont('Helvetica', font_size)
-    PDF.setFillColor(ACCENT)
-    x = (PAGE_W - stringWidth(full, 'Helvetica', font_size)) / 2
-    for idx, link in enumerate(links):
-        label = link['label']
-        width = stringWidth(label, 'Helvetica', font_size)
-        PDF.drawString(x, y - 7.5, label)
-        if link['url']:
-            PDF.linkURL(link['url'], (x, y - 9, x + width, y + 1.5),
-                        relative=0, thickness=0)
-        x += width
-        if idx < len(links) - 1:
-            divider = '  |  '
-            PDF.setFillColor(SUBTLE)
-            PDF.drawString(x, y - 7.5, divider)
-            x += stringWidth(divider, 'Helvetica', font_size)
-            PDF.setFillColor(ACCENT)
-    y -= 12.4
+# Two centered contact lines, each link retained as clickable PDF annotation.
+for links in (DATA['contact'][:2], DATA['contact'][2:]):
+    divider='  |  '
+    text=divider.join(item['label'] for item in links)
+    size=8.15
+    full=stringWidth(text,'Helvetica',size)
+    assert full < WIDTH, f'Contact line exceeds page width: {text}'
+    x=(W-full)/2
+    for idx, item in enumerate(links):
+        label=item['label']
+        w=stringWidth(label,'Helvetica',size)
+        C.setFont('Helvetica',size)
+        C.setFillColor(ACCENT if item['url'] else MUTED)
+        C.drawString(x,y-6.8,label)
+        if item['url']:
+            C.linkURL(item['url'],(x,y-8,x+w,y+2),relative=0,thickness=0)
+        x += w
+        if idx < len(links)-1:
+            C.setFillColor(MUTED)
+            C.drawString(x,y-6.8,divider)
+            x += stringWidth(divider,'Helvetica',size)
+    y -= 13
 
 y -= 7
-PDF.setStrokeColor(ACCENT)
-PDF.setLineWidth(0.9)
-PDF.line(LEFT, y, PAGE_W - RIGHT, y)
+C.setStrokeColor(ACCENT)
+C.setLineWidth(.95)
+C.line(LEFT,y,W-RIGHT,y)
 
-y = section('Profile', y)
-y = paragraph_text(DATA['profile'], NORMAL, LEFT, y, WIDTH, after=1)
+y=section('Profile',y)
+y=para(DATA['profile'],TEXT,LEFT,y,WIDTH,after=2)
 
-y = section('Education', y)
+y=section('Education',y)
 for row in DATA['education']:
-    y = item(row, y, pad=3.0 if not row['bullets'] else 5)
+    y=entry(row,y,after=5)
 
-y = section('Professional experience', y)
+y=section('Selected Technical Projects',y)
+for proj in DATA['projects']:
+    C.setFont('Helvetica-Bold',9.25)
+    C.setFillColor(NAVY)
+    C.drawString(LEFT,y-9.3,proj['title'])
+    y -= 13
+    y=para(proj['details'],SMALL,LEFT,y,WIDTH,after=8)
+
+y=section('Professional Experience',y)
 for row in DATA['experience']:
-    y = item(row, y, pad=4)
+    y=entry(row,y,after=5)
 
-y = section('Technical skills', y)
+y=section('Technical Skills',y)
 for row in DATA['technical_skills']:
-    p = Paragraph(f"<b>{escape(row['category'])}:</b> {escape(row['items'])}", SMALL)
-    _, height = p.wrap(WIDTH, PAGE_H)
-    p.drawOn(PDF, LEFT, y - height)
-    y -= height + 2.2
+    p=Paragraph(f'<b>{escape(row["category"])}:</b> {escape(row["items"])}',SMALL)
+    _,h=p.wrap(WIDTH,H)
+    p.drawOn(C,LEFT,y-h)
+    y -= h+3
 
-y = section('Selected projects', y)
-for row in DATA['projects']:
-    PDF.setFont('Helvetica-Bold', 8.55)
-    PDF.setFillColor(INK)
-    PDF.drawString(LEFT, y - 8, row['title'])
-    y -= 11.8
-    y = paragraph_text(row['details'], SMALL, LEFT, y, WIDTH, after=5)
-
-y = section('Languages', y)
-y = paragraph_text(DATA['languages'].replace(' | ', '  |  '), SMALL, LEFT, y, WIDTH)
-
-if y < BOTTOM:
-    raise RuntimeError(f"Harvard CV overflow: content ended at {y:.1f} pt, bottom margin {BOTTOM} pt")
-PDF.save()
-print(f'Generated {OUT} | one A4 page | content bottom {y:.1f} pt | {OUT.stat().st_size} bytes')
+y=section('Languages',y)
+y=para(DATA['languages'].replace(' | ','  |  '),SMALL,LEFT,y,WIDTH)
+if y<BOTTOM:
+    raise RuntimeError(f'Content overflow: last baseline {y:.1f} pt < {BOTTOM} pt bottom margin')
+C.save()
+print(f'Generated {OUT} | A4 | one page | bottom {y:.1f} pt | {OUT.stat().st_size} bytes')
