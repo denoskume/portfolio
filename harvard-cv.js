@@ -81,9 +81,6 @@
         section('Technical Skills', d.skills.map(row =>
           '<p><strong>' + esc(row.label) + ':</strong> ' + esc(row.value) + '</p>'
         ).join('')) +
-        section('Certifications & Training', d.certifications.map(line =>
-          '<p>' + esc(line) + '</p>'
-        ).join('')) +
         section('Languages & Interests',
           '<p><strong>Languages:</strong> ' + esc(d.languages) + '</p>' +
           '<p><strong>Interests:</strong> ' + esc(d.interests) + '</p>');
