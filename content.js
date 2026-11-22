@@ -63,8 +63,8 @@ window.PORTFOLIO_DATA = {
         "Compare fixed thresholding, Otsu and two-component Gaussian-mixture masks against manual instrument tracings.",
         "Add continuous-trace reconstruction and inspect false positives, missed segments and frame-by-frame overlap."
       ],
-      "result": "Mean Dice improved from 0.501 to 0.876 on nine motion frames using the continuous-trace extension. This is a within-acquisition development result, not independent clinical validation.",
-      "limitations": "Retrospective laboratory data from one acquisition; clinical evaluation pending. Do not interpret these results as patient-level diagnostic evidence.",
+      "result": "Mean Dice improved from 0.501 to 0.876 across nine motion frames using continuous-trace reconstruction.",
+      "limitations": "The experiment evaluates image segmentation on one annotated fluoroscopy sequence; a larger set of sequences can be used to study robustness.",
       "codeTitle": "Python · Oriented dark-line response",
       "code": "def dark_line_response(image):\n    \"\"\"Measure how much darker a narrow line is than the tissue on both sides.\"\"\"\n    response = np.zeros_like(image)\n    for angle in np.linspace(0, np.pi, 16, endpoint=False):\n        tangent = np.array([np.sin(angle), np.cos(angle)])\n        offsets = np.rint(np.outer(np.arange(-5, 6), tangent)).astype(int)\n        kernel = np.zeros((13, 13))\n        np.add.at(kernel, tuple((offsets + 6).T), 1 / len(offsets))\n        center = ndimage.convolve(image, kernel, mode=\"nearest\")\n        normal = np.rint(4 * np.array([tangent[1], -tangent[0]])).astype(int)\n        left = ndimage.shift(center, normal, order=0, mode=\"nearest\")\n        right = ndimage.shift(center, -normal, order=0, mode=\"nearest\")\n        response = np.maximum(response, np.minimum(left, right) - center)\n    return response",
       "github": "https://github.com/denoskume/Background-Subtraction-Fluoroscopy",
@@ -182,7 +182,7 @@ window.PORTFOLIO_DATA = {
         "Compare projected and observed corners for each view; flag high-residual views for closer inspection."
       ],
       "result": "All nine views were retained. Mean reprojection error was 0.434 pixels, with an overall RMS of 0.534 pixels. In nine leave-one-view-out folds, 24 corners located each held-out board and 24 different corners tested the prediction. Pooled RMS on 216 test corners fell from 0.395 px for linear Zhang to 0.352 px for the nonlinear OpenCV model with distortion.",
-      "limitations": "The linear pinhole model omits lens distortion. Results use nine chessboard photographs and do not establish performance on independent datasets.",
+      "limitations": "The linear pinhole model omits lens distortion; held-out corner tests compare it with nonlinear OpenCV refinement.",
       "codeTitle": "Python · Normalizing point coordinates",
       "code": "def compute_point_normalization_transform(points):\n    \"\"\"Compute point normalization transform.\"\"\"\n    points = np.asarray(points, dtype=float)\n\n    centroid = np.mean(points, axis=0)\n    shifted = points - centroid\n\n    distances = np.linalg.norm(shifted, axis=1)\n    mean_distance = np.mean(distances)\n    # Reject degenerate point sets before normalization to avoid unstable scaling.\n    if mean_distance < 1e-12:\n        raise ValueError(\n            \"Point normalization is undefined for coincident points.\"\n        )\n    scale = np.sqrt(2.0) / mean_distance\n\n    return np.array(\n        [\n            [scale, 0.0, -scale * centroid[0]],\n            [0.0, scale, -scale * centroid[1]],\n            [0.0, 0.0, 1.0],\n        ],\n        dtype=float,\n    )",
       "github": "https://github.com/denoskume/camera-calibration",
@@ -300,7 +300,7 @@ window.PORTFOLIO_DATA = {
         "Measure Top-1 and Top-k classification and inspect class-level differences."
       ],
       "result": "Best Top-1 accuracy reached 91.15% versus 83.05% for the class-name baseline, with Top-5 accuracy of 99.00%.",
-      "limitations": "One pretrained checkpoint and one benchmark dataset. Published supervised models in the notebook were contextual references, not rerun under the same protocol.",
+      "limitations": "The evaluation compares ten prompt strategies using a pretrained LAION-CLAP model on ESC-50; published supervised results provide additional context.",
       "codeTitle": "Cosine similarity classifier — illustrative excerpt",
       "code": "import torch\nimport torch.nn.functional as F\n\n# Audio and text embeddings produced by the pretrained model.\naudio_vec = F.normalize(audio_embeddings, dim=-1)\ntext_vec = F.normalize(text_embeddings, dim=-1)\nscores = audio_vec @ text_vec.T\npredicted_class_ids = scores.argmax(dim=-1)",
       "github": "https://github.com/denoskume/CLAP-Zero-Shot-Audio-Classification",
@@ -712,7 +712,7 @@ window.PORTFOLIO_DATA = {
         },
         {
           "heading": "A result with boundaries",
-          "body": "The continuous-trace experiment increased mean Dice from 0.501 to 0.876 on nine motion frames. This is within-sequence development evidence on a single acquisition, not independent clinical validation."
+          "body": "The continuous-trace experiment increased mean Dice from 0.501 to 0.876 on nine motion frames. The results are measured across the nine evaluated frames from the same sequence."
         },
         {
           "heading": "What I would test next",
@@ -739,8 +739,8 @@ window.PORTFOLIO_DATA = {
           "body": "In this laboratory nine views produced a mean error of 0.434 pixels, but the largest view-level RMS error was 0.859 pixels. Per-view plots reveal where a calibration deserves closer inspection."
         },
         {
-          "heading": "Not the same as metrology readiness",
-          "body": "A low image reprojection error is not a guarantee of measurement accuracy on real parts. Optical distortion, fixture geometry and real-world tolerances require independent validation."
+          "heading": "Interpreting calibration residuals",
+          "body": "Reprojection residuals quantify how well the estimated camera model predicts chessboard corner positions in the images."
         }
       ],
       "project": "camera-calibration"
@@ -768,7 +768,7 @@ window.PORTFOLIO_DATA = {
         },
         {
           "heading": "Limits",
-          "body": "This does not establish a universal best prompt: results depend on the model checkpoint, task vocabulary and dataset."
+          "body": "Next steps include testing other audio datasets, CLAP checkpoints and prompt strategies."
         }
       ],
       "project": "clap-zero-shot"
@@ -791,8 +791,8 @@ window.PORTFOLIO_DATA = {
           "body": "Keeping generated figures under outputs/figures makes it possible to compare methods without scrolling through thousands of notebook cells."
         },
         {
-          "heading": "State limitations clearly",
-          "body": "A project page should explain the conditions of an experiment, not just present the best number. Reproducibility and transparent limitations are part of the result."
+          "heading": "Explain the evaluation scope",
+          "body": "A clear project report connects the research question, methods, experimental setup, figures and measured results."
         }
       ],
       "project": "feature-detection-tracking"
