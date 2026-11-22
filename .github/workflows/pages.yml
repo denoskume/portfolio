@@ -55,7 +55,7 @@ jobs:
           reader = PdfReader(str(pdf))
           report = " ".join(" ".join(page.extract_text().split()) for page in reader.pages)
           required = ["Abstract", "Keywords", "Project information", "Nomenclature",
-                      "1.0 Introduction", "3.0 Methodology", "4.2 Frame-by-frame results",
+                      "1.0 Introduction", "3.0 Methodology", "4.2 False detections and missed segments",
                       "5.0 Discussion and conclusion"]
           for heading in required:
               assert heading in report, f"PDF missing required section: {heading}"
@@ -191,7 +191,7 @@ jobs:
           ];
           for (const study of studies) {
             const sourceLinks = [...study.html.matchAll(/class="study-cite" href="#([^"]+)"/g)].map(match => match[1]);
-            const bibliography = [...study.html.matchAll(/<li id="(fl-ref-\d+|sc-cam-ref-\d+|sc-clap-ref-\d+)"/g)].map(match => match[1]);
+            const bibliography = [...study.html.matchAll(/<li id="([^"]+-ref-[0-9]+)"/g)].map(match => match[1]);
             if(sourceLinks.length < 5 || bibliography.length !== study.expected ||
                sourceLinks.some(ref => !bibliography.includes(ref)) ||
                !study.html.includes('6.0 References') ||
