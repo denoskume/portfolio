@@ -1956,6 +1956,10 @@
 
 /* HOME — fidèle aux proportions de la vidéo : banner, stats, cards, mosaic, news, footer */
 body:has(#home.active){--nav-h:76px;--gutter:clamp(20px,2.35vw,38px);background:#fff}
+body:has(#home.active) .main-container{
+  /* Hero starts immediately below the fixed navbar, without the old 72–96px spacer. */
+  margin-top:var(--nav-h);
+}
 body:has(#home.active) .navbar{background:#fff;border-top:5px solid #081e33;border-bottom:1px solid #d9dee4;backdrop-filter:none}
 body:has(#home.active) .navbar.solid{background:#fff}
 body:has(#home.active) .navbar .nav-links a{color:#10273c}
