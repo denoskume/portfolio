@@ -1,5 +1,5 @@
 {
-  "name": "Denos Kume",
+  "name": "Denos KUME",
   "academic_headline": "MSc Control and Robotics - Data Science, Signal & Image Processing",
   "career_headline": "Data Science | Computer Vision & Image Processing | Data Analysis",
   "contact": [
@@ -31,30 +31,23 @@
     {
       "school": "Centrale Nantes - MSc Control and Robotics",
       "dates": "2025 - 2027",
-      "track": "Data Science, Signal and Image Processing | Nantes, France",
-      "description": "Advanced training in data analysis, artificial intelligence, machine learning and numerical optimization applied to signal and image processing.",
-      "courses": "Machine Learning | Data Analysis and Information Retrieval | Numerical Optimization | Image Processing"
+      "track": "Data Science, Signal and Image Processing",
+      "description": "Artificial intelligence, machine learning and numerical optimization applied to data analysis and image processing.",
+      "courses": "Machine Learning | Data Analysis and Information Retrieval | Numerical Optimization | Image Processing",
+      "track_label": "Track",
+      "location": "Nantes, France"
     },
     {
       "school": "Kristu Jayanti University - BSc Computer Science & Electronics",
       "dates": "2021 - 2025",
-      "track": "Two majors: Computer Science and Electronics | Bangalore, India",
-      "description": "Combined software development, databases and data analysis with digital electronics and embedded systems; practical microcontroller hardware interfacing.",
-      "courses": "Database Management Systems | Data Analysis | Programming | Software Engineering"
+      "track": "Computer Science and Electronics",
+      "description": "Dual major in programming, databases, data analysis, digital electronics and embedded systems, with practical microcontroller interfacing.",
+      "courses": "Database Management Systems | Data Analysis | Programming | Software Engineering",
+      "track_label": "Majors",
+      "location": "Bangalore, India"
     }
   ],
   "experience": [
-    {
-      "title": "AI Response Evaluator - Freelance | RWS TrainAI",
-      "dates": "Aug - Oct 2026",
-      "summary": "Evaluation of AI-generated responses against defined quality criteria.",
-      "bullets": [
-        "Evaluated AI-generated responses against relevance, accuracy, completeness and instruction-adherence criteria.",
-        "Compared outputs from different AI models to identify errors, inconsistencies and missing information.",
-        "Documented evidence-based observations and justifications for evaluation decisions.",
-        "Provided structured evaluations to support continuous model improvement."
-      ]
-    },
     {
       "title": "Data Analysis Intern | Unified Mentor, Bangalore, India",
       "dates": "Sep - Dec 2024",
@@ -65,6 +58,17 @@
         "Performed exploratory data analysis to identify trends, distributions and anomalies.",
         "Created Matplotlib visualizations and prepared datasets for Business Intelligence reporting."
       ]
+    },
+    {
+      "title": "AI Response Evaluator - Freelance | RWS TrainAI",
+      "dates": "Aug - Oct 2026",
+      "summary": "Evaluation of AI-generated responses against defined quality criteria.",
+      "bullets": [
+        "Evaluated AI-generated responses against relevance, accuracy, completeness and instruction-adherence criteria.",
+        "Compared outputs from different AI models to identify errors, inconsistencies and missing information.",
+        "Documented evidence-based observations and justifications for evaluation decisions.",
+        "Provided structured evaluations to support continuous model improvement."
+      ]
     }
   ],
   "projects": [
@@ -73,10 +77,10 @@
       "dates": "2026",
       "summary": "Academic image-processing project detecting thin instruments in noisy fluoroscopy sequences.",
       "bullets": [
-        "Co-developed a Python pipeline using ten annotated fluoroscopy frames.",
-        "Applied denoising, contrast enhancement and background subtraction to isolate thin instruments.",
-        "Compared fixed-threshold, Otsu and Gaussian-mixture segmentation approaches.",
-        "Evaluated predicted masks against manual annotations using Dice, IoU and PSNR metrics."
+        "Pipeline: Co-developed a Python pipeline using ten annotated fluoroscopy frames.",
+        "Processing: Applied denoising, contrast enhancement and background subtraction to isolate thin instruments.",
+        "Comparison: Compared fixed-threshold, Otsu and Gaussian-mixture segmentation approaches.",
+        "Evaluation: Evaluated predicted masks against manual annotations using Dice, IoU and PSNR metrics."
       ]
     }
   ],
