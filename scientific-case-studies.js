@@ -411,7 +411,7 @@
       '<button type="button" data-sc-action="share">↗ Share</button>'+
       '<button type="button" data-sc-action="cite">“ ” Cite</button>'+
       '<button type="button" data-sc-action="rights">License &amp; Rights</button>'+
-      '<a class="sc-source-link" href="'+safe(d.notebook)+'" target="_blank" rel="noopener noreferrer">Source notebook</a>'+
+      '<a class="sc-source-link" href="'+safe(d.notebook)+'" target="_blank" rel="noopener noreferrer">'+(project>=4?'Source code':'Source notebook')+'</a>'+
       '<span class="fl-action-status" role="status" aria-live="polite"></span></div>'+
       '<div class="fl-paper-panel" id="'+p+'-panel-report" data-sc-panel="report" role="tabpanel" aria-labelledby="'+p+'-tab-report" tabindex="0">'+report+'</div>'+
       '<div class="fl-paper-panel" id="'+p+'-panel-figures" data-sc-panel="figures" role="tabpanel" aria-labelledby="'+p+'-tab-figures" tabindex="0" hidden>'+
