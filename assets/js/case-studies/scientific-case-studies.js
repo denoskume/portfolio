@@ -584,7 +584,7 @@
         throw new Error('Invalid or duplicate case-study id: ' + key);
       }
       for (const field of ['slug','prefix','title','question','repository','notebook',
-          'pdf','downloadName','citation','bibtex','keywords','projectInfo',
+          'pdf','downloadName','keywords','projectInfo',
           'glossary','summary','reportSections','figures','metrics','references']) {
         if (!study[field]) throw new Error('Case study '+id+' missing '+field);
       }
