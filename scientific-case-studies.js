@@ -208,51 +208,59 @@
       ],
       reportSections:[
         {key:'intro',title:'1.0 Introduction',body:
-          '<p>Audio classifiers often require supervised labels and training. CLAP instead maps recordings and text into a common embedding space, allowing a recording to be compared with class descriptions directly. A zero-shot classifier ranks descriptions without learning a new classification head from ESC-50.</p>'+
-          '<p>The research question is whether the <em>wording</em> of those descriptions changes prediction quality, even when the same pretrained model and clips are used. <a class="fl-figure-ref" href="#sc-clap-r-fig1">Figure 1</a> presents the complete pipeline.</p>'+
-          figure(rawClap+'outputs/figures/clap_complete_zero_shot_pipeline.png','<strong>Figure 1.</strong> LAION-CLAP audio/text encoders, L2 normalization, cosine similarity and class ranking.','Project pipeline for zero-shot audio classification with CLAP.','sc-clap-r-fig1')},
+          '<h3>1.1 Why this problem matters</h3>'+
+          '<p>Imagine hearing a short sound but having no labeled examples available to teach a new classifier. A conventional supervised model would need recordings with known labels. CLAP offers another approach: it has already learned relationships between sounds and language, so it can compare an unfamiliar recording with descriptions of possible sound categories.</p>'+
+          '<p>However, a sound can be described in several ways. A label such as "rain" is short, while "an audio recording of rain" provides context. Both point to the same class, but they create different text embeddings. Our research question was simple: <strong>does the wording of a class description change how accurately CLAP recognizes environmental sounds?</strong></p>'+
+          '<h3>1.2 What we set out to test</h3>'+
+          '<p>We compared ten ways of writing the same 50 ESC-50 class names, using one pretrained audio-text model and the same audio clips throughout. This let us study the effect of the prompt itself while keeping the classification process consistent.</p>'},
         {key:'dataset',title:'2.0 Dataset and objectives',body:
-          '<h3>2.1 ESC-50 dataset</h3>'+
-          '<p>ESC-50 contains 2,000 environmental recordings grouped into 50 categories. In this project, the clips are evaluation examples, not a training set for a new task-specific classifier. Each of the ten prompt templates is tested with the same class inventory.</p>'+
+          '<h3>2.1 The audio we worked with</h3>'+
+          '<p>We used <strong>ESC-50</strong>, a dataset of <strong>2,000 five-second recordings</strong> representing <strong>50 everyday sound categories</strong>. Each recording has a known class, which provides a direct way to check whether the model selected the correct sound. We used these labels for evaluation rather than fitting a new classifier.</p>'+
           '<div class="fl-facts"><div><strong>2,000</strong><span>Audio clips</span></div><div><strong>50</strong><span>Classes</span></div><div><strong>10</strong><span>Prompt strategies</span></div></div>'+
-          '<h3>2.2 Requirements and acceptance measures</h3>'+
-          bullets(['Load ESC-50 and the pretrained CLAP checkpoint; encode audio clips and 50 class descriptions per strategy.',
-            'Normalize embeddings, compute cosine similarities and rank the candidate classes.',
-            'Benchmark all ten prompts, identify the best Top-1 result, then compute Top-1 through Top-10.',
-            'Inspect class-wise performance and explore relationships with AudioSet quality and coverage statistics.'])+
-          '<p>The evaluation compares ten prompt strategies against the class-name baseline using Top-1, Top-k and classwise accuracy.</p>'},
+          '<h3>2.2 What the project needed to deliver</h3>'+
+          '<p>Our goal was to build a complete zero-shot classification workflow, compare prompt choices fairly, and explain what changed in the predictions. We organized the work into four tasks:</p>'+
+          bullets([
+            'Prepare the ESC-50 recordings and load the pretrained LAION-CLAP model.',
+            'Describe each of the 50 classes using ten different text templates.',
+            'Compare audio and text representations and measure Top-1 and Top-k accuracy.',
+            'Examine which classes were easier or harder to recognize, and study their relationship with AudioSet metadata.'
+          ])+
+          '<p>We evaluated each prompt strategy on the full dataset. The main comparison was against a simple baseline that used class names without surrounding words.</p>'},
         {key:'method',title:'3.0 Methodology',body:
-          '<div class="fl-method-steps"><span>Encode audio</span><span>Write prompts</span><span>Match embeddings</span><span>Rank classes</span></div>'+
-          '<h3>3.1 Pretrained audio–text scoring</h3>'+
-          '<p>The audio encoder produces one embedding for each clip; the text encoder produces one embedding for each of the 50 prompted class labels. After L2 normalization, cosine similarity ranks text candidates by proximity to the audio vector. The highest-scoring candidate is the Top-1 prediction.</p>'+
-          '<h3>3.2 Prompt design</h3>'+
-          '<p>The comparison covers ten templates, including the raw class name, "the sound of {}", "a sound clip of {}" and "an audio recording of {}". No task-specific labels update the pretrained weights.</p>'+
-          '<p>Section 4.1 compares all ten prompt strategies.</p>'+
-          '<h3>3.3 Evaluation protocol</h3>'+
-          '<p>Accuracy is recorded over ESC-50. Top-k checks whether the true class appears among the first k ranked text candidates. The analysis also looks at per-class performance and exploratory correlations with AudioSet metadata.</p>'},
+          '<div class="fl-method-steps"><span>Prepare clips</span><span>Encode audio and text</span><span>Compare similarity</span><span>Evaluate</span></div>'+
+          '<h3>3.1 How CLAP makes a prediction</h3>'+
+          '<p>For each sound clip, the CLAP audio encoder produces a numerical representation called an <strong>embedding</strong>. The text encoder does the same for every candidate description. We normalize these vectors and calculate their cosine similarity. A higher similarity means that, according to the model, the sound and the description are a better match.</p>'+
+          '<p>For example, a clip containing rain is compared with descriptions of all 50 possible classes. The class whose text embedding obtains the highest similarity becomes the <strong>Top-1 prediction</strong>. The model does not need to be retrained for the ESC-50 labels.</p>'+
+          figure(rawClap+'outputs/figures/clap_complete_zero_shot_pipeline.png','<strong>Figure 1.</strong> The audio and text encoders produce embeddings; cosine similarity ranks the candidate sound classes.','CLAP processing pipeline from audio and text through similarity to class ranking.','sc-clap-r-fig1')+
+          '<h3>3.2 Why we changed the prompts</h3>'+
+          '<p>We kept the recordings, model and candidate categories fixed, then changed how each category was introduced to the text encoder. The ten strategies included the bare class name, "the sound of {}", "a sound clip of {}" and "an audio recording of {}". The braces stand for one of the 50 sound classes.</p>'+
+          '<p>This matters because CLAP compares complete text representations, not isolated dictionary labels. The surrounding words can make a description more similar to the language used when the model learned its audio-text associations.</p>'+
+          '<h3>3.3 How we measured performance</h3>'+
+          '<p><strong>Top-1 accuracy</strong> counts the recordings for which the highest-ranked class is correct. <strong>Top-k accuracy</strong> checks whether the correct answer appears within the first k suggestions. We also looked at individual class results to understand where recognition was strongest and where confusion remained.</p>'},
         {key:'results',title:'4.0 Experimental results',body:
-          '<h3>4.1 Prompt strategy comparison</h3>'+
-          '<p>The best prompt ("an audio recording of {}") achieved <strong>91.15% Top-1</strong>, versus <strong>83.05%</strong> for class names alone, or <strong>+8.10 percentage points</strong>. The scores varied widely across the ten tested formulations.</p>'+
-          figure(rawClap+'outputs/figures/prompt_strategy_comparison_table.png','<strong>Table 1.</strong> Prompt-strategy comparison, highlighting the class-only baseline and best-performing strategy.','Ten prompt strategies: baseline 83.05%, best score 91.15%.','sc-clap-r-fig2')+
-          '<p>'+link(CLAP+'/blob/main/outputs/tables/prompt_strategy_comparison_table.csv','Open the original results CSV')+'</p>'+
-          '<h3>4.2 Top-k evaluation</h3>'+
-          '<p>With the best prompt, Top-1 was 91.15%, Top-3 was 97.45%, and Top-5 reached <strong>99.00%</strong>. This shows the correct class is frequently among the highest-scoring alternatives even when not ranked first.</p>'+
-          figure(rawClap+'outputs/figures/topk_accuracy_table.png','<strong>Table 2.</strong> Top-1 through Top-10 classification accuracy.','Top-k classification accuracy on ESC-50.','sc-clap-r-topk-table')+
-          figure(rawClap+'outputs/figures/topk_accuracy_line.png','<strong>Figure 3.</strong> Top-k accuracy for k = 1 through 10 using the best tested prompt.','Original Top-k accuracy line chart from the CLAP project.','sc-clap-r-fig3')+
-          '<h3>4.3 Classwise accuracy and AudioSet metadata</h3>'+
-          '<p>Classwise evaluation identifies the ESC-50 categories with the highest and lowest recognition accuracy.</p>'+
-          figure(rawClap+'outputs/figures/classwise_accuracy_tables.png','<strong>Classwise results.</strong> Highest and lowest classification accuracies across ESC-50 categories.','Classwise classification accuracy on ESC-50.','sc-clap-r-classwise-table')+
-          '<p>Classwise accuracy showed weak correlations with the recorded AudioSet metadata: quality (Pearson r = <strong>0.081</strong>) and log10 class video counts (Pearson r = <strong>−0.181</strong>). Neither variable showed a strong linear association with recognition accuracy.</p>'+
-          '<h3>4.4 Comparison with published classifiers</h3>'+
-          '<p>CLAP achieved <strong>91.15% Top-1</strong> accuracy on ESC-50. For comparison, published results include BEATs (98.61%), HTS-AT (96.20%) and AST (95.30%), using their respective training and evaluation protocols.</p>'+
-          figure(rawClap+'outputs/figures/published_classifier_comparison_table.png','<strong>Table 3.</strong> CLAP zero-shot accuracy and published ESC-50 classifier results.','CLAP result alongside reported ESC-50 classifier accuracies.','sc-clap-r-model-table')},
+          '<h3>4.1 The wording of the prompt changed accuracy</h3>'+
+          '<p>Starting with class names alone, CLAP correctly classified <strong>83.05%</strong> of the recordings. With the prompt <strong>"an audio recording of {}"</strong>, accuracy increased to <strong>91.15%</strong>. That is a gain of <strong>8.10 percentage points</strong>, achieved by changing the text descriptions without modifying the pretrained model.</p>'+
+          '<p>The improvement is meaningful because the audio clips and the 50 possible answers were the same in both tests. The text supplied to CLAP was the difference. The comparison also shows that extra words do not automatically help: the tested prompt strategies produced different scores, and some performed below the class-name baseline.</p>'+
+          figure(rawClap+'outputs/figures/prompt_strategy_comparison_table.png','<strong>Table 1.</strong> Top-1 accuracy for the ten prompt strategies. The class-name baseline and the best-performing prompt provide the key comparison.','Prompt strategy table with accuracies from the CLAP project.','sc-clap-r-fig2')+
+          '<p>Among the alternative formulations, "a sound clip of {}" reached <strong>87.60%</strong> and "a recording of {}" reached <strong>87.55%</strong>. The results demonstrate why choosing a prompt is part of the classification method rather than a purely cosmetic wording decision.</p>'+
+          '<h3>4.2 What the Top-k results tell us</h3>'+
+          '<p>Top-1 accuracy tells us how often the first answer is correct, but it does not show how close other predictions were. With the best prompt, the correct class appeared in the top three for <strong>97.45%</strong> of clips and in the top five for <strong>99.00%</strong>. So even when the first prediction was wrong, the correct label was often among the next few suggestions.</p>'+
+          '<p>This matters for interpreting a similarity-based classifier: its ranking can still contain useful information beyond the first label. The complete Top-1 through Top-10 table is available in <strong>Figures</strong> and <strong>Metrics</strong>.</p>'+
+          figure(rawClap+'outputs/figures/topk_accuracy_line.png','<strong>Figure 2.</strong> The rise from Top-1 to Top-5 accuracy shows how often the correct class appears among the highest-ranked suggestions.','Top-k accuracy curve for the best CLAP prompt.','sc-clap-r-fig3')+
+          '<h3>4.3 Differences between sound categories</h3>'+
+          '<p>We then examined accuracy separately for each of the 50 categories. Some sounds were recognized consistently, while others produced more incorrect first choices. Looking at classwise results helps identify the types of recordings that are more difficult for this model, rather than relying only on one overall percentage.</p>'+
+          '<p>We also compared the classwise accuracy scores with AudioSet quality statistics and class video counts. The measured Pearson correlations were <strong>0.081</strong> for quality and <strong>−0.181</strong> for log10 video counts. These small values show that neither metadata variable closely tracked the differences in recognition accuracy across classes. The classwise tables and scatter plots can be inspected in <strong>Figures</strong>.</p>'+
+          '<h3>4.4 Putting the result in context</h3>'+
+          '<p>Our <strong>91.15%</strong> Top-1 accuracy comes from zero-shot classification: we used the pretrained CLAP representations without fitting a classifier on ESC-50. The project also presents published ESC-50 accuracies for BEATs (98.61%), HTS-AT (96.20%) and AST (95.30%). Those results come from supervised or fine-tuned approaches and provide a useful reference for understanding the performance of different audio classification strategies.</p>'+
+          '<p>The complete model comparison appears in the <strong>Figures</strong> tab, alongside the classwise tables and Top-k results.</p>'},
         {key:'discussion',title:'5.0 Discussion and conclusion',body:
-          '<h3>5.1 Were the objectives met?</h3>'+
-          '<p>All ten prompt strategies were evaluated using Top-k and classwise metrics. The best formulation improved Top-1 accuracy by <strong>8.10 percentage points</strong> over the class-name baseline without fine-tuning.</p>'+
-          '<h3>5.2 Why did prompt formulation matter?</h3>'+
-          '<p>CLAP scores similarity between audio and text embeddings rather than a class-specific trained classifier. Changing the surrounding words changes the text representation and can therefore change which classes receive the highest similarity scores.</p>'+
-          '<h3>5.3 Limitations and future work</h3>'+
-          '<p>Further work could compare different CLAP checkpoints, evaluate additional audio datasets and test prompts adapted to different recording conditions.</p>'}
+          '<h3>5.1 What did we learn?</h3>'+
+          '<p>The experiment answered our research question: <strong>prompt formulation had a clear effect on CLAP classification accuracy</strong>. Using a more descriptive phrase raised Top-1 accuracy from 83.05% to 91.15% while the model weights and audio examples stayed unchanged.</p>'+
+          '<p>The Top-k results add another insight. A first-choice error does not necessarily mean the correct category is unrelated to the recording; in many cases it is already ranked among the strongest candidates. This helps explain both the strengths and remaining confusions of the model.</p>'+
+          '<h3>5.2 Why this work is useful</h3>'+
+          '<p>The project shows how to build and evaluate an audio-text classification pipeline, design controlled prompt comparisons, and interpret performance across categories. It also demonstrates that improving the text representation can raise accuracy without creating a new supervised training pipeline.</p>'+
+          '<h3>5.3 Next steps</h3>'+
+          '<p>A natural continuation is to test the same prompt strategies on different audio datasets, compare other CLAP checkpoints, and examine descriptions adapted to specific recording conditions. Those experiments would show how the prompt effects change across audio domains.</p>'}
       ],
       figures:[
         ['Zero-shot pipeline','Audio and text embedding flow through similarity-based classification','outputs/figures/clap_complete_zero_shot_pipeline.png','intro','sc-clap-r-fig1','figure'],
