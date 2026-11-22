@@ -2489,6 +2489,8 @@ body:has(#about.active) .main-container {
 
 <link rel="stylesheet" href="harvard-cv.css?v=20261122-header-download">
 <link rel="stylesheet" href="contact-modern.css?v=20261122-centered-form-v5">
+<link rel="stylesheet" href="projects-dashboard.css?v=20261122-home-insights-v1">
+<script src="projects-dashboard.js?v=20261122-home-insights-v1" defer></script>
 <script src="contact-form.js?v=20261122-contact-v2" defer></script>
 </head>
 
@@ -2574,6 +2576,85 @@ body:has(#about.active) .main-container {
             <button class="cn-slider-toggle" id="cnCarouselToggle" type="button" aria-label="Pause slideshow" title="Play / pause">Ⅱ</button>
             <span class="cn-slider-dots" id="cnCarouselDots" aria-hidden="true"><i class="active"></i><i></i><i></i></span>
           </div>
+        </div>
+      </section>
+
+      <!-- Home dashboard: live, source-backed project insights. -->
+      <section id="projectsDashboard" aria-labelledby="pdTitle">
+        <div class="pd-shell">
+          <div class="pd-header">
+            <div class="pd-headline">
+              <h2 id="pdTitle">Project insights</h2>
+              <p>An interactive view of the experiments, tools and evidence behind this portfolio.</p>
+            </div>
+            <div class="pd-filters" role="group" aria-label="Filter project insights">
+              <label class="pd-field">
+                <span class="pd-search-icon" aria-hidden="true">⌕</span>
+                <input type="search" data-pd-search aria-label="Search projects" placeholder="Search projects or technologies" autocomplete="off">
+              </label>
+              <label class="pd-field">
+                <select data-pd-category aria-label="Filter by technical domain">
+                  <option value="All">All domains</option>
+                  <option value="Computer Vision">Computer Vision</option>
+                  <option value="Image Processing">Image Processing</option>
+                  <option value="Machine Learning">Machine Learning</option>
+                </select>
+              </label>
+              <label class="pd-field">
+                <select data-pd-format aria-label="Filter by project format">
+                  <option value="All">All formats</option>
+                  <option value="Case study">Case studies</option>
+                  <option value="Research">Research</option>
+                  <option value="Laboratory">Laboratories</option>
+                </select>
+              </label>
+              <button type="button" class="pd-reset" data-pd-reset>Reset</button>
+            </div>
+          </div>
+
+          <div class="pd-kpis" data-pd-kpis aria-live="polite">
+            <p>Portfolio project metrics are loading.</p>
+          </div>
+
+          <div class="pd-analytics" aria-label="Project analytics">
+            <article class="pd-panel">
+              <div class="pd-panel-head">
+                <h3>Technical domains</h3>
+                <small>Project distribution</small>
+              </div>
+              <div data-pd-domains aria-label="Projects by domain"></div>
+              <p class="pd-panel-foot">Select a domain to filter every panel and the project list.</p>
+            </article>
+
+            <article class="pd-panel">
+              <div class="pd-panel-head">
+                <h3>Project formats</h3>
+                <small>Portfolio mix</small>
+              </div>
+              <div data-pd-formats aria-label="Projects by format"></div>
+              <p class="pd-panel-foot">Research experiments, applied case studies and reproducible labs.</p>
+            </article>
+
+            <article class="pd-panel">
+              <div class="pd-panel-head">
+                <h3>Tools &amp; methods</h3>
+                <small>Top 6 tags</small>
+              </div>
+              <div data-pd-skills aria-label="Frequently used project technologies"></div>
+              <p class="pd-panel-foot">Tag frequency counts projects, not skill proficiency.</p>
+            </article>
+          </div>
+
+          <article class="pd-panel pd-library">
+            <div class="pd-library-head">
+              <h3>Explore the projects</h3>
+              <small data-pd-result-count aria-live="polite">Loading projects</small>
+            </div>
+            <div data-pd-projects>
+              <p>Project records are loading.</p>
+            </div>
+          </article>
+          <p class="pd-provenance">Source: portfolio project records (content.js). Figures are linked gallery assets. Performance measures belong to individual projects and are not averaged across experiments.</p>
         </div>
       </section>
 
