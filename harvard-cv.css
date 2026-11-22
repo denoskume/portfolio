@@ -1,0 +1,173 @@
+/* Modern, single-column Harvard-style CV preview.
+   The downloadable PDF is generated separately from cv-data.json. */
+#resume .resume-page {
+  background: #f1f4f8;
+  padding-bottom: clamp(48px, 7vw, 86px);
+}
+#resume .projects-head { margin-bottom: 20px; }
+#resume .harvard-toolbar {
+  max-width: 850px;
+  margin: 0 auto 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+#resume .harvard-toolbar-title {
+  font: 700 1rem/1.35 var(--font-body);
+  color: #112944;
+}
+#resume .harvard-toolbar-description {
+  color: #596b7f;
+  font: 400 .85rem/1.5 var(--font-body);
+  margin-top: 4px;
+}
+#resume .harvard-download {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 20px;
+  border-radius: 4px;
+  background: #11375e;
+  color: #fff;
+  font: 700 .88rem/1.15 var(--font-body);
+  text-decoration: none;
+  transition: background-color .2s ease, transform .2s ease;
+}
+#resume .harvard-download:hover,
+#resume .harvard-download:focus-visible {
+  background: #205788;
+  transform: translateY(-1px);
+  color: #fff;
+}
+#resume .resume-sheet.resume-harvard {
+  box-sizing: border-box;
+  width: min(210mm, 100%);
+  min-height: 297mm;
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 15mm 16mm;
+  background: #fff;
+  border: 1px solid #dbe2ea;
+  box-shadow: 0 16px 45px rgba(19, 42, 64, .10);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 1.44;
+  color: #27394d;
+  overflow: visible;
+}
+#resume .resume-harvard .harvard-header {
+  padding: 0 0 14px;
+  border-bottom: 1.5px solid #173c65;
+  text-align: center;
+}
+#resume .resume-harvard .harvard-header h1 {
+  font: 700 27px/1.16 Arial, Helvetica, sans-serif;
+  letter-spacing: .045em;
+  text-transform: uppercase;
+  color: #102840;
+  margin: 0 0 7px;
+}
+#resume .resume-harvard .harvard-headline {
+  font: 400 12px/1.4 Arial, Helvetica, sans-serif;
+  color: #516276;
+  margin: 0 0 7px;
+}
+#resume .resume-harvard .harvard-contact {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  max-width: 100%;
+  font: 400 11px/1.35 Arial, Helvetica, sans-serif;
+}
+#resume .resume-harvard .harvard-contact a {
+  color: #174875;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+}
+#resume .resume-harvard .harvard-contact span { color: #526276; }
+#resume .resume-harvard .harvard-section { padding-top: 10px; }
+#resume .resume-harvard .harvard-section h2 {
+  font: 700 12.2px/1.35 Arial, Helvetica, sans-serif;
+  color: #163c65;
+  border-bottom: 1px solid #b5c0cc;
+  letter-spacing: .045em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  padding: 0 0 4px;
+}
+#resume .resume-harvard p,
+#resume .resume-harvard li {
+  font: 400 11.9px/1.44 Arial, Helvetica, sans-serif;
+  color: #283a4c;
+  text-align: left;
+  max-width: none;
+  margin: 0;
+}
+#resume .resume-harvard .harvard-item { margin: 0 0 11px; }
+#resume .resume-harvard .harvard-item:last-child { margin-bottom: 0; }
+#resume .resume-harvard .harvard-item-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+#resume .resume-harvard .harvard-item-heading strong {
+  font: 700 12.1px/1.4 Arial, Helvetica, sans-serif;
+  color: #102840;
+}
+#resume .resume-harvard .harvard-dates {
+  font: 400 11px/1.4 Arial, Helvetica, sans-serif;
+  color: #596b7f;
+  white-space: nowrap;
+}
+#resume .resume-harvard .harvard-organization {
+  font: 400 11.6px/1.4 Arial, Helvetica, sans-serif;
+  color: #536478;
+  margin-bottom: 3px;
+}
+#resume .resume-harvard .harvard-bullets {
+  list-style: disc outside;
+  padding-left: 20px;
+  margin: 2px 0 0;
+}
+#resume .resume-harvard .harvard-bullets li { padding-left: 1px; margin: 2px 0; }
+#resume .resume-harvard .harvard-skill-line { margin-bottom: 4px; }
+#resume .resume-harvard .harvard-skill-line strong { color: #1f3651; }
+#resume .resume-harvard .harvard-project { margin-bottom: 9px; }
+#resume .resume-harvard .harvard-project:last-child { margin-bottom: 0; }
+#resume .resume-harvard .harvard-project strong {
+  font: 700 12px/1.45 Arial, Helvetica, sans-serif;
+  color: #102840;
+}
+#resume .resume-harvard .harvard-loading {
+  font: 400 .95rem/1.5 Arial, Helvetica, sans-serif;
+  color: #536478;
+  text-align: center;
+  padding-top: 35px;
+}
+#resume .harvard-footer-note {
+  font: 400 .79rem/1.5 var(--font-body);
+  text-align: center;
+  color: #65778b;
+  max-width: 850px;
+  margin: 15px auto 0;
+}
+@media (max-width: 760px) {
+  #resume .harvard-toolbar { align-items: stretch; flex-direction: column; }
+  #resume .harvard-download { align-self: flex-start; }
+  #resume .resume-sheet.resume-harvard {
+    width: 100%; min-height: auto; padding: 24px 18px;
+    box-shadow: 0 5px 22px rgba(19, 42, 64, .07);
+  }
+}
+@media (max-width: 420px) {
+  #resume .resume-harvard .harvard-header h1 { font-size: 23px; }
+  #resume .resume-harvard .harvard-item-heading { display: block; }
+  #resume .resume-harvard .harvard-dates { display: block; margin-top: 3px; }
+}
