@@ -66,6 +66,8 @@
     const stageWidth = stage.getBoundingClientRect().width;
     const distance = Math.min(390, Math.max(205, stageWidth * .42));
     const startDistance = Math.min(155, Math.max(85, stageWidth * .17));
+    const incomingStartSize = incoming.getBoundingClientRect();
+    const outgoingFrontSize = outgoing.getBoundingClientRect();
     const ease = 'cubic-bezier(.44, .02, .2, 1)';
 
     sliding = true;
@@ -90,11 +92,17 @@
     const incomingFrames = [
       {transform: 'translate(-50%,-50%) translateX(' +
         (direction * startDistance).toFixed(1) + 'px) scale(.91)',
+       width:incomingStartSize.width + 'px',
+       height:incomingStartSize.height + 'px',
        opacity:.72, offset:0},
       {transform: 'translate(-50%,-50%) translateX(' +
         (direction * startDistance * .40).toFixed(1) + 'px) scale(.97)',
+       width:(incomingStartSize.width * .43 + outgoingFrontSize.width * .57) + 'px',
+       height:(incomingStartSize.height * .43 + outgoingFrontSize.height * .57) + 'px',
        opacity:.95, offset:.57},
       {transform:'translate(-50%,-50%) translateX(0px) scale(1)',
+       width:outgoingFrontSize.width + 'px',
+       height:outgoingFrontSize.height + 'px',
        opacity:1, offset:1}
     ];
 
