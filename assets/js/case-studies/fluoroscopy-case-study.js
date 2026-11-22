@@ -13,7 +13,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
   <div class="fl-backbar"><button type="button" onclick="showSection('projects')">Back to projects</button></div>
   <header class="fl-paper-header">
     <h1 id="fl-title">Microcatheter segmentation in fluoroscopy</h1>
-    <p class="fl-paper-question">Can we detect a thin instrument in noisy X&#8209;ray images and reconstruct its full path accurately?</p>
+    <p class="fl-paper-question">Segmenting thin instruments in noisy fluoroscopic images and reconstructing continuous paths.</p>
     <p class="fl-paper-authors">Master 1 project · Centrale Nantes · <strong>Collaborator:</strong> Oluwole Shokunbi</p>
   </header>
   <div class="fl-paper-shell">

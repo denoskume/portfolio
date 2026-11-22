@@ -30,7 +30,7 @@
 
   const flag = {
     slug:'flag-intelligence',prefix:'sc-flag',title:'Flag Intelligence',
-    question:'How can an application recognize a national flag and turn the result into a useful, sourced country profile?',
+    subtitle:'A Streamlit application for recognizing national flags and exploring country information.',
     authors:'Computer vision · Streamlit application',
     repository:R.flag,notebook:R.flag+'/blob/main/src/flag_recognition/flag_first_app.py',
     pdf:'flag-intelligence-case-study.pdf',downloadName:'Flag-Intelligence-Report.pdf',
@@ -121,7 +121,7 @@
 
   const card = {
     slug:'python-cardgame',prefix:'sc-card',title:'Rouge Gagne, Noir Perd · CardGame V1',
-    question:'Applying object-oriented programming in Python to design and implement an event-driven card game.',
+    subtitle:'Applying object-oriented programming in Python to design and implement an event-driven card game.',
     authors:'Master 1 (S1) project · Centrale Nantes',
     collaborator:'Sena FUKABE',
     repository:R.card+'/tree/main/versions/v1',
@@ -288,7 +288,7 @@
 
   const monstage = {
     slug:'monstage',prefix:'sc-stage',title:'MonStage',
-    question:'How can internship discovery, evaluation, application documents and follow-ups be managed in one private workspace?',
+    subtitle:'A private workspace for finding internships, preparing applications and tracking their progress.',
     authors:'Web application · React · TypeScript · Cloudflare Worker',
     repository:R.stage,notebook:R.stage+'/blob/main/src/app/routes.tsx',
     pdf:'monstage-case-study.pdf',downloadName:'MonStage-Report.pdf',

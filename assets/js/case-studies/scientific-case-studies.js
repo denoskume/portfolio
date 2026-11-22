@@ -75,7 +75,7 @@
   const studies = {
     2: {
       slug:'camera-calibration', prefix:'sc-cam', title:'Camera Calibration',
-      question:'How accurately can nine chessboard views recover a camera model and predict previously unused corner positions?',
+      subtitle:'Estimating camera parameters from chessboard images and evaluating reprojection and held-out prediction accuracy.',
       authors:'',
       repository:CAMERA, notebook:CAMERA+'/blob/main/Camera_Calibration.ipynb',
       pdf:'camera-calibration-case-study.pdf', downloadName:'Camera-Calibration-Report.pdf',
@@ -103,7 +103,6 @@
         'Camera calibration uses image observations of a pattern with known geometry to estimate camera parameters. This academic project used nine chessboard photographs to estimate intrinsic parameters and board poses, then tested how accurately the model predicts corners not used during fitting.',
         'An 8 × 6 pattern gave 48 detected inner corners per image (432 total). The linear Zhang pipeline produced <strong>0.434 px mean reprojection error</strong> and <strong>0.534 px overall RMS</strong> on the calibration views. In a separate held-out test, a nonlinear OpenCV refinement reduced pooled RMS from <strong>0.395 px to 0.352 px</strong>. The results include reprojection errors across nine calibration views and 216 held-out predictions per model.'
       ],
-      questionLabel:'Project objective and evaluation',
       references:[
         {label:'Zhang, Z. (2000). A Flexible New Technique for Camera Calibration. IEEE Transactions on Pattern Analysis and Machine Intelligence, 22(11), 1330–1334. DOI: 10.1109/34.888718.',url:'https://doi.org/10.1109/34.888718',linkLabel:'Read paper'},
         {label:'OpenCV. Camera Calibration with Square Chessboard. OpenCV Documentation.',url:'https://docs.opencv.org/4.12.0/dc/d43/tutorial_camera_calibration_square_chess.html',linkLabel:'Documentation'}
@@ -113,8 +112,8 @@
           '<h3>1.1 What is camera calibration?</h3>'+
           '<p>When a camera takes a photograph, a point in the scene becomes a point in the image. The image gives us pixel coordinates, but those pixels alone do not tell us how the camera formed the image. <strong>Camera calibration</strong> estimates the parameters of that projection: for example, the focal lengths in pixels and the location of the image centre.</p>'+
           '<p>To estimate these parameters, we need objects whose geometry we already know. A chessboard is useful because its black-and-white intersections are easy to locate and form a regular pattern with known spacing. By photographing the same board in several positions, we obtain different views of the same geometry.</p>'+
-          '<h3>1.2 The question we investigated</h3>'+
-          '<p>Our aim was to recover the camera parameters and board poses from nine chessboard images, then measure how closely the model predicts the observed corner positions. We also asked whether a refined model could predict corners reserved from the fitting process more accurately.</p>'},
+          '<h3>1.2 Project objectives</h3>'+
+          '<p>Our aim was to recover the camera parameters and board poses from nine chessboard images, then measure how closely the model predicts the observed corner positions. We also evaluated whether refinement improved prediction for corners excluded from model fitting.</p>'},
         {key:'dataset',title:'2.0 Dataset and objectives',body:
           '<h3>2.1 The images and reference geometry</h3>'+
           '<p>The dataset contains <strong>nine photographs</strong>, each <strong>640 × 480 pixels</strong>. The chessboard has <strong>8 × 6 inner corners</strong>, so each image provides 48 measurable image-to-board correspondences. With a square spacing of <strong>30 mm</strong>, we can assign physical coordinates to those board corners. In total, we detected <strong>432 corners</strong> across the nine images.'+'</p>'+
@@ -400,7 +399,7 @@
     return '<article class="fluoro-study scientific-study" data-sc-study="'+project+'" aria-labelledby="'+p+'-title">'+
       '<div class="fl-backbar"><button type="button" onclick="showSection(\'projects\')">Back to projects</button></div>'+
       '<header class="fl-paper-header"><h1 id="'+p+'-title">'+safe(d.title)+'</h1>'+
-      '<p class="fl-paper-question">'+safe(d.question)+'</p>'+
+      '<p class="fl-paper-question">'+safe(d.subtitle || d.question)+'</p>'+
       (d.authors ? '<p class="fl-paper-authors">'+safe(d.authors)+(d.collaborator ? ' · <strong>Collaborator:</strong> '+safe(d.collaborator) : '')+'</p>' : '')+'</header>'+
       '<div class="fl-paper-shell"><div class="fl-paper-main">'+
       '<div class="fl-paper-tabs" role="tablist" aria-label="Project case study views">'+tabs+'</div>'+
@@ -583,11 +582,12 @@
       if (!Number.isInteger(id) || id < 4 || studies[id]) {
         throw new Error('Invalid or duplicate case-study id: ' + key);
       }
-      for (const field of ['slug','prefix','title','question','repository','notebook',
+      for (const field of ['slug','prefix','title','repository','notebook',
           'pdf','downloadName','keywords','projectInfo',
           'glossary','summary','reportSections','figures','metrics','references']) {
         if (!study[field]) throw new Error('Case study '+id+' missing '+field);
       }
+      if (!study.subtitle && !study.question) throw new Error('Case study '+id+' missing subtitle or research question');
       studies[id] = study;
     }
   };
