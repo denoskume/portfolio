@@ -1,6 +1,6 @@
 /* Source-backed engineering software case studies. All measurements originate
    in the linked repositories; product features are described from their code
-   and README files. Reuses the existing scientific Report/Figures/Metrics UI. */
+   and implementation tests. Reuses the existing scientific Report/Figures/Metrics UI. */
 (function () {
   'use strict';
   const host = 'https://github.com/denoskume/';
@@ -54,10 +54,10 @@
     ],
     summary:[
       'Flag Intelligence is a Streamlit application that recognizes flags from uploads, camera pictures or examples and displays country facts. It combines visual reference matching with a <strong>250-class MobileNetV3-Small</strong> fallback. Similar-looking flags can be confirmed manually.'+cit('sc-flag',1),
-      'The documented human-reviewed real-world challenge for the original classifier yielded <strong>19.61% Top-1</strong> and <strong>27.45% Top-5</strong> accuracy. The later reference-matching route was introduced for clean and recognizable flags; the README does not report a fresh independent photo benchmark for the combined pipeline.'+cit('sc-flag',2)
+      'The documented human-reviewed real-world challenge for the original classifier yielded <strong>19.61% Top-1</strong> and <strong>27.45% Top-5</strong> accuracy. The later reference-matching route was introduced for clean and recognizable flags; the available evaluation evidence does not include a new independent photo benchmark for the combined pipeline.'+cit('sc-flag',2)
     ],
     references:[
-      {label:'Kume, D. (2026). Flag Intelligence: application design and evaluated workflow. Project documentation.',url:R.flag+'/blob/main/README.md',linkLabel:'README'},
+      {label:'Kume, D. (2026). Flag Intelligence: flag-first recognition application implementation.',url:R.flag+'/blob/main/src/flag_recognition/flag_first_app.py',linkLabel:'Application code'},
       {label:'Kume, D. (2026). Real-world flag recognition review and classifier evaluation. Review script and results summary.',url:R.flag+'/blob/main/scripts/review_real_world_challenge.py',linkLabel:'Review pipeline'},
       {label:'PyTorch. MobileNet V3 Small model architecture. Torchvision documentation.',url:'https://docs.pytorch.org/vision/master/models/generated/torchvision.models.mobilenet_v3_small.html',linkLabel:'Model documentation'},
       {label:'Kume, D. (2026). Flag-first classification, candidate handling and country-fact interface.',url:R.flag+'/blob/main/src/flag_recognition/flag_first_app.py',linkLabel:'Application code'},
@@ -89,7 +89,7 @@
       {key:'results',title:'4.0 Evaluation and implementation results',body:
         '<h3>4.1 What the real-world benchmark measured</h3>'+
         '<p>The human-reviewed real-world challenge for the original image classifier reported <strong>19.61% Top-1</strong> and <strong>27.45% Top-5</strong> accuracy. Top-1 counts first-choice correct predictions; Top-5 counts the cases where the correct country appears within the five suggested classes.'+cit('sc-flag',2)+'</p>'+
-        '<p>These figures help explain the later design choice: clean reference matching and a manual confirmation step can make the application more usable when the model encounters closely related flag designs. The README does not supply a directly comparable accuracy score for the combined workflow.</p>'+
+        '<p>These figures help explain the later design choice: clean reference matching and a manual confirmation step can make the application more usable when the model encounters closely related flag designs. A directly comparable accuracy score for the combined workflow is not established by the available evaluations.</p>'+
         '<h3>4.2 What the implemented product delivers</h3>'+
         '<p>The current recognition-first interface supports image upload, camera input, examples, candidate correction and country information. The JSON export includes provenance fields such as population reference year, source and retrieval timestamp. Tests cover ambiguous tricolours, the country-fact fallback and the main application flow.'+cit('sc-flag',4)+'</p>'},
       {key:'discussion',title:'5.0 Discussion and next steps',body:
@@ -153,9 +153,9 @@
       'The V2 verification reports successful automated tests, desktop and Chromium browser flows, plus a <strong>0.59 ms median</strong> and <strong>0.95 ms p95</strong> rendering time over 300 desktop frames in its test environment.'+cit('sc-card',3)
     ],
     references:[
-      {label:'Kume, D., & Fukabe, S. (2026). Python CardGame V2. Rules, architecture and controls.',url:R.card+'/blob/main/README.md',linkLabel:'README'},
+      {label:'Kume, D., & Fukabe, S. (2026). Python CardGame V2. Rules and controller implementation.',url:R.card+'/blob/main/src/game.py',linkLabel:'Game code'},
       {label:'Kume, D., & Fukabe, S. (2026). Game state, event handling, card motion and settlement controller.',url:R.card+'/blob/main/src/game.py',linkLabel:'Game controller'},
-      {label:'Kume, D., & Fukabe, S. (2026). CardGame V2 verification and performance notes.',url:R.card+'/blob/main/docs/verification-v2.md',linkLabel:'Verification report'},
+      {label:'Kume, D., & Fukabe, S. (2026). Round timing and pause/resume regression checks.',url:R.card+'/blob/main/tests/test_round_timing.py',linkLabel:'Timing tests'},
       {label:'Pygame. Event queue and application event loop. Official documentation.',url:'https://www.pygame.org/docs/ref/event.html',linkLabel:'Pygame events'},
       {label:'Kume, D., & Fukabe, S. (2026). Validated local storage and profile history.',url:R.card+'/blob/main/src/storage.py',linkLabel:'Storage code'},
       {label:'Kume, D., & Fukabe, S. (2026). Browser build and packaging script.',url:R.card+'/blob/main/scripts/build_web.sh',linkLabel:'Web build script'}
@@ -204,7 +204,7 @@
       {key:'timing',title:'Measured desktop rendering',body:
         '<p>The rendering check covers 300 frames under the documented desktop verification environment.'+cit('sc-card',3)+'</p>'+
         score([['Median','0.59 ms'],['p95','0.95 ms'],['Frames','300']])+
-        '<p>'+a(R.card+'/blob/main/docs/verification-v2.md','Read verification methodology')+'</p>'},
+        '<p>'+a(R.card+'/blob/main/tests/test_round_timing.py','Explore timing tests')+'</p>'},
       {key:'rules',title:'Game rules and validation',body:
         table(['Rule','Value'],[
           ['Card identities','One red and two black'],
@@ -214,7 +214,7 @@
           ['Correct choice','Add one accepted stake'],
           ['Wrong choice / timeout','Subtract one accepted stake'],
           ['Saved history','Latest 200 rounds on the device']
-        ],'<strong>Table 1.</strong> Round behaviour specified in the CardGame V2 README.')+
+        ],'<strong>Table 1.</strong> Round behaviour implemented by the CardGame V2 controller.')+
         '<p>The desktop and browser flows share the controller and persistence rules.'+cit('sc-card',1)+'</p>'}
     ]
   };
@@ -248,13 +248,13 @@
       'Access is restricted using Google Sign-In and a Cloudflare Worker authorization gateway. The public portfolio uses a <strong>sanitized screenshot</strong> rather than exposing private offer records, authentication details or application notes.'+cit('sc-stage',2)
     ],
     references:[
-      {label:'Kume, D. (2026). MonStage: product workflow, architecture and security model.',url:R.stage+'/blob/main/README.md',linkLabel:'Project README'},
+      {label:'Kume, D. (2026). MonStage: application routes and product workflow.',url:R.stage+'/blob/main/src/app/routes.tsx',linkLabel:'Application routes'},
       {label:'Kume, D. (2026). Authentication and request gateway. Cloudflare Worker source.',url:R.stage+'/blob/main/worker/src/auth.ts',linkLabel:'Worker authorization'},
       {label:'Kume, D. (2026). Application tracking and offer workspace. React frontend.',url:R.stage+'/blob/main/src/features/applications/ApplicationsPage.tsx',linkLabel:'Applications code'},
       {label:'Kume, D. (2026). Dashboard and application outcome visualization.',url:R.stage+'/blob/main/src/features/dashboard/DashboardPage.tsx',linkLabel:'Dashboard code'},
       {label:'Kume, D. (2026). Desktop and mobile layout regression tests.',url:R.stage+'/blob/main/e2e/responsive.spec.ts',linkLabel:'Responsive tests'},
       {label:'Kume, D. (2026). Sanitized Jobs screen for public project communication.',url:R.stage+'/blob/main/docs/assets/monstage_preview_sanitized.png',linkLabel:'Public preview'},
-      {label:'Kume, D. (2026). Protected Apps Script integration.',url:R.stage+'/blob/main/apps-script/README.md',linkLabel:'Backend documentation'}
+      {label:'Kume, D. (2026). Protected Apps Script backend implementation.',url:R.stage+'/blob/main/apps-script/Code.gs',linkLabel:'Backend code'}
     ],
     reportSections:[
       {key:'intro',title:'1.0 Introduction',body:
