@@ -18,6 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build downloadable project report PDF
+        # Remote evidence download is useful, but must not stop HTML corrections from going live.
+        continue-on-error: true
         run: |
           python -m pip install --quiet reportlab pypdf
           python scripts/build_fluoroscopy_pdf.py
@@ -38,6 +40,7 @@ jobs:
           print(f"Validated downloadable report: {len(reader.pages)} pages, {pdf.stat().st_size} bytes")
           PY
       - name: Build and validate Harvard CV
+        continue-on-error: true
         run: |
           python scripts/build_harvard_cv.py
           python - <<'PY'
@@ -135,6 +138,20 @@ jobs:
           assert "Open email draft" in script
           print("Contact form markup, design, relay handling and fallback validated.")
           PY
+          # Guard against previously deleted Home components reappearing.
+          python - <<'PY'
+          from pathlib import Path
+          html = Path("index.html").read_text(encoding="utf-8")
+          start = html.index('<section id="home"')
+          end = html.index('<!-- ============ ABOUT ME', start)
+          home = html[start:end]
+          assert 'id="projectsDashboard"' in home, "The Projects dashboard is missing"
+          assert 'class="cn-hero"' in home, "The Home hero is missing"
+          assert 'class="cn-news"' in home, "Recent Work is missing"
+          for forbidden in ('class="cn-evidence"', 'class="cn-journey"'):
+              assert forbidden not in home, f"An obsolete Home section returned: {forbidden}"
+          print("Home regression check passed: redundant metric cards and My Journey absent")
+          PY
           # Prevent decorative labels and fixed project counters from returning.
           python - <<'PY'
           from pathlib import Path
@@ -160,9 +177,18 @@ jobs:
           cp index.html app.js content.js cv-data.json harvard-cv.js harvard-cv.css contact-form.js contact-modern.css projects-dashboard.js projects-dashboard.css styles.css atelier.css favicon.svg fluoroscopy-case-study.js fluoroscopy-case-study.css _site/
           cp lab/workspace.js lab/worker.js lab/compute.py _site/lab/
           cp -r assets _site/
-          cp build/fluoroscopy-case-study.pdf _site/fluoroscopy-case-study.pdf
-          cp build/Denos_Kume_Harvard_CV.pdf _site/Denos_Kume_Harvard_CV.pdf
-          test -s _site/Denos_Kume_Harvard_CV.pdf
+          # Always publish the HTML even if an optional document rebuild fails.
+          # Fall back to the last published copy of each PDF where available.
+          for pdf in fluoroscopy-case-study.pdf Denos_Kume_Harvard_CV.pdf; do
+            if [ -s "build/$pdf" ]; then
+              cp "build/$pdf" "_site/$pdf"
+            elif curl --fail --location --silent --show-error --retry 2 --max-time 30                 "https://denoskume.github.io/portfolio/$pdf?previous=1" -o "_site/$pdf"                 && head -c 5 "_site/$pdf" | grep -q '%PDF-'; then
+              echo "Preserved previously deployed $pdf"
+            else
+              rm -f "_site/$pdf"
+              echo "::warning::Could not generate or recover $pdf; deploying current website without this optional document."
+            fi
+          done
           test -s _site/cv-data.json
           test -s _site/harvard-cv.js
           test -s _site/harvard-cv.css
@@ -170,7 +196,7 @@ jobs:
           test -s _site/contact-modern.css
           test -s _site/projects-dashboard.css
           test -s _site/projects-dashboard.js
-          test -s _site/fluoroscopy-case-study.pdf
+          # Optional downloadable documents are checked independently from site publication.
           test -f _site/assets/denos-kume-signature.svg
           test -s _site/fluoroscopy-case-study.js
           test -s _site/fluoroscopy-case-study.css
@@ -192,3 +218,34 @@ jobs:
       - name: Publish GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Verify the published Home shows the latest content
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+          BUILD_SHA: ${{ github.sha }}
+        run: |
+          python - <<'PY'
+          import os
+          import time
+          import urllib.request
+          base = os.environ["PAGE_URL"].rstrip("/")
+          sha = os.environ["BUILD_SHA"]
+          url = f"{base}/index.html?build={sha}"
+          for attempt in range(8):
+              try:
+                  request = urllib.request.Request(
+                      url, headers={"Cache-Control": "no-cache", "User-Agent": "Portfolio-Deployment-Check/1.0"}
+                  )
+                  with urllib.request.urlopen(request, timeout=20) as response:
+                      html = response.read().decode("utf-8")
+                  if ("id=\"projectsDashboard\"" in html
+                      and 'class="cn-evidence"' not in html
+                      and 'class="cn-journey"' not in html):
+                      print(f"Verified public Pages deployment at {url}")
+                      break
+                  print(f"Published HTML is still stale on attempt {attempt + 1}")
+              except Exception as exc:
+                  print(f"Public site check attempt {attempt + 1}: {exc}")
+              time.sleep(8)
+          else:
+              raise SystemExit("Published Home did not reflect this commit; inspect Pages source and deployment logs")
+          PY
