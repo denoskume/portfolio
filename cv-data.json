@@ -33,7 +33,7 @@
       "dates": "2025 - 2027",
       "track": "Data Science, Signal and Image Processing",
       "description": "Artificial intelligence, machine learning and numerical optimization applied to data analysis and image processing.",
-      "courses": "Machine Learning | Data Analysis and Information Retrieval | Numerical Optimization | Image Processing",
+      "courses": "Artificial Intelligence | Machine Learning | Numerical Optimization | Data Analysis | Image Processing",
       "track_label": "Track",
       "location": "Nantes, France"
     },
@@ -42,7 +42,7 @@
       "dates": "2021 - 2025",
       "track": "Computer Science and Electronics",
       "description": "Dual major covering programming, databases, data analysis, digital electronics and embedded systems, with practical experience in microcontroller hardware interfacing with peripheral devices.",
-      "courses": "Database Management Systems | Data Analysis | Programming | Software Engineering",
+      "courses": "Programming | Database Systems | Data Analysis | Digital Electronics | Embedded Systems",
       "track_label": "Majors",
       "location": "Bangalore, India"
     }
