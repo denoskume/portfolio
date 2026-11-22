@@ -60,9 +60,9 @@
         '<div class="harvard-contact">' + contacts + '</div></header>' +
         sectionMarkup('Profile', '<p>' + escapeHtml(data.profile) + '</p>') +
         sectionMarkup('Education', data.education.map(itemMarkup).join('')) +
+        sectionMarkup('Selected Technical Projects', projects) +
         sectionMarkup('Professional Experience', data.experience.map(itemMarkup).join('')) +
         sectionMarkup('Technical Skills', skills) +
-        sectionMarkup('Selected Projects', projects) +
         sectionMarkup('Languages', '<p>' + escapeHtml(data.languages.replace(/ \| /g, ' · ')) + '</p>');
     } catch (error) {
       root.innerHTML = '<p class="harvard-loading">CV preview unavailable. ' +
