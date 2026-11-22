@@ -43,17 +43,17 @@ def center(text,y,size=9,font='Helvetica',color=BLACK):
     C.drawCentredString(W/2,y,text)
 
 def heading(name,y):
-    y-=10.7
+    y-=10.0
     C.setFont('Helvetica-Bold',9.75)
     C.setFillColor(NAVY)
     C.drawString(LEFT,y,name.upper())
     C.setStrokeColor(RULE)
     C.setLineWidth(0.55)
     C.line(LEFT,y-4.4,W-RIGHT,y-4.4)
-    return y-8.3
+    return y-7.8
 
 def heading_row(text,dates,y):
-    y-=11.0
+    y-=10.0
     sz=9.05
     if stringWidth(text,'Helvetica-Bold',sz)>FULL-stringWidth(dates,'Helvetica',8.4)-13:
         raise RuntimeError('Entry headline too long: '+text)
@@ -62,7 +62,7 @@ def heading_row(text,dates,y):
     C.drawString(LEFT,y,text)
     C.setFont('Helvetica',8.3)
     C.drawRightString(W-RIGHT,y,dates)
-    return y-2.8
+    return y-3.0
 
 def line_with_bold(label,value,y):
     return txt(f'<b>{escape(label)}</b>: {escape(value)}',LEFT,y,raw=True,style=SHORT,after=0.65)
@@ -70,6 +70,9 @@ def line_with_bold(label,value,y):
 def bullet(sentence,y):
     C.setFillColor(BLACK)
     C.circle(LEFT+2.2,y-5.6,1.15,stroke=0,fill=1)
+    if ':' in sentence[:25]:
+        key, rest = sentence.split(':', 1)
+        return txt(f'<b>{escape(key)}:</b>{escape(rest)}',LEFT+12,y,FULL-12,style=BUL,after=0.8,raw=True)
     return txt(sentence,LEFT+12,y,FULL-12,style=BUL,after=0.8)
 
 def links_on_line(items,y,size=8.55):
@@ -89,7 +92,7 @@ def links_on_line(items,y,size=8.55):
             C.drawString(x,y,sep)
             x+=stringWidth(sep,'Helvetica',size)
 
-y=H-35
+y=H-30
 center(DATA['name'],y,19.0,'Helvetica-Bold',NAVY)
 y-=19.5
 center(DATA['academic_headline'],y,9.4,'Helvetica',NAVY)
@@ -102,13 +105,22 @@ links_on_line(DATA['social'],y,8.6)
 y-=13.5
 
 y=heading('Profile',y)
-y=txt(DATA['profile'],LEFT,y,after=1.0)
+profile_html=escape(DATA['profile']).replace('six-month internship from February 2027','<b>six-month internship from February 2027</b>')
+y=txt(profile_html,LEFT,y,after=1.0,raw=True)
 y=heading('Education',y)
 for e in DATA['education']:
     y=heading_row(e['school'],e['dates'],y)
-    y=txt(e['track'],LEFT,y,style=SHORT,after=1.4)
+    track = f"{e['track_label']}: {e['track']}"
+    location = e['location']
+    location_width = stringWidth(location,'Helvetica',8.55)
+    assert stringWidth(track,'Helvetica',8.55)+location_width+15 < FULL, 'Education track overlaps location'
+    C.setFillColor(BLACK)
+    C.setFont('Helvetica',8.55)
+    C.drawString(LEFT,y-9.4,track)
+    C.drawRightString(W-RIGHT,y-9.4,location)
+    y-=12.0
     y=txt(e['description'],LEFT,y,style=SHORT,after=0.75)
-    y=txt('<b>Relevant coursework:</b> '+escape(e['courses']),LEFT,y,style=SHORT,raw=True,after=3.2)
+    y=txt('<b>Relevant coursework:</b> '+escape(e['courses']).replace(' | ', ' &#8226; '),LEFT,y,style=SHORT,raw=True,after=3.2)
 
 y=heading('Experience',y)
 for e in DATA['experience']:
