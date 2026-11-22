@@ -36,7 +36,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
         <section class="fl-paper-section" id="fl-r-abstract">
           <h2>Abstract</h2>
           <p>This Master 1 project at Centrale Nantes investigated how to detect thin guidewires and microcatheters in fluoroscopic X&#8209;ray images. The instrument occupies a small portion of each frame and can be confused with noisy anatomical edges, making complete segmentation difficult.</p>
-          <p>We built a background-subtraction pipeline, evaluated fixed thresholding, Otsu thresholding and Gaussian-mixture segmentation against manual annotations, then explored supervised pixel scoring and continuous-path reconstruction to recover missed segments. Over nine motion frames from the supplied sequence, mean Dice improved from <strong>0.501 to 0.876</strong> after reconstruction. The project demonstrates improved within-sequence segmentation; its robustness on independent sequences remains untested.</p>
+          <p>We built a background-subtraction pipeline, evaluated fixed thresholding, Otsu thresholding and Gaussian-mixture segmentation against manual annotations, then explored supervised pixel scoring and continuous-path reconstruction to recover missed segments. Over nine motion frames from the supplied sequence, mean Dice improved from <strong>0.501 to 0.876</strong> after reconstruction. The results demonstrate improved segmentation continuity and overlap with manual annotations across the nine evaluated motion frames.</p>
         </section>
 
         <section class="fl-paper-section fl-keywords-section" id="fl-r-keywords">
@@ -97,7 +97,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
           <p>Identify the instrument pixels in each frame, reconstruct a continuous instrument trace and compare the predicted masks to manually annotated references.</p>
           <h3>2.3 Requirements and evaluation</h3>
           <p>Enhance and preprocess the images, implement and compare the classical segmentation approaches, export binary predictions for all frames, and evaluate the quality of results using Dice, IoU, PSNR and error visualization. The connected-path extension was assessed by its continuity and improvement in overlap with manual traces.</p>
-          <p>The repository does not document a minimum required Dice score. The outcomes are evaluated by measured improvement, completeness of the outputs and inspection of residual errors.</p>
+          <p>Performance is assessed using Dice, IoU, PSNR, false detections, missed segments and the continuity of the reconstructed instrument.</p>
         </section>
 
         <section class="fl-paper-section" id="fl-r-method">
@@ -147,11 +147,11 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
         <section class="fl-paper-section" id="fl-r-discussion">
           <h2>5.0 Discussion and conclusion</h2>
           <h3>5.1 Were the objectives met?</h3>
-          <p><strong>Yes, for the supplied academic sequence.</strong> We produced predictions for the required frames, evaluated them against manual tracings and achieved a substantial improvement in the Dice score after continuous-path reconstruction. The method reduced both missed instrument pixels and false detections.</p>
+          <p>The project produced predictions for the required frames, evaluated them against manual tracings and improved the Dice score through continuous-path reconstruction. The method reduced both missed instrument pixels and false detections.</p>
           <h3>5.2 Why did the reconstruction help?</h3>
           <p>Background subtraction can miss a nearly stationary instrument shaft or confuse anatomical edges with the tool. Combining local line evidence with a path-continuity constraint makes the prediction less dependent on disconnected pixel responses.</p>
           <h3>5.3 Limitations and future work</h3>
-          <p>The study uses one image sequence. Model and path settings were explored within that acquisition, and the lower-border entry assumption may not hold for other viewpoints. Evaluating other sequences with different image quality, instrument positions and motion is the next step toward testing generalization.</p>
+          <p>The study evaluates one fluoroscopy sequence, with path reconstruction based on an instrument entering near the lower image border. Next experiments can examine additional recordings, varied image quality and different instrument trajectories.</p>
         </section>
       </div>
 
