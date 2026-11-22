@@ -162,7 +162,7 @@
     references:[
       {label:'Kume, D., & Fukabe, S. (2025). Rouge Gagne, Noir Perd. Original Master 1 ALPRO Python source.',url:R.card+'/tree/main/versions/v1/code',linkLabel:'Original Python files'},
       {label:'Kume, D., & Fukabe, S. (2025). Rouge Gagne, Noir Perd. Original course-project metadata and run instructions.',url:R.card+'/blob/main/versions/v1/README.md',linkLabel:'Academic source metadata'},
-      {label:'Kume, D., & Fukabe, S. (2025). Rouge Gagne, Noir Perd. Original gameplay demonstration.',url:R.card+'/blob/main/docs/cardgame_demo.gif',linkLabel:'Gameplay demo'},
+      {label:'Kume, D., & Fukabe, S. (2025). Rouge Gagne, Noir Perd. Original gameplay recording embedded in the academic presentation.',url:R.card+'/blob/main/versions/v1/assets/v1-presentation-demo.mp4',linkLabel:'Original presentation video'},
       {label:'Kume, D., & Fukabe, S. (2025). SDLC Gantt chart from the ALPRO report.',url:R.card+'/blob/main/versions/v1/docs/figures/sdlc-gantt.webp',linkLabel:'Original Gantt chart'},
       {label:'Python Software Foundation. Python documentation.',url:'https://docs.python.org/3/',linkLabel:'Python documentation'},
       {label:'Pygame Community. Pygame event reference.',url:'https://www.pygame.org/docs/ref/event.html',linkLabel:'Pygame events'},
@@ -255,8 +255,12 @@
         '<p>Our ALPRO submission met its academic objective of producing and presenting a modular Python game with documented design and testing. The report identifies additional difficulty modes, multiplayer, language localization and mobile support as potential future improvements, not as completed deliverables.</p>'+
         '<h3>5.4 Original gameplay demonstration</h3>'+
         '<p>This is the recorded demonstration of the ALPRO game we built and presented in 2025. It is placed after the technical explanations, diagrams and test evidence so it can be viewed with the full project context.</p>'+
-        fig(raw+'Python-CardGame/main/docs/cardgame_demo.gif','<strong>Figure 14.</strong> Animated demonstration of the original CardGame V1 interface and gameplay.','Original ALPRO CardGame V1 gameplay animation','sc-card-r-v1-demo')+
-        '<p class="sc-demo-cta">'+a(R.card+'/blob/main/docs/cardgame_demo.gif','Open full gameplay demonstration')+'</p>'}
+        '<figure class="fl-scientific-video sc-card-video">'+
+        '<video controls playsinline preload="metadata" poster="'+raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-observation.webp" aria-label="Original CardGame V1 presentation gameplay recording">'+
+        '<source src="'+raw+'Python-CardGame/main/versions/v1/assets/v1-presentation-demo.mp4" type="video/mp4">'+
+        'Your browser does not support HTML5 video. </video>'+
+        '<figcaption>Original CardGame V1 presentation recording · December 2025</figcaption></figure>'+
+        '<p class="sc-demo-cta">'+a(R.card+'/blob/main/versions/v1/assets/v1-presentation-demo.mp4','Open the original V1 demonstration')+'</p>'}
     ],
     figures:[
       {title:'Original V1 game menu',description:'Nickname, avatar and initial player setup, from the ALPRO report.',url:raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-menu.webp',kind:'figure',reportId:'sc-card-r-v1-menu'},
