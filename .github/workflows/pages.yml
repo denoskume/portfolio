@@ -62,8 +62,8 @@ jobs:
           assert "Baccalaureate" not in text and "Baccalauréat" not in text, "Secondary school should be excluded from internship CV"
           assert "Computer Vision & Image Processing" in text, "Missing focused Data Science direction"
           assert "Data Analysis" in text, "Missing secondary direction"
-          assert "MonStage" in text, "Missing key data platform project"
-          assert "Microcatheter Segmentation" in text, "Missing computer vision project"
+          assert "MonStage" not in text, "MonStage must not appear in the selected CV projects"
+          assert "Microcatheter Segmentation" in text, "Missing selected computer vision project"
           assert "Google Advanced Data Analytics" in text, "Missing verified certification"
           assert "SQL Certification Course" in text, "Missing verified SQL certification"
           assert "EXPERIENCE" in text and "SELECTED PROJECTS" in text, "Missing reference sections"
@@ -71,7 +71,9 @@ jobs:
           import json
           cv = json.loads(Path("cv-data.json").read_text(encoding="utf-8"))
           assert len(cv["education"]) == 2, "Show only higher education"
-          assert len(cv["projects"]) == 2
+          assert len(cv["projects"]) == 1, "CV should showcase only one selected project"
+          assert all(len(entry["bullets"]) == 4 for entry in cv["experience"] + cv["projects"]), "Every experience and selected project needs exactly 4 bullets"
+          assert not any("MonStage" in entry["title"] for entry in cv["projects"])
           assert cv["career_headline"] == "Data Science | Computer Vision & Image Processing | Data Analysis"
           assert len(cv["certifications"]) == 2
           assert len(cv["experience"]) == 2
