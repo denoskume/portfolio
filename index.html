@@ -2437,8 +2437,8 @@ body:has(#about.active) .main-container {
 
 <link rel="stylesheet" href="harvard-cv.css?v=20261122-header-download">
 <link rel="stylesheet" href="contact-modern.css?v=20261122-centered-form-v5">
-<link rel="stylesheet" href="projects-dashboard.css?v=20261122-home-insights-v1">
-<script src="projects-dashboard.js?v=20261122-home-insights-v1" defer></script>
+<link rel="stylesheet" href="projects-dashboard.css?v=20261122-live-repo-v2">
+<script src="projects-dashboard.js?v=20261122-live-repo-v2" defer></script>
 <script src="contact-form.js?v=20261122-contact-v2" defer></script>
 </head>
 
@@ -2527,82 +2527,122 @@ body:has(#about.active) .main-container {
         </div>
       </section>
 
-      <!-- Home dashboard: live, source-backed project insights. -->
+      <!-- Project dashboard: live GitHub repository telemetry + portfolio project catalogue. -->
       <section id="projectsDashboard" aria-labelledby="pdTitle">
         <div class="pd-shell">
-          <div class="pd-header">
-            <div class="pd-headline">
-              <h2 id="pdTitle">Project insights</h2>
-              <p>An interactive view of the experiments, tools and evidence behind this portfolio.</p>
+          <header class="pd-header">
+            <div class="pd-heading">
+              <span class="pd-overline">Connected portfolio analytics</span>
+              <h2 id="pdTitle">Projects dashboard</h2>
+              <p>Follow actual repository activity, explore the work and open its source evidence.</p>
             </div>
-            <div class="pd-filters" role="group" aria-label="Filter project insights">
-              <label class="pd-field">
-                <span class="pd-search-icon" aria-hidden="true">⌕</span>
-                <input type="search" data-pd-search aria-label="Search projects" placeholder="Search projects or technologies" autocomplete="off">
-              </label>
-              <label class="pd-field">
-                <select data-pd-category aria-label="Filter by technical domain">
-                  <option value="All">All domains</option>
-                  <option value="Computer Vision">Computer Vision</option>
-                  <option value="Image Processing">Image Processing</option>
-                  <option value="Machine Learning">Machine Learning</option>
-                </select>
-              </label>
-              <label class="pd-field">
-                <select data-pd-format aria-label="Filter by project format">
-                  <option value="All">All formats</option>
-                  <option value="Case study">Case studies</option>
-                  <option value="Research">Research</option>
-                  <option value="Laboratory">Laboratories</option>
-                </select>
-              </label>
-              <button type="button" class="pd-reset" data-pd-reset>Reset</button>
+            <div class="pd-sync">
+              <span class="pd-live-status" data-pd-status data-state="loading" role="status" aria-live="polite">Connecting to GitHub…</span>
+              <button class="pd-refresh" type="button" data-pd-refresh aria-label="Refresh live GitHub data">↻ Refresh data</button>
             </div>
+          </header>
+
+          <div class="pd-filters" role="group" aria-label="Project dashboard filters">
+            <label class="pd-field">
+              <span class="pd-search-icon" aria-hidden="true">⌕</span>
+              <input data-pd-search type="search" aria-label="Search projects" placeholder="Find a project or technology…" autocomplete="off">
+            </label>
+            <label class="pd-field">
+              <select data-pd-domain aria-label="Technical domain">
+                <option value="All">All domains</option>
+                <option value="Computer Vision">Computer Vision</option>
+                <option value="Image Processing">Image Processing</option>
+                <option value="Machine Learning">Machine Learning</option>
+              </select>
+            </label>
+            <label class="pd-field">
+              <select data-pd-format aria-label="Project format">
+                <option value="All">All formats</option>
+                <option value="Case study">Case studies</option>
+                <option value="Research">Research</option>
+                <option value="Laboratory">Laboratories</option>
+              </select>
+            </label>
+            <label class="pd-field">
+              <select data-pd-activity aria-label="Last source activity">
+                <option value="All">Any activity</option>
+                <option value="7d">Pushed in 7 days</option>
+                <option value="30d">Pushed in 30 days</option>
+                <option value="older">Over 30 days</option>
+              </select>
+            </label>
+            <label class="pd-field">
+              <select data-pd-sort aria-label="Sort projects">
+                <option value="latest">Latest source push</option>
+                <option value="stars">Most starred source</option>
+                <option value="name">Project name A–Z</option>
+              </select>
+            </label>
+            <button class="pd-reset" type="button" data-pd-reset>Reset</button>
           </div>
 
-          <div class="pd-kpis" data-pd-kpis aria-live="polite">
-            <p>Portfolio project metrics are loading.</p>
-          </div>
+          <div class="pd-kpis" data-pd-kpis aria-label="Current GitHub and project KPIs" aria-live="polite"></div>
 
-          <div class="pd-analytics" aria-label="Project analytics">
+          <div class="pd-main-grid">
             <article class="pd-panel">
-              <div class="pd-panel-head">
-                <h3>Technical domains</h3>
-                <small>Project distribution</small>
-              </div>
-              <div data-pd-domains aria-label="Projects by domain"></div>
-              <p class="pd-panel-foot">Select a domain to filter every panel and the project list.</p>
+              <header class="pd-panel-head">
+                <div>
+                  <h3>Recent public push events</h3>
+                  <p>Four seven-day windows · filtered GitHub repositories</p>
+                </div>
+                <small>Observed events</small>
+              </header>
+              <div data-pd-chart aria-label="Observed GitHub push events by week"></div>
             </article>
-
             <article class="pd-panel">
-              <div class="pd-panel-head">
-                <h3>Project formats</h3>
+              <header class="pd-panel-head">
+                <div>
+                  <h3>Projects by domain</h3>
+                  <p>Interactive breakdown of the project catalogue</p>
+                </div>
                 <small>Portfolio mix</small>
-              </div>
-              <div data-pd-formats aria-label="Projects by format"></div>
-              <p class="pd-panel-foot">Research experiments, applied case studies and reproducible labs.</p>
+              </header>
+              <div data-pd-domains aria-label="Domain distribution"></div>
+              <p class="pd-panel-note">Select a domain to update every dashboard panel.</p>
             </article>
+          </div>
 
+          <div class="pd-secondary-grid">
             <article class="pd-panel">
-              <div class="pd-panel-head">
-                <h3>Tools &amp; methods</h3>
-                <small>Top 6 tags</small>
-              </div>
-              <div data-pd-skills aria-label="Frequently used project technologies"></div>
-              <p class="pd-panel-foot">Tag frequency counts projects, not skill proficiency.</p>
+              <header class="pd-panel-head">
+                <div>
+                  <h3>Linked repositories</h3>
+                  <p>Last actual push · distinct public GitHub sources</p>
+                </div>
+                <small>Repository-level</small>
+              </header>
+              <div class="pd-repos" data-pd-repositories></div>
+              <p class="pd-panel-note">Several labs share one repository. Its push date is not a separate update to each lab.</p>
+            </article>
+            <article class="pd-panel">
+              <header class="pd-panel-head">
+                <div>
+                  <h3>Latest public activity</h3>
+                  <p>Push events observed in GitHub's recent public feed</p>
+                </div>
+                <small>Recent feed</small>
+              </header>
+              <div data-pd-events></div>
             </article>
           </div>
 
           <article class="pd-panel pd-library">
-            <div class="pd-library-head">
-              <h3>Explore the projects</h3>
-              <small data-pd-result-count aria-live="polite">Loading projects</small>
-            </div>
-            <div data-pd-projects>
-              <p>Project records are loading.</p>
-            </div>
+            <header class="pd-panel-head">
+              <div>
+                <h3>Project explorer</h3>
+                <p>Search, cross-filter and open the actual case studies or GitHub sources</p>
+              </div>
+              <small data-pd-count aria-live="polite">Loading projects…</small>
+            </header>
+            <div data-pd-table></div>
+            <p class="pd-source-note">Repository activity and stars are source-level measurements. They are shown for context and are not project-specific performance scores.</p>
           </article>
-          <p class="pd-provenance">Source: portfolio project records (content.js). Figures are linked gallery assets. Performance measures belong to individual projects and are not averaged across experiments.</p>
+          <p class="pd-provenance" data-pd-notes>Live GitHub metadata is loaded directly in the browser. Connecting…</p>
         </div>
       </section>
 
