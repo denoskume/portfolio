@@ -225,7 +225,9 @@ def build(study_id: int, filename: str) -> Path:
     story = []
     story.append(paragraph(text_of(root.find("h1")), "title"))
     story.append(paragraph(text_of(root.select_one(".fl-paper-question")), "question"))
-    story.append(paragraph(text_of(root.select_one(".fl-paper-authors")), "author"))
+    author_line = root.select_one(".fl-paper-authors")
+    if author_line:
+        story.append(paragraph(text_of(author_line), "author"))
     story.append(HRFlowable(width="100%", thickness=1, color=RULE, spaceAfter=12))
     for section in panel.select("section.fl-paper-section"):
         add_section(section, story)
