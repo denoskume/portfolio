@@ -143,7 +143,7 @@ jobs:
           about = html[about_start:about_end]
           assert 'id="credentials"' in about and 'Credentials &amp; Recognition' in about
           assert about.count('class="credential-card"') == 4, "Exactly four original credentials required"
-          assert about.index('id="credentials"') > about.index('class="education-experience"'), "Credentials must follow the education timeline"
+          assert about.index('id="credentials"') > about.index('education-experience'), "Credentials must follow the education timeline"
           assert "grid-template-columns: repeat(2, 10cm)" in html
           assert "width: 10cm;" in html and "height: 10cm;" in html
           for image in (
