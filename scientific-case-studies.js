@@ -95,7 +95,7 @@
       ],
       summary: [
         'Camera calibration uses image observations of a pattern with known geometry to estimate camera parameters. This academic project used nine chessboard photographs to estimate intrinsic parameters and board poses, then tested how accurately the model predicts corners not used during fitting.',
-        'An 8 × 6 pattern gave 48 detected inner corners per image (432 total). The linear Zhang pipeline produced <strong>0.434 px mean reprojection error</strong> and <strong>0.534 px overall RMS</strong> on the calibration views. In a separate held-out test, a nonlinear OpenCV refinement reduced pooled RMS from <strong>0.395 px to 0.352 px</strong>. These results describe the supplied nine-image dataset; accuracy on other acquisitions has not yet been assessed.'
+        'An 8 × 6 pattern gave 48 detected inner corners per image (432 total). The linear Zhang pipeline produced <strong>0.434 px mean reprojection error</strong> and <strong>0.534 px overall RMS</strong> on the calibration views. In a separate held-out test, a nonlinear OpenCV refinement reduced pooled RMS from <strong>0.395 px to 0.352 px</strong>. The results include reprojection errors across nine calibration views and 216 held-out predictions per model.'
       ],
       questionLabel:'Project objective and evaluation',
       reportSections:[
@@ -104,7 +104,7 @@
           '<p>The question is whether a model estimated from different board poses can explain measured image points and predict other points accurately. <a class="fl-figure-ref" href="#sc-cam-r-fig1">Figure 1</a> illustrates the detected corner locations.</p>'+
           figure(rawCamera+'outputs/figures/detected_chessboard_corners.png','<strong>Figure 1.</strong> Detected chessboard corners across the source calibration images.','Chessboard photographs with detected calibration corners.','sc-cam-r-fig1')},
         {key:'dataset',title:'2.0 Dataset and objectives',body:
-          '<h3>2.1 Data and geometry</h3><p>The source contains nine 640 × 480 photographs. The board has eight by six <em>inner corners</em>, giving 48 geometric correspondences per image. The 30 mm checkerboard pitch supplies the world-coordinate scale. All nine views were retained and 432 corners were detected.</p>'+
+          '<h3>2.1 Data and geometry</h3><p>The dataset contains nine 640 × 480 photographs. The board has eight by six <em>inner corners</em>, giving 48 geometric correspondences per image. The 30 mm checkerboard pitch supplies the world-coordinate scale. All nine views were retained and 432 corners were detected.</p>'+
           '<div class="fl-facts"><div><strong>9</strong><span>Views</span></div><div><strong>432</strong><span>Detected corners</span></div><div><strong>30 mm</strong><span>Square pitch</span></div></div>'+
           '<h3>2.2 Requirements and expected outputs</h3>'+
           bullets(['Detect and refine corner coordinates in all images; map the 8 × 6 target into physical units.',
@@ -200,7 +200,7 @@
         ['L2 normalization','Scaling vectors to unit Euclidean length before comparing directions.'],
         ['Cosine similarity','The dot product between normalized audio and text embeddings used to rank class labels.'],
         ['Top-1 / Top-k','The proportion of clips whose correct class ranks first, or within the highest k predictions.'],
-        ['AudioSet metadata','External statistics about audio categories used here for exploratory correlation analysis.']
+        ['AudioSet metadata','Class-level quality and coverage statistics used to examine their relationship with ESC-50 accuracy.']
       ],
       summary:[
         'This study investigated the sensitivity of a pretrained audio–text model to natural-language prompt formulation. ESC-50 supplies <strong>2,000 audio clips in 50 classes</strong>; the workflow pairs each clip with textual descriptions encoded by LAION-CLAP. No task-specific training or fine-tuning was performed.',
@@ -227,25 +227,25 @@
           '<p>The audio encoder produces one embedding for each clip; the text encoder produces one embedding for each of the 50 prompted class labels. After L2 normalization, cosine similarity ranks text candidates by proximity to the audio vector. The highest-scoring candidate is the Top-1 prediction.</p>'+
           '<h3>3.2 Prompt design</h3>'+
           '<p>The comparison covers ten templates, including the raw class name, "the sound of {}", "a sound clip of {}" and "an audio recording of {}". No task-specific labels update the pretrained weights.</p>'+
-          '<p>Measured accuracy for the ten prompt templates is presented in Section 4.1 using the original table exported by the project.</p>'+
+          '<p>Section 4.1 compares all ten prompt strategies.</p>'+
           '<h3>3.3 Evaluation protocol</h3>'+
           '<p>Accuracy is recorded over ESC-50. Top-k checks whether the true class appears among the first k ranked text candidates. The analysis also looks at per-class performance and exploratory correlations with AudioSet metadata.</p>'},
         {key:'results',title:'4.0 Experimental results',body:
           '<h3>4.1 Prompt strategy comparison</h3>'+
           '<p>The best prompt ("an audio recording of {}") achieved <strong>91.15% Top-1</strong>, versus <strong>83.05%</strong> for class names alone, or <strong>+8.10 percentage points</strong>. The scores varied widely across the ten tested formulations.</p>'+
-          figure(rawClap+'outputs/figures/prompt_strategy_comparison_table.png','<strong>Table 1.</strong> Original prompt-strategy comparison exported by the CLAP project, with the class-only baseline and best prompt highlighted.','Original project table of ten prompt strategies: baseline 83.05%, best strategy 91.15%.','sc-clap-r-fig2')+
+          figure(rawClap+'outputs/figures/prompt_strategy_comparison_table.png','<strong>Table 1.</strong> Prompt-strategy comparison, highlighting the class-only baseline and best-performing strategy.','Ten prompt strategies: baseline 83.05%, best score 91.15%.','sc-clap-r-fig2')+
           '<p>'+link(CLAP+'/blob/main/outputs/tables/prompt_strategy_comparison_table.csv','Open the original results CSV')+'</p>'+
           '<h3>4.2 Top-k evaluation</h3>'+
           '<p>With the best prompt, Top-1 was 91.15%, Top-3 was 97.45%, and Top-5 reached <strong>99.00%</strong>. This shows the correct class is frequently among the highest-scoring alternatives even when not ranked first.</p>'+
-          figure(rawClap+'outputs/figures/topk_accuracy_table.png','<strong>Table 2.</strong> Original Top-1 to Top-10 accuracy table generated by the project.','Source Top-k accuracy table from the CLAP experiment.','sc-clap-r-topk-table')+
+          figure(rawClap+'outputs/figures/topk_accuracy_table.png','<strong>Table 2.</strong> Top-1 through Top-10 classification accuracy.','Top-k classification accuracy on ESC-50.','sc-clap-r-topk-table')+
           figure(rawClap+'outputs/figures/topk_accuracy_line.png','<strong>Figure 3.</strong> Top-k accuracy for k = 1 through 10 using the best tested prompt.','Original Top-k accuracy line chart from the CLAP project.','sc-clap-r-fig3')+
           '<h3>4.3 Classwise accuracy and AudioSet metadata</h3>'+
           '<p>Classwise evaluation identifies the ESC-50 categories with the highest and lowest recognition accuracy.</p>'+
-          figure(rawClap+'outputs/figures/classwise_accuracy_tables.png','<strong>Classwise results.</strong> Original comparison of the lowest and highest class accuracies on ESC-50.','Original classwise accuracy comparison table.','sc-clap-r-classwise-table')+
+          figure(rawClap+'outputs/figures/classwise_accuracy_tables.png','<strong>Classwise results.</strong> Highest and lowest classification accuracies across ESC-50 categories.','Classwise classification accuracy on ESC-50.','sc-clap-r-classwise-table')+
           '<p>Classwise accuracy showed weak correlations with the recorded AudioSet metadata: quality (Pearson r = <strong>0.081</strong>) and log10 class video counts (Pearson r = <strong>−0.181</strong>). Neither variable showed a strong linear association with recognition accuracy.</p>'+
           '<h3>4.4 Comparison with published classifiers</h3>'+
           '<p>CLAP achieved <strong>91.15% Top-1</strong> accuracy on ESC-50. For comparison, published results include BEATs (98.61%), HTS-AT (96.20%) and AST (95.30%), using their respective training and evaluation protocols.</p>'+
-          figure(rawClap+'outputs/figures/published_classifier_comparison_table.png','<strong>Table 3.</strong> Original project comparison with published ESC-50 classifiers, including whether each value was recomputed.','Original comparison table, marking CLAP as the only result recomputed in the project.','sc-clap-r-model-table')},
+          figure(rawClap+'outputs/figures/published_classifier_comparison_table.png','<strong>Table 3.</strong> CLAP zero-shot accuracy and published ESC-50 classifier results.','CLAP result alongside reported ESC-50 classifier accuracies.','sc-clap-r-model-table')},
         {key:'discussion',title:'5.0 Discussion and conclusion',body:
           '<h3>5.1 Were the objectives met?</h3>'+
           '<p>All ten prompt strategies were evaluated using Top-k and classwise metrics. The best formulation improved Top-1 accuracy by <strong>8.10 percentage points</strong> over the class-name baseline without fine-tuning.</p>'+
@@ -256,11 +256,11 @@
       ],
       figures:[
         ['Zero-shot pipeline','Audio and text embedding flow through similarity-based classification','outputs/figures/clap_complete_zero_shot_pipeline.png','intro','sc-clap-r-fig1','figure'],
-        ['Prompt strategy comparison','Original project table: ten tested prompts, with baseline and best-performing strategy highlighted','outputs/figures/prompt_strategy_comparison_table.png','results','sc-clap-r-fig2','table'],
-        ['Top-k accuracy table','Original project accuracy table for k = 1 through 10','outputs/figures/topk_accuracy_table.png','results','sc-clap-r-topk-table','table'],
+        ['Prompt strategy comparison','Ten tested prompts, highlighting baseline and best result','outputs/figures/prompt_strategy_comparison_table.png','results','sc-clap-r-fig2','table'],
+        ['Top-k accuracy table','Top-1 through Top-10 classification accuracy','outputs/figures/topk_accuracy_table.png','results','sc-clap-r-topk-table','table'],
         ['Top-k accuracy curve','Prediction accuracy as the number of accepted ranks increases','outputs/figures/topk_accuracy_line.png','results','sc-clap-r-fig3','figure'],
-        ['Classwise accuracy','Original tables comparing the lowest- and highest-performing classes','outputs/figures/classwise_accuracy_tables.png','results','sc-clap-r-classwise-table','table'],
-        ['Published ESC-50 classifiers','Original table comparing CLAP with published benchmark values','outputs/figures/published_classifier_comparison_table.png','results','sc-clap-r-model-table','table'],
+        ['Classwise accuracy','Highest- and lowest-performing ESC-50 classes','outputs/figures/classwise_accuracy_tables.png','results','sc-clap-r-classwise-table','table'],
+        ['Published ESC-50 classifiers','CLAP and published ESC-50 accuracy results','outputs/figures/published_classifier_comparison_table.png','results','sc-clap-r-model-table','table'],
         ['AudioSet quality','Accuracy compared with AudioSet quality metadata for all classes','outputs/figures/all50_esc50_accuracy_vs_audioset_quality.png','results','sc-clap-r-results','figure'],
         ['AudioSet coverage','Accuracy compared with AudioSet class video counts','outputs/figures/all50_esc50_accuracy_vs_audioset_coverage.png','results','sc-clap-r-results','figure']
       ].map(x=>({title:x[0],description:x[1],url:rawClap+x[2],section:x[3],reportId:x[4],kind:x[5]})),
@@ -271,11 +271,11 @@
           figure(rawClap+'outputs/figures/prompt_strategy_comparison_table.png','<strong>Prompt comparison.</strong> Ten tested strategies, ranked by measured Top-1 accuracy.','Original CLAP prompt-accuracy comparison table.','sc-clap-m-overview')},
         {key:'prompts',title:'Accuracy by prompt strategy',body:
           '<p>The prompt formulation changes while the pretrained model, dataset and candidate classes remain fixed. The best strategy achieves <strong>91.15% Top-1</strong> accuracy.</p>'+
-          figure(rawClap+'outputs/figures/prompt_strategy_comparison_table.png','<strong>Original table.</strong> Directly from the CLAP notebook, retaining the baseline and best-prompt emphasis.','Original CLAP prompt-strategy comparison table.','sc-clap-m-prompts')+
-          '<p>'+link(CLAP+'/blob/main/outputs/tables/prompt_strategy_comparison_table.csv','Open original source CSV')+'</p>'},
+          figure(rawClap+'outputs/figures/prompt_strategy_comparison_table.png','<strong>Prompt comparison.</strong> Top-1 accuracy by prompt strategy.','CLAP prompt-strategy accuracy table.','sc-clap-m-prompts')+
+          '<p>'+link(CLAP+'/blob/main/outputs/tables/prompt_strategy_comparison_table.csv','View prompt results CSV')+'</p>'},
         {key:'topk',title:'Top-k classification accuracy',body:
           '<p>Top-k is the proportion of clips whose true class is among the first k predicted categories. This value increases with k and should be reported with the chosen evaluation protocol.</p>'+
-          figure(rawClap+'outputs/figures/topk_accuracy_table.png','<strong>Original Top-k table.</strong> Directly exported by the project, without reformatting or reordering.','Source Top-k accuracy table.','sc-clap-m-topk-table')+
+          figure(rawClap+'outputs/figures/topk_accuracy_table.png','<strong>Top-k accuracy.</strong> Classification accuracy for k = 1 through 10.','Top-k accuracy table.','sc-clap-m-topk-table')+
           figure(rawClap+'outputs/figures/topk_accuracy_line.png','<strong>Top-k accuracy.</strong> The correct class is in the top five for 99.00% of ESC-50 clips.','Original CLAP Top-k accuracy line chart.','sc-clap-m-topk')},
         {key:'audioset',title:'AudioSet metadata correlations',body:
           '<p>Class-level accuracy was compared with AudioSet quality and video-count metadata. Both correlations were weak.</p>'+
@@ -283,7 +283,7 @@
             ['Accuracy vs AudioSet quality','0.081','0.107'],
             ['Accuracy vs log10(AudioSet videos)','−0.181','−0.066']
           ],'<strong>Table 4.</strong> Metadata correlation summary reported by the project.')+
-          figure(rawClap+'outputs/figures/all50_esc50_accuracy_vs_audioset_coverage.png','<strong>AudioSet coverage.</strong> Exploratory scatter comparison for all 50 ESC-50 classes.','Correlation scatter plot of class accuracy versus AudioSet coverage.','sc-clap-m-correlation')}
+          figure(rawClap+'outputs/figures/all50_esc50_accuracy_vs_audioset_coverage.png','<strong>AudioSet coverage.</strong> Class accuracy versus AudioSet video counts for 50 ESC-50 categories.','Correlation scatter plot of class accuracy versus AudioSet coverage.','sc-clap-m-correlation')}
       ]
     }
   };
@@ -368,7 +368,7 @@
       '<span class="fl-action-status" role="status" aria-live="polite"></span></div>'+
       '<div class="fl-paper-panel" id="'+p+'-panel-report" data-sc-panel="report" role="tabpanel" aria-labelledby="'+p+'-tab-report" tabindex="0">'+report+'</div>'+
       '<div class="fl-paper-panel" id="'+p+'-panel-figures" data-sc-panel="figures" role="tabpanel" aria-labelledby="'+p+'-tab-figures" tabindex="0" hidden>'+
-      '<div class="fl-panel-intro"><h2>Figures</h2><p>Original figures from the source project, indexed for closer inspection. Select <strong>View in report</strong> for the associated explanation.</p></div>'+
+      '<div class="fl-panel-intro"><h2>Figures</h2><p>All project figures and tables, with links to the corresponding report sections.</p></div>'+
       indexedFigures+'</div>'+
       '<div class="fl-paper-panel" id="'+p+'-panel-metrics" data-sc-panel="metrics" role="tabpanel" aria-labelledby="'+p+'-tab-metrics" tabindex="0" hidden>'+
       '<div class="fl-panel-intro"><h2>Metrics</h2><p>Recorded quantitative evaluation, linked to the original tables and plots.</p></div>'+
