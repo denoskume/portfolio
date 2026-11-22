@@ -29,7 +29,6 @@ jobs:
           test -s build/flag-intelligence-case-study.pdf
           test -s build/python-cardgame-case-study.pdf
           test -s build/monstage-case-study.pdf
-          test -s build/visionlab-case-study.pdf
           python - <<'PY'
           from pypdf import PdfReader
           for path, expected in [
@@ -38,8 +37,7 @@ jobs:
             ("build/clap-zero-shot-case-study.pdf", ["Abstract", "Nomenclature", "Methodology", "Experimental results", "References", "Piczak", "Wu", "Gemmeke", "91.15", "83.05"]),
             ("build/flag-intelligence-case-study.pdf", ["Abstract", "References", "MobileNet", "19.61", "27.45"]),
             ("build/python-cardgame-case-study.pdf", ["Abstract", "References", "Pygame", "0.59", "0.95"]),
-            ("build/monstage-case-study.pdf", ["Abstract", "References", "Cloudflare", "TypeScript"]),
-            ("build/visionlab-case-study.pdf", ["Abstract", "References", "8.64", "1.44", "37"])
+            ("build/monstage-case-study.pdf", ["Abstract", "References", "Cloudflare", "TypeScript"])
           ]:
               reader = PdfReader(path)
               text = " ".join((page.extract_text() or "") for page in reader.pages)
@@ -153,7 +151,7 @@ jobs:
           global.window=globalThis;
           require('./scientific-case-studies.js');
           require('./software-case-studies.js');
-          for (const id of [2,3,4,5,6,7]) {
+          for (const id of [2,3,4,5,6]) {
             const markup=window.renderScientificCaseStudy(id);
             if ((markup.match(/data-sc-tab=/g)||[]).length!==3 ||
                 (markup.match(/fl-index-figure/g)||[]).length!==(id===2?6:id===3?8:2) ||
@@ -169,7 +167,7 @@ jobs:
           }
           """
           subprocess.run(["node","-e",script],check=True)
-          print("All six scientific case-study pages and their three tabs validated.")
+          print("All five scientific case-study pages and their three tabs validated.")
           PY
           # Citations must resolve to bibliography entries in every project's Report tab.
           python - <<'PY'
@@ -186,8 +184,7 @@ jobs:
             {html:window.renderScientificCaseStudy(3),prefix:'sc-clap',expected:11},
             {html:window.renderScientificCaseStudy(4),prefix:'sc-flag',expected:6},
             {html:window.renderScientificCaseStudy(5),prefix:'sc-card',expected:6},
-            {html:window.renderScientificCaseStudy(6),prefix:'sc-stage',expected:7},
-            {html:window.renderScientificCaseStudy(7),prefix:'sc-vision',expected:6}
+            {html:window.renderScientificCaseStudy(6),prefix:'sc-stage',expected:7}
           ];
           for (const study of studies) {
             const sourceLinks = [...study.html.matchAll(/class="study-cite" href="#([^"]+)"/g)].map(match => match[1]);
@@ -201,7 +198,7 @@ jobs:
           }
           """
           subprocess.run(["node","-e",script],check=True)
-          print("All seven report bibliographies and inline source links validated.")
+          print("All six report bibliographies and inline source links validated.")
           PY
           # Contact form must be accessible, designed, and actually wired to an email relay.
           python - <<'PY'
@@ -292,7 +289,7 @@ jobs:
           cp -r assets _site/
           # Always publish the HTML even if an optional document rebuild fails.
           # Fall back to the last published copy of each PDF where available.
-          for pdf in fluoroscopy-case-study.pdf camera-calibration-case-study.pdf clap-zero-shot-case-study.pdf flag-intelligence-case-study.pdf python-cardgame-case-study.pdf monstage-case-study.pdf visionlab-case-study.pdf Denos_Kume_Harvard_CV.pdf; do
+          for pdf in fluoroscopy-case-study.pdf camera-calibration-case-study.pdf clap-zero-shot-case-study.pdf flag-intelligence-case-study.pdf python-cardgame-case-study.pdf monstage-case-study.pdf Denos_Kume_Harvard_CV.pdf; do
             if [ -s "build/$pdf" ]; then
               cp "build/$pdf" "_site/$pdf"
             elif curl --fail --location --silent --show-error --retry 2 --max-time 30                 "https://denoskume.github.io/portfolio/$pdf?previous=1" -o "_site/$pdf"                 && head -c 5 "_site/$pdf" | grep -q '%PDF-'; then
@@ -317,8 +314,6 @@ jobs:
           test -s _site/scientific-case-studies.css
           test -s _site/software-case-studies.js
           test -s _site/assets/case-studies/flag-intelligence-workflow.svg
-          test -s _site/assets/case-studies/visionlab-workflow.svg
-          test -s _site/assets/case-studies/visionlab-retained-arrays.svg
           test -s _site/assets/case-studies/monstage-workflow.svg
           touch _site/.nojekyll
       - name: Configure GitHub Pages
