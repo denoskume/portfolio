@@ -128,6 +128,7 @@ for idx,e in enumerate(DATA['education']):
 y=heading('Experience',y)
 for idx,e in enumerate(DATA['experience']):
     y=heading_row(e['title'],e['dates'],y)
+    y=txt(e['organization'],LEFT,y,style=SHORT,after=1.0)
     y=txt(e['summary'],LEFT,y,style=SHORT,after=1.1)
     for b in e['bullets']:
         y=bullet(b,y)
