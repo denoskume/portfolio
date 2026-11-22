@@ -125,95 +125,116 @@
   };
 
   const card = {
-    slug:'python-cardgame',prefix:'sc-card',title:'Python CardGame · V2',
-    question:'How can a real-time three-card memory game remain consistent across animations, timers, user input and desktop/browser interfaces?',
-    authors:'Master 1 (S1) · ALPRO (Algorithms and Programming, Python) · Collaborator: Sena FUKABE',
-    repository:R.card,notebook:R.card+'/blob/main/src/game.py',
+    slug:'python-cardgame',prefix:'sc-card',title:'Rouge Gagne, Noir Perd · CardGame V1 & V2',
+    question:'How did we design, implement and present a three-card memory game in Python for the Master 1 ALPRO course, and how was that original V1 extended into V2?',
+    authors:'Master 1 · Semester 1 (2025–2026) · Algorithms and Programming (ALPRO) · Denos KUME and Sena FUKABE',
+    repository:R.card,notebook:R.card+'/blob/main/versions/v1/code/game.py',
     pdf:'python-cardgame-case-study.pdf',downloadName:'Python-CardGame-Report.pdf',
-    citation:'Kume, D., & Fukabe, S. (2026). Python CardGame [Master 1 (S1), ALPRO Algorithms and Programming course project, Python/Pygame]. GitHub. '+R.card,
-    bibtex:'@software{kume2026cardgame,author={Kume, Denos and Fukabe, Sena},title={Python CardGame V2},year={2026},url={'+R.card+'}}',
-    keywords:['Python','Pygame','Finite-State Machine','Event Loop','Animation','WebAssembly','Testing'],
+    citation:'Kume, D., & Fukabe, S. (2025). Rouge Gagne, Noir Perd: CardGame V1 [Master 1 Semester 1, ALPRO Algorithms and Programming course project in Python]. Centrale Nantes. '+R.card+'/tree/main/versions/v1',
+    bibtex:'@software{kume2025cardgame,author={Kume, Denos and Fukabe, Sena},title={Rouge Gagne, Noir Perd: CardGame V1},year={2025},url={'+R.card+'/tree/main/versions/v1}}',
+    keywords:['Python','Pygame','Object-Oriented Programming','Finite-State Machine','Event Loop','UML','Game Development'],
     projectInfo:[
-      ['Project','Three-card visual memory game with fictitious credits'],
-      ['Academic context','Master 1 · Semester 1 · Algorithms and Programming (ALPRO), Python'],
-      ['Course assessment','Collaborative project developed to validate the ALPRO course'],
-      ['Collaboration and presentation','Developed with Sena FUKABE and presented as part of the course'],
-      ['Platforms','Desktop Python/Pygame and browser build using Pygbag'],
-      ['Player journey','Profile → stake → observation → shuffle → selection → result'],
-      ['Controls','Mouse, touch, keyboard; difficulty and pause options'],
-      ['Play',a('https://denoskume.github.io/Python-CardGame/','Play the browser game')+' · '+a(R.card,'Source code')]
+      ['Academic project','Master 1 (S1), Centrale Nantes · Algorithms and Programming (ALPRO), Python'],
+      ['Team and presentation','Denos KUME and Sena FUKABE · presented on 12 December 2025'],
+      ['Assessment','Collaborative Python game developed and presented to validate ALPRO'],
+      ['V1 source',a(R.card+'/tree/main/versions/v1/code','View the five original Python modules')+' · '+a(R.card+'/blob/main/versions/v1/original-code.zip','Original source archive')],
+      ['V1 documentation',a(R.card+'/blob/main/versions/v1/docs/academic-report.md','Read report and presentation summary')],
+      ['V2 evolution',a(R.card+'/tree/main/src','Explore V2 code')+' · '+a('https://denoskume.github.io/Python-CardGame/','Play browser version')]
     ],
     glossary:[
-      ['Finite-state machine','A controller that moves through defined game states with explicit transition rules.'],
-      ['Frame update','An iteration in the event, update and rendering loop.'],
-      ['Logical slot','A persistent card position independent of the screen pixel coordinates.'],
-      ['Interpolation','A smooth mapping between start and destination positions during a card exchange.'],
-      ['Settlement guard','A rule that prevents a round from changing the balance more than once.'],
-      ['Pygbag','A toolchain that packages Python/Pygame applications for execution in a web browser.']
+      ['ALPRO','Algorithms and Programming — the Master 1 course assessed through the original Python project.'],
+      ['Pygame','A Python library used to render the game, process player input and manage the event loop.'],
+      ['Finite-state machine','A model of game phases with explicit rules for moving from one phase to another.'],
+      ['Object-oriented programming','Using classes to organize player, stake, card and game-controller responsibilities.'],
+      ['UML','Unified Modeling Language — diagrams used to document classes and system interactions.'],
+      ['SDLC','Software Development Life Cycle — planning, implementation, testing and documentation stages.'],
+      ['Pygbag','A later browser packaging tool used in V2, not part of the original V1 course submission.']
     ],
     summary:[
-      'CardGame was developed collaboratively with <strong>Sena FUKABE</strong> during <strong>Master 1, Semester 1</strong> to validate the <strong>Algorithms and Programming (ALPRO)</strong> course in Python. We also presented the project as part of the coursework.',
-      'Python CardGame V2 is a visual-memory game built in <strong>Pygame</strong> for desktop and the browser. The user tracks a red card through an animated shuffle and chooses its final position. The same Python controller handles transitions, timers and outcomes on both platforms.'+cit('sc-card',1),
-      'The V2 verification reports successful automated tests, desktop and Chromium browser flows, plus a <strong>0.59 ms median</strong> and <strong>0.95 ms p95</strong> rendering time over 300 desktop frames in its test environment.'+cit('sc-card',3)
+      '<strong>Original academic project (V1, 2025).</strong> We developed <em>Rouge Gagne, Noir Perd</em> in Python/Pygame as a Master 1 Semester 1 project to validate Algorithms and Programming (ALPRO). It was completed with <strong>Sena FUKABE</strong> and presented on <strong>12 December 2025</strong>. The original submission included the game, a 22-page report and a 20-slide presentation.',
+      'V1 combines a three-card memory game with player profiles, fictitious stakes, timed game phases, animated shuffling and local JSON history. The submitted report explains objectives, UML and sequence diagrams, an ER diagram, a Gantt chart and testing. '+a(R.card+'/tree/main/versions/v1','Explore original V1 source and documentation')+'.',
+      '<strong>Later evolution (V2, 2026).</strong> V2 is preserved separately at the repository root. It adds a browser build, later automated verification and measured rendering results. Those results are <strong>not</strong> presented as ALPRO V1 outcomes.'
     ],
     references:[
-      {label:'Kume, D., & Fukabe, S. (2026). Python CardGame V2. Rules and controller implementation.',url:R.card+'/blob/main/src/game.py',linkLabel:'Game code'},
-      {label:'Kume, D., & Fukabe, S. (2026). Game state, event handling, card motion and settlement controller.',url:R.card+'/blob/main/src/game.py',linkLabel:'Game controller'},
-      {label:'Kume, D., & Fukabe, S. (2026). Round timing and pause/resume regression checks.',url:R.card+'/blob/main/tests/test_round_timing.py',linkLabel:'Timing tests'},
-      {label:'Pygame. Event queue and application event loop. Official documentation.',url:'https://www.pygame.org/docs/ref/event.html',linkLabel:'Pygame events'},
-      {label:'Kume, D., & Fukabe, S. (2026). Validated local storage and profile history.',url:R.card+'/blob/main/src/storage.py',linkLabel:'Storage code'},
-      {label:'Kume, D., & Fukabe, S. (2026). Browser build and packaging script.',url:R.card+'/blob/main/scripts/build_web.sh',linkLabel:'Web build script'}
+      {label:'Kume, D., & Fukabe, S. (2025). Rouge Gagne, Noir Perd, academic ALPRO V1 Python source.',url:R.card+'/tree/main/versions/v1/code',linkLabel:'Original V1 Python code'},
+      {label:'Kume, D., & Fukabe, S. (2025). ALPRO report and presentation: source-grounded academic summary.',url:R.card+'/blob/main/versions/v1/docs/academic-report.md',linkLabel:'V1 academic documentation'},
+      {label:'Kume, D., & Fukabe, S. (2025). Original CardGame V1 animated demonstration.',url:R.card+'/blob/main/docs/cardgame_demo.gif',linkLabel:'Original V1 demo'},
+      {label:'Kume, D., & Fukabe, S. (2026). Later CardGame V2 source and controller.',url:R.card+'/blob/main/src/game.py',linkLabel:'V2 source'},
+      {label:'Kume, D., & Fukabe, S. (2026). V2 round timing and pause/resume checks.',url:R.card+'/blob/main/tests/test_round_timing.py',linkLabel:'V2 tests'},
+      {label:'Pygame. Event queue and application loop. Official documentation.',url:'https://www.pygame.org/docs/ref/event.html',linkLabel:'Pygame events'},
+      {label:'Kume, D., & Fukabe, S. (2026). V2 browser packaging.',url:R.card+'/blob/main/scripts/build_web.sh',linkLabel:'V2 web build'}
     ],
     reportSections:[
-      {key:'intro',title:'1.0 Introduction',body:
-        '<h3>1.1 Academic context and project goal</h3>'+
-        '<p>CardGame was a collaborative Master 1 (S1) project completed with Sena FUKABE to validate the Algorithms and Programming (ALPRO) course in Python. We developed the game and presented our work. The project brought together programming logic, game rules, user interaction and an executable application.</p>'+
-        '<h3>1.2 A simple game with difficult timing rules</h3>'+
-        '<p>The player watches three cards, follows the red one while the cards exchange positions, and tries to choose it afterward. The game looks simple, but its code must keep the card identity correct while animations, timers, user input and account balances change.'+cit('sc-card',1)+'</p>'+
-        '<p>We designed a shared game controller so the desktop and web versions use the same rules. The main challenge was keeping gameplay responsive during shuffling without losing track of the card or accepting an outcome twice.</p>'},
-      {key:'dataset',title:'2.0 Requirements and game rules',body:
-        '<h3>2.1 Player interaction</h3>'+
-        '<p>A player can create a local profile, choose a difficulty and select a stake using fictitious credits. Each round has an observation phase, a shuffle phase and a selection phase. The interface supports mouse, keyboard and touch inputs.'+cit('sc-card',1)+'</p>'+
-        facts([['3','Cards'],['3','Difficulty levels'],['10 s','Each main phase']])+
-        '<h3>2.2 Core engineering requirements</h3>'+
-        bullets(['Maintain one red-card identity as displayed positions change.',
-          'Use non-blocking animation, with pause and resume preserving elapsed time.',
-          'Validate a stake before the round begins and settle its outcome once.',
-          'Keep profiles and recent results across sessions using local storage.',
-          'Render consistently on desktop and browser viewport sizes.'])},
-      {key:'method',title:'3.0 Implementation approach',body:
-        steps(['Read input','Update game state','Animate cards','Render frame'])+
-        '<h3>3.1 Finite-state controller</h3>'+
-        '<p>The controller progresses through profile setup, betting, observation, shuffle, selection and result states. Each state determines which actions are allowed. The event loop processes user actions and time changes, then redraws the current state; the rendering step does not change the game rules.'+cit('sc-card',2)+cit('sc-card',4)+'</p>'+
-        '<h3>3.2 Keeping cards consistent while they move</h3>'+
-        '<p>Each card has a permanent red or black identity and a logical slot. Exchanges move cards between slots through smooth interpolated paths. When the window is resized, coordinates are recomputed from those slots rather than resetting the shuffle. This prevents the visible animation and the final answer from disagreeing.</p>'+
-        fig(raw+'Python-CardGame/main/docs/screenshots/v2-table.png','<strong>Figure 1.</strong> V2 gameplay table showing the responsive card interface.','CardGame V2 tabletop with three cards and game controls.','sc-card-r-fig1')+
-        '<h3>3.3 Time, credit and storage integrity</h3>'+
-        '<p>The round freezes the accepted stake. A correct choice adds one total stake to the fictitious credit balance; an incorrect choice or timeout subtracts it. The settlement guard allows only one outcome per round. Pausing shifts the time origin, and the storage layer validates local profiles and bounded history.'+cit('sc-card',5)+'</p>'},
-      {key:'results',title:'4.0 Testing and results',body:
-        '<h3>4.1 Validation of gameplay</h3>'+
-        '<p>Automated checks and a browser walkthrough covered profile creation, stakes, round progression, pause/resume, history, returning profiles and responsive layouts. The project was also tested with a headless desktop display and Chromium browser automation.'+cit('sc-card',3)+'</p>'+
-        '<h3>4.2 Rendering performance</h3>'+
-        '<p>On a 300-frame desktop rendering run, the reported median frame-render time was <strong>0.59 ms</strong>, with a <strong>0.95 ms</strong> 95th percentile. These timings cover the measured rendering work in the test environment. They help explain why cached typography and graphics can keep the interface responsive.'+cit('sc-card',3)+'</p>'+
-        '<p>Verification details, viewport sizes and the full rules table are available in <strong>Metrics</strong>. Both original interface screenshots are available in <strong>Figures</strong>.</p>'},
-      {key:'discussion',title:'5.0 Discussion and next steps',body:
-        '<h3>5.1 What the project demonstrates</h3>'+
-        '<p>CardGame V2 is an event-driven application, not merely a collection of animated screens. Separating game state, presentation and storage makes it possible to reason about card identity, timer transitions and settlement independently of rendering.</p>'+
-        '<h3>5.2 Further work</h3>'+
-        '<p>Additional automated browser/device tests and accessibility reviews would help extend coverage to more interaction environments. A cloud-backed multiplayer mode would require a different persistence and trust model than the current local profiles.</p>'}
+      {key:'intro',title:'1.0 Context, problem and objective',body:
+        '<h3>1.1 Master 1 ALPRO assessment</h3>'+
+        '<p><strong>Rouge Gagne, Noir Perd</strong> was developed by Denos KUME and Sena FUKABE during Master 1 Semester 1 at Centrale Nantes for the Algorithms and Programming (ALPRO) course in Python. We developed the game collaboratively and presented it on 12 December 2025. The original submission included an implemented Python program, a 22-page report and a 20-slide classroom presentation.</p>'+
+        '<h3>1.2 Why this problem?</h3>'+
+        '<p>We wanted to turn fundamental programming concepts into an interactive application. A player must remember which of three cards is red while the cards change positions. The implementation must coordinate player input, a countdown, animated card movement, game rules and saved results without losing the red card identity.</p>'+
+        '<h3>1.3 Objective and expected deliverables</h3>'+
+        bullets(['Build a working Python/Pygame application with explicit game phases.',
+          'Apply object-oriented programming and maintainable module separation.',
+          'Document requirements, architecture, diagrams, testing and development stages.',
+          'Demonstrate and explain the result during the ALPRO presentation.'])+
+        '<p>'+a(R.card+'/blob/main/versions/v1/docs/academic-report.md','Read the V1 academic report and presentation summary')+'</p>'},
+      {key:'dataset',title:'2.0 Game requirements and flow (V1)',body:
+        '<h3>2.1 What the player does</h3>'+
+        steps(['Create or select a player','Choose a fictitious stake','Observe the red card','Track the shuffle','Select a card','Review the result'])+
+        '<p>The three cards contain one red target and two black alternatives. The player makes a choice after the shuffle. The game updates fictitious credits and records local outcomes. The original V1 implementation uses timed stages rather than a static card-selection screen.</p>'+
+        facts([['3','Cards'],['5','Python modules'],['10 s','Main timed phases']])+
+        '<h3>2.2 Software requirements</h3>'+
+        bullets(['Reject invalid input and stakes instead of letting them corrupt the round.',
+          'Keep game phases and the active card identity consistent during shuffles.',
+          'Render responsive menus, betting controls, timers and results in Pygame.',
+          'Maintain a local JSON history without exposing real player data.',
+          'Test game logic, error conditions and basic performance.'])},
+      {key:'method',title:'3.0 Original V1 design and Python implementation',body:
+        '<h3>3.1 Five modules with distinct responsibilities</h3>'+
+        table(['Python file','Responsibility'],[
+          ['main.py','Configure Pygame; initialize models and run the event/update/render loop'],
+          ['user.py','Store player identity and fictitious balance'],
+          ['bet.py','Validate stake limits and turbo multiplier'],
+          ['game.py','Coordinate states, cards, timers, shuffling and outcomes'],
+          ['dashboard.py','Draw menus, game screens, controls and results']
+        ],'<strong>Table 1.</strong> Files preserved from the original ALPRO submission.')+
+        '<h3>3.2 Game controller and event loop</h3>'+
+        '<p>V1 uses a state-driven controller to keep each phase explicit. The main loop receives events, updates the current game state and redraws the interface. Keeping rendering in a separate dashboard module helps prevent screen code from becoming the source of game rules.</p>'+
+        '<p>'+a(R.card+'/tree/main/versions/v1/code','Inspect the original V1 Python source')+'</p>'+
+        '<h3>3.3 Planning and system diagrams</h3>'+
+        '<p>The academic report includes a UML class diagram, an entity–relationship (ER) diagram, an SDLC Gantt chart and a sequence diagram of a complete round. These explain the architecture, data relationships, schedule and order of interactions, rather than serving merely as illustrations.</p>'+
+        '<h3>3.4 Later V2 changes</h3>'+
+        '<p>The application was subsequently extended into V2 with a browser-compatible build and additional features. V2 lives under the repository-root <code>src/</code> folder; it is not the original code submitted for ALPRO.'+a(R.card+'/tree/main/src',' Explore V2 source')+'</p>'},
+      {key:'results',title:'4.0 Tests, presentation and later results',body:
+        '<h3>4.1 What the original submission established</h3>'+
+        '<p>The V1 report documents a functioning desktop Pygame game with a round lifecycle, player input, fictitious stakes, animations, outcome calculation and local JSON records. It discusses functional testing and risks such as invalid input, inconsistent state, lag and corrupted history. The project was also presented as part of the course assessment.</p>'+
+        '<p>The original academic materials do <strong>not</strong> report the later V2 browser test results or the 0.59 ms and 0.95 ms rendering measurements. We therefore do not attribute those numbers to V1.</p>'+
+        '<h3>4.2 Later V2 verification</h3>'+
+        '<p>V2 added desktop and Chromium browser checks, responsive layouts, protected round settlement and further tests. Its reported 300-frame desktop rendering measurements are a <strong>0.59 ms median</strong> and <strong>0.95 ms p95</strong>, in the documented test environment.'+cit('sc-card',5)+'</p>'+
+        '<p>The <strong>Figures</strong> tab begins with the original V1 gameplay recording and then shows clearly labeled V2 screenshots. The <strong>Metrics</strong> tab separates the two versions.</p>'},
+      {key:'discussion',title:'5.0 Discussion and project evolution',body:
+        '<h3>5.1 What we learned in ALPRO</h3>'+
+        '<p>The project translates algorithms and programming concepts into an application: input validation, classes, modular code, explicit states, time-dependent logic and persistent data. The report and presentation made us explain not just what the user sees, but how the game is organized and tested.</p>'+
+        '<h3>5.2 Limitations and perspectives</h3>'+
+        '<p>The V1 submission documents a classroom-scale application. It does not establish deployment reliability or browser-wide compatibility, and any later test measurements belong to V2. Further work could strengthen accessibility, testing and portability.</p>'+
+        '<h3>5.3 V1 is preserved, V2 is maintained</h3>'+
+        '<p>The five Python files and original artwork are available in <code>versions/v1</code> alongside a source archive. The current V2 controller, browser game, tests and assets remain in their existing locations.'+a(R.card+'/tree/main/versions/v1',' View V1')+' · '+a(R.card+'/tree/main/src','View V2')+'</p>'}
     ],
     figures:[
-      {title:'Welcome screen',description:'V2 start interface from the project repository.',url:raw+'Python-CardGame/main/docs/screenshots/v2-home.png',kind:'figure',reportId:'sc-card-r-intro'},
-      {title:'Gameplay table',description:'Responsive in-game table and controls.',url:raw+'Python-CardGame/main/docs/screenshots/v2-table.png',kind:'figure',reportId:'sc-card-r-fig1'},
-      {title:'CardGame V1 recording',description:'An animated gameplay demonstration of the original CardGame V1 interface. The screenshots above document the newer V2 version.',url:raw+'Python-CardGame/main/docs/cardgame_demo.gif',kind:'demo'}
+      {title:'Original V1 gameplay demonstration (2025)',description:'Rouge Gagne, Noir Perd — the original Master 1 ALPRO game. The animation shows its gameplay interface before the later V2 evolution.',url:raw+'Python-CardGame/main/docs/cardgame_demo.gif',kind:'demo'},
+      {title:'V1 red card artwork',description:'Original red-card asset used in the Python/Pygame game, retained in the 2025 V1 source folder.',url:raw+'Python-CardGame/main/versions/v1/code/assets/card_back_red.png',kind:'figure'},
+      {title:'V2 welcome screen (later evolution)',description:'V2 welcome interface; this is not a screenshot from the original ALPRO submission.',url:raw+'Python-CardGame/main/docs/screenshots/v2-home.png',kind:'figure',reportId:'sc-card-r-intro'},
+      {title:'V2 gameplay table (later evolution)',description:'Responsive game table from V2, kept separate from the original V1 demonstration.',url:raw+'Python-CardGame/main/docs/screenshots/v2-table.png',kind:'figure',reportId:'sc-card-r-fig1'}
     ],
     metrics:[
-      {key:'timing',title:'Measured desktop rendering',body:
-        '<p>The rendering check covers 300 frames under the documented desktop verification environment.'+cit('sc-card',3)+'</p>'+
+      {key:'v1',title:'ALPRO V1 — documented deliverables and checks',body:
+        '<p>V1 was an academic implementation and presentation, not a benchmark study. Its report documents functional testing, input checks, round-state consistency and risk analysis, but does not publish V2 browser metrics.</p>'+
+        score([['Python files','5'],['Report','22 pages'],['Presentation','20 slides']])+
+        '<p>'+a(R.card+'/blob/main/versions/v1/docs/academic-report.md','Read the original V1 academic evidence summary')+'</p>'},
+      {key:'timing',title:'V2 only — measured desktop rendering',body:
+        '<p>These results come from the later V2 implementation, measured over 300 desktop frames in its test environment.'+cit('sc-card',5)+'</p>'+
         score([['Median','0.59 ms'],['p95','0.95 ms'],['Frames','300']])+
-        '<p>'+a(R.card+'/blob/main/tests/test_round_timing.py','Explore timing tests')+'</p>'},
-      {key:'rules',title:'Game rules and validation',body:
-        table(['Rule','Value'],[
+        '<p>'+a(R.card+'/blob/main/tests/test_round_timing.py','Explore V2 timing and state tests')+'</p>'},
+      {key:'rules',title:'V2 only — verified rule set',body:
+        table(['Rule','V2 value'],[
           ['Card identities','One red and two black'],
           ['Starting profile balance','30 fictitious credits'],
           ['Stake','10–1000 credits, step 5'],
@@ -221,8 +242,8 @@
           ['Correct choice','Add one accepted stake'],
           ['Wrong choice / timeout','Subtract one accepted stake'],
           ['Saved history','Latest 200 rounds on the device']
-        ],'<strong>Table 1.</strong> Round behaviour implemented by the CardGame V2 controller.')+
-        '<p>The desktop and browser flows share the controller and persistence rules.'+cit('sc-card',1)+'</p>'}
+        ],'<strong>Table 2.</strong> V2 controller rules (not a table of original ALPRO V1 test results).')+
+        '<p>'+a(R.card+'/blob/main/src/game.py','Inspect V2 implementation')+'</p>'}
     ]
   };
 
