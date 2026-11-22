@@ -2702,6 +2702,7 @@ body:has(#about.active) .main-container {
 
 </style>
 <link rel="stylesheet" href="fluoroscopy-case-study.css?v=20261121-article-layout-v21">
+<link rel="stylesheet" href="scientific-case-studies.css?v=20261122-reports-v1">
 
 <link rel="stylesheet" href="harvard-cv.css?v=20261122-header-download">
 <link rel="stylesheet" href="contact-modern.css?v=20261122-centered-form-v5">
@@ -3212,6 +3213,7 @@ body:has(#about.active) .main-container {
 <script src="content.js"></script>
 <script src="harvard-cv.js?v=20261122-match-project-format" defer></script>
 <script src="fluoroscopy-case-study.js?v=20261121-collaborator-credit-v22"></script>
+<script src="scientific-case-studies.js?v=20261122-reports-v1"></script>
 <script>
 
 /* ============================================================
@@ -3538,7 +3540,17 @@ function openProject(id) {
     return;
   }
 
-
+  // Camera calibration and CLAP now use the same journal-style three-tab
+  // article template as the fluoroscopy case study, with authentic figures.
+  if (p.id === 2 || p.id === 3) {
+    const content = document.getElementById('projectDetailContent');
+    content.innerHTML = renderScientificCaseStudy(p.id);
+    initScientificCaseStudy();
+    showSection('projectDetail');
+    const slug = p.id === 2 ? 'camera-calibration' : 'clap-zero-shot';
+    history.replaceState(null, '', location.pathname + location.search + '#/projects/' + slug);
+    return;
+  }
 
   const content = document.getElementById('projectDetailContent');
 
@@ -3645,7 +3657,7 @@ function escapeHtml(str) {
 function showSection(id) {
   if (id !== 'projectDetail') {
     document.querySelectorAll('#projectDetailContent video').forEach(video => video.pause());
-    if (location.hash === '#/projects/fluoroscopy-instrument-segmentation') {
+    if (/^#\/projects\/(fluoroscopy-instrument-segmentation|camera-calibration|clap-zero-shot)$/.test(location.hash)) {
       history.replaceState(null, '', location.pathname + location.search);
     }
   }
@@ -3837,10 +3849,13 @@ buildCarousel();
 buildProjects();
 buildBlog();
 
-// Direct links must open the same case study as clicking its project card.
-if (location.hash === '#/projects/fluoroscopy-instrument-segmentation') {
-  openProject(1);
-}
+// Each project has its own stable direct URL (including shared report links).
+const projectDeepLinks = {
+  '#/projects/fluoroscopy-instrument-segmentation': 1,
+  '#/projects/camera-calibration': 2,
+  '#/projects/clap-zero-shot': 3
+};
+if (projectDeepLinks[location.hash]) openProject(projectDeepLinks[location.hash]);
 
 </script>
 
