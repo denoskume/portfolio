@@ -20,13 +20,9 @@
   if (Object.values(els).some(el => !el)) return;
 
   function repoKey(project) {
-    try {
-      const u = new URL(project.github);
-      if (u.hostname !== 'github.com') return '';
-      const parts = u.pathname.split('/').filter(Boolean);
-      if (parts.length < 2 || parts[0].toLowerCase() !== OWNER) return '';
-      return (parts[0] + '/' + parts[1]).toLowerCase();
-    } catch (_) { return ''; }
+    const match = String(project.github || '').match(/^https:\/\/github\.com\/([^/?#]+)\/([^/?#]+)/i);
+    if (!match || match[1].toLowerCase() !== OWNER) return '';
+    return (match[1] + '/' + match[2]).toLowerCase();
   }
   const projects = catalog.filter(p => p && p.title && p.slug).map(p => ({
     ...p, sourceKey: repoKey(p),
@@ -212,8 +208,8 @@
     }).join('')+'</ol>';
   }
   function safeLink(url) {
-    try {const u=new URL(url);return u.hostname==='github.com'&&u.protocol==='https:'?u.href:'';}
-    catch(_){return '';}
+    const str = String(url || '');
+    return /^https:\/\/github\.com\/[a-z0-9._-]+\/[a-z0-9._-]+(?:[/?#][^"<>\s]*)?$/i.test(str) ? str : '';
   }
   function renderTable(rows) {
     els.count.textContent=rows.length+' matching '+(rows.length===1?'project':'projects');
