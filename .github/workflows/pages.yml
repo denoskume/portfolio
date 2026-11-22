@@ -85,10 +85,11 @@ jobs:
           assert all("|" not in job["title"] for job in cv["experience"]), "Job titles must not include employer and location"
           assert "Unified Mentor Pvt. Ltd." in text and "Bangalore, India" in text, "Missing internship affiliation and location"
           assert "RWS TrainAI - Remote" in text, "Missing remote freelance affiliation"
-          assert "Sep - Dec 2024 (3-month final-year Bachelor internship)" in text, "Must preserve full Bachelor final-year internship qualification"
+          assert "Sep - Dec 2024 (3 months)" in text, "Internship dates must show concise numeric duration"
           assert "Aug - Oct 2026 (3 months)" in text, "Missing freelance duration beside the dates"
-          assert cv["experience"][0]["dates"].endswith("(3-month final-year Bachelor internship)"), "Do not shorten the Bachelor internship"
+          assert cv["experience"][0]["dates"].endswith("(3 months)"), "Use only numeric month duration in dates"
           assert cv["experience"][1]["dates"].endswith("(3 months)"), "RWS experience duration must be preserved"
+          assert "Final-year Bachelor internship" in cv["experience"][0]["summary"], "Retain internship academic context in summary, not dates"
           assert all("months" not in job["organization"] for job in cv["experience"]), "Do not repeat duration on employer line"
           print(f"Validated one-page text-based A4 Harvard CV: {len(text)} extracted characters")
           PY
