@@ -29,9 +29,9 @@ jobs:
           python - <<'PY'
           from pypdf import PdfReader
           for path, expected in [
-            ("build/fluoroscopy-case-study.pdf", ["Abstract", "Nomenclature", "Methodology", "Experimental results", "0.501", "0.876"]),
-            ("build/camera-calibration-case-study.pdf", ["Abstract", "Nomenclature", "Methodology", "Experimental results", "0.434", "0.352"]),
-            ("build/clap-zero-shot-case-study.pdf", ["Abstract", "Nomenclature", "Methodology", "Experimental results", "91.15", "83.05"])
+            ("build/fluoroscopy-case-study.pdf", ["Abstract", "Nomenclature", "Methodology", "Experimental results", "References", "Otsu", "Geurts", "0.501", "0.876"]),
+            ("build/camera-calibration-case-study.pdf", ["Abstract", "Nomenclature", "Methodology", "Experimental results", "References", "Zhang", "OpenCV", "0.434", "0.352"]),
+            ("build/clap-zero-shot-case-study.pdf", ["Abstract", "Nomenclature", "Methodology", "Experimental results", "References", "Piczak", "Wu", "Gemmeke", "91.15", "83.05"])
           ]:
               reader = PdfReader(path)
               text = " ".join((page.extract_text() or "") for page in reader.pages)
@@ -160,6 +160,33 @@ jobs:
           """
           subprocess.run(["node","-e",script],check=True)
           print("Camera Calibration and CLAP report structure validated.")
+          PY
+          # Citations must resolve to bibliography entries in every project's Report tab.
+          python - <<'PY'
+          import re, subprocess
+          script = """
+          global.window=globalThis;
+          require('./fluoroscopy-case-study.js');
+          const fluoro = window.renderFluoroCaseStudy();
+          require('./scientific-case-studies.js');
+          const studies = [
+            {html:fluoro,prefix:'fl',expected:5},
+            {html:window.renderScientificCaseStudy(2),prefix:'sc-cam',expected:5},
+            {html:window.renderScientificCaseStudy(3),prefix:'sc-clap',expected:8}
+          ];
+          for (const study of studies) {
+            const sourceLinks = [...study.html.matchAll(/class="study-cite" href="#([^"]+)"/g)].map(match => match[1]);
+            const bibliography = [...study.html.matchAll(/<li id="(fl-ref-\d+|sc-cam-ref-\d+|sc-clap-ref-\d+)"/g)].map(match => match[1]);
+            if(sourceLinks.length < 5 || bibliography.length !== study.expected ||
+               sourceLinks.some(ref => !bibliography.includes(ref)) ||
+               !study.html.includes('6.0 References') ||
+               !study.html.includes('class="study-reference-list"')) {
+              throw new Error('Broken or incomplete bibliography: ' + study.prefix);
+            }
+          }
+          """
+          subprocess.run(["node","-e",script],check=True)
+          print("All three report bibliographies and inline source links validated.")
           PY
           # Contact form must be accessible, designed, and actually wired to an email relay.
           python - <<'PY'
