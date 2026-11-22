@@ -2572,8 +2572,8 @@ body:has(#about.active) .main-container {
 
 <link rel="stylesheet" href="harvard-cv.css?v=20261122-header-download">
 <link rel="stylesheet" href="contact-modern.css?v=20261122-centered-form-v5">
-<link rel="stylesheet" href="home-credentials.css?v=20261122-stacked-v1">
-<script src="home-credentials.js?v=20261122-stacked-v1" defer></script>
+<link rel="stylesheet" href="home-credentials.css?v=20261122-video-deck-v2">
+<script src="home-credentials.js?v=20261122-video-deck-v2" defer></script>
 <script src="contact-form.js?v=20261122-contact-v2" defer></script>
 </head>
 
@@ -2684,7 +2684,7 @@ body:has(#about.active) .main-container {
         </div>
       </section>
 
-      <!-- Credentials carousel: layered cards as demonstrated in Demo_cards.mp4. -->
+      <!-- Credentials: closely stacked stationary deck based on Demo_cards.mp4. -->
       <section id="homeCredentials" class="hc-showcase" aria-label="Credentials and Recognition carousel" aria-roledescription="carousel">
         <div class="hc-wrap">
           <header class="hc-intro">
@@ -2695,7 +2695,7 @@ body:has(#about.active) .main-container {
             </div>
             <a class="hc-about-link" href="#" data-target="about">Explore About Me ↗</a>
           </header>
-          <div class="hc-carousel" tabindex="0" aria-label="Use left and right arrow keys to browse credentials">
+          <div class="hc-carousel" tabindex="0" aria-label="Credential card stack. Use left or right arrow keys, touch swipe, or pagination squares to navigate.">
             <div class="hc-stack">
             <article class="hc-card" data-place="active" aria-label="Credential 1 of 4: Data Scientist" aria-hidden="false">
               <span class="hc-type">Certificate · Simplilearn</span>
@@ -2746,8 +2746,6 @@ body:has(#about.active) .main-container {
               </div>
             </article>
             </div>
-            <button type="button" class="hc-arrow hc-prev" aria-label="Previous credential">‹</button>
-            <button type="button" class="hc-arrow hc-next" aria-label="Next credential">›</button>
           </div>
           <div class="hc-nav" aria-label="Carousel navigation">
             <div class="hc-dots" role="group" aria-label="Select credential">
@@ -2756,10 +2754,9 @@ body:has(#about.active) .main-container {
               <button class="hc-dot" type="button" aria-label="Show 3rd Place" aria-current="false"></button>
               <button class="hc-dot" type="button" aria-label="Show Star of the Month" aria-current="false"></button>
             </div>
-            <span class="hc-count" aria-live="polite">01 / 04</span>
-            <button class="hc-play" type="button" aria-label="Pause automatic credential carousel" aria-pressed="false">Pause</button>
+            <span class="hc-announcement" aria-live="polite" aria-atomic="true">Credential 1 of 4: Data Scientist</span>
           </div>
-          <p class="hc-footnote">Select a card to view the original certificate or recognition in full size.</p>
+          <p class="hc-footnote">Select a pagination square to bring another card forward. Open the front document to view it full size.</p>
         </div>
       </section>
 
