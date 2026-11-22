@@ -4,6 +4,7 @@ from pathlib import Path
 from html import escape
 import json
 from reportlab.lib import colors
+from reportlab.lib.units import cm
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.platypus import Paragraph
@@ -21,6 +22,8 @@ NAVY=colors.HexColor('#264b70')
 BLACK=colors.HexColor('#151c24')
 GREY=colors.HexColor('#44515d')
 RULE=colors.HexColor('#8ea9bf')
+SECTION_GAP = 1.0 * cm  # between CV sections
+BLOCK_GAP = 0.5 * cm    # between entries in the same section
 C=canvas.Canvas(str(OUT),pagesize=A4,pageCompression=1)
 C.setAuthor(DATA['name'])
 C.setTitle(DATA['name']+' - Curriculum Vitae')
@@ -42,8 +45,8 @@ def center(text,y,size=9,font='Helvetica',color=BLACK):
     C.setFillColor(color)
     C.drawCentredString(W/2,y,text)
 
-def heading(name,y):
-    y-=10.0
+def heading(name,y,first=False):
+    y-=10.0 if first else SECTION_GAP
     C.setFont('Helvetica-Bold',9.75)
     C.setFillColor(NAVY)
     C.drawString(LEFT,y,name.upper())
@@ -104,11 +107,11 @@ y-=12.5
 links_on_line(DATA['social'],y,8.6)
 y-=13.5
 
-y=heading('Profile',y)
+y=heading('Profile',y,first=True)
 profile_html=escape(DATA['profile']).replace('six-month internship from February 2027','<b>six-month internship from February 2027</b>')
 y=txt(profile_html,LEFT,y,after=1.0,raw=True)
 y=heading('Education',y)
-for e in DATA['education']:
+for idx,e in enumerate(DATA['education']):
     y=heading_row(e['school'],e['dates'],y)
     track = f"{e['track_label']}: {e['track']}"
     location = e['location']
@@ -120,15 +123,15 @@ for e in DATA['education']:
     C.drawRightString(W-RIGHT,y-9.4,location)
     y-=12.0
     y=txt(e['description'],LEFT,y,style=SHORT,after=0.75)
-    y=txt('<b>Relevant coursework:</b> '+escape(e['courses']).replace(' | ', ' &#8226; '),LEFT,y,style=SHORT,raw=True,after=3.2)
+    y=txt('<b>Relevant coursework:</b> '+escape(e['courses']).replace(' | ', ' &#8226; '),LEFT,y,style=SHORT,raw=True,after=BLOCK_GAP if idx<len(DATA['education'])-1 else 3.2)
 
 y=heading('Experience',y)
-for e in DATA['experience']:
+for idx,e in enumerate(DATA['experience']):
     y=heading_row(e['title'],e['dates'],y)
     y=txt(e['summary'],LEFT,y,style=SHORT,after=1.1)
     for b in e['bullets']:
         y=bullet(b,y)
-    y-=2.6
+    y-=BLOCK_GAP if idx<len(DATA['experience'])-1 else 2.6
 
 y=heading('Selected projects',y)
 for e in DATA['projects']:
