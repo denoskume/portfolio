@@ -283,7 +283,6 @@ if __name__ == "__main__":
                             (3, "clap-zero-shot-case-study.pdf"),
                             (4, "flag-intelligence-case-study.pdf"),
                             (5, "python-cardgame-case-study.pdf"),
-                            (6, "monstage-case-study.pdf"),
-                            (7, "visionlab-case-study.pdf")]:
+                            (6, "monstage-case-study.pdf")]:
         path = build(ident, filename)
         print(f"Built {path.name}: {path.stat().st_size} bytes")
