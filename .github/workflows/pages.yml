@@ -62,13 +62,19 @@ jobs:
           assert "Baccalaureate" not in text and "Baccalauréat" not in text, "Secondary school should be excluded from internship CV"
           assert "Computer Vision & Image Processing" in text, "Missing focused Data Science direction"
           assert "Data Analysis" in text, "Missing secondary direction"
-          assert "0.534" in text, "Missing verified camera calibration result"
-          assert text.index("SELECTED TECHNICAL PROJECTS") < text.index("PROFESSIONAL EXPERIENCE"), "Projects should lead the technical narrative"
+          assert "MonStage" in text, "Missing key data platform project"
+          assert "Microcatheter Segmentation" in text, "Missing computer vision project"
+          assert "Google Advanced Data Analytics" in text, "Missing verified certification"
+          assert "SQL Certification Course" in text, "Missing verified SQL certification"
+          assert "EXPERIENCE" in text and "SELECTED PROJECTS" in text, "Missing reference sections"
+          assert text.index("EDUCATION") < text.index("EXPERIENCE") < text.index("SELECTED PROJECTS") < text.index("TECHNICAL SKILLS"), "Incorrect reference CV section order"
           import json
           cv = json.loads(Path("cv-data.json").read_text(encoding="utf-8"))
           assert len(cv["education"]) == 2, "Show only higher education"
           assert len(cv["projects"]) == 2
-          assert cv["direction"] == "Data Science — Computer Vision & Image Processing | Data Analysis"
+          assert cv["career_headline"] == "Data Science | Computer Vision & Image Processing | Data Analysis"
+          assert len(cv["certifications"]) == 2
+          assert len(cv["experience"]) == 2
           print(f"Validated one-page text-based A4 Harvard CV: {len(text)} extracted characters")
           PY
       - name: Validate and prepare static site
