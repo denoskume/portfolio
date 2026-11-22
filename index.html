@@ -2470,6 +2470,7 @@ body:has(#about.active) .main-container {
 </style>
 <link rel="stylesheet" href="fluoroscopy-case-study.css?v=20261121-article-layout-v21">
 
+<link rel="stylesheet" href="harvard-cv.css">
 </head>
 
 <body>
@@ -2833,37 +2834,24 @@ body:has(#about.active) .main-container {
     <div class="detail"><div class="detail-wrap blog-article" id="blogDetailContent"></div></div>
   </section>
 
-  <!-- ============ CV OVERVIEW ============ -->
+  <!-- ============ HARVARD CV ============ -->
   <section id="resume" class="section">
-    <div class="projects">
+    <div class="projects resume-page">
       <div class="wrap">
-        <div class="projects-head">
-          <h2>Curriculum Vitae</h2>
-        </div>
-        <div class="resume-sheet">
-          <h1>Denos Kume</h1>
-          <p class="resume-subtitle">Final-year MSc Control &amp; Robotics student — Data Science, Signal &amp; Image Processing.<br>Seeking a six-month internship starting February 2027.</p>
-          <div class="resume-contact">
-            <span>Nantes, France</span>
-            <a href="mailto:kamenan.kume@eleves.ec-nantes.fr">kamenan.kume@eleves.ec-nantes.fr</a>
-            <a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <div class="projects-head"><h2>Curriculum Vitae</h2></div>
+        <div class="harvard-toolbar">
+          <div>
+            <p class="harvard-toolbar-title">Harvard-style CV</p>
+            <p class="harvard-toolbar-description">One-page A4 résumé · Selectable-text PDF · ATS-friendly layout</p>
           </div>
-          <h2>Profile</h2>
-          <p>Final-year MSc Control &amp; Robotics student with a background in programming, electronics and embedded systems. Seeking a six-month internship in computer vision, image processing, applied machine learning, data science or data analysis, with an interest in industrial applications.</p>
-          <h2>Education</h2>
-          <div class="resume-item"><div><strong>MSc Control &amp; Robotics</strong><p>Centrale Nantes — Data Science, Signal &amp; Image Processing</p></div><span>2025–2027</span></div>
-          <div class="resume-item"><div><strong>BSc Computer Science &amp; Electronics</strong><p>Kristu Jayanti University, Bengaluru, India</p></div><span>2021–2025</span></div>
-          <h2>Technical focus</h2>
-          <p>Python · NumPy · OpenCV · PyTorch · Image Processing · Computer Vision · Data Analysis · Machine Learning</p>
-          <h2>Selected projects</h2>
-          <ul>
-            <li>Microcatheter segmentation in fluoroscopy — image preprocessing, background subtraction and mask evaluation.</li>
-            <li>Camera calibration — geometric calibration from nine chessboard images and reprojection analysis.</li>
-            <li>CLAP zero-shot audio classification — 91.15% best Top-1 accuracy on ESC-50.</li>
-          </ul>
-          <div class="resume-actions"><a href="mailto:kamenan.kume@eleves.ec-nantes.fr?subject=CV%20request">Request the latest PDF CV</a></div>
+          <a class="harvard-download" href="./Denos_Kume_Harvard_CV.pdf" download="Denos_Kume_Harvard_CV.pdf" aria-label="Download Denos Kume Harvard CV as a PDF">
+            <span aria-hidden="true">↓</span> Download PDF
+          </a>
         </div>
+        <article class="resume-sheet resume-harvard" id="harvardCvDocument" aria-label="Denos Kume — Harvard-style curriculum vitae">
+          <p class="harvard-loading">Loading the current CV…</p>
+        </article>
+        <p class="harvard-footer-note">The CV preview and downloadable PDF use the same verified data. The PDF contains selectable text and clickable contact links.</p>
       </div>
     </div>
   </section>
@@ -2974,6 +2962,7 @@ body:has(#about.active) .main-container {
 
 
 <script src="content.js"></script>
+<script src="harvard-cv.js" defer></script>
 <script src="fluoroscopy-case-study.js?v=20261121-collaborator-credit-v22"></script>
 <script>
 
