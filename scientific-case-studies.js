@@ -251,14 +251,14 @@
           '<p>The improvement is meaningful because the audio clips and the 50 possible answers were the same in both tests. The text supplied to CLAP was the difference. The comparison also shows that extra words do not automatically help: the tested prompt strategies produced different scores, and some performed below the class-name baseline.</p>'+
           figure(rawClap+'outputs/figures/prompt_strategy_comparison_table.png','<strong>Table 1.</strong> Top-1 accuracy for the ten prompt strategies. The class-name baseline and the best-performing prompt provide the key comparison.','Prompt strategy table with accuracies from the CLAP project.','sc-clap-r-fig2')+
           '<p>Among the alternative formulations, "a sound clip of {}" reached <strong>87.60%</strong> and "a recording of the sound of {}" reached <strong>87.55%</strong>. The results demonstrate why choosing a prompt is part of the classification method rather than a purely cosmetic wording decision.</p>'+
-          '<h3>4.2 What the Top-k results tell us</h3>'+
+          '<h3 id="sc-clap-r-topk-section">4.2 What the Top-k results tell us</h3>'+
           '<p>Top-1 accuracy tells us how often the first answer is correct, but it does not show how close other predictions were. With the best prompt, the correct class appeared in the top three for <strong>97.45%</strong> of clips and in the top five for <strong>99.00%</strong>. So even when the first prediction was wrong, the correct label was often among the next few suggestions.</p>'+
           '<p>This matters for interpreting a similarity-based classifier: its ranking can still contain useful information beyond the first label. The complete Top-1 through Top-10 table is available in <strong>Figures</strong> and <strong>Metrics</strong>.</p>'+
           figure(rawClap+'outputs/figures/topk_accuracy_line.png','<strong>Figure 2.</strong> The rise from Top-1 to Top-5 accuracy shows how often the correct class appears among the highest-ranked suggestions.','Top-k accuracy curve for the best CLAP prompt.','sc-clap-r-fig3')+
-          '<h3>4.3 Differences between sound categories</h3>'+
+          '<h3 id="sc-clap-r-classwise-section">4.3 Differences between sound categories</h3>'+
           '<p>We then examined accuracy separately for each of the 50 categories. Some sounds were recognized consistently, while others produced more incorrect first choices. Looking at classwise results helps identify the types of recordings that are more difficult for this model, rather than relying only on one overall percentage.</p>'+
           '<p>We also compared the classwise accuracy scores with AudioSet quality statistics and class video counts. The measured Pearson correlations were <strong>0.081</strong> for quality and <strong>−0.181</strong> for log10 video counts. These small values show that neither metadata variable closely tracked the differences in recognition accuracy across classes. The classwise tables and scatter plots can be inspected in <strong>Figures</strong>.</p>'+
-          '<h3>4.4 Putting the result in context</h3>'+
+          '<h3 id="sc-clap-r-published-section">4.4 Putting the result in context</h3>'+
           '<p>Our <strong>91.15%</strong> Top-1 accuracy comes from zero-shot classification: we used the pretrained CLAP representations without fitting a classifier on ESC-50. The project also presents published ESC-50 accuracies for BEATs (98.61%), HTS-AT (96.20%) and AST (95.30%). Those results come from supervised or fine-tuned approaches and provide a useful reference for understanding the performance of different audio classification strategies.</p>'+
           '<p>The complete model comparison appears in the <strong>Figures</strong> tab, alongside the classwise tables and Top-k results.</p>'},
         {key:'discussion',title:'5.0 Discussion and conclusion',body:
@@ -273,12 +273,12 @@
       figures:[
         ['Zero-shot pipeline','Audio and text embedding flow through similarity-based classification','outputs/figures/clap_complete_zero_shot_pipeline.png','intro','sc-clap-r-fig1','figure'],
         ['Prompt strategy comparison','Ten tested prompts, highlighting baseline and best result','outputs/figures/prompt_strategy_comparison_table.png','results','sc-clap-r-fig2','table'],
-        ['Top-k accuracy table','Top-1 through Top-10 classification accuracy','outputs/figures/topk_accuracy_table.png','results','sc-clap-r-topk-table','table'],
+        ['Top-k accuracy table','Top-1 through Top-10 classification accuracy','outputs/figures/topk_accuracy_table.png','results','sc-clap-r-topk-section','table'],
         ['Top-k accuracy curve','Prediction accuracy as the number of accepted ranks increases','outputs/figures/topk_accuracy_line.png','results','sc-clap-r-fig3','figure'],
-        ['Classwise accuracy','Highest- and lowest-performing ESC-50 classes','outputs/figures/classwise_accuracy_tables.png','results','sc-clap-r-classwise-table','table'],
-        ['Published ESC-50 classifiers','CLAP and published ESC-50 accuracy results','outputs/figures/published_classifier_comparison_table.png','results','sc-clap-r-model-table','table'],
-        ['AudioSet quality','Accuracy compared with AudioSet quality metadata for all classes','outputs/figures/all50_esc50_accuracy_vs_audioset_quality.png','results','sc-clap-r-results','figure'],
-        ['AudioSet coverage','Accuracy compared with AudioSet class video counts','outputs/figures/all50_esc50_accuracy_vs_audioset_coverage.png','results','sc-clap-r-results','figure']
+        ['Classwise accuracy','Highest- and lowest-performing ESC-50 classes','outputs/figures/classwise_accuracy_tables.png','results','sc-clap-r-classwise-section','table'],
+        ['Published ESC-50 classifiers','CLAP and published ESC-50 accuracy results','outputs/figures/published_classifier_comparison_table.png','results','sc-clap-r-published-section','table'],
+        ['AudioSet quality','Accuracy compared with AudioSet quality metadata for all classes','outputs/figures/all50_esc50_accuracy_vs_audioset_quality.png','results','sc-clap-r-classwise-section','figure'],
+        ['AudioSet coverage','Accuracy compared with AudioSet class video counts','outputs/figures/all50_esc50_accuracy_vs_audioset_coverage.png','results','sc-clap-r-classwise-section','figure']
       ].map(x=>({title:x[0],description:x[1],url:rawClap+x[2],section:x[3],reportId:x[4],kind:x[5]})),
       metrics:[
         {key:'overview',title:'Key accuracy results',body:
