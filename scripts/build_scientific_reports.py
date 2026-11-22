@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build real, illustrated A4 project report PDFs from the live case-study HTML.
+"""Build real, illustrated A4 PDFs from the live case-study Report HTML.
 
 The website's case studies are the single source for prose, figures, tables,
 and results. GitHub Actions runs the JS renderer in Node, then produces PDFs
@@ -210,15 +210,23 @@ def page_decoration(canvas, doc) -> None:
     canvas.restoreState()
 
 def build(study_id: int, filename: str) -> Path:
-    js = (
-        "global.window = globalThis;"
-        "require('./scientific-case-studies.js');"
-        f"process.stdout.write(window.renderScientificCaseStudy({study_id}));"
-    )
+    if study_id == 1:
+        # Render the same HTML as the live Background Subtraction Report.
+        js = (
+            "global.window = globalThis;"
+            "require('./fluoroscopy-case-study.js');"
+            "process.stdout.write(window.renderFluoroCaseStudy());"
+        )
+    else:
+        js = (
+            "global.window = globalThis;"
+            "require('./scientific-case-studies.js');"
+            f"process.stdout.write(window.renderScientificCaseStudy({study_id}));"
+        )
     result = subprocess.run(["node", "-e", js], cwd=ROOT,
                             capture_output=True, text=True, check=True)
     soup = BeautifulSoup(result.stdout, "html.parser")
-    root = soup.select_one("article.scientific-study")
+    root = soup.select_one("article.scientific-study, article.fluoro-study")
     panel = root.select_one('[data-sc-panel="report"]') if root else None
     if not root or not panel:
         raise RuntimeError(f"Case study {study_id}: no report content generated")
@@ -243,7 +251,8 @@ def build(study_id: int, filename: str) -> Path:
     return path
 
 if __name__ == "__main__":
-    for ident, filename in [(2, "camera-calibration-case-study.pdf"),
+    for ident, filename in [(1, "fluoroscopy-case-study.pdf"),
+                            (2, "camera-calibration-case-study.pdf"),
                             (3, "clap-zero-shot-case-study.pdf")]:
         path = build(ident, filename)
         print(f"Built {path.name}: {path.stat().st_size} bytes")
