@@ -127,15 +127,17 @@
   const card = {
     slug:'python-cardgame',prefix:'sc-card',title:'Python CardGame · V2',
     question:'How can a real-time three-card memory game remain consistent across animations, timers, user input and desktop/browser interfaces?',
-    authors:'ALPRO course project · Case study · Pygame · Collaborator: Sena FUKABE',
+    authors:'Master 1 (S1) · ALPRO (Algorithms and Programming, Python) · Collaborator: Sena FUKABE',
     repository:R.card,notebook:R.card+'/blob/main/src/game.py',
     pdf:'python-cardgame-case-study.pdf',downloadName:'Python-CardGame-Report.pdf',
-    citation:'Kume, D., & Fukabe, S. (2026). Python CardGame V2 [Python/Pygame software project]. GitHub. '+R.card,
+    citation:'Kume, D., & Fukabe, S. (2026). Python CardGame [Master 1 (S1), ALPRO Algorithms and Programming course project, Python/Pygame]. GitHub. '+R.card,
     bibtex:'@software{kume2026cardgame,author={Kume, Denos and Fukabe, Sena},title={Python CardGame V2},year={2026},url={'+R.card+'}}',
     keywords:['Python','Pygame','Finite-State Machine','Event Loop','Animation','WebAssembly','Testing'],
     projectInfo:[
       ['Project','Three-card visual memory game with fictitious credits'],
-      ['Academic context','ALPRO course project · Case study'],
+      ['Academic context','Master 1 · Semester 1 · Algorithms and Programming (ALPRO), Python'],
+      ['Course assessment','Collaborative project developed to validate the ALPRO course'],
+      ['Collaboration and presentation','Developed with Sena FUKABE and presented as part of the course'],
       ['Platforms','Desktop Python/Pygame and browser build using Pygbag'],
       ['Player journey','Profile → stake → observation → shuffle → selection → result'],
       ['Controls','Mouse, touch, keyboard; difficulty and pause options'],
@@ -150,6 +152,7 @@
       ['Pygbag','A toolchain that packages Python/Pygame applications for execution in a web browser.']
     ],
     summary:[
+      'CardGame was developed collaboratively with <strong>Sena FUKABE</strong> during <strong>Master 1, Semester 1</strong> to validate the <strong>Algorithms and Programming (ALPRO)</strong> course in Python. We also presented the project as part of the coursework.',
       'Python CardGame V2 is a visual-memory game built in <strong>Pygame</strong> for desktop and the browser. The user tracks a red card through an animated shuffle and chooses its final position. The same Python controller handles transitions, timers and outcomes on both platforms.'+cit('sc-card',1),
       'The V2 verification reports successful automated tests, desktop and Chromium browser flows, plus a <strong>0.59 ms median</strong> and <strong>0.95 ms p95</strong> rendering time over 300 desktop frames in its test environment.'+cit('sc-card',3)
     ],
@@ -163,7 +166,9 @@
     ],
     reportSections:[
       {key:'intro',title:'1.0 Introduction',body:
-        '<h3>1.1 A simple game with difficult timing rules</h3>'+
+        '<h3>1.1 Academic context and project goal</h3>'+
+        '<p>CardGame was a collaborative Master 1 (S1) project completed with Sena FUKABE to validate the Algorithms and Programming (ALPRO) course in Python. We developed the game and presented our work. The project brought together programming logic, game rules, user interaction and an executable application.</p>'+
+        '<h3>1.2 A simple game with difficult timing rules</h3>'+
         '<p>The player watches three cards, follows the red one while the cards exchange positions, and tries to choose it afterward. The game looks simple, but its code must keep the card identity correct while animations, timers, user input and account balances change.'+cit('sc-card',1)+'</p>'+
         '<p>We designed a shared game controller so the desktop and web versions use the same rules. The main challenge was keeping gameplay responsive during shuffling without losing track of the card or accepting an outcome twice.</p>'},
       {key:'dataset',title:'2.0 Requirements and game rules',body:
