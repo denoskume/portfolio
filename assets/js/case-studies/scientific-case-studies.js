@@ -11,6 +11,8 @@
     ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[char]));
   const link = (url, label) => '<a href="' + safe(url) +
     '" target="_blank" rel="noopener noreferrer">' + safe(label) + '</a>';
+  const collaboratorLink = (url, name) => '<a class="collaborator-link" href="'+safe(url)+
+    '" target="_blank" rel="noopener noreferrer" aria-label="'+safe(name)+' on LinkedIn">'+safe(name)+'</a>';
   const table = (headers, rows, caption) =>
     '<div class="fl-report-table">' + (caption ? '<p class="fl-table-caption">' + caption + '</p>' : '') +
     '<div class="fl-metric-table-wrap"><table class="fl-metric-table"><thead><tr>' +
@@ -193,13 +195,14 @@
       question:'How much can carefully chosen text prompts improve sound recognition without training a new classifier?',
       authors:'Master 1 project · Centrale Nantes',
       collaborator:'Venkatesh Muthukrishnan',
+      collaboratorLinkedIn:'https://www.linkedin.com/in/venkatesh-muthukrishnan-b56084304/',
       repository:CLAP, notebook:CLAP+'/blob/main/notebooks/main.ipynb',
       pdf:'clap-zero-shot-case-study.pdf',downloadName:'CLAP-Zero-Shot-Report.pdf',
       keywords:['Audio Classification','CLAP','Zero-shot Learning','ESC-50','Prompt Engineering','Audio-text Embeddings','Cosine Similarity','Top-k Accuracy'],
       projectInfo:[
         ['Type','Academic multimodal machine-learning research project'],
         ['Institution','Centrale Nantes · MSc Control &amp; Robotics'],
-        ['Collaborator','Venkatesh Muthukrishnan'],
+        ['Collaborator',collaboratorLink('https://www.linkedin.com/in/venkatesh-muthukrishnan-b56084304/','Venkatesh Muthukrishnan')],
         ['Dataset','ESC-50 · 2,000 clips · 50 environmental sound classes'],
         ['Model','Pretrained LAION-CLAP; no task-specific fine-tuning'],
         ['Resources',link(CLAP,'Source repository')+' · '+link(CLAP+'/blob/main/notebooks/main.ipynb','Executed notebook')+
@@ -400,7 +403,7 @@
       '<div class="fl-backbar"><button type="button" onclick="showSection(\'projects\')">Back to projects</button></div>'+
       '<header class="fl-paper-header"><h1 id="'+p+'-title">'+safe(d.title)+'</h1>'+
       '<p class="fl-paper-question">'+safe(d.subtitle || d.question)+'</p>'+
-      (d.authors ? '<p class="fl-paper-authors">'+safe(d.authors)+(d.collaborator ? ' · <strong>Collaborator:</strong> '+safe(d.collaborator) : '')+'</p>' : '')+'</header>'+
+      (d.authors ? '<p class="fl-paper-authors">'+safe(d.authors)+(d.collaborator ? ' · <strong>Collaborator:</strong> '+(d.collaboratorLinkedIn ? collaboratorLink(d.collaboratorLinkedIn,d.collaborator) : safe(d.collaborator)) : '')+'</p>' : '')+'</header>'+
       '<div class="fl-paper-shell"><div class="fl-paper-main">'+
       '<div class="fl-paper-tabs" role="tablist" aria-label="Project case study views">'+tabs+'</div>'+
       '<div class="fl-paper-actions" role="group" aria-label="Report actions">'+pdfLabel+

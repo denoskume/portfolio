@@ -12,6 +12,7 @@
   };
   const e = s => String(s).replace(/[&<>"']/g,t=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[t]));
   const a = (url,label) => '<a href="'+e(url)+'" target="_blank" rel="noopener noreferrer">'+e(label)+'</a>';
+  const collaboratorLink = (url,name) => '<a class="collaborator-link" href="'+e(url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+e(name)+' on LinkedIn">'+e(name)+'</a>';
   const cit = (p,n) => '<a class="study-cite" href="#'+p+'-ref-'+n+'" aria-label="Reference '+n+'">['+n+']</a>';
   const fig = (url,caption,alt,id) =>
     '<figure class="fl-report-figure" id="'+e(id)+'"><a href="'+e(url)+'" target="_blank" rel="noopener noreferrer">'+
@@ -124,6 +125,7 @@
     subtitle:'Applying object-oriented programming in Python to design and implement an event-driven card game.',
     authors:'Master 1 (S1) project · Centrale Nantes',
     collaborator:'Sena FUKABE',
+    collaboratorLinkedIn:'https://www.linkedin.com/in/sena-fukabe-86aa2a309/',
     repository:R.card+'/tree/main/versions/v1',
     notebook:R.card+'/blob/main/versions/v1/code/main.py',
     pdf:'python-cardgame-case-study.pdf',downloadName:'CardGame-V1-ALPRO-Report.pdf',
@@ -131,7 +133,7 @@
     projectInfo:[
       ['Academic setting','Master 1 · Semester 1 · Centrale Nantes · Academic year 2025–2026'],
       ['Course','Algorithmics and Programming (ALPRO), Python'],
-      ['Collaborator','Sena FUKABE'],
+      ['Collaborator',collaboratorLink('https://www.linkedin.com/in/sena-fukabe-86aa2a309/','Sena FUKABE')],
       ['Instructor','Mira Rizkallah'],
       ['Submission and presentation','12 December 2025 · collaborative coursework'],
       ['Project objective','Develop and present a working Python game to validate ALPRO'],
@@ -149,7 +151,7 @@
       ['JSON','A local text format used by the game to record round history.']
     ],
     summary:[
-      'Rouge Gagne, Noir Perd is a three-card memory game developed in <strong>Python and Pygame</strong> by Denos KUME and Sena FUKABE for the Master 1 (S1) <strong>Algorithmics and Programming (ALPRO)</strong> course at Centrale Nantes. The project provided a practical application of object-oriented programming, modular design and event-driven logic, using player interactions, card animations, timed rounds and game-state transitions.',
+      'Rouge Gagne, Noir Perd is a three-card memory game developed in <strong>Python and Pygame</strong> by Denos KUME and '+collaboratorLink('https://www.linkedin.com/in/sena-fukabe-86aa2a309/','Sena FUKABE')+' for the Master 1 (S1) <strong>Algorithmics and Programming (ALPRO)</strong> course at Centrale Nantes. The project provided a practical application of object-oriented programming, modular design and event-driven logic, using player interactions, card animations, timed rounds and game-state transitions.',
       'We implemented an event-driven desktop application using five Python modules to separate player and stake management, game-state transitions and interface rendering. The game provides player profiles, fictitious stakes and balances, observation and shuffle phases, timed card selection, result screens and local JSON history. The working application was documented with UML and sequence diagrams and a testing plan, then presented as part of the ALPRO assessment on <strong>12 December 2025</strong>. The project demonstrates how modular and object-oriented programming can support a complete interactive application.'
     ],
     references:[
@@ -159,7 +161,7 @@
     reportSections:[
       {key:'intro',title:'1.0 Context and objectives',body:
         '<h3>1.1 Master 1 ALPRO assessment</h3>'+
-        '<p><strong>Rouge Gagne, Noir Perd</strong> was our Master 1 Semester 1 programming project at Centrale Nantes. We developed it together, <strong>Denos KUME and Sena FUKABE</strong>, as part of the <strong>Algorithmics and Programming (ALPRO)</strong> course taught by Mira Rizkallah. The submitted work included a functional Python game, a 22-page project report and a 20-slide presentation dated 12 December 2025.'+'</p>'+
+        '<p><strong>Rouge Gagne, Noir Perd</strong> was our Master 1 Semester 1 programming project at Centrale Nantes. We developed it together, <strong>Denos KUME and '+collaboratorLink('https://www.linkedin.com/in/sena-fukabe-86aa2a309/','Sena FUKABE')+'</strong>, as part of the <strong>Algorithmics and Programming (ALPRO)</strong> course taught by Mira Rizkallah. The submitted work included a functional Python game, a 22-page project report and a 20-slide presentation dated 12 December 2025.'+'</p>'+
         '<h3>1.2 The problem</h3>'+
         '<p>A player has to identify the red card among three, watch the cards move, and select the correct position. A simple-looking game requires reliable coordination between timing, animations, user input, fictitious stakes, card identity and saved results.</p>'+
         '<h3>1.3 Our objectives</h3>'+
