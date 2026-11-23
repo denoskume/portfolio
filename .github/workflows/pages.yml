@@ -247,12 +247,12 @@ jobs:
           assert "grid-template-columns: repeat(2, 15cm)" in html
           assert "width: 15cm;" in html and "height: 15cm;" in html
           for image in (
-              "SimpliLearn_Data_Science_Certificate.png",
-              "Google_Advance_DA_Certificate.png",
-              "Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png",
+              "Data_Scientist_Simplilearn_2025.pdf",
+              "Google_Advanced_Data_Analytics_2024.pdf",
+              "Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.jpg",
               "ISDC.jpg",
           ):
-              assert image in about, f"Credential image missing: {image}"
+              assert f"assets/credentials/{image}" in about, f"Original credential file link missing: {image}"\n              assert Path("assets/credentials", image).is_file(), f"Credential file missing in repository: {image}"
           print("About credentials: four original assets in two 15 cm columns.")
           PY
           # Guard against previously deleted Home components reappearing.
