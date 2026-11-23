@@ -6,7 +6,7 @@ These original documents are now stored directly in the portfolio:
 | --- | --- | --- |
 | `Data_Scientist_Simplilearn_2025.pdf` | First PDF page | Original PDF |
 | `Google_Advanced_Data_Analytics_2024.pdf` | First PDF page | Original PDF |
-| `Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.jpg` | Original JPG | Original JPG |
+| `Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png` | Original JPG | Original JPG |
 | `ISDC.jpg` | Original JPG | Original JPG |
 
 The **Home** credentials carousel and **About Me** credentials gallery reuse these exact files. No certificates are recreated or fabricated.
