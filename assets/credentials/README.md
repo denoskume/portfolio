@@ -1,14 +1,21 @@
-# Credentials & Recognition — original documents
+# Credentials & Recognition — original files
 
-Place the four original, unmodified image files in this directory:
+These original documents are now stored directly in the portfolio:
 
-- `SimpliLearn_Data_Science_Certificate.png`
-- `Google_Advance_DA_Certificate.png`
-- `Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png`
-- `ISDC.jpg`
+| Original file | Display in portfolio | Opens on click |
+| --- | --- | --- |
+| `Data_Scientist_Simplilearn_2025.pdf` | First PDF page | Original PDF |
+| `Google_Advanced_Data_Analytics_2024.pdf` | First PDF page | Original PDF |
+| `Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.jpg` | Original JPG | Original JPG |
+| `ISDC.jpg` | Original JPG | Original JPG |
 
-The Home carousel and the About gallery use these same local files. The original documents were previously linked from `denoskume/denoskume`, which is not currently accessible; those links were broken.
+The **Home** credentials carousel and **About Me** credentials gallery reuse these exact files. No certificates are recreated or fabricated.
 
-When the authentic image file is supplied under its exact filename, it displays automatically and opens at full resolution. When a file is absent, the site displays an explicitly labeled unavailable-document state, not a forged substitute or a browser broken-image icon. The existing external verification links remain available.
+PDFs are rendered as first-page previews using PDF.js, with the browser's native PDF preview as the fallback; the original files always remain clickable. The original JPGs display directly.
 
-Do not add screenshots of placeholders or fabricated certificate graphics in place of the originals.
+The **Star of the Month — ISDC Learning** recognition link is:
+https://www.linkedin.com/posts/starofthemonth-isdclearning-appreciation-share-7172875898336083968-Z_Up/
+
+An additional `SQL Certification.pdf` is present here but is not currently included in the four-item gallery.
+
+When changing an asset, keep the original filename and update its link in `index.html` only if you deliberately rename the file.
