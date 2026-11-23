@@ -252,7 +252,8 @@ jobs:
               "Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.jpg",
               "ISDC.jpg",
           ):
-              assert f"assets/credentials/{image}" in about, f"Original credential file link missing: {image}"\n              assert Path("assets/credentials", image).is_file(), f"Credential file missing in repository: {image}"
+              assert f"assets/credentials/{image}" in about, f"Original credential file link missing: {image}"
+              assert Path("assets/credentials", image).is_file(), f"Credential file missing in repository: {image}"
           print("About credentials: four original assets in two 15 cm columns.")
           PY
           # Guard against previously deleted Home components reappearing.
