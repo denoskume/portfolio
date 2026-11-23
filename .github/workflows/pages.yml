@@ -249,7 +249,7 @@ jobs:
           for image in (
               "Data_Scientist_Simplilearn_2025.pdf",
               "Google_Advanced_Data_Analytics_2024.pdf",
-              "Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.jpg",
+              "Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png",
               "ISDC.jpg",
           ):
               assert f"assets/credentials/{image}" in about, f"Original credential file link missing: {image}"
