@@ -2425,10 +2425,10 @@ body:has(#about.active) .main-container {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: clamp(38px, 6vw, 90px);
-  align-items: stretch;
+  align-items: start;
 }
-#about .education-experience > .education-entry { grid-column: 1; }
-#about .education-experience > .experience-entry { grid-column: 2; }
+#about .edu-exp-column { min-width: 0; display: flex; flex-direction: column; }
+#about .edu-exp-column > .edu-exp-entry { flex: none; }
 #about .edu-exp-heading {
   min-width: 0;
   margin-bottom: 34px;
@@ -2463,13 +2463,8 @@ body:has(#about.active) .main-container {
     display: flex;
     flex-direction: column;
   }
-  #about .edu-heading { order: 0; }
-  #about .education-entry { order: 1; }
-  #about .exp-heading {
-    order: 2;
-    margin-top: 32px;
-  }
-  #about .experience-entry { order: 3; }
+  #about .edu-exp-column { width: 100%; }
+  #about .experience-column { margin-top: 32px; }
   #about .edu-exp-heading { margin-bottom: 26px; }
   #about .edu-exp-entry { padding-bottom: 30px; }
 }
@@ -2990,13 +2985,10 @@ body:has(#about.active) .main-container {
         </div>
 
         <div class="edu-block education-experience" id="education" style="margin-bottom:0;">
+          <div class="edu-exp-column education-column">
           <div class="section-title edu-exp-heading edu-heading">
             <h3>Education</h3>
           </div>
-          <div class="section-title edu-exp-heading exp-heading" id="experience">
-            <h3>Experience</h3>
-          </div>
-
           <div class="chrono-item edu-exp-entry education-entry">
             <div class="date">2025 — 2027</div>
             <h4>MSc in Control and Robotics</h4>
@@ -3005,6 +2997,26 @@ body:has(#about.active) .main-container {
             <div class="course-grid"><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-2-15-4 18"/></svg><h5>Data Science &amp; AI</h5><ul><li>Algorithmics and Programming</li><li>Artificial Intelligence</li><li>Optimization Techniques</li><li>Machine Learning</li><li>Data Analysis</li><li>Information Retrieval</li><li>Stochastic Methods</li></ul></div><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/></svg><h5>Signal &amp; Image Processing</h5><ul><li>Computer Vision</li><li>Image Processing</li><li>Signal Processing</li><li>Mathematical Tools</li><li>Signal Filtering</li><li>Time-Frequency Analysis</li><li>Signal and Image Restoration</li></ul></div></div>
           </div>
 
+          <div class="chrono-item edu-exp-entry education-entry">
+            <div class="date">2021 — June 2025</div>
+            <h4>BSc Computer Science &amp; Electronics (Dual Major)</h4>
+            <div class="org"><a href="https://kristujayanti.edu.in/" target="_blank" rel="noopener noreferrer">Kristu Jayanti University</a> · Bangalore, India</div>
+            <p class="edu-exp-summary course-heading"><strong>Key coursework</strong></p>
+            <div class="course-grid"><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-2-15-4 18"/></svg><h5>Computer Science</h5><ul><li>Programming (C, Java, PHP, Python)</li><li>Data Structures</li><li>Computer Graphics</li><li>Database Management</li><li>Software Engineering</li><li>Data Analysis</li><li>Internet Technology</li></ul></div><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/></svg><h5>Electronics</h5><ul><li>Digital Electronics</li><li>Digital Signal Processing</li><li>Microprocessors</li><li>Microcontrollers</li><li>Communication Systems</li><li>Embedded Systems</li><li>Instrumentation</li></ul></div></div>
+            
+          </div>
+
+          <div class="chrono-item edu-exp-entry education-entry final-entry">
+            <div class="date">2020</div>
+            <h4>Scientific Baccalaureate — Series D</h4>
+            <div class="org">Lycée Moderne M'Batto · Côte d'Ivoire</div>
+            <div class="course-grid"><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/></svg><h5>Scientific foundations</h5><ul><li>Mathematics</li><li>Physics</li></ul></div></div>
+          </div>
+          </div>
+          <div class="edu-exp-column experience-column">
+          <div class="section-title edu-exp-heading exp-heading" id="experience">
+            <h3>Experience</h3>
+          </div>
           <div class="chrono-item edu-exp-entry experience-entry">
             <div class="date">August — October 2026</div>
             <h4>AI Response Evaluation — Freelance</h4>
@@ -3015,15 +3027,6 @@ body:has(#about.active) .main-container {
               <li>Compared model outputs to identify inconsistencies.</li>
               <li>Documented findings and evaluation decisions.</li>
             </ul>
-          </div>
-
-          <div class="chrono-item edu-exp-entry education-entry">
-            <div class="date">2021 — June 2025</div>
-            <h4>BSc Computer Science &amp; Electronics (Dual Major)</h4>
-            <div class="org"><a href="https://kristujayanti.edu.in/" target="_blank" rel="noopener noreferrer">Kristu Jayanti University</a> · Bangalore, India</div>
-            <p class="edu-exp-summary course-heading"><strong>Key coursework</strong></p>
-            <div class="course-grid"><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-2-15-4 18"/></svg><h5>Computer Science</h5><ul><li>Programming (C, Java, PHP, Python)</li><li>Data Structures</li><li>Computer Graphics</li><li>Database Management</li><li>Software Engineering</li><li>Data Analysis</li><li>Internet Technology</li></ul></div><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/></svg><h5>Electronics</h5><ul><li>Digital Electronics</li><li>Digital Signal Processing</li><li>Microprocessors</li><li>Microcontrollers</li><li>Communication Systems</li><li>Embedded Systems</li><li>Instrumentation</li></ul></div></div>
-            
           </div>
 
           <div class="chrono-item edu-exp-entry experience-entry">
@@ -3038,12 +3041,6 @@ body:has(#about.active) .main-container {
             </ul>
           </div>
 
-          <div class="chrono-item edu-exp-entry education-entry final-entry">
-            <div class="date">2020</div>
-            <h4>Scientific Baccalaureate — Series D</h4>
-            <div class="org">Lycée Moderne M'Batto · Côte d'Ivoire</div>
-            <div class="course-grid"><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/></svg><h5>Scientific foundations</h5><ul><li>Mathematics</li><li>Physics</li></ul></div></div>
-          </div>
           <div class="chrono-item edu-exp-entry experience-entry">
             <div class="date">2024</div>
             <h4>Campus Ambassador</h4>
@@ -3055,6 +3052,7 @@ body:has(#about.active) .main-container {
               <li>Named <a href="https://www.linkedin.com/posts/isdc-learning_starofthemonth-isdclearning-appreciation-activity-7172875899204300801-g55R" target="_blank" rel="noopener noreferrer">Star of the Month</a> in March 2024.</li>
             </ul>
           </div>
+
           <div class="chrono-item edu-exp-entry experience-entry final-entry">
             <div class="date">2022 — 2024</div>
             <h4>Secretary — International Students Forum</h4>
@@ -3065,6 +3063,7 @@ body:has(#about.active) .main-container {
               <li>Facilitated communication among students.</li>
               <li>Followed up on student needs and requests.</li>
             </ul>
+          </div>
           </div>
         </div>
 
