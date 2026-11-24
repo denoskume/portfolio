@@ -312,7 +312,7 @@
     ],
     summary:[
       'MonStage is an internship intelligence and application workspace built with React, TypeScript and a private Google Sheets data source. It brings offer discovery, candidate fit, application dossiers, CV and letter preparation, follow-ups and outcomes into one responsive product.',
-      'Access is restricted using Google Sign-In and a Cloudflare Worker authorization gateway. The public portfolio uses a <strong>sanitized screenshot</strong> rather than exposing private offer records, authentication details or application notes.'
+      'Access is restricted using Google Sign-In and a Cloudflare Worker authorization gateway. The public case study illustrates the implemented interface with screenshots of offer discovery, campaign analytics and the integrated document studio. The underlying application remains access-restricted.'
     ],
     references:[
       {label:'React. Official documentation for building component-based web interfaces.',url:'https://react.dev/learn',linkLabel:'React documentation'},
@@ -334,7 +334,7 @@
           'Maintain status history and follow-ups without confusing different jobs at the same company.',
           'Display progress and application outcomes in a compact dashboard.',
           'Protect the private data source and work across desktop and mobile screens.'])+
-        '<p>The interface is intended for an authorized user. The public case study illustrates its design using anonymized example data.</p>'},
+        '<p>The interface is intended for an authorized user. The screenshots illustrate the product as captured on 24 November 2026.</p>'},
       {key:'method',title:'3.0 Architecture and implementation',body:
         steps(['Discover offers','Evaluate fit','Prepare dossier','Track outcomes'])+
         '<h3>3.1 From the private dataset to the interface</h3>'+
@@ -343,14 +343,20 @@
         '<h3>3.2 One dossier per opportunity</h3>'+
         '<p>After finding an offer, the user can examine its requirements, move it into an application status, and prepare an offer-specific CV, letter and interview notes. Maintaining distinct dossiers matters because one company may have several unrelated roles.'+'</p>'+
         '<h3>3.3 Dashboard and privacy</h3>'+
-        '<p>The dashboard summarizes the pipeline and outcomes so the next action is easier to choose. Private records and notes are not copied into the public portfolio. The screenshot shown here has been sanitized for that purpose.'+'</p>'},
+        '<p>The dashboard summarizes the pipeline and outcomes so the next action is easier to choose. The dashboard combines campaign indicators, a timeline, a status distribution and a geographic view. Access to the underlying records remains restricted.'+'</p>'},
       {key:'results',title:'4.0 Delivered features and verification',body:
         '<h3>4.1 Application flow</h3>'+
         '<p>The implementation includes search, sorting, multi-criteria filtering, candidate fit, a shortlist, application dossiers and tracking views. Each offer can be reviewed with its own status and supporting documents, while the dashboard gives a view of progress and outcomes.'+'</p>'+
-        fig(raw+'monstage/main/docs/assets/monstage_preview_sanitized.png','<strong>Figure 2.</strong> Sanitized Jobs view showing internship discovery and filtering.','Sanitized MonStage jobs interface preview.','sc-stage-r-fig2')+
-        '<h3>4.2 Testing and responsive behaviour</h3>'+
+        fig(raw+'portfolio/main/assets/monstage/Home.png','<strong>Figure 2.</strong> Offers interface: search, filtering, candidate-fit score and application actions alongside the selected vacancy.','MonStage offers interface with a selected image-processing opportunity.','sc-stage-r-fig2')+
+        '<h3>4.2 Campaign dashboard</h3>'+
+        '<p>The dashboard brings together opportunity counts, submitted applications, recruiter responses and interviews. The timeline shows campaign activity, while the status donut summarizes the current distribution of dossiers. The geographic panel provides a map view. The figures are a snapshot of the campaign, not a measure of software performance.</p>'+
+        fig(raw+'portfolio/main/assets/monstage/Dashboard%20.png','<strong>Figure 3.</strong> Campaign dashboard captured on 24 November 2026, showing indicators, timeline, status distribution and map.','MonStage dashboard with campaign KPIs and charts.','sc-stage-r-fig3')+
+        '<h3>4.3 Integrated document studio</h3>'+
+        '<p>The Studio includes a built-in CV editor with document creation and DOCX import, formatting controls, editable Harvard-style sections, version management and download controls. This keeps application preparation within the same workspace instead of requiring a separate document editor.</p>'+
+        fig(raw+'portfolio/main/assets/monstage/built_in-Studio.png','<strong>Figure 4.</strong> Integrated CV Studio with formatting ribbon, document management and Harvard template controls.','MonStage integrated CV editor.','sc-stage-r-fig4')+
+        '<h3>4.4 Testing and responsive behaviour</h3>'+
         '<p>The repository includes unit tests, authentication and Worker tests, TypeScript builds, and Playwright end-to-end checks. Responsive tests include narrow mobile widths down to <strong>360 pixels</strong> and verify that the interface remains navigable without horizontal overflow.'+'</p>'+
-        '<p>This case study reports product capabilities and verified test coverage rather than inventing a count of recruiter responses, applications or users.</p>'},
+        '<p>This case study reports product capabilities and verified test coverage rather than treating campaign counts as software performance metrics.</p>'},
       {key:'discussion',title:'5.0 Discussion and next steps',body:
         '<h3>5.1 What was learned</h3>'+
         '<p>MonStage connects interface design, data modelling, authenticated API access and candidate workflow. The work shows how a multi-step personal process can become a coherent product when the offer, its documents and its status are kept together.</p>'+
@@ -359,7 +365,9 @@
     ],
     figures:[
       {title:'Application workflow',description:'Product process, from offer discovery through follow-up.',url:R.assets+'monstage-workflow.svg',kind:'figure',reportId:'sc-stage-r-fig1'},
-      {title:'Sanitized Jobs interface',description:'An anonymized preview from the public repository.',url:raw+'monstage/main/docs/assets/monstage_preview_sanitized.png',kind:'figure',reportId:'sc-stage-r-fig2'}
+      {title:'Offers interface',description:'Search, filters, vacancy details and candidate fit.',url:raw+'portfolio/main/assets/monstage/Home.png',kind:'figure',reportId:'sc-stage-r-fig2'},
+      {title:'Campaign dashboard',description:'Campaign indicators, timeline, status distribution and map.',url:raw+'portfolio/main/assets/monstage/Dashboard%20.png',kind:'figure',reportId:'sc-stage-r-fig3'},
+      {title:'Integrated CV Studio',description:'Document editing, formatting and version controls.',url:raw+'portfolio/main/assets/monstage/built_in-Studio.png',kind:'figure',reportId:'sc-stage-r-fig4'}
     ],
     metrics:[
       {key:'features',title:'Implemented product areas',body:
