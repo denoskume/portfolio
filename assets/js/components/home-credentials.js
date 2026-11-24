@@ -10,7 +10,7 @@
   const cards = Array.from(root.querySelectorAll('.hc-card'));
   const dots = Array.from(root.querySelectorAll('.hc-dot'));
   const announcement = root.querySelector('.hc-announcement');
-  if (!stage || !stack || cards.length !== 4 || dots.length !== cards.length) return;
+  if (!stage || !stack || cards.length < 2 || dots.length !== cards.length) return;
 
   const DURATION = 2050;   // An observable 2.05-second card transition.
   let current = 0;
@@ -26,6 +26,7 @@
         : offset === 1 ? 'next'
         : offset === cards.length - 1 ? 'previous' : 'back';
       card.dataset.place = place;
+      card.setAttribute('aria-label', 'Credential ' + (index + 1) + ' of ' + cards.length + ': ' + card.querySelector('h3').textContent.trim());
       const active = place === 'active';
       card.setAttribute('aria-hidden', String(!active));
       card.querySelectorAll('a').forEach(link => { link.tabIndex = active ? 0 : -1; });
