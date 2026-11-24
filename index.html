@@ -2375,6 +2375,17 @@ body:has(#about.active) .main-container {
   }
 }
 /* Education and Experience: paired chronology, in two clear columns. */
+#about .course-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0 8px}
+#about .course-card{min-width:0;border:1px solid var(--rule);border-radius:12px;padding:14px;background:var(--chalk);color:var(--ink)}
+#about .course-card svg{width:21px;height:21px;display:block;margin:0 0 14px}
+#about .course-card h5{font:600 .88rem/1.4 var(--font-body,inherit);font-weight:600;margin:0 0 10px;padding-bottom:12px;border-bottom:1px solid var(--rule);overflow-wrap:break-word}
+#about .course-card ul{list-style:disc outside;margin:0;padding-left:18px;color:var(--ink-2);font-size:.82rem;line-height:1.55}
+#about .course-card li{margin:0 0 5px;overflow-wrap:break-word}
+#about .course-card li:last-child{margin-bottom:0}
+#about .course-source{font-size:.78rem;text-decoration:underline;text-underline-offset:3px;display:inline-block;margin-top:4px}
+@media(min-width:801px) and (max-width:1100px){#about .course-grid{grid-template-columns:1fr}}
+@media(max-width:480px){#about .course-grid{grid-template-columns:1fr}}
+
 #about .edu-exp-bullets {
   list-style: disc outside;
   margin: 8px 0 0;
@@ -2987,7 +2998,7 @@ body:has(#about.active) .main-container {
             <div class="date">2025 — 2027</div>
             <h4>MSc in Control and Robotics</h4>
             <div class="org"><a href="https://www.ec-nantes.fr/english-version" target="_blank" rel="noopener noreferrer">Centrale Nantes</a> · Data Science, Signal and Image Processing track</div>
-            <p class="edu-exp-summary"><strong>Relevant coursework</strong> Artificial Intelligence · Machine Learning · Numerical Optimization · Data Analysis · Image Processing</p>
+            <div class="course-grid"><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-2-15-4 18"/></svg><h5>Data Science &amp; AI</h5><ul><li>Algorithmics and Programming</li><li>Artificial Intelligence</li><li>Optimization Techniques</li><li>Machine Learning, Data Analysis and Information Retrieval</li><li>Stochastic Methods</li></ul></div><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/></svg><h5>Signal &amp; Image Processing</h5><ul><li>Computer Vision</li><li>Image Processing</li><li>Signal Processing</li><li>Mathematical Tools for Signals and Systems</li><li>Systems Identification and Signal Filtering</li><li>Spectral and Time Frequency Analysis</li><li>Design of Signal and Image Representations</li><li>Mathematical Tools for Signal and Image Processing</li><li>Signal and Image Restoration, Inversion Methods</li></ul></div></div><a class="course-source" href="https://www.ec-nantes.fr/study/masters/data-science-signal-and-image-processing" target="_blank" rel="noopener noreferrer">Official programme ↗</a>
           </div>
 
           <div class="chrono-item edu-exp-entry experience-entry">
@@ -3003,9 +3014,9 @@ body:has(#about.active) .main-container {
 
           <div class="chrono-item edu-exp-entry education-entry">
             <div class="date">2021 — June 2025</div>
-            <h4>Bachelor’s degree in Computer Science and Electronics</h4>
+            <h4>BSc Computer Science &amp; Electronics (Dual Major)</h4>
             <div class="org"><a href="https://kristujayanti.edu.in/" target="_blank" rel="noopener noreferrer">Kristu Jayanti University</a> · Bangalore, India</div>
-            <p class="edu-exp-summary"><strong>Core subjects</strong> Programming · Database Systems · Data Analysis · Digital Electronics · Embedded Systems</p>
+            <div class="course-grid"><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-2-15-4 18"/></svg><h5>Computer Science</h5><ul><li>Programming (C, Java, PHP, Python)</li><li>Data Structures</li><li>Computer Graphics</li><li>Database Management</li><li>Software Engineering</li><li>Data Analysis</li><li>Internet Technology</li></ul></div><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/></svg><h5>Electronics</h5><ul><li>Digital Electronics</li><li>Digital Signal Processing</li><li>Microprocessors</li><li>Microcontrollers</li><li>Communication Systems</li><li>Embedded Systems</li><li>Instrumentation</li></ul></div></div><a class="course-source" href="https://v2.kristujayanti.edu.in/schools/computational-physical-sciences/physical-sciences/bsc-computer-science-electronics/" target="_blank" rel="noopener noreferrer">Official programme ↗</a>
             <p class="edu-exp-summary"><strong>Practical work</strong> Microcontroller interfacing with peripheral devices</p>
           </div>
 
@@ -3024,7 +3035,7 @@ body:has(#about.active) .main-container {
             <div class="date">2020</div>
             <h4>Scientific Baccalaureate — Series D</h4>
             <div class="org">Lycée Moderne M'Batto · Côte d'Ivoire</div>
-            <p class="edu-exp-summary"><strong>Scientific foundation</strong> Mathematics · Physics · Quantitative reasoning</p>
+            <div class="course-grid"><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/></svg><h5>Scientific foundations</h5><ul><li>Mathematics</li><li>Physics</li></ul></div></div>
           </div>
         </div>
 
