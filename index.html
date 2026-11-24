@@ -2461,11 +2461,11 @@ body:has(#about.active) .main-container {
 /* Use outer whitespace instead of shrinking the coursework cards. */
 @media (min-width: 1200px) {
   #about .education-experience {
-    margin-inline: calc(12px - var(--gutter));
+    margin-inline: 0;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
-    column-gap: 16px;
+    column-gap: 24px;
   }
-  #about .edu-exp-column .edu-exp-heading { margin-bottom: 22px; }
+  #about .edu-exp-column .edu-exp-heading { margin-bottom: 20px; }
   #about .edu-exp-column .edu-exp-entry { margin-left: 28px; padding-bottom: 24px; }
   #about .edu-exp-column .edu-exp-entry::before { left: -28px; }
   #about .edu-exp-column .edu-exp-entry::after { left: -21px; }
