@@ -242,7 +242,7 @@ jobs:
           about_end = html.index('<!-- ============ PROJECTS', about_start)
           about = html[about_start:about_end]
           assert 'id="credentials"' in about and 'Credentials &amp; Recognition' in about
-          assert about.count('class="credential-card"') == 4, "Exactly four original credentials required"
+          assert about.count('class="credential-card"') == 5, "Exactly five original credentials required"
           assert about.index('id="credentials"') > about.index('education-experience'), "Credentials must follow the education timeline"
           assert "grid-template-columns: repeat(2, 15cm)" in html
           assert "width: 15cm;" in html and "height: 15cm;" in html
@@ -251,10 +251,11 @@ jobs:
               "Google_Advanced_Data_Analytics_2024.pdf",
               "Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png",
               "ISDC.jpg",
+              "ISDC_Experience_Letter-_ Denos.pdf",
           ):
-              assert f"assets/credentials/{image}" in about, f"Original credential file link missing: {image}"
+              assert f"assets/credentials/{image}" in __import__("urllib.parse", fromlist=["unquote"]).unquote(about), f"Original credential file link missing: {image}"
               assert Path("assets/credentials", image).is_file(), f"Credential file missing in repository: {image}"
-          print("About credentials: four original assets in two 15 cm columns.")
+          print("About credentials: five original assets in two 15 cm columns.")
           PY
           # Guard against previously deleted Home components reappearing.
           python - <<'PY'
@@ -268,7 +269,7 @@ jobs:
           assert 'class="cn-news"' in home, "Recent Work is missing"
           assert 'id="homeCredentials"' in home, "Home credential carousel is missing"
           assert home.index('id="homeCredentials"') > home.index('class="cn-news"'), "Credential carousel must follow Recent Work"
-          assert home.count('class="hc-card"') == 4 and home.count('class="hc-dot"') == 4, "Wrong carousel card or navigation count"
+          assert home.count('class="hc-card"') == 5 and home.count('class="hc-dot"') == 5, "Wrong carousel card or navigation count"
           assert 'assets/js/components/home-credentials.js?v=' in html and 'assets/css/components/home-credentials.css?v=' in html, "Carousel assets not linked"
           assert 'id="credentials"' in html, "About credentials gallery must be retained"
           for forbidden in ('class="cn-evidence"', 'class="cn-journey"'):
@@ -397,12 +398,12 @@ jobs:
                       and 'class="cn-evidence"' not in html
                       and 'class="cn-journey"' not in html
                       and 'id="credentials"' in html
-                      and html.count('class="credential-card"') == 4
+                      and html.count('class="credential-card"') == 5
                       and 'id="homeCredentials"' in html
-                      and html.count('class="hc-card"') == 4
+                      and html.count('class="hc-card"') == 5
                       and 'assets/js/case-studies/scientific-case-studies.js?v=' in html
                       and 'assets/css/case-studies/scientific-case-studies.css?v=' in html
-                      and 'assets/js/components/home-credentials.js?v=20261122-autoplay-visible-v5' in html
+                      and 'assets/js/components/home-credentials.js?v=20261124-five-credentials' in html
                       and 'assets/css/components/home-credentials.css?v=' in html):
                       # Fetch the published script too: index.html being current
                       # is not sufficient if the asset is cached or missing.
