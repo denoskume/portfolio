@@ -3135,14 +3135,11 @@ body:has(#about.active) .main-container {
         <div class="projects-head">
           <h2>Blog</h2>
         </div>
-        <div class="projects-grid blog-grid" id="blogGrid"></div>
+        <p style="min-height:45vh;display:grid;place-items:center;margin:0;font-size:2rem;">Coming soon...</p>
       </div>
     </div>
   </section>
 
-  <section id="blogDetail" class="section">
-    <div class="detail"><div class="detail-wrap blog-article" id="blogDetailContent"></div></div>
-  </section>
 
   <!-- ============ HARVARD CV ============ -->
   <section id="resume" class="section">
@@ -3841,42 +3838,6 @@ document.addEventListener('click', event => {
   if (!event.target.closest('.nav-entry')) closeNavMenus();
 });
 
-const portfolioArticles = window.PORTFOLIO_DATA?.articles || [];
-function buildBlog() {
-  const grid = document.getElementById('blogGrid');
-  if (!grid) return;
-  grid.innerHTML = portfolioArticles.map(article => `
-    <article class="project-card blog-card">
-      <h3>${escapeHtml(article.title)}</h3>
-      <p class="brief">${escapeHtml(article.summary)}</p>
-      <div class="card-footer">
-        <button class="btn-explore" type="button" data-blog-open="${escapeHtml(article.slug)}">Read article</button>
-      </div>
-    </article>
-  `).join('');
-  grid.addEventListener('click', event => {
-    const item = event.target.closest('[data-blog-open]');
-    if (item) openBlog(item.getAttribute('data-blog-open'));
-  });
-}
-function openBlog(slug) {
-  const article = portfolioArticles.find(item => item.slug === slug);
-  if (!article) return;
-  const target = document.getElementById('blogDetailContent');
-  target.innerHTML = `
-    <button type="button" class="detail-back" onclick="showSection('blog')">Back to Blog</button>
-    <h1 class="detail-title">${escapeHtml(article.title)}</h1>
-    <p class="detail-context">${escapeHtml(article.summary)}</p>
-    ${article.sections.map(section => `
-      <div class="article-block">
-        <div class="label">${escapeHtml(section.heading || 'Note')}</div>
-        <div class="content"><p>${escapeHtml(section.body || '')}</p></div>
-      </div>
-    `).join('')}
-  `;
-  showSection('blogDetail');
-}
-
 const searchDialog = document.getElementById('portfolioSearch');
 const searchInput = document.getElementById('portfolioSearchInput');
 const searchResults = document.getElementById('portfolioSearchResults');
@@ -3885,7 +3846,7 @@ const searchPages = [
   {title:'Home',description:'Six-month internship starting February 2027',id:'home'},
   {title:'About Me',description:'Background, education and technical focus',id:'about'},
   {title:'Projects',description:'Computer vision, image processing, signal processing and applied machine learning projects',id:'projects'},
-  {title:'Blog',description:'Technical articles and research notes',id:'blog'},
+  {title:'Blog',description:'Coming soon...',id:'blog'},
   {title:'Contact',description:'Email, GitHub, LinkedIn and contact form',id:'contact'},
   {title:'CV',description:'Curriculum vitae, skills and education',id:'resume'}
 ];
@@ -3893,8 +3854,7 @@ function renderPortfolioSearch() {
   const query = searchInput.value.trim().toLowerCase();
   const results = [
     ...searchPages.map(page => ({type:'page',key:page.id,title:page.title,summary:page.description,category:'Page'})),
-    ...projects.map(project => ({type:'project',key:String(project.id),title:project.title,summary:project.brief,category:'Project'})),
-    ...portfolioArticles.map(article => ({type:'blog',key:article.slug,title:article.title,summary:article.summary,category:'Article'}))
+    ...projects.map(project => ({type:'project',key:String(project.id),title:project.title,summary:project.brief,category:'Project'}))
   ].filter(item => !query || `${item.title} ${item.summary} ${item.category}`.toLowerCase().includes(query)).slice(0,12);
   searchResults.innerHTML = results.length ? results.map(item => `
     <button type="button" data-search-item="true" data-type="${escapeHtml(item.type)}" data-key="${escapeHtml(item.key)}">
@@ -3926,7 +3886,7 @@ searchResults.addEventListener('click',event=>{
   closePortfolioSearch();
   if(type==='page')showSection(key);
   else if(type==='project')openProject(Number(key));
-  else if(type==='blog')openBlog(key);
+
 });
 document.addEventListener('keydown',event=>{
   if(event.key==='Escape'&&!searchDialog.hidden){closePortfolioSearch();return;}
@@ -3939,7 +3899,6 @@ document.addEventListener('keydown',event=>{
 /* Initialisation immédiate : aucun timer ni attente des images externes. */
 buildCarousel();
 buildProjects();
-buildBlog();
 
 // Each project has its own stable direct URL (including shared report links).
 const projectDeepLinks = {
