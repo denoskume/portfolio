@@ -3223,7 +3223,14 @@ body:has(#about.active) .main-container {
         <div class="projects-head">
           <h2>Blog</h2>
         </div>
-        <p style="min-height:45vh;display:grid;place-items:center;margin:0;font-size:2rem;">Coming soon...</p>
+        <div class="projects-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))">
+          <article class="project-card">
+            <div class="card-top"><span class="card-num">Data Analytics · Software Engineering</span><span class="card-year">25 Nov 2026</span></div>
+            <h3 style="max-width:32ch">Data Cleaning: A Necessity or a Failure of System Design?</h3>
+            <p class="brief" style="max-width:70ch">Investigating preventable data quality issues in databases, spreadsheets and controlled data collection systems. An ongoing examination of prevention versus recurring correction.</p>
+            <div class="card-footer"><div class="tags"><span class="tag">Data Quality</span><span class="tag">Database Design</span><span class="tag">In progress</span></div><a class="btn-explore" href="blog/data-cleaning.html">Read article</a></div>
+          </article>
+        </div>
       </div>
     </div>
   </section>
@@ -3964,7 +3971,7 @@ const searchPages = [
   {title:'Home',description:'Six-month internship starting February 2027',id:'home'},
   {title:'About Me',description:'Background, education and technical focus',id:'about'},
   {title:'Projects',description:'Computer vision, image processing, signal processing and applied machine learning projects',id:'projects'},
-  {title:'Blog',description:'Coming soon...',id:'blog'},
+  {title:'Blog',description:'Data Cleaning: A Necessity or a Failure of System Design? — Data Quality, Excel and databases',id:'blog'},
   {title:'Contact',description:'Email, GitHub, LinkedIn and contact form',id:'contact'},
   {title:'CV',description:'Curriculum vitae, skills and education',id:'resume'}
 ];
@@ -4028,6 +4035,7 @@ const projectDeepLinks = {
   '#/projects/monstage': 6
 };
 if (projectDeepLinks[location.hash]) openProject(projectDeepLinks[location.hash]);
+else if (location.hash === '#blog') showSection('blog');
 
 </script>
 
