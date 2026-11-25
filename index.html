@@ -3507,7 +3507,35 @@ const carouselGroups = [
         "label": "2 · Top-k accuracy with the best-performing prompt"
       }
     ]
-  }
+  },
+  {
+  "title": "MonStage",
+  "story": "Internship discovery · Campaign analytics · Document preparation",
+  "items": [
+    {
+      "url": "assets/monstage/Home.png",
+      "label": "1 · Internship discovery"
+    },
+    {
+      "url": "assets/monstage/Dashboard%20.png",
+      "label": "2 · Campaign dashboard"
+    }
+  ]
+},
+  {
+  "title": "MonStage — Studio",
+  "story": "Integrated document preparation",
+  "items": [
+    {
+      "url": "assets/monstage/built_in-Studio.png",
+      "label": "1 · Integrated CV Studio"
+    },
+    {
+      "url": "assets/monstage/Dashboard%20.png",
+      "label": "2 · Application analytics"
+    }
+  ]
+}
 ];
 
 function buildCarousel() {
@@ -3601,6 +3629,8 @@ function buildCarousel() {
 
   // Deux grandes images d'un projet sont visibles à la fois, puis glissent pendant 1,6 s.
   const toggle = document.getElementById('cnCarouselToggle');
+  const dotHost = document.getElementById('cnCarouselDots');
+  if (dotHost) dotHost.innerHTML = carouselGroups.map((_, i) => '<i'+(i===0?' class="active"':'')+'></i>').join('');
   const dots = Array.from(document.querySelectorAll('#cnCarouselDots i'));
   let paused = false;
   toggle?.addEventListener('click', () => {
