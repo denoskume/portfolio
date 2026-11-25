@@ -300,7 +300,10 @@ jobs:
           mkdir -p _site/lab
           mkdir -p _site
           cp index.html favicon.svg _site/
-          cp -R assets data lab _site/
+          cp -R assets data lab blog _site/
+          test -s _site/blog/data-cleaning.html
+          test -s _site/blog/experiments/data-quality/audit_retail.py
+          grep -Fq 'Data Cleaning: A Necessity or a Failure of System Design?' _site/blog/data-cleaning.html
 
           # Always publish the HTML even if an optional document rebuild fails.
           # Fall back to the last published copy of each PDF where available.
@@ -418,6 +421,13 @@ jobs:
                       assert "FIRST_SLIDE_DELAY = 900" in published_js, "Old autoplay script is still served"
                       assert "window.setInterval(autoplayTick, TICK)" in published_js, "Live autoplay is missing"
                       assert "outgoing.animate(" in published_js and "incoming.animate(" in published_js
+                      article_url = f"{base}/blog/data-cleaning.html?build={sha}"
+                      article_request = urllib.request.Request(article_url, headers={"Cache-Control": "no-cache", "User-Agent": "Portfolio-Deployment-Check/1.0"})
+                      with urllib.request.urlopen(article_request, timeout=20) as article_response:
+                          article = article_response.read().decode("utf-8")
+                      assert "Data Cleaning: A Necessity or a Failure of System Design?" in article, "Published blog article is missing or stale"
+                      assert "541,909" in article and 'id="conclusion"' in article, "Published article is incomplete"
+                      print(f"Verified public blog article at {article_url}")
                       print(f"Verified public Home and automatic carousel script at {url}")
                       break
                   print(f"Published HTML is still stale on attempt {attempt + 1}")
