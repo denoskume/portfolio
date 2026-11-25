@@ -2772,17 +2772,19 @@ body:has(#about.active) .main-container {
 <script src="assets/js/components/home-credentials.js?v=20261124-five-credentials" defer></script>
 <script src="assets/js/components/contact-form.js?v=20261122-contact-v2" defer></script>
 <style>
-#blog .blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px}
-#blog .blog-card{border:1px solid var(--rule);background:var(--chalk);padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px}
-#blog .blog-card-top,#blog .blog-card-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-#blog .blog-category,#blog .blog-date,#blog .blog-tag,#blog .blog-read{font-family:var(--font-mono);font-size:.72rem;color:var(--smoke)}
-#blog .blog-card h3{font-family:var(--font-display);font-weight:400;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.15}
-#blog .blog-summary{color:var(--ink-2);line-height:1.65}
-#blog .blog-card-footer{border-top:1px solid var(--rule);padding-top:16px}
-#blog .blog-tags{display:flex;flex-wrap:wrap;gap:6px}
-#blog .blog-tag{border:1px solid var(--rule);padding:3px 8px}
-#blog .blog-read{color:var(--tech);text-decoration:none;font-weight:500}
+#blog .blog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start}
+#blog .blog-card{border:1px solid var(--rule);background:var(--chalk);border-radius:8px;overflow:hidden;min-width:0}
+#blog .blog-cover{aspect-ratio:16/9;background:#10233e;display:flex;align-items:center;justify-content:center;padding:14px}
+#blog .blog-cover svg{display:block;width:100%;height:100%;max-width:340px;font-family:var(--font-body)}
+#blog .blog-card-body{padding:20px;display:flex;flex-direction:column;gap:12px}
+#blog .blog-category,#blog .blog-date{font-size:.78rem;color:var(--smoke)}
+#blog .blog-card h3{font-family:var(--font-body);font-weight:600;font-size:1.05rem;line-height:1.45;letter-spacing:-.02em}
+#blog .blog-summary{color:var(--smoke);font-size:.88rem;line-height:1.6}
+#blog .blog-card-footer{border-top:1px solid var(--rule);padding-top:12px}
+#blog .blog-read{color:var(--tech);text-decoration:none;font-size:.85rem;font-weight:500}
 #blog .blog-read:hover{text-decoration:underline}
+@media(max-width:1024px){#blog .blog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){#blog .blog-grid{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 
@@ -3236,12 +3238,27 @@ body:has(#about.active) .main-container {
         <div class="projects-head">
           <h2>Blog</h2>
         </div>
-        <div class="blog-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))">
+        <div class="blog-grid">
           <article class="blog-card">
-            <div class="blog-card-top"><span class="blog-category">Data Analytics · Software Engineering</span><span class="blog-date">25 Nov 2026</span></div>
-            <h3 style="max-width:32ch">Data Cleaning: A Necessity or a Failure of System Design?</h3>
-            <p class="blog-summary" style="max-width:70ch">Investigating preventable data quality issues in databases, spreadsheets and controlled data collection systems. An ongoing examination of prevention versus recurring correction.</p>
-            <div class="blog-card-footer"><div class="blog-tags"><span class="blog-tag">Data Quality</span><span class="blog-tag">Database Design</span><span class="blog-tag">In progress</span></div><a class="blog-read" href="blog/data-cleaning.html">Read article</a></div>
+            <div class="blog-cover">
+              <svg viewBox="0 0 240 130" role="img" aria-label="Database and validation checklist">
+                <g fill="none" stroke="#a9c4e7" stroke-width="1.5">
+                  <ellipse cx="55" cy="37" rx="30" ry="10"/>
+                  <path d="M25 37V83 A30 10 0 0 0 85 83V37 M25 59 A30 10 0 0 0 85 59"/>
+                  <path d="M96 60H142 M135 54L142 60L135 66"/>
+                  <rect x="153" y="27" width="62" height="66" rx="4"/>
+                  <path d="M164 42l4 4 7 -8 M182 42h22 M164 57l4 4 7 -8 M182 57h22 M164 72l4 4 7 -8 M182 72h22" stroke="#fff"/>
+                </g>
+                <text x="120" y="115" fill="#e2e8f0" font-size="10" text-anchor="middle" letter-spacing="2">DATA QUALITY BY DESIGN</text>
+              </svg>
+            </div>
+            <div class="blog-card-body">
+              <span class="blog-category">Data Analytics</span>
+              <h3>Data Cleaning: A Necessity or a Failure of System Design?</h3>
+              <p class="blog-summary">Investigating preventable data quality issues in databases and spreadsheets.</p>
+              <time class="blog-date" datetime="2026-11-25">25 Nov 2026</time>
+              <div class="blog-card-footer"><a class="blog-read" href="blog/data-cleaning.html">Read article</a></div>
+            </div>
           </article>
         </div>
       </div>
