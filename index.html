@@ -2771,6 +2771,19 @@ body:has(#about.active) .main-container {
 <script src="assets/js/components/credential-assets.js?v=20261123-pdf-previews" defer></script>
 <script src="assets/js/components/home-credentials.js?v=20261124-five-credentials" defer></script>
 <script src="assets/js/components/contact-form.js?v=20261122-contact-v2" defer></script>
+<style>
+#blog .blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px}
+#blog .blog-card{border:1px solid var(--rule);background:var(--chalk);padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px}
+#blog .blog-card-top,#blog .blog-card-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+#blog .blog-category,#blog .blog-date,#blog .blog-tag,#blog .blog-read{font-family:var(--font-mono);font-size:.72rem;color:var(--smoke)}
+#blog .blog-card h3{font-family:var(--font-display);font-weight:400;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.15}
+#blog .blog-summary{color:var(--ink-2);line-height:1.65}
+#blog .blog-card-footer{border-top:1px solid var(--rule);padding-top:16px}
+#blog .blog-tags{display:flex;flex-wrap:wrap;gap:6px}
+#blog .blog-tag{border:1px solid var(--rule);padding:3px 8px}
+#blog .blog-read{color:var(--tech);text-decoration:none;font-weight:500}
+#blog .blog-read:hover{text-decoration:underline}
+</style>
 </head>
 
 <body>
@@ -3223,12 +3236,12 @@ body:has(#about.active) .main-container {
         <div class="projects-head">
           <h2>Blog</h2>
         </div>
-        <div class="projects-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))">
-          <article class="project-card">
-            <div class="card-top"><span class="card-num">Data Analytics · Software Engineering</span><span class="card-year">25 Nov 2026</span></div>
+        <div class="blog-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))">
+          <article class="blog-card">
+            <div class="blog-card-top"><span class="blog-category">Data Analytics · Software Engineering</span><span class="blog-date">25 Nov 2026</span></div>
             <h3 style="max-width:32ch">Data Cleaning: A Necessity or a Failure of System Design?</h3>
-            <p class="brief" style="max-width:70ch">Investigating preventable data quality issues in databases, spreadsheets and controlled data collection systems. An ongoing examination of prevention versus recurring correction.</p>
-            <div class="card-footer"><div class="tags"><span class="tag">Data Quality</span><span class="tag">Database Design</span><span class="tag">In progress</span></div><a class="btn-explore" href="blog/data-cleaning.html">Read article</a></div>
+            <p class="blog-summary" style="max-width:70ch">Investigating preventable data quality issues in databases, spreadsheets and controlled data collection systems. An ongoing examination of prevention versus recurring correction.</p>
+            <div class="blog-card-footer"><div class="blog-tags"><span class="blog-tag">Data Quality</span><span class="blog-tag">Database Design</span><span class="blog-tag">In progress</span></div><a class="blog-read" href="blog/data-cleaning.html">Read article</a></div>
           </article>
         </div>
       </div>
