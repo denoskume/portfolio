@@ -2786,6 +2786,12 @@ body:has(#about.active) .main-container {
 @media(max-width:1024px){#blog .blog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){#blog .blog-grid{grid-template-columns:minmax(0,1fr)}}
 </style>
+<style>
+#blogDetail .blog-reader-wrap{padding-top:28px}
+#blogDetail .blog-reader-back{font-size:.85rem;color:var(--tech);text-decoration:none}
+#blogDetail .blog-reader-back:hover{text-decoration:underline}
+#blogDetail .blog-reader-frame{display:block;width:100%;height:520px;border:0;background:transparent}
+</style>
 </head>
 
 <body>
@@ -3257,7 +3263,7 @@ body:has(#about.active) .main-container {
               <h3>Data Cleaning: A Necessity or a Failure of System Design?</h3>
               <p class="blog-summary">Private draft — this article is currently under preparation.</p>
               <time class="blog-date" datetime="2026-11-25">25 Nov 2026</time>
-              <div class="blog-card-footer"><a class="blog-read" href="blog/data-cleaning.html" aria-label="Open password-protected private draft">Private access</a></div>
+              <div class="blog-card-footer"><a class="blog-read" href="#/blog/data-cleaning" id="openPrivateArticle" aria-label="Open password-protected private draft">Private access</a></div>
             </div>
           </article>
         </div>
@@ -3265,6 +3271,14 @@ body:has(#about.active) .main-container {
     </div>
   </section>
 
+
+  <!-- ============ BLOG ARTICLE ============ -->
+  <section id="blogDetail" class="section">
+    <div class="wrap blog-reader-wrap">
+      <a class="blog-reader-back" href="#blog" data-target="blog">Back to Blog</a>
+    </div>
+    <iframe id="privateArticleFrame" title="Private research article" class="blog-reader-frame" referrerpolicy="same-origin"></iframe>
+  </section>
 
   <!-- ============ HARVARD CV ============ -->
   <section id="resume" class="section">
@@ -3363,7 +3377,7 @@ body:has(#about.active) .main-container {
 <footer class="cn-site-footer">
         <div class="cn-footer-grid">
           <div><h3>Information</h3><p>Chemin Launay-Violette<br>44300 Nantes, France</p><p class="cn-footer-phone">Tel: <a href="tel:+33662919468">+33 6 62 91 94 68</a></p><p class="cn-footer-email">Email: <a href="mailto:kamena.kume@eleves.ec-nantes.fr">kamena.kume@eleves.ec-nantes.fr</a></p></div>
-          <div><h3>Navigation</h3><a href="#" data-target="home">Home</a><a href="#" data-target="about">About Me</a><a href="#" data-target="projects">Projects</a><a href="#" data-target="contact">Contact</a></div>
+          <div><h3>Navigation</h3><a href="#" data-target="home">Home</a><a href="#" data-target="about">About Me</a><a href="#" data-target="projects">Projects</a><a href="#" data-target="blog">Blog</a><a href="#" data-target="contact">Contact</a></div>
           <div><h3>Connect</h3><a href="https://github.com/denoskume" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/denoskume" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="#" data-target="contact">Discuss a Project</a></div>
         </div>
         <div class="cn-footer-bottom"><span>© 2026 Denos Kume · All rights reserved</span></div>
@@ -3898,7 +3912,34 @@ function escapeHtml(str) {
 
    ============================================================ */
 
+let articleResizeObserver=null;
+function resizePrivateArticle(){
+  const frame=document.getElementById('privateArticleFrame');
+  if(!frame || !frame.closest('.section').classList.contains('active'))return;
+  try{
+    const doc=frame.contentDocument;
+    if(!doc || !doc.body)return;
+    const main=doc.querySelector('main');
+    if(!main)return;
+    const height=Math.ceil(main.getBoundingClientRect().bottom+doc.defaultView.scrollY);
+    if(height>0)frame.style.height=Math.max(240,height+8)+'px';
+  }catch(e){/* Same-origin article is required. */}
+}
+function mountPrivateArticle(){
+  const frame=document.getElementById('privateArticleFrame');
+  if(!frame.getAttribute('src'))frame.setAttribute('src','blog/data-cleaning.html?embed=1');
+  else resizePrivateArticle();
+}
+function unmountPrivateArticle(){
+  const frame=document.getElementById('privateArticleFrame');
+  if(articleResizeObserver){articleResizeObserver.disconnect();articleResizeObserver=null;}
+  if(frame.hasAttribute('src'))frame.removeAttribute('src');
+}
 function showSection(id) {
+  if(id!=='blogDetail'){
+    unmountPrivateArticle();
+    if(location.hash==='#/blog/data-cleaning')history.replaceState(null,'',location.pathname+location.search+(id==='blog'?'#blog':''));
+  }
   if (id !== 'projectDetail') {
     document.querySelectorAll('#projectDetailContent video').forEach(video => video.pause());
     if (/^#\/projects\/(fluoroscopy-instrument-segmentation|camera-calibration|clap-zero-shot|flag-intelligence|python-cardgame|monstage)$/.test(location.hash)) {
@@ -3924,10 +3965,11 @@ function showSection(id) {
 
   document.querySelectorAll('.nav-links a').forEach(a => {
 
-    a.classList.toggle('active', a.getAttribute('data-target') === id);
+    a.classList.toggle('active', a.getAttribute('data-target') === (id==='blogDetail'?'blog':id==='projectDetail'?'projects':id));
 
   });
 
+  if(id==='blogDetail')mountPrivateArticle();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
 }
@@ -4064,8 +4106,44 @@ const projectDeepLinks = {
   '#/projects/python-cardgame': 5,
   '#/projects/monstage': 6
 };
-if (projectDeepLinks[location.hash]) openProject(projectDeepLinks[location.hash]);
-else if (location.hash === '#blog') showSection('blog');
+const privateArticleFrame=document.getElementById('privateArticleFrame');
+privateArticleFrame.addEventListener('load',()=>{
+  if(articleResizeObserver)articleResizeObserver.disconnect();
+  try{
+    if(privateArticleFrame.contentDocument?.body){
+      articleResizeObserver=new ResizeObserver(resizePrivateArticle);
+      articleResizeObserver.observe(privateArticleFrame.contentDocument.body);
+      resizePrivateArticle();
+    }
+  }catch(e){}
+});
+window.addEventListener('resize',resizePrivateArticle,{passive:true});
+window.addEventListener('message',event=>{
+  if(event.origin!==location.origin || event.source!==privateArticleFrame.contentWindow)return;
+  if(event.data?.type==='portfolio-article-resize'){
+    if(articleResizeObserver)articleResizeObserver.disconnect();
+    articleResizeObserver=new ResizeObserver(resizePrivateArticle);
+    articleResizeObserver.observe(privateArticleFrame.contentDocument.body);
+    resizePrivateArticle();
+  }else if(event.data?.type==='portfolio-article-anchor' && Number.isFinite(event.data.top)){
+    const y=privateArticleFrame.getBoundingClientRect().top+window.scrollY+event.data.top-document.getElementById('navbar').getBoundingClientRect().height-16;
+    window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
+  }
+});
+document.getElementById('openPrivateArticle').addEventListener('click',event=>{
+  if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+  event.preventDefault();
+  history.pushState(null,'',location.pathname+location.search+'#/blog/data-cleaning');
+  showSection('blogDetail');
+});
+function restorePortfolioRoute(){
+  if(projectDeepLinks[location.hash])openProject(projectDeepLinks[location.hash]);
+  else if(location.hash==='#/blog/data-cleaning')showSection('blogDetail');
+  else if(location.hash==='#blog')showSection('blog');
+  else if(/^#(home|about|projects|contact|resume)$/.test(location.hash))showSection(location.hash.slice(1));
+}
+window.addEventListener('hashchange',restorePortfolioRoute);
+restorePortfolioRoute();
 
 </script>
 
