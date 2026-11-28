@@ -2829,9 +2829,24 @@ body:has(#about.active) .main-container {
 @media(max-width:600px) { .cert-grid,.award-entry { grid-template-columns: 1fr; } .award-entry img { max-width: 230px; } }
 </style>
 <style>
-.traffic-project { margin: 18px 0 0; max-width: 520px; }
-.traffic-project img { display: block; width: 100%; height: auto; }
-.traffic-project figcaption { margin-top: 8px; color: #46586a; font-size: .9rem; }
+#awards, .circuit-feature { scroll-margin-top: calc(var(--nav-h) + 25px); }
+#awards { padding: 30px 0 44px; }
+#awards-title { font: 500 clamp(1.85rem,3vw,2.7rem)/1.12 var(--font-display); color: #12344f; margin-bottom: 20px; }
+.dist-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.dist-item { display:grid; grid-template-columns: minmax(0,.85fr) minmax(0,1fr); align-items:center; gap:clamp(14px,2vw,28px); padding:clamp(16px,2vw,28px); background:#112d41; color:#fff; border-top:4px solid #d7aa53; }
+.dist-item:nth-child(2) { background:#f7f4ee; color:#202e39; border-color:#ac3638; }
+.dist-item img { display:block; width:100%; height:auto; }
+.dist-copy h4,.circuit-feature h3 { margin:7px 0; font:500 clamp(1.7rem,2.8vw,2.8rem)/1.05 var(--font-display); color:inherit; }
+.dist-meta { font-size:.81rem; font-weight:600; }
+.dist-subject { font-weight:650; margin-bottom:10px; }
+.dist-copy p,.circuit-feature p { color:inherit; line-height:1.5; }
+.dist-link { display:inline-block; margin-top:14px; color:inherit; text-decoration:underline; text-underline-offset:4px; font-weight:600; }
+.circuit-feature { margin-top:30px; display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); align-items:center; gap:clamp(18px,4vw,56px); background:white; border:1px solid #d8e2ea; color:#12344f; }
+.circuit-feature img { display:block; width:100%; height:auto; }
+.circuit-feature > div { padding:16px 24px 16px 0; }
+@media(max-width:980px) { .dist-grid { grid-template-columns:1fr; } .dist-item { grid-template-columns:minmax(135px,230px) 1fr; } }
+@media(max-width:560px) { .dist-item,.circuit-feature { grid-template-columns:1fr; }
+.dist-item { padding:20px; } .dist-item img { max-width:280px; margin:auto; } .circuit-feature > div { padding:0 20px 22px; } }
 </style>
 </head>
 
@@ -2854,6 +2869,7 @@ body:has(#about.active) .main-container {
         <div class="nav-dropdown" id="nav-about-dropdown">
           <a href="#" data-target="about">Overview</a>
           <a href="#" data-target="about" data-scroll="education">Education</a>
+          <a href="#" data-target="about" data-scroll="awards">Awards &amp; Recognition</a>
         </div>
       </li>
       <li class="nav-entry">
@@ -2861,6 +2877,7 @@ body:has(#about.active) .main-container {
         <button class="nav-menu-toggle" type="button" aria-label="Choose a project" aria-haspopup="true" aria-controls="nav-projects-dropdown" aria-expanded="false"></button>
         <div class="nav-dropdown" id="nav-projects-dropdown">
           <a href="#" data-target="projects">All Projects</a>
+          <a href="#traffic-light-simulation" data-target="projects" data-scroll="traffic-light-simulation">Traffic Light Simulation</a>
           <button type="button" onclick="closeNavMenus();openProject(1)">Microcatheter Segmentation</button>
           <button type="button" onclick="closeNavMenus();openProject(2)">Camera Calibration</button>
           <button type="button" onclick="closeNavMenus();openProject(3)">Zero-Shot CLAP</button>
@@ -3048,10 +3065,6 @@ body:has(#about.active) .main-container {
             <div class="org"><a href="https://kristujayanti.edu.in/" target="_blank" rel="noopener noreferrer">Kristu Jayanti University</a> · Bangalore, India</div>
             <p class="edu-exp-summary course-heading"><strong>Key coursework</strong></p>
             <div class="course-grid"><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-2-15-4 18"/></svg><h5>Computer Science</h5><ul><li>Programming (C, Java, PHP, Python)</li><li>Data Structures</li><li>Computer Graphics</li><li>Database Management</li><li>Software Engineering</li><li>Data Analysis</li><li>Internet Technology</li></ul></div><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/></svg><h5>Electronics</h5><ul><li>Digital Electronics</li><li>Digital Signal Processing</li><li>Microprocessors</li><li>Microcontrollers</li><li>Communication Systems</li><li>Embedded Systems</li><li>Instrumentation</li></ul></div></div>
-            <figure class="traffic-project">
-              <a href="assets/portfolio-images/traffic-light.jpg" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="assets/portfolio-images/traffic-light.jpg" width="800" height="511" alt="Traffic and pedestrian signals wired to a microcontroller with two seven-segment countdown displays"></a>
-              <figcaption>Traffic light simulation with a pedestrian crossing and countdown displays.</figcaption>
-            </figure>
             
           </div>
 
@@ -3095,8 +3108,7 @@ body:has(#about.active) .main-container {
               <li>Contributed to increasing ISDC brand visibility within the campus community.</li>
               <li>Provided insights into market trends to inform the programme team's activities.</li>
             </ul>
-            <div class="isdc-record"><h5>Star of the Month · 2024</h5><div class="cert-links"><a href="https://www.linkedin.com/posts/starofthemonth-isdclearning-appreciation-share-7172875898336083968-Z_Up/" target="_blank" rel="noopener noreferrer">ISDC announcement</a> <a href="assets/credentials/ISDC.jpg" target="_blank" rel="noopener noreferrer">View recognition</a></div>
-            <p>Certificate issued · 20 April 2024</p><div class="cert-links"><a href="assets/credentials/ISDC_Experience_Letter-_%20Denos.pdf" target="_blank" rel="noopener noreferrer">View certificate (PDF)</a></div></div>
+            <div class="isdc-record"><p>Certificate issued · 20 April 2024</p><div class="cert-links"><a href="assets/credentials/ISDC_Experience_Letter-_%20Denos.pdf" target="_blank" rel="noopener noreferrer">View certificate (PDF)</a></div></div>
           </div>
 
           <div class="chrono-item edu-exp-entry experience-entry final-entry">
@@ -3131,13 +3143,26 @@ body:has(#about.active) .main-container {
               <div class="cert-links"><a href="assets/credentials/SQL%20Certification.pdf" target="_blank" rel="noopener noreferrer">View certificate (PDF)</a></div>
             </article></div>
         </section>
-        <section id="awards" class="cert-section" aria-labelledby="awards-title">
-          <h3 id="awards-title">Awards</h3>
-          <article class="award-entry"><img loading="lazy" src="assets/portfolio-images/fire-fighting-robot.jpg" alt="Arduino fire-fighting robot with its wheeled chassis, water tank and hose">
-            <div><p>GALAXIA · 29 September 2022</p><h4>Arduino Fire-Fighting Robot — Third Place</h4>
-            <p>I led a team of three to build an Arduino fire-fighting robot for the science exhibition at Kristu Jayanti College.</p>
-            <div class="cert-links"><a href="assets/credentials/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png" target="_blank" rel="noopener noreferrer">View award certificate</a></div></div>
-          </article>
+        <section id="awards" aria-labelledby="awards-title">
+          <h3 id="awards-title">Awards &amp; Recognition</h3>
+          <div class="dist-grid">
+            <article class="dist-item">
+              <img src="assets/portfolio-images/fire-fighting-robot.jpg" alt="Arduino fire-fighting robot built by our three-person team" width="480" height="469" loading="lazy">
+              <div class="dist-copy"><p class="dist-meta">GALAXIA · 29 September 2022</p>
+                <h4>Third Place</h4><p class="dist-subject">Arduino Fire-Fighting Robot</p>
+                <p>I led a team of three to build this robot for the science exhibition at Kristu Jayanti College.</p>
+                <a class="dist-link" href="assets/credentials/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png" target="_blank" rel="noopener noreferrer">View award certificate ↗</a>
+              </div>
+            </article>
+            <article class="dist-item">
+              <a href="assets/credentials/ISDC.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open ISDC’s original Star of the Month announcement image"><img src="assets/credentials/ISDC.jpg" alt="ISDC Learning’s Star of the Month portrait of Denos Kume" width="400" height="400" loading="lazy"></a>
+              <div class="dist-copy"><p class="dist-meta">ISDC Learning · 2024</p>
+                <h4>Star of the Month</h4><p class="dist-subject">Campus Ambassador Programme</p>
+                <p>ISDC Learning recognised my work as a campus ambassador, where I helped organise events and created content for the student community.</p>
+                <a class="dist-link" href="https://www.linkedin.com/posts/starofthemonth-isdclearning-appreciation-share-7172875898336083968-Z_Up/" target="_blank" rel="noopener noreferrer">Read ISDC’s announcement ↗</a>
+              </div>
+            </article>
+          </div>
         </section>
 
         </div>
@@ -3165,6 +3190,16 @@ body:has(#about.active) .main-container {
         </div>
 
         <div class="projects-grid" id="projectsGrid"></div>
+        <article id="traffic-light-simulation" class="circuit-feature">
+          <a href="assets/portfolio-images/traffic-light.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open the original traffic light circuit diagram">
+            <img src="assets/portfolio-images/traffic-light.jpg" width="800" height="511" loading="lazy" alt="Microcontroller connected to traffic and pedestrian signals and two seven-segment displays">
+          </a>
+          <div><p class="dist-meta">Embedded systems · Bachelor’s project</p>
+            <h3>Traffic Light Simulation</h3>
+            <p>I simulated a pedestrian crossing with separate signal lights for vehicles and pedestrians. Two seven-segment displays show the countdown.</p>
+            <a class="dist-link" href="assets/portfolio-images/traffic-light.jpg" target="_blank" rel="noopener noreferrer">View full circuit diagram ↗</a>
+          </div>
+        </article>
 
       </div>
 
@@ -4114,7 +4149,12 @@ document.getElementById('openPrivateArticle').addEventListener('click',event=>{
   showSection('blogDetail');
 });
 function restorePortfolioRoute(){
-  if(projectDeepLinks[location.hash])openProject(projectDeepLinks[location.hash]);
+  if(location.hash==='#awards' || location.hash==='#traffic-light-simulation'){
+    const anchor=document.getElementById(location.hash.slice(1));
+    showSection(anchor.closest('.section').id);
+    requestAnimationFrame(()=>anchor.scrollIntoView({block:'start'}));
+  }
+  else if(projectDeepLinks[location.hash])openProject(projectDeepLinks[location.hash]);
   else if(location.hash==='#/blog/data-cleaning')showSection('blogDetail');
   else if(location.hash==='#blog')showSection('blog');
   else if(/^#(home|about|projects|contact|resume)$/.test(location.hash))showSection(location.hash.slice(1));
