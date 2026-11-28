@@ -2792,6 +2792,24 @@ body:has(#about.active) .main-container {
 #blogDetail .blog-reader-back:hover{text-decoration:underline}
 #blogDetail .blog-reader-frame{display:block;width:100%;height:520px;border:0;background:transparent}
 </style>
+<style>
+.cn-top-button[hidden], .resource-toggle { display: none; }
+@media (max-width: 760px) {
+  .cn-hero { height: 300px; }
+  .cn-hero-copy, .cn-hero-wedge { height: 49%; }
+  .cn-hero-copy { padding: 16px 20px; }
+  .cn-hero-copy h1 { font-size: clamp(1.6rem, 6vw, 2rem); }
+  .cn-hero-carousel.carousel { top: 49%; height: 51%; }
+  .cn-slider-ui { position: absolute; right: 16px; bottom: 12px; width: auto; gap: 6px; }
+  .home-cn .cn-news { padding-top: 20px; }
+  .navbar .nav-links { justify-content: space-between; gap: 3px; }
+  .navbar .nav-links li { gap: 2px; }
+  .navbar .nav-links > li > a, body:has(#home.active) .navbar .nav-links > li > a { font-size: clamp(11px, 3vw, 13px); }
+  .resource-toggle { display: block; margin: 9px 0; padding: 8px 12px; border: 1px solid #cbd8e1;
+    background: white; color: #214e70; font: 600 .88rem var(--font-body); cursor: pointer; }
+  .resource-toggle[aria-expanded="false"] + .fl-paper-actions { display: none; }
+}
+</style>
 </head>
 
 <body>
@@ -2900,16 +2918,16 @@ body:has(#about.active) .main-container {
           <h2>Recent Work</h2>
           <div class="cn-news-list">
             <a href="#" onclick="openProject(1);return false;" class="cn-news-card">
-              <img src="https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/mask-cleanup.png" alt="Visualization of a microcatheter segmentation mask" loading="lazy" decoding="async">
-              <h3>Microcatheter Segmentation</h3><p>Preprocessing, background subtraction, and evaluation against manual annotations.</p>
+              <img src="assets/case-studies/microcatheter-comparison.png" alt="Initial segmented fragments and reconstructed microcatheter trajectory on frame 291." loading="lazy" decoding="async">
+              <h3>Microcatheter Segmentation</h3><p>Reconstructing a continuous microcatheter trajectory from fragmented predictions.</p>
             </a>
 <a href="#" onclick="openProject(2);return false;" class="cn-news-card">
-              <img src="https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/mean_reprojection_error_by_view.png" alt="Mean camera reprojection errors by view" loading="lazy" decoding="async">
-              <h3>Camera Calibration</h3><p>Chessboard-based geometric calibration and reprojection error analysis.</p>
+              <img src="assets/case-studies/calibration-corners.webp" alt="Detected calibration corners on an original chessboard photograph." loading="lazy" decoding="async">
+              <h3>Camera Calibration</h3><p>Nine chessboard views yielded a mean reprojection error of 0.434 pixels.</p>
             </a>
 <a href="#" onclick="openProject(3);return false;" class="cn-news-card">
-              <img src="https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/clap_complete_zero_shot_pipeline.png" alt="Diagram of the CLAP audio-text classification pipeline" loading="lazy" decoding="async">
-              <h3>CLAP: Zero-Shot Audio Classification</h3><p>Comparing prompt formulations and audio-text classification accuracy on ESC-50.</p>
+              <img src="assets/case-studies/clap-prompt-accuracy.png" alt="ESC-50 Top-1 accuracy: class names 83.05%, audio prompt 91.15%." loading="lazy" decoding="async">
+              <h3>CLAP: Zero-Shot Audio Classification</h3><p>Changing the prompt raised ESC-50 Top-1 accuracy from 83.05% to 91.15%.</p>
             </a>
           </div>
           <a href="#" data-target="projects" class="cn-news-more">View All Projects</a>
@@ -3382,7 +3400,7 @@ body:has(#about.active) .main-container {
         </div>
         <div class="cn-footer-bottom"><span>© 2026 Denos Kume · All rights reserved</span></div>
       </footer>
-<button class="cn-top-button" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Top</button>
+<button hidden class="cn-top-button" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Top</button>
 
 
 
@@ -3705,23 +3723,23 @@ const projectCardPreviews = {
   1: {
     title: "Microcatheter Segmentation",
     type: "Master 1 Project",
-    description: "Preprocessing, background subtraction, and evaluation against manual annotations.",
-    image: "https://raw.githubusercontent.com/denoskume/Background-Subtraction-Fluoroscopy/main/assets/mask-cleanup.png",
-    alt: "Microcatheter trajectories compared with segmentation masks and manual tracing."
+    description: "Reconstructing a continuous microcatheter trajectory from fragmented predictions.",
+    image: "assets/case-studies/microcatheter-comparison.png",
+    alt: "Initial segmented fragments and reconstructed microcatheter trajectory on frame 291."
   },
   2: {
     title: "Camera Calibration",
     type: "Case Study",
-    description: "Chessboard-based geometric calibration and reprojection error analysis.",
-    image: "https://raw.githubusercontent.com/denoskume/camera-calibration/main/outputs/figures/mean_reprojection_error_by_view.png",
-    alt: "Bar chart showing reprojection error for nine camera calibration views."
+    description: "Nine chessboard views yielded a mean reprojection error of 0.434 pixels.",
+    image: "assets/case-studies/calibration-corners.webp",
+    alt: "Detected calibration corners on an original chessboard photograph."
   },
   3: {
     title: "CLAP: Zero-Shot Audio Classification",
     type: "Master 1 Project",
-    description: "Comparing prompt formulations and audio-text classification accuracy on ESC-50.",
-    image: "https://raw.githubusercontent.com/denoskume/CLAP-Zero-Shot-Audio-Classification/main/outputs/figures/clap_complete_zero_shot_pipeline.png",
-    alt: "Flowchart of the CLAP zero-shot audio classification and prompt engineering pipeline."
+    description: "Changing the prompt raised ESC-50 Top-1 accuracy from 83.05% to 91.15%.",
+    image: "assets/case-studies/clap-prompt-accuracy.png",
+    alt: "ESC-50 Top-1 accuracy: class names 83.05%, audio prompt 91.15%."
   },
   4: {
     title: "Flag Intelligence",
@@ -3778,6 +3796,30 @@ function buildProjects() {
 
    ============================================================ */
 
+
+const topButton = document.querySelector('.cn-top-button');
+function updateTopButton() {
+  topButton.hidden = window.scrollY < window.innerHeight;
+}
+window.addEventListener('scroll', updateTopButton, {passive: true});
+window.addEventListener('resize', updateTopButton);
+updateTopButton();
+
+function addResourceToggle(content) {
+  const actions = content.querySelector('.fl-paper-actions');
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'resource-toggle';
+  toggle.textContent = 'Resources';
+  actions.id = 'report-actions';
+  toggle.setAttribute('aria-controls', actions.id);
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.addEventListener('click', () => {
+    toggle.setAttribute('aria-expanded', String(toggle.getAttribute('aria-expanded') !== 'true'));
+  });
+  actions.before(toggle);
+}
+
 function openProject(id) {
 
   const p = projects.find(x => x.id === id);
@@ -3787,6 +3829,7 @@ function openProject(id) {
   if (p.id === 1) {
     const content = document.getElementById('projectDetailContent');
     content.innerHTML = renderFluoroCaseStudy();
+    addResourceToggle(content);
     initFluoroCaseStudy();
     showSection('projectDetail');
     // Keep this project accessible via a permanent direct URL.
@@ -3799,6 +3842,7 @@ function openProject(id) {
   if ([2, 3, 4, 5, 6].includes(p.id)) {
     const content = document.getElementById('projectDetailContent');
     content.innerHTML = renderScientificCaseStudy(p.id);
+    addResourceToggle(content);
     initScientificCaseStudy();
     showSection('projectDetail');
     const slugs = {
