@@ -22,6 +22,7 @@ jobs:
         continue-on-error: true
         run: |
           python -m pip install --quiet reportlab pypdf beautifulsoup4 pillow cairosvg
+          python scripts/build_robot_report_fr.py
           python scripts/build_scientific_reports.py
           test -s build/fluoroscopy-case-study.pdf
           test -s build/camera-calibration-case-study.pdf
@@ -299,7 +300,7 @@ jobs:
           PY
           mkdir -p _site/lab
           mkdir -p _site
-          cp index.html favicon.svg _site/
+          cp index.html favicon.svg build/robot-incendie-rapport-technique-fr.pdf _site/
           cp -R assets data lab blog _site/
           test -s _site/blog/data-cleaning.html
           test -s _site/blog/experiments/data-quality/audit_retail.py

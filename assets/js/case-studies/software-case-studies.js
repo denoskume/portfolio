@@ -454,7 +454,7 @@
     repository:host+'portfolio/tree/main/assets/portfolio-images', notebook:robotPhoto, sourceLabel:'Original prototype photo',
     pdf:'arduino-fire-fighting-robot-case-study.pdf',downloadName:'Arduino-Fire-Fighting-Robot-Report.pdf',
     keywords:['Arduino','Embedded systems','Mobile robotics','Hardware integration'],
-    projectInfo:[['Context','GALAXIA 2022 science exhibition, Kristu Jayanti College'],['My role','Team lead'],['Team','Three students'],['Duration','One month']],
+    projectInfo:[['French technical report',a('robot-incendie-rapport-technique-fr.pdf','Télécharger le dossier technique illustré (PDF · 7 pages)')],['Context','GALAXIA 2022 science exhibition, Kristu Jayanti College'],['My role','Team lead'],['Team','Three students'],['Duration','One month']],
     glossary:[['Chassis','The frame carrying the wheels, electronics and water tank.'],['Arduino','The microcontroller platform used for this prototype.']],
     summary:['I led a team of three students to build an Arduino fire-fighting robot for GALAXIA 2022. Over one month, we integrated a water reservoir, tubing and control electronics on a wheeled chassis. Our project placed third at the college science exhibition.'],
     reportSections:[
