@@ -395,6 +395,7 @@
     ]
   };
 
+  const atmelDatasheet = 'https://www.keil.com/dd/docs/datashts/atmel/at89c51_ds.pdf';
   const circuit = raw+'portfolio/main/assets/portfolio-images/traffic-light.jpg';
   const traffic = {
     slug:'traffic-light-simulation', prefix:'sc-traffic', title:'Traffic Light Simulation',
@@ -421,6 +422,8 @@
           ],'<strong>Wiring map.</strong> Read from the U1 symbol and the four LED traces.')+
           '<p>Each display has seven separate segment connections and a common terminal drawn to ground. The two lamp pairs share supply-side connections. This matters when translating a logical colour into an output-port value: the lamp and digit circuits have different common connections.</p>'},
       {key:'control',title:'Software behaviour and verification',body:
+          '<h3>From a wire label to a firmware port</h3><p>The '+a(atmelDatasheet,'Atmel AT89C51 datasheet')+' identifies P3.0 and P3.1 as both GPIO and serial RXD/TXD. On the project schematic these pins feed the lower display. A firmware implementation using those pins for segment outputs must account for the serial interface sharing the same pins.</p>'+
+          '<p>The device also provides two 16-bit timer/counters. One reference implementation would use a periodic timer tick to update the countdown and a separate phase variable to select the four lamps. Reproducing an exact delay requires the clock frequency, timer mode, reload value and software division factor.</p>'+
           '<p>The controller must keep two outputs consistent: the signal phase and the displayed digit. The schematic records one instant. Its values can be inspected directly; the clock tick, phase duration, initialisation order and display encoding require the firmware or a trace through a complete cycle.</p>'+
           table(['Check','Procedure','Available evidence'],[
             ['Vehicle phase','Read both lamp pairs and the active digit in the same frame.','Observed: vehicle green, crossing red, upper digit 8.'],
@@ -432,12 +435,16 @@
       {key:'results',title:'4.0 Reading the simulation',body:fig(circuit,'<strong>Figure 1.</strong> The vehicle signal is green while the crossing signal is red. The upper display reads 8.','Traffic light simulation schematic','sc-traffic-r-circuit')+
         '<p>The labels “traffic” and “cross” identify the two signal groups. In this frame vehicles can proceed while pedestrians wait.</p>'}
     ],
-    references:[{label:'Original Bachelor’s project circuit diagram.',url:circuit,linkLabel:'Open schematic'}],
+    references:[{label:'Original Bachelor’s project circuit diagram.',url:circuit,linkLabel:'Open schematic'},{label:'Atmel. AT89C51 datasheet. DIP pin configuration, Port 3 and timer/counters.',url:atmelDatasheet,linkLabel:'Read datasheet'}],
     figures:[{title:'Traffic and pedestrian signal circuit',description:'The original simulation frame shows the controller, signal outputs and countdown displays.',url:circuit,kind:'figure',reportId:'sc-traffic-r-circuit'},{title:'Controller port architecture',description:'Four output groups traced from U1.',url:R.assets+'traffic-port-architecture.svg',kind:'figure',reportId:'sc-traffic-r-ports'}],
     metricsIntro:'Component counts read directly from the circuit diagram.',
     metrics:[{key:'components',title:'Circuit components',body:table(['Component','Count'],[['Microcontroller','1'],['Signal LEDs','4'],['Seven-segment displays','2']],'<strong>Table 1.</strong> Components visible in Figure 1.')}]
   };
 
+  const unoDocs = 'https://docs.arduino.cc/hardware/uno-rev3/';
+  const unoPins = 'https://docs.arduino.cc/resources/pinouts/A000066-full-pinout.pdf';
+  const motorShield = 'https://store.arduino.cc/products/arduino-motor-shield-rev3';
+  const chassisGuide = 'https://wiki.dfrobot.com/rob0003/docs/21762';
   const robotPhoto = raw+'portfolio/main/assets/portfolio-images/fire-fighting-robot.jpg';
   const award = raw+'portfolio/main/assets/credentials/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png';
   const robot = {
@@ -464,6 +471,12 @@
             ['Front assembly','A small breadboard and the hose outlet are visible at the front.','Inspect attachment points and clearance between tubing and jumper leads.'],
             ['Wheels and chassis','Wheels flank the electronics deck.','Check that rotating wheels clear wiring throughout movement.']
           ],'<strong>Hardware inventory.</strong> Visible assemblies and their integration points.')},
+      {key:'reference-design',title:'Reference design: chassis, UNO and motor interface',body:
+          '<p>The exhibition photograph shows the mechanical layout. The following manufacturer examples explain how a rover of this type can be assembled and driven. The part numbers and pin assignments below belong to the reference configuration.</p>'+
+          '<h3>Chassis assembly</h3><p>In the '+a(chassisGuide,'DFRobot Pirate 4WD assembly guide')+', the gearmotors mount to the chassis and the wheels fit to their shafts. Use the prototype photograph to compare three installation choices: where the controller can be reached, where the tank is supported, and how the hose passes forward without entering the wheel path.</p>'+
+          '<h3>Controller and drive electronics</h3><p>In a reference assembly, the '+a(unoDocs,'Arduino UNO R3')+' runs the control logic. The '+a(motorShield,'Arduino Motor Shield Rev3')+' uses a dual H-bridge to supply the motors. A direction output selects the polarity across a motor; a pulse-width modulated output sets the fraction of each cycle during which the drive is enabled. Motor current flows through the driver and motor terminals.</p>'+
+          table(['Control function','Channel A','Channel B'],[['Direction','D12','D13'],['PWM duty cycle','D3','D11'],['Brake','D9','D8'],['Current-sense input','A0','A1']],'<strong>Reference pin configuration.</strong> Arduino Motor Shield Rev3 on an UNO R3.')+
+          '<h3>From sketch to wheel movement</h3><p>For a channel-A bench test, initialise the output pins, start with zero PWM, select a direction on D12, release the D9 brake, then increase the duty cycle on D3. Compare the observed wheel direction with the command. A0 provides a current-sense signal for that channel. The '+a(unoPins,'official UNO pinout')+' locates each header connection. This procedure describes a proposed test of the reference assembly.</p>'},
       {key:'interfaces',title:'Arduino, software and electrical interfaces',body:
           '<p>The competition certificate identifies Arduino as the control platform. In the photograph, wires overlap and header labels are obscured. A reproducible wiring schedule needs both ends of each connection: Arduino pin, peripheral terminal, supply rail and ground return.</p>'+
           table(['Interface to document','Evidence required','What it establishes'],[
@@ -483,7 +496,7 @@
       {key:'results',title:'4.0 Exhibition result',body:'<p>On 29 September 2022, the Computer Academy and Department of Computer Science awarded the project third place at GALAXIA.</p>'+
         fig(award,'<strong>Figure 2.</strong> The original certificate records the project title, placement and exhibition date.','GALAXIA award certificate for the Arduino fire-fighting robot','sc-robot-r-award')}
     ],
-    references:[{label:'Original project photograph.',url:robotPhoto,linkLabel:'View prototype'},{label:'Kristu Jayanti College. GALAXIA 2022 certificate of appreciation.',url:award,linkLabel:'View certificate'}],
+    references:[{label:'Original project photograph.',url:robotPhoto,linkLabel:'View prototype'},{label:'Kristu Jayanti College. GALAXIA 2022 certificate of appreciation.',url:award,linkLabel:'View certificate'},{label:'Arduino. UNO R3 hardware documentation.',url:unoDocs,linkLabel:'Board overview'},{label:'Arduino. UNO R3 full pinout, A000066.',url:unoPins,linkLabel:'Pinout PDF'},{label:'Arduino. Motor Shield Rev3, input and output assignments.',url:motorShield,linkLabel:'Driver pin table'},{label:'DFRobot. Pirate 4WD mobile platform assembly guide.',url:chassisGuide,linkLabel:'Chassis assembly'}],
     figures:[{title:'Completed prototype',description:'Water tank, tubing, control electronics and wheeled chassis.',url:robotPhoto,kind:'figure',reportId:'sc-robot-r-photo'},{title:'GALAXIA competition result',description:'Third-place certificate dated 29 September 2022.',url:award,kind:'figure',reportId:'sc-robot-r-award'},{title:'Chassis and fluid path',description:'Mounting relationships and visible water path.',url:R.assets+'robot-physical-architecture.svg',kind:'figure',reportId:'sc-robot-r-blocks'}],
     metricsIntro:'Team size, project duration and exhibition result.',
     metrics:[{key:'outcome',title:'Project at a glance',body:table(['Measure','Value'],[['Team size','3 students'],['Build duration','1 month'],['GALAXIA placement','3rd place']],'<strong>Table 1.</strong> Project and competition figures.')}]
