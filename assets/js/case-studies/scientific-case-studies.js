@@ -332,7 +332,7 @@
       'nomenclature':'Nomenclature','intro':'1.0 Introduction','dataset':'2.0 Dataset & objectives',
       'method':'3.0 Methodology','results':'4.0 Results','discussion':'5.0 Discussion & conclusion',
       'references':'6.0 References'};
-    const reportToc = primary.map(k=>({id:p+'-r-'+k,title:names[k]||k}));
+    const reportToc = primary.map(k=>({id:p+'-r-'+k,title:d.reportSections.find(row=>row.key===k)?.title||names[k]||k}));
     const figuresToc = d.figures.map((f,i) => {
       if (f.kind === 'demo') {
         return {id:p+'-f-'+i,title:'Gameplay demonstration · '+f.title};
@@ -391,9 +391,9 @@
       '</h2><button type="button" class="fl-modal-close" data-sc-close aria-label="Close dialog">×</button></div>'+
       body+'</dialog>';
     const cite = modal('cite','Project resources',
-      '<p>Project code, data, and figures are available as technical resources. External research is cited in the report bibliography.</p>'+
+      (d.sourceLabel ? '' : '<p>Project code, data, and figures are available as technical resources. External research is cited in the report bibliography.</p>')+
       '<p>'+link(d.repository,'Browse project repository')+'</p>'+
-      '<p>'+link(d.notebook,'Open project source')+'</p>');
+      '<p>'+link(d.notebook,d.sourceLabel||'Open project source')+'</p>');
     const rights = modal('rights','License & rights',
       '<p><strong>Academic source project.</strong> The repository does not publish an explicit open license. Publicly available source code and figures are not automatically licensed for redistribution.</p>'+
       '<p>Third-party model, dataset and image materials may have their own conditions. Contact the relevant rights holders for uses not otherwise permitted.</p>'+
@@ -410,14 +410,14 @@
       '<button type="button" data-sc-action="share">↗ Share</button>'+
       '<button type="button" data-sc-action="cite">Project resources</button>'+
       '<button type="button" data-sc-action="rights">License &amp; Rights</button>'+
-      '<a class="sc-source-link" href="'+safe(d.notebook)+'" target="_blank" rel="noopener noreferrer">'+(project>=4?'Source code':'Source notebook')+'</a>'+
+      '<a class="sc-source-link" href="'+safe(d.notebook)+'" target="_blank" rel="noopener noreferrer">'+(d.sourceLabel||(project>=4?'Source code':'Source notebook'))+'</a>'+
       '<span class="fl-action-status" role="status" aria-live="polite"></span></div>'+
       '<div class="fl-paper-panel" id="'+p+'-panel-report" data-sc-panel="report" role="tabpanel" aria-labelledby="'+p+'-tab-report" tabindex="0">'+report+'</div>'+
       '<div class="fl-paper-panel" id="'+p+'-panel-figures" data-sc-panel="figures" role="tabpanel" aria-labelledby="'+p+'-tab-figures" tabindex="0" hidden>'+
       '<div class="fl-panel-intro"><h2>Figures</h2><p>All project figures and tables, with links to the corresponding report sections.</p></div>'+
       indexedFigures+'</div>'+
       '<div class="fl-paper-panel" id="'+p+'-panel-metrics" data-sc-panel="metrics" role="tabpanel" aria-labelledby="'+p+'-tab-metrics" tabindex="0" hidden>'+
-      '<div class="fl-panel-intro"><h2>Metrics</h2><p>Recorded quantitative evaluation, linked to the original tables and plots.</p></div>'+
+      '<div class="fl-panel-intro"><h2>Metrics</h2><p>'+safe(d.metricsIntro||'Recorded quantitative evaluation, linked to the original tables and plots.')+'</p></div>'+
       metrics+'</div></div>'+
       '<aside class="fl-paper-sidebar" aria-label="Contents"><div class="fl-sidebar-sticky"><div class="fl-sidebar-heading"><h2>Contents</h2>'+
       '<button type="button" class="fl-sidebar-toggle" data-sc-toggle-toc aria-controls="'+p+'-toc" aria-expanded="true" aria-label="Collapse contents" title="Collapse contents">'+

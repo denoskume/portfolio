@@ -392,7 +392,31 @@
     ]
   };
 
-  const studies={4:flag,5:card,6:monstage};
+  const circuit = raw+'portfolio/main/assets/portfolio-images/traffic-light.jpg';
+  const traffic = {
+    slug:'traffic-light-simulation', prefix:'sc-traffic', title:'Traffic Light Simulation',
+    subtitle:'Coordinating vehicle and pedestrian signals with a visible countdown.',
+    authors:'Bachelor’s project · Computer Science and Electronics · Kristu Jayanti College',
+    notebook:circuit, sourceLabel:'Original circuit diagram', repository:host+'portfolio/tree/main/assets/portfolio-images',
+    pdf:'traffic-light-simulation-case-study.pdf', downloadName:'Traffic-Light-Simulation-Report.pdf',
+    keywords:['Embedded systems','Microcontroller','Traffic signals','Seven-segment displays'],
+    summary:['I simulated a pedestrian crossing with separate red and green signals for vehicles and pedestrians. The microcontroller drives both signal groups and two countdown displays. The diagram captures one phase of the crossing cycle.'],
+    projectInfo:[['Project type','Bachelor’s electronics project'],['Controller','8051-family microcontroller'],['Outputs','Two signal pairs and two seven-segment displays']],
+    glossary:[['LED','Light-emitting diode, used here as a signal lamp.'],['Seven-segment display','Seven individually controlled segments form a digit.']],
+    reportSections:[
+      {key:'intro',title:'1.0 Introduction',body:'<p>A pedestrian crossing gives drivers and pedestrians different instructions at the same moment. This circuit models each instruction with a red and a green lamp.</p>'},
+      {key:'objective',title:'2.0 Objective',body:'<p>Coordinate the two signal groups and display a countdown alongside the light sequence.</p>'},
+      {key:'method',title:'3.0 Circuit design',body:'<p>Follow the connections from the microcontroller on the left to the two pairs of lights on the right. Separate groups of output lines drive the segments of the upper and lower displays.</p>'},
+      {key:'results',title:'4.0 Reading the simulation',body:fig(circuit,'<strong>Figure 1.</strong> The vehicle signal is green while the crossing signal is red. The upper display reads 8.','Traffic light simulation schematic','sc-traffic-r-circuit')+
+        '<p>The labels “traffic” and “cross” identify the two signal groups. In this frame vehicles can proceed while pedestrians wait.</p>'}
+    ],
+    references:[{label:'Original Bachelor’s project circuit diagram.',url:circuit,linkLabel:'Open schematic'}],
+    figures:[{title:'Traffic and pedestrian signal circuit',description:'The original simulation frame shows the controller, signal outputs and countdown displays.',url:circuit,kind:'figure',reportId:'sc-traffic-r-circuit'}],
+    metricsIntro:'Component counts read directly from the circuit diagram.',
+    metrics:[{key:'components',title:'Circuit components',body:table(['Component','Count'],[['Microcontroller','1'],['Signal LEDs','4'],['Seven-segment displays','2']],'<strong>Table 1.</strong> Components visible in Figure 1.')}]
+  };
+
+  const studies={4:flag,5:card,6:monstage,7:traffic};
   if(typeof window.registerScientificCaseStudies!=='function'){
     throw new Error('Load scientific-case-studies.js before software-case-studies.js');
   }

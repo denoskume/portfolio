@@ -29,6 +29,7 @@ jobs:
           test -s build/flag-intelligence-case-study.pdf
           test -s build/python-cardgame-case-study.pdf
           test -s build/monstage-case-study.pdf
+          test -s build/traffic-light-simulation-case-study.pdf
           python - <<'PY'
           from pypdf import PdfReader
           for path, expected in [
@@ -206,10 +207,10 @@ jobs:
           page = Path("index.html").read_text(encoding="utf-8")
           studies = Path("assets/js/case-studies/software-case-studies.js").read_text(encoding="utf-8")
           assert not re.search(r"visionlab", page + studies, re.I), "Removed VisionLab project returned"
-          assert len(re.findall(r'"id": [1-6],', page)) == 6, "Expected six portfolio project cards"
+          assert len(re.findall(r'"id": [1-7],', page)) == 7, "Expected seven portfolio project cards"
           assert "'#/projects/visionlab'" not in page, "Removed direct link returned"
           assert "visionlab-case-study.pdf" not in Path("scripts/build_scientific_reports.py").read_text(encoding="utf-8")
-          print("Six project cards confirmed; VisionLab absent from website and PDF build.")
+          print("Seven project cards confirmed; VisionLab absent from website and PDF build.")
           PY
           # Contact form must be accessible, designed, and actually wired to an email relay.
           python - <<'PY'
@@ -307,7 +308,7 @@ jobs:
 
           # Always publish the HTML even if an optional document rebuild fails.
           # Fall back to the last published copy of each PDF where available.
-          for pdf in fluoroscopy-case-study.pdf camera-calibration-case-study.pdf clap-zero-shot-case-study.pdf flag-intelligence-case-study.pdf python-cardgame-case-study.pdf monstage-case-study.pdf Denos_Kume_Harvard_CV.pdf; do
+          for pdf in fluoroscopy-case-study.pdf camera-calibration-case-study.pdf clap-zero-shot-case-study.pdf flag-intelligence-case-study.pdf python-cardgame-case-study.pdf monstage-case-study.pdf traffic-light-simulation-case-study.pdf Denos_Kume_Harvard_CV.pdf; do
             if [ -s "build/$pdf" ]; then
               cp "build/$pdf" "_site/$pdf"
             elif curl --fail --location --silent --show-error --retry 2 --max-time 30                 "https://denoskume.github.io/portfolio/$pdf?previous=1" -o "_site/$pdf"                 && head -c 5 "_site/$pdf" | grep -q '%PDF-'; then
