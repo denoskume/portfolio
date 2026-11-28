@@ -83,6 +83,7 @@
         '<h3>3.2 Country facts and their sources</h3>'+
         '<p>After country confirmation, the application retrieves its static geographic information from a bundled country reference and seeks the latest available <strong>annual</strong> population observation from the World Bank indicator API. The year and data source accompany that population value, so it can be interpreted correctly.'+cit('sc-flag',2)+cit('sc-flag',3)+'</p>'},
       {key:'results',title:'4.0 Evaluation and implementation results',body:
+        '<h3>Regression test: textured tricolours</h3><p>The <a href="https://github.com/denoskume/Flag-Intelligence/blob/main/tests/test_tricolor.py" target="_blank" rel="noopener noreferrer">tricolour regression suite</a> constructs a three-band image on a padded background, then varies shading and texture. This isolates the detector from country-fact lookup and gives a repeatable input for a dark-blue band that can be missed in a photograph. The test image is synthetic; real-photo performance is reported separately below.</p>'+
         '<h3>4.1 What the real-world benchmark measured</h3>'+
         '<p>The human-reviewed real-world challenge for the original image classifier reported <strong>19.61% Top-1</strong> and <strong>27.45% Top-5</strong> accuracy. Top-1 counts first-choice correct predictions; Top-5 counts the cases where the correct country appears within the five suggested classes.'+'</p>'+
         '<p>These figures help explain the later design choice: clean reference matching and a manual confirmation step can make the application more usable when the model encounters closely related flag designs. A directly comparable accuracy score for the combined workflow is not established by the available evaluations.</p>'+
@@ -218,6 +219,7 @@
         fig(raw+'Python-CardGame/main/versions/v1/docs/figures/sdlc-gantt.webp','<strong>Figure 10.</strong> Original ALPRO Gantt chart showing the project planning, implementation, testing and documentation schedule.','Original development timeline from the December 2025 academic report.','sc-card-r-v1-gantt')+
         '<p>'+a(R.card+'/tree/main/versions/v1/code','Read the original Python implementation')+'</p>'},
       {key:'results',title:'4.0 Demonstration and validation',body:
+        '<h3>Tracing one round through the V1 code</h3><p>In the original <a href="https://github.com/denoskume/Python-CardGame/blob/main/versions/v1/code/game.py" target="_blank" rel="noopener noreferrer">game controller</a>, start_round sets up a round, update_shuffle moves the cards, and handle_choose_event forwards the chosen position to resolve_round. To inspect the result, follow one selection from the input event to the resolved index and the history written by _save_history. The original functional test matrix below documents the academic submission.</p>'+
         '<h3>4.1 Delivered application</h3>'+
         '<p>The submitted project demonstrates a working desktop Pygame game with player entry, bet configuration, card observation and shuffle, timed selection, result screens and JSON history. The original gameplay demonstration is reserved for the <strong>end of this report</strong>.'+'</p>'+
         fig(raw+'Python-CardGame/main/versions/v1/docs/figures/alpro-v1-result.webp','<strong>Figure 11.</strong> V1 game-over screen summarizes the completed rounds and fictitious credits.','Original 2025 CardGame result dashboard','sc-card-r-v1-result')+
@@ -345,6 +347,7 @@
         '<h3>3.3 Dashboard and privacy</h3>'+
         '<p>The dashboard summarizes the pipeline and outcomes so the next action is easier to choose. The dashboard combines campaign indicators, a timeline, a status distribution and a geographic view. Access to the underlying records remains restricted.'+'</p>'},
       {key:'results',title:'4.0 Delivered features and verification',body:
+        '<h3>Interface test: from sign-in to a selected vacancy</h3><p>The <a href="https://github.com/denoskume/monstage/blob/main/apps/web/e2e/responsive.spec.ts" target="_blank" rel="noopener noreferrer">Playwright test file</a> supplies a controlled vacancy and exercises the interface under different session states. One scenario checks that a signed-out visitor cannot see protected data. Another opens the authenticated mobile interface, applies filters and checks the detail view for horizontal overflow. These tests exercise navigation and access control independently of live vacancy collection.</p>'+
         '<h3>4.1 Application flow</h3>'+
         '<p>The implementation includes search, sorting, multi-criteria filtering, candidate fit, a shortlist, application dossiers and tracking views. Each offer can be reviewed with its own status and supporting documents, while the dashboard gives a view of progress and outcomes.'+'</p>'+
         fig(raw+'portfolio/main/assets/monstage/Home.png','<strong>Figure 2.</strong> Offers interface: search, filtering, candidate-fit score and application actions alongside the selected vacancy.','MonStage offers interface with a selected image-processing opportunity.','sc-stage-r-fig2')+
@@ -388,7 +391,7 @@
           ['Worker tests','Authentication and API behaviour'],
           ['Frontend build','TypeScript and Vite']
         ],'<strong>Table 2.</strong> Documented verification methods.')+
-        '<p>'+a(R.stage+'/blob/main/e2e/responsive.spec.ts','Inspect responsive test cases')+'</p>'}
+        '<p>'+a(R.stage+'/blob/main/apps/web/e2e/responsive.spec.ts','Inspect responsive test cases')+'</p>'}
     ]
   };
 
@@ -407,11 +410,30 @@
       {key:'intro',title:'1.0 Introduction',body:'<p>A pedestrian crossing gives drivers and pedestrians different instructions at the same moment. This circuit models each instruction with a red and a green lamp.</p>'},
       {key:'objective',title:'2.0 Objective',body:'<p>Coordinate the two signal groups and display a countdown alongside the light sequence.</p>'},
       {key:'method',title:'3.0 Circuit design',body:'<p>Follow the connections from the microcontroller on the left to the two pairs of lights on the right. Separate groups of output lines drive the segments of the upper and lower displays.</p>'},
+      {
+        key:'interfaces',title:'Hardware architecture and pin configuration',body:
+          fig(R.assets+'traffic-port-architecture.svg','<strong>Block diagram.</strong> Each arrow groups connections traced on the original schematic. The table below identifies individual lamp pins.','Controller ports and output groups','sc-traffic-r-ports')+
+          table(['Output','U1 port bits','Package pins in schematic'],[
+            ['Upper display, seven segment lines','P1.0–P1.6','1–7'],
+            ['Crossing red / green','P2.0 / P2.1','21 / 22'],
+            ['Vehicle red / green','P2.2 / P2.3','23 / 24'],
+            ['Lower display, seven segment lines','P3.0–P3.6','10–16']
+          ],'<strong>Wiring map.</strong> Read from the U1 symbol and the four LED traces.')+
+          '<p>Each display has seven separate segment connections and a common terminal drawn to ground. The two lamp pairs share supply-side connections. This matters when translating a logical colour into an output-port value: the lamp and digit circuits have different common connections.</p>'},
+      {key:'control',title:'Software behaviour and verification',body:
+          '<p>The controller must keep two outputs consistent: the signal phase and the displayed digit. The schematic records one instant. Its values can be inspected directly; the clock tick, phase duration, initialisation order and display encoding require the firmware or a trace through a complete cycle.</p>'+
+          table(['Check','Procedure','Available evidence'],[
+            ['Vehicle phase','Read both lamp pairs and the active digit in the same frame.','Observed: vehicle green, crossing red, upper digit 8.'],
+            ['Pedestrian phase','Advance through the changeover; inspect both greens at each transition.','Full-cycle recording needed.'],
+            ['Countdown','Record each digit with its timestamp through rollover. Compare both displays with the active lamps.','Timing trace needed.'],
+            ['Reset','Restart the simulator twice and record the initial lamps and digits.','Restart trace needed.']
+          ],'<strong>Test record.</strong> Only the first check is evidenced by the supplied frame.')},
+      {key:'deliverables',title:'Simulation deliverables',body:'<p>The original schematic is available at full resolution in Figures. The PDF includes the port diagram, wiring map and test record. A simulator project, firmware and recorded run would allow another reader to reproduce switching and timing.</p>'},
       {key:'results',title:'4.0 Reading the simulation',body:fig(circuit,'<strong>Figure 1.</strong> The vehicle signal is green while the crossing signal is red. The upper display reads 8.','Traffic light simulation schematic','sc-traffic-r-circuit')+
         '<p>The labels “traffic” and “cross” identify the two signal groups. In this frame vehicles can proceed while pedestrians wait.</p>'}
     ],
     references:[{label:'Original Bachelor’s project circuit diagram.',url:circuit,linkLabel:'Open schematic'}],
-    figures:[{title:'Traffic and pedestrian signal circuit',description:'The original simulation frame shows the controller, signal outputs and countdown displays.',url:circuit,kind:'figure',reportId:'sc-traffic-r-circuit'}],
+    figures:[{title:'Traffic and pedestrian signal circuit',description:'The original simulation frame shows the controller, signal outputs and countdown displays.',url:circuit,kind:'figure',reportId:'sc-traffic-r-circuit'},{title:'Controller port architecture',description:'Four output groups traced from U1.',url:R.assets+'traffic-port-architecture.svg',kind:'figure',reportId:'sc-traffic-r-ports'}],
     metricsIntro:'Component counts read directly from the circuit diagram.',
     metrics:[{key:'components',title:'Circuit components',body:table(['Component','Count'],[['Microcontroller','1'],['Signal LEDs','4'],['Seven-segment displays','2']],'<strong>Table 1.</strong> Components visible in Figure 1.')}]
   };
@@ -433,11 +455,36 @@
       {key:'objective',title:'2.0 Objective',body:'<p>Our objective was to carry a water supply and a forward-facing outlet on the same mobile platform as the controller.</p>'},
       {key:'method',title:'3.0 Hardware integration',body:fig(robotPhoto,'<strong>Figure 1.</strong> The tank sits at the rear. The hose runs forward over the electronics to the outlet at the front of the chassis.','Completed wheeled Arduino prototype with tank, hose and wiring','sc-robot-r-photo')+
         '<p>The photograph shows how the team arranged the water path around the limited space on the chassis. The controller and wiring occupy the centre, between the tank and the outlet.</p>'},
+      {
+        key:'architecture',title:'Physical architecture and chassis layout',body:
+          fig(R.assets+'robot-physical-architecture.svg','<strong>Block diagram.</strong> The first three branches show mounting relationships. The reservoir, hose and outlet form the visible water path.','Mechanical layout and fluid path','sc-robot-r-blocks')+
+          table(['Assembly','Position in the photograph','Engineering consideration'],[
+            ['Reservoir and hose','Tank at the rear; tubing crosses the top of the chassis.','Follow the hose to its front outlet and check clearance at bends.'],
+            ['Control electronics','Boards and jumper leads occupy the centre deck.','Trace wires by their end terminals; insulation colour alone cannot identify a signal.'],
+            ['Front assembly','A small breadboard and the hose outlet are visible at the front.','Inspect attachment points and clearance between tubing and jumper leads.'],
+            ['Wheels and chassis','Wheels flank the electronics deck.','Check that rotating wheels clear wiring throughout movement.']
+          ],'<strong>Hardware inventory.</strong> Visible assemblies and their integration points.')},
+      {key:'interfaces',title:'Arduino, software and electrical interfaces',body:
+          '<p>The competition certificate identifies Arduino as the control platform. In the photograph, wires overlap and header labels are obscured. A reproducible wiring schedule needs both ends of each connection: Arduino pin, peripheral terminal, supply rail and ground return.</p>'+
+          table(['Interface to document','Evidence required','What it establishes'],[
+            ['Locomotion','Board and actuator markings, terminal photos and the original sketch.','Controller outputs, driver inputs, direction commands and pin mapping.'],
+            ['Water delivery','Reservoir outlet and delivery hardware, plus the relevant wiring.','Delivery mechanism and whether the controller switches it.'],
+            ['Inputs and control logic','Sketch declarations, setup routine and main loop.','Input devices, active levels, startup state and control decisions.'],
+            ['Power distribution','Supply labels and a trace of power and ground terminals.','Voltage domains, shared returns and load power paths.']
+          ],'<strong>Interface record.</strong> Exact terminals and firmware settings await the original build records.')},
+      {key:'tests',title:'Verification and engineering deliverables',body:
+          table(['Item','Verification method','Evidence status'],[
+            ['Mechanical assembly','Inspect tank mounting, board placement and hose routing.','Visible in the prototype photograph.'],
+            ['Drive control','Compare commanded motion with wheel response and record each trial.','Procedure proposed; no trial log supplied.'],
+            ['Water delivery','Record a controlled delivery trial and measure volume over time.','Flow rate and operating duration unmeasured in the available record.'],
+            ['Competition outcome','Read project title, placement and date on the award.','Third place, 29 September 2022.']
+          ],'<strong>Test record.</strong> Exhibition placement and hardware performance are separate observations.')+
+          '<p>The deliverables available here are the prototype photograph, its physical block diagram, the exhibition certificate and the downloadable report. A wiring schedule and annotated firmware would complete the electrical and software handover.</p>'},
       {key:'results',title:'4.0 Exhibition result',body:'<p>On 29 September 2022, the Computer Academy and Department of Computer Science awarded the project third place at GALAXIA.</p>'+
         fig(award,'<strong>Figure 2.</strong> The original certificate records the project title, placement and exhibition date.','GALAXIA award certificate for the Arduino fire-fighting robot','sc-robot-r-award')}
     ],
     references:[{label:'Original project photograph.',url:robotPhoto,linkLabel:'View prototype'},{label:'Kristu Jayanti College. GALAXIA 2022 certificate of appreciation.',url:award,linkLabel:'View certificate'}],
-    figures:[{title:'Completed prototype',description:'Water tank, tubing, control electronics and wheeled chassis.',url:robotPhoto,kind:'figure',reportId:'sc-robot-r-photo'},{title:'GALAXIA competition result',description:'Third-place certificate dated 29 September 2022.',url:award,kind:'figure',reportId:'sc-robot-r-award'}],
+    figures:[{title:'Completed prototype',description:'Water tank, tubing, control electronics and wheeled chassis.',url:robotPhoto,kind:'figure',reportId:'sc-robot-r-photo'},{title:'GALAXIA competition result',description:'Third-place certificate dated 29 September 2022.',url:award,kind:'figure',reportId:'sc-robot-r-award'},{title:'Chassis and fluid path',description:'Mounting relationships and visible water path.',url:R.assets+'robot-physical-architecture.svg',kind:'figure',reportId:'sc-robot-r-blocks'}],
     metricsIntro:'Team size, project duration and exhibition result.',
     metrics:[{key:'outcome',title:'Project at a glance',body:table(['Measure','Value'],[['Team size','3 students'],['Build duration','1 month'],['GALAXIA placement','3rd place']],'<strong>Table 1.</strong> Project and competition figures.')}]
   };

@@ -117,6 +117,7 @@ window.renderFluoroCaseStudy = function renderFluoroCaseStudy(){
 
         <section class="fl-paper-section" id="fl-r-results">
           <h2>4.0 Experimental results</h2>
+          <h3>Checking the error on frame 291</h3><p>The <a href="https://github.com/denoskume/Background-Subtraction-Fluoroscopy/blob/main/frame_comparison.csv" target="_blank" rel="noopener noreferrer">frame-by-frame comparison</a> records 3,586 false-positive pixels before reconstruction and 811 afterwards on frame 291. Missed pixels fall from 756 to 414 and Dice rises from 0.588 to 0.849. Read both error counts alongside the overlay: a continuous-looking path can still include pixels outside the manual tracing.</p>
           <h3>4.1 Agreement with the reference</h3>
           <p><strong>Dice</strong> measures how much the predicted instrument overlaps the manual reference, from 0 (no overlap) to 1 (perfect overlap). Across the same nine motion frames, the previous prediction averaged <strong>0.501</strong>; continuous-path reconstruction raised the mean to <strong>0.876</strong>. That is a gain of <strong>0.375 Dice points</strong>. This comparison evaluates the reconstruction extension, separately from the earlier threshold-method comparison.<a class="study-cite" href="#fl-ref-3" aria-label="Reference 3">[3]</a></p>
           <div class="fl-score" aria-label="Mean Dice comparison">
