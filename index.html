@@ -2766,10 +2766,6 @@ body:has(#about.active) .main-container {
 
 <link rel="stylesheet" href="assets/css/components/harvard-cv.css?v=20261122-header-download">
 <link rel="stylesheet" href="assets/css/components/contact-modern.css?v=20261122-centered-form-v5">
-<link rel="stylesheet" href="assets/css/components/credential-assets.css?v=20261123-pdf-previews">
-<link rel="stylesheet" href="assets/css/components/home-credentials.css?v=20261122-clean-headings-v6">
-<script src="assets/js/components/credential-assets.js?v=20261123-pdf-previews" defer></script>
-<script src="assets/js/components/home-credentials.js?v=20261124-five-credentials" defer></script>
 <script src="assets/js/components/contact-form.js?v=20261122-contact-v2" defer></script>
 <style>
 #blog .blog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start}
@@ -2809,6 +2805,24 @@ body:has(#about.active) .main-container {
     background: white; color: #214e70; font: 600 .88rem var(--font-body); cursor: pointer; }
   .resource-toggle[aria-expanded="false"] + .fl-paper-actions { display: none; }
 }
+</style>
+<style>
+.cert-section { padding-block: 32px; text-align: left; }
+#homeCredentials { padding: 32px var(--gutter) 56px; background: #f5f7fa; }
+.cert-section > :is(h2,h3) { font: 600 1.55rem/1.2 var(--font-body); color: #12344f; margin-bottom: 20px; }
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,260px),1fr)); gap: 16px; }
+.cert-item,.award-entry { min-width: 0; padding: 22px; background: white; border: 1px solid #d8e2ea; }
+.cert-logo { display: block; max-width: 105px; height: 27px; width: auto; margin-bottom: 15px; }
+.cert-item p,.award-entry p,.isdc-record p { color: #46586a; line-height: 1.5; }
+.cert-item h3,.cert-item h4,.award-entry h4 { font: 600 1.2rem/1.4 var(--font-body); color: #12344f; margin: 4px 0 12px; }
+.cert-links { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.cert-links a { color: #174d77; text-decoration: underline; text-underline-offset: 3px; font-size: .92rem; padding-block: 5px; }
+.award-entry { display: grid; grid-template-columns: minmax(150px,230px) 1fr; gap: 22px; align-items: center; }
+.award-entry img { width: 100%; height: auto; }
+.isdc-record { margin-top: 16px; }
+.isdc-record h5 { font-size: 1rem; }
+.isdc-record p { margin-top: 12px; }
+@media(max-width:600px) { .cert-grid,.award-entry { grid-template-columns: 1fr; } .award-entry img { max-width: 230px; } }
 </style>
 </head>
 
@@ -2947,90 +2961,19 @@ body:has(#about.active) .main-container {
       </section>
 
       <!-- Credentials: layered deck, with slow automatic slide-out/slide-in card transitions. -->
-      <section id="homeCredentials" class="hc-showcase" aria-label="Credentials and Recognition carousel" aria-roledescription="carousel">
-        <div class="hc-wrap">
-          <header class="hc-intro">
-            <div>
-              <h2 class="hc-title">Credentials <em>&amp;</em> Recognition</h2>
-            </div>
-          </header>
-          <div class="hc-carousel" tabindex="0" aria-label="Credential card stack. Use left or right arrow keys, touch swipe, or pagination squares to navigate.">
-            <div class="hc-stack">
-            <article class="hc-card" data-place="active" aria-label="Credential 1 of 5: Data Scientist" aria-hidden="false">
-              <span class="hc-type">Certificate · Simplilearn</span>
-              <h3>Data Scientist</h3>
-              <p class="hc-issuer">Simplilearn Masters Program</p>
-              <a class="hc-document" href="assets/credentials/Data_Scientist_Simplilearn_2025.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original Data Scientist document">
-                <object class="credential-pdf-preview" type="application/pdf" data="assets/credentials/Data_Scientist_Simplilearn_2025.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0" data-pdf-source="assets/credentials/Data_Scientist_Simplilearn_2025.pdf" aria-label="Preview of Simplilearn Data Scientist certificate"><span class="credential-pdf-fallback">Open the original PDF to view Simplilearn Data Scientist certificate.</span></object>
-              </a>
-              <div class="hc-meta">
-                <span>Professional certificate</span>
-                <a href="https://success.simplilearn.com/0b363659-1995-4fbf-8a95-a4157ef15fe2" target="_blank" rel="noopener noreferrer">Verify certificate ↗</a>
-              </div>
+      <section id="homeCredentials" class="cert-section" aria-labelledby="homeCredentials-title">
+          <h2 id="homeCredentials-title">Certifications</h2>
+          <div class="cert-grid"><article class="cert-item">
+              <img class="cert-logo" src="assets/credentials/google-mark.png" alt="" loading="lazy">
+              <p>Google · 12 December 2024</p><h3>Google Advanced Data Analytics</h3>
+              <div class="cert-links"><a href="https://www.coursera.org/verify/professional-cert/5ZOKXCS6B7RR" target="_blank" rel="noopener noreferrer">Verify credential</a> <a href="assets/credentials/Google_Advanced_Data_Analytics_2024.pdf" target="_blank" rel="noopener noreferrer">View certificate (PDF)</a></div>
             </article>
-            <article class="hc-card" data-place="next" aria-label="Credential 2 of 5: Advanced Data Analytics" aria-hidden="true">
-              <span class="hc-type">Certificate · Google</span>
-              <h3>Advanced Data Analytics</h3>
-              <p class="hc-issuer">Google Professional Certificate</p>
-              <a class="hc-document" href="assets/credentials/Google_Advanced_Data_Analytics_2024.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original Advanced Data Analytics document" tabindex="-1">
-                <object class="credential-pdf-preview" type="application/pdf" data="assets/credentials/Google_Advanced_Data_Analytics_2024.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0" data-pdf-source="assets/credentials/Google_Advanced_Data_Analytics_2024.pdf" aria-label="Preview of Google Advanced Data Analytics certificate"><span class="credential-pdf-fallback">Open the original PDF to view Google Advanced Data Analytics certificate.</span></object>
-              </a>
-              <div class="hc-meta">
-                <span>Career certificate</span>
-                <a href="https://www.coursera.org/account/accomplishments/specialization/5ZOKXCS6B7RR" target="_blank" rel="noopener noreferrer" tabindex="-1">Verify certificate ↗</a>
-              </div>
-            </article>
-            <article class="hc-card" data-place="back" aria-label="Credential 3 of 5: 3rd Place" aria-hidden="true">
-              <span class="hc-type">Award · GALAXIA 2022</span>
-              <h3>3rd Place</h3>
-              <p class="hc-issuer">Fire-Fighting Robot Competition</p>
-              <a class="hc-document" href="assets/credentials/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png" target="_blank" rel="noopener noreferrer" aria-label="Open original 3rd Place document" tabindex="-1">
-                <img src="assets/credentials/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png" alt="3rd Place — original document" loading="lazy" decoding="async">
-              </a>
-              <div class="hc-meta">
-                <span>Competition award · 2022</span>
-                <a href="https://fr.linkedin.com/in/denoskume/fr" target="_blank" rel="noopener noreferrer" tabindex="-1">View award ↗</a>
-              </div>
-            </article>
-            <article class="hc-card" data-place="previous" aria-label="Credential 4 of 5: Star of the Month" aria-hidden="true">
-              <span class="hc-type">Recognition · ISDC Learning</span>
-              <h3>Star of the Month</h3>
-              <p class="hc-issuer">ISDC Learning</p>
-              <a class="hc-document" href="assets/credentials/ISDC.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open original Star of the Month document" tabindex="-1">
-                <img src="assets/credentials/ISDC.jpg" alt="Star of the Month — original document" loading="lazy" decoding="async">
-              </a>
-              <div class="hc-meta">
-                <span>Recognition</span>
-                <a href="https://www.linkedin.com/posts/starofthemonth-isdclearning-appreciation-share-7172875898336083968-Z_Up/" target="_blank" rel="noopener noreferrer" tabindex="-1">View recognition ↗</a>
-              </div>
-            </article>
-            <article class="hc-card" data-place="previous" aria-label="Credential 5 of 5: Campus Ambassador" aria-hidden="true">
-              <span class="hc-type">Certificate · ISDC Learning</span>
-              <h3>Campus Ambassador</h3>
-              <p class="hc-issuer">Certificate of Completion · January – April 2024</p>
-              <a class="hc-document" href="assets/credentials/ISDC_Experience_Letter-_%20Denos.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original ISDC certificate" tabindex="-1">
-                <object class="credential-pdf-preview" type="application/pdf" data="assets/credentials/ISDC_Experience_Letter-_%20Denos.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0" data-pdf-source="assets/credentials/ISDC_Experience_Letter-_%20Denos.pdf" aria-label="Preview of ISDC Campus Ambassador certificate"><span class="credential-pdf-fallback">Open the original PDF to view the certificate.</span></object>
-              </a>
-              <div class="hc-meta">
-                <span>Issued 20 April 2024</span>
-                <a href="assets/credentials/ISDC_Experience_Letter-_%20Denos.pdf" target="_blank" rel="noopener noreferrer" tabindex="-1">View certificate ↗</a>
-              </div>
-            </article>
-
-            </div>
-          </div>
-          <div class="hc-nav" aria-label="Carousel navigation">
-            <div class="hc-dots" role="group" aria-label="Select credential">
-              <button class="hc-dot" type="button" aria-label="Show Data Scientist" aria-current="true"></button>
-              <button class="hc-dot" type="button" aria-label="Show Advanced Data Analytics" aria-current="false"></button>
-              <button class="hc-dot" type="button" aria-label="Show 3rd Place" aria-current="false"></button>
-              <button class="hc-dot" type="button" aria-label="Show Star of the Month" aria-current="false"></button>
-              <button class="hc-dot" type="button" aria-label="Show Campus Ambassador" aria-current="false"></button>
-            </div>
-            <span class="hc-announcement" aria-live="polite" aria-atomic="true">Credential 1 of 5: Data Scientist</span>
-          </div>
-        </div>
-      </section>
+<article class="cert-item">
+              <img class="cert-logo" src="assets/credentials/simplilearn-mark.png" alt="" loading="lazy">
+              <p>Simplilearn Masters Program · 17 August 2025</p><h3>Data Scientist</h3>
+              <div class="cert-links"><a href="https://success.simplilearn.com/0b363659-1995-4fbf-8a95-a4157ef15fe2" target="_blank" rel="noopener noreferrer">Verify credential</a> <a href="assets/credentials/Data_Scientist_Simplilearn_2025.pdf" target="_blank" rel="noopener noreferrer">View certificate (PDF)</a></div>
+            </article></div>
+        </section>
 
     </div>
   </section>
@@ -3139,6 +3082,8 @@ body:has(#about.active) .main-container {
               <li>Contributed to increasing ISDC brand visibility within the campus community.</li>
               <li>Provided insights into market trends to inform the programme team's activities.</li>
             </ul>
+            <div class="isdc-record"><h5>Star of the Month · 2024</h5><div class="cert-links"><a href="https://www.linkedin.com/posts/starofthemonth-isdclearning-appreciation-share-7172875898336083968-Z_Up/" target="_blank" rel="noopener noreferrer">ISDC announcement</a> <a href="assets/credentials/ISDC.jpg" target="_blank" rel="noopener noreferrer">View recognition</a></div>
+            <p>Certificate issued · 20 April 2024</p><div class="cert-links"><a href="assets/credentials/ISDC_Experience_Letter-_%20Denos.pdf" target="_blank" rel="noopener noreferrer">View certificate (PDF)</a></div></div>
           </div>
 
           <div class="chrono-item edu-exp-entry experience-entry final-entry">
@@ -3155,68 +3100,31 @@ body:has(#about.active) .main-container {
           </div>
         </div>
 
-        <section class="credentials-section" id="credentials" aria-labelledby="credentialsTitle">
-          <div class="credentials-heading">
-            <h3 id="credentialsTitle">Credentials &amp; Recognition</h3>
-          </div>
-          <div class="credentials-grid">
-            <article class="credential-card">
-              <span class="credential-type">Certificate · Simplilearn</span>
-              <h4>Data Scientist</h4>
-              <a class="credential-picture" href="assets/credentials/Data_Scientist_Simplilearn_2025.pdf" target="_blank" rel="noopener noreferrer" aria-label="View original Simplilearn Data Scientist certificate">
-                <object class="credential-pdf-preview" type="application/pdf" data="assets/credentials/Data_Scientist_Simplilearn_2025.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0" data-pdf-source="assets/credentials/Data_Scientist_Simplilearn_2025.pdf" aria-label="Preview of Simplilearn Data Scientist certificate"><span class="credential-pdf-fallback">Open the original PDF to view Simplilearn Data Scientist certificate.</span></object>
-              </a>
-              <div class="credential-caption">
-                <span>Simplilearn Masters Program</span>
-                <a href="https://success.simplilearn.com/0b363659-1995-4fbf-8a95-a4157ef15fe2" target="_blank" rel="noopener noreferrer">Verify certificate ↗</a>
-              </div>
+        <section id="credentials" class="cert-section" aria-labelledby="credentials-title">
+          <h3 id="credentials-title">Certifications</h3>
+          <div class="cert-grid"><article class="cert-item">
+              <img class="cert-logo" src="assets/credentials/google-mark.png" alt="" loading="lazy">
+              <p>Google · 12 December 2024</p><h4>Google Advanced Data Analytics</h4>
+              <div class="cert-links"><a href="https://www.coursera.org/verify/professional-cert/5ZOKXCS6B7RR" target="_blank" rel="noopener noreferrer">Verify credential</a> <a href="assets/credentials/Google_Advanced_Data_Analytics_2024.pdf" target="_blank" rel="noopener noreferrer">View certificate (PDF)</a></div>
             </article>
-            <article class="credential-card">
-              <span class="credential-type">Certificate · Google</span>
-              <h4>Advanced Data Analytics</h4>
-              <a class="credential-picture" href="assets/credentials/Google_Advanced_Data_Analytics_2024.pdf" target="_blank" rel="noopener noreferrer" aria-label="View original Google Advanced Data Analytics certificate">
-                <object class="credential-pdf-preview" type="application/pdf" data="assets/credentials/Google_Advanced_Data_Analytics_2024.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0" data-pdf-source="assets/credentials/Google_Advanced_Data_Analytics_2024.pdf" aria-label="Preview of Google Advanced Data Analytics certificate"><span class="credential-pdf-fallback">Open the original PDF to view Google Advanced Data Analytics certificate.</span></object>
-              </a>
-              <div class="credential-caption">
-                <span>Google Professional Certificate</span>
-                <a href="https://www.coursera.org/account/accomplishments/specialization/5ZOKXCS6B7RR" target="_blank" rel="noopener noreferrer">Verify certificate ↗</a>
-              </div>
+<article class="cert-item">
+              <img class="cert-logo" src="assets/credentials/simplilearn-mark.png" alt="" loading="lazy">
+              <p>Simplilearn Masters Program · 17 August 2025</p><h4>Data Scientist</h4>
+              <div class="cert-links"><a href="https://success.simplilearn.com/0b363659-1995-4fbf-8a95-a4157ef15fe2" target="_blank" rel="noopener noreferrer">Verify credential</a> <a href="assets/credentials/Data_Scientist_Simplilearn_2025.pdf" target="_blank" rel="noopener noreferrer">View certificate (PDF)</a></div>
             </article>
-            <article class="credential-card">
-              <span class="credential-type">Award · Galaxia 2022</span>
-              <h4>3rd Place</h4>
-              <a class="credential-picture" href="assets/credentials/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png" target="_blank" rel="noopener noreferrer" aria-label="View original Galaxia 2022 third-place award">
-                <img src="assets/credentials/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png" alt="Original Galaxia 2022 third-place award for the fire-fighting robot" loading="lazy" decoding="async">
-              </a>
-              <div class="credential-caption">
-                <span>Fire-Fighting Robot Competition</span>
-                <a href="https://fr.linkedin.com/in/denoskume/fr" target="_blank" rel="noopener noreferrer">View award record ↗</a>
-              </div>
-            </article>
-            <article class="credential-card">
-              <span class="credential-type">Recognition · ISDC Learning</span>
-              <h4>Star of the Month</h4>
-              <a class="credential-picture" href="assets/credentials/ISDC.jpg" target="_blank" rel="noopener noreferrer" aria-label="View original ISDC Learning recognition">
-                <img src="assets/credentials/ISDC.jpg" alt="Original Star of the Month recognition from ISDC Learning" loading="lazy" decoding="async">
-              </a>
-              <div class="credential-caption">
-                <span>ISDC Learning</span>
-                <a href="https://www.linkedin.com/posts/starofthemonth-isdclearning-appreciation-share-7172875898336083968-Z_Up/" target="_blank" rel="noopener noreferrer">View recognition ↗</a>
-              </div>
-            </article>
-            <article class="credential-card">
-              <span class="credential-type">Certificate · ISDC Learning</span>
-              <h4>Campus Ambassador — Certificate of Completion</h4>
-              <a class="credential-picture" href="assets/credentials/ISDC_Experience_Letter-_%20Denos.pdf" target="_blank" rel="noopener noreferrer" aria-label="View original ISDC Campus Ambassador certificate">
-                <object class="credential-pdf-preview" type="application/pdf" data="assets/credentials/ISDC_Experience_Letter-_%20Denos.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0" data-pdf-source="assets/credentials/ISDC_Experience_Letter-_%20Denos.pdf" aria-label="Preview of ISDC Campus Ambassador certificate"><span class="credential-pdf-fallback">Open the original PDF to view the certificate.</span></object>
-              </a>
-              <div class="credential-caption">
-                <span>January – April 2024 · Issued 20 April 2024</span>
-                <a href="assets/credentials/ISDC_Experience_Letter-_%20Denos.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a>
-              </div>
-            </article>
-
-          </div>
+<article class="cert-item">
+              <img class="cert-logo" src="assets/credentials/simplilearn-mark.png" alt="" loading="lazy">
+              <p>Simplilearn · 25 July 2024</p><h4>SQL Certification Course</h4>
+              <div class="cert-links"><a href="assets/credentials/SQL%20Certification.pdf" target="_blank" rel="noopener noreferrer">View certificate (PDF)</a></div>
+            </article></div>
+        </section>
+        <section id="awards" class="cert-section" aria-labelledby="awards-title">
+          <h3 id="awards-title">Awards</h3>
+          <article class="award-entry"><img loading="lazy" src="assets/credentials/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png" alt="GALAXIA certificate awarding third place for the Arduino fire-fighting robot">
+            <div><p>GALAXIA · 29 September 2022</p><h4>Arduino Fire-Fighting Robot — Third Place</h4>
+            <p>I led a team of three to build an Arduino fire-fighting robot for the science exhibition at Kristu Jayanti College.</p>
+            <div class="cert-links"><a href="assets/credentials/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png" target="_blank" rel="noopener noreferrer">View award certificate</a></div></div>
+          </article>
         </section>
 
         </div>

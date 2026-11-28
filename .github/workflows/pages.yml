@@ -128,7 +128,6 @@ jobs:
           node --check archive/legacy/app.js
           node --check assets/js/components/harvard-cv.js
           node --check assets/js/components/contact-form.js
-          node --check assets/js/components/home-credentials.js
           node --check assets/js/content.js
           node --check assets/js/case-studies/fluoroscopy-case-study.js
           node --check assets/js/case-studies/scientific-case-studies.js
@@ -241,21 +240,20 @@ jobs:
           about_start = html.index('<section id="about"')
           about_end = html.index('<!-- ============ PROJECTS', about_start)
           about = html[about_start:about_end]
-          assert 'id="credentials"' in about and 'Credentials &amp; Recognition' in about
-          assert about.count('class="credential-card"') == 5, "Exactly five original credentials required"
+          assert 'id="credentials"' in about and 'SQL Certification Course' in about
+          assert about.count('class="cert-item"') == 3
           assert about.index('id="credentials"') > about.index('education-experience'), "Credentials must follow the education timeline"
-          assert "grid-template-columns: repeat(2, 15cm)" in html
-          assert "width: 15cm;" in html and "height: 15cm;" in html
           for image in (
               "Data_Scientist_Simplilearn_2025.pdf",
               "Google_Advanced_Data_Analytics_2024.pdf",
               "Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png",
+              "SQL Certification.pdf",
               "ISDC.jpg",
               "ISDC_Experience_Letter-_ Denos.pdf",
           ):
               assert f"assets/credentials/{image}" in __import__("urllib.parse", fromlist=["unquote"]).unquote(about), f"Original credential file link missing: {image}"
               assert Path("assets/credentials", image).is_file(), f"Credential file missing in repository: {image}"
-          print("About credentials: five original assets in two 15 cm columns.")
+          print("Verified technical certificates, award and ISDC records.")
           PY
           # Guard against previously deleted Home components reappearing.
           python - <<'PY'
@@ -267,10 +265,10 @@ jobs:
           assert 'id="projectsDashboard"' not in home, "Removed dashboard returned to Home"
           assert 'class="cn-hero"' in home, "The Home hero is missing"
           assert 'class="cn-news"' in home, "Recent Work is missing"
-          assert 'id="homeCredentials"' in home, "Home credential carousel is missing"
-          assert home.index('id="homeCredentials"') > home.index('class="cn-news"'), "Credential carousel must follow Recent Work"
-          assert home.count('class="hc-card"') == 5 and home.count('class="hc-dot"') == 5, "Wrong carousel card or navigation count"
-          assert 'assets/js/components/home-credentials.js?v=' in html and 'assets/css/components/home-credentials.css?v=' in html, "Carousel assets not linked"
+          assert 'id="homeCredentials"' in home, "Home certifications section is missing"
+          assert home.index('id="homeCredentials"') > home.index('class="cn-news"'), "Certifications section must follow Recent Work"
+          assert home.count('class="cert-item"') == 2
+          assert 'aria-roledescription="carousel"' not in home[home.index('id="homeCredentials"'):]
           assert 'id="credentials"' in html, "About credentials gallery must be retained"
           for forbidden in ('class="cn-evidence"', 'class="cn-journey"'):
               assert forbidden not in home, f"An obsolete Home section returned: {forbidden}"
@@ -324,8 +322,6 @@ jobs:
           test -s _site/assets/css/components/harvard-cv.css
           test -s _site/assets/js/components/contact-form.js
           test -s _site/assets/css/components/contact-modern.css
-          test -s _site/assets/js/components/home-credentials.js
-          test -s _site/assets/css/components/home-credentials.css
           # Optional downloadable documents are checked independently from site publication.
           test -f _site/assets/denos-kume-signature.svg
           test -s _site/assets/js/case-studies/fluoroscopy-case-study.js
@@ -403,26 +399,12 @@ jobs:
                       and 'class="cn-evidence"' not in html
                       and 'class="cn-journey"' not in html
                       and 'id="credentials"' in html
-                      and html.count('class="credential-card"') == 5
+                      and html.count('class="cert-item"') == 5
                       and 'id="homeCredentials"' in html
-                      and html.count('class="hc-card"') == 5
+                      and 'SQL Certification Course' in html
                       and 'assets/js/case-studies/scientific-case-studies.js?v=' in html
                       and 'assets/css/case-studies/scientific-case-studies.css?v=' in html
-                      and 'assets/js/components/home-credentials.js?v=20261124-five-credentials' in html
-                      and 'assets/css/components/home-credentials.css?v=' in html):
-                      # Fetch the published script too: index.html being current
-                      # is not sufficient if the asset is cached or missing.
-                      script_url = f"{base}/assets/js/components/home-credentials.js?build={sha}"
-                      script_request = urllib.request.Request(
-                          script_url,
-                          headers={"Cache-Control": "no-cache",
-                                   "User-Agent": "Portfolio-Deployment-Check/1.0"}
-                      )
-                      with urllib.request.urlopen(script_request, timeout=20) as js_response:
-                          published_js = js_response.read().decode("utf-8")
-                      assert "FIRST_SLIDE_DELAY = 900" in published_js, "Old autoplay script is still served"
-                      assert "window.setInterval(autoplayTick, TICK)" in published_js, "Live autoplay is missing"
-                      assert "outgoing.animate(" in published_js and "incoming.animate(" in published_js
+                      and 'id="awards"' in html):
                       article_url = f"{base}/blog/data-cleaning.html?build={sha}"
                       article_request = urllib.request.Request(article_url, headers={"Cache-Control": "no-cache", "User-Agent": "Portfolio-Deployment-Check/1.0"})
                       with urllib.request.urlopen(article_request, timeout=20) as article_response:
@@ -430,7 +412,7 @@ jobs:
                       assert 'data-encrypted-article="aes-256-gcm"' in article and "crypto.subtle.decrypt" in article, "Published draft is not encrypted"
                       assert 'id="conclusion"' not in article and "541,909" not in article, "Private manuscript exposed as plaintext"
                       print(f"Verified public blog article at {article_url}")
-                      print(f"Verified public Home and automatic carousel script at {url}")
+                      print(f"Verified public Home and certification sections at {url}")
                       break
                   print(f"Published HTML is still stale on attempt {attempt + 1}")
               except Exception as exc:
