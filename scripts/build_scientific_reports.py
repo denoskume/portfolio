@@ -268,7 +268,7 @@ def build(study_id: int, filename: str) -> Path:
         add_section(section, story)
     story.append(Spacer(1, 10))
     story.append(HRFlowable(width="100%", thickness=.6, color=RULE, spaceAfter=8))
-    if study_id != 7:
+    if study_id < 7:
         story.append(paragraph("Source files, raw figures and numeric results: see the GitHub repository linked in Project information.", "small"))
     path = DEST / filename
     document = SimpleDocTemplate(str(path), pagesize=A4, leftMargin=18 * mm,
@@ -285,6 +285,7 @@ if __name__ == "__main__":
                             (4, "flag-intelligence-case-study.pdf"),
                             (5, "python-cardgame-case-study.pdf"),
                             (6, "monstage-case-study.pdf"),
-                            (7, "traffic-light-simulation-case-study.pdf")]:
+                            (7, "traffic-light-simulation-case-study.pdf"),
+                            (8, "arduino-fire-fighting-robot-case-study.pdf")]:
         path = build(ident, filename)
         print(f"Built {path.name}: {path.stat().st_size} bytes")

@@ -2875,6 +2875,7 @@ body:has(#about.active) .main-container {
         <div class="nav-dropdown" id="nav-projects-dropdown">
           <a href="#" data-target="projects">All Projects</a>
           <button type="button" onclick="openProject(7)">Traffic Light Simulation</button>
+          <button type="button" onclick="openProject(8)">Arduino Fire-Fighting Robot</button>
           <button type="button" onclick="closeNavMenus();openProject(1)">Microcatheter Segmentation</button>
           <button type="button" onclick="closeNavMenus();openProject(2)">Camera Calibration</button>
           <button type="button" onclick="closeNavMenus();openProject(3)">Zero-Shot CLAP</button>
@@ -2981,6 +2982,10 @@ body:has(#about.active) .main-container {
             <a href="#/projects/traffic-light-simulation" onclick="openProject(7);return false;" class="cn-news-card">
               <img src="assets/portfolio-images/traffic-light.jpg" alt="Vehicle and pedestrian signal circuit with two countdown displays" loading="lazy" decoding="async">
               <h3>Traffic Light Simulation</h3><p>Simulating vehicle and pedestrian signals with two seven-segment countdown displays.</p>
+            </a>
+            <a href="#/projects/arduino-fire-fighting-robot" onclick="openProject(8);return false;" class="cn-news-card">
+              <img src="assets/portfolio-images/fire-fighting-robot.jpg" alt="Arduino robot with a water tank and hose" loading="lazy" decoding="async">
+              <h3>Arduino Fire-Fighting Robot</h3><p>A mobile Arduino prototype with an onboard water tank and hose, built by a three-person team for GALAXIA 2022.</p>
             </a>
           </div>
           <a href="#" data-target="projects" class="cn-news-more">View All Projects</a>
@@ -3153,6 +3158,7 @@ body:has(#about.active) .main-container {
                 <h4>Third Place</h4><p class="dist-subject">Arduino Fire-Fighting Robot</p>
                 <p>I led a team of three to build this robot for the science exhibition at Kristu Jayanti College.</p>
                 <a class="dist-link" href="assets/credentials/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png" target="_blank" rel="noopener noreferrer">View award certificate ↗</a>
+                <a class="dist-link" style="margin-inline-start:12px" href="#/projects/arduino-fire-fighting-robot">Explore project →</a>
               </div>
             </article>
             <article class="dist-item">
@@ -3366,8 +3372,8 @@ body:has(#about.active) .main-container {
 <script src="assets/js/content.js?v=20261122-academic-prose"></script>
 <script src="assets/js/components/harvard-cv.js?v=20261122-match-project-format" defer></script>
 <script src="assets/js/case-studies/fluoroscopy-case-study.js?v=20261123-collaborator-linkedin"></script>
-<script src="assets/js/case-studies/scientific-case-studies.js?v=20261128-traffic"></script>
-<script src="assets/js/case-studies/software-case-studies.js?v=20261128-traffic"></script>
+<script src="assets/js/case-studies/scientific-case-studies.js?v=20261128-embedded"></script>
+<script src="assets/js/case-studies/software-case-studies.js?v=20261128-embedded"></script>
 <script>
 
 /* ============================================================
@@ -3490,6 +3496,13 @@ const projects = [
     "title": "Traffic Light Simulation",
     "brief": "Simulating vehicle and pedestrian signals with two seven-segment countdown displays.",
     "tags": ["Embedded systems","Microcontroller","Circuit simulation"]
+  },
+  {
+    "id": 8,
+    "title": "Arduino Fire-Fighting Robot",
+    "brief": "A mobile Arduino prototype with an onboard water tank and hose, built by a three-person team for GALAXIA 2022.",
+    "year": "2022",
+    "tags": ["Arduino","Robotics","Embedded systems"]
   }
 ];
 
@@ -3732,6 +3745,12 @@ const projectCardPreviews = {
     type: "Bachelor’s Project",
     image: "assets/portfolio-images/traffic-light.jpg",
     alt: "Microcontroller circuit with vehicle and pedestrian signals and two countdown displays."
+  },
+  8: {
+    title: "Arduino Fire-Fighting Robot",
+    type: "Bachelor’s Project",
+    image: "assets/portfolio-images/fire-fighting-robot.jpg",
+    alt: "Arduino robot chassis with an onboard water tank and front-mounted hose."
   }
 };
 
@@ -3810,7 +3829,7 @@ function openProject(id) {
 
   // Camera calibration and CLAP now use the same journal-style three-tab
   // article template as the fluoroscopy case study, with authentic figures.
-  if ([2, 3, 4, 5, 6, 7].includes(p.id)) {
+  if ([2, 3, 4, 5, 6, 7, 8].includes(p.id)) {
     const content = document.getElementById('projectDetailContent');
     content.innerHTML = renderScientificCaseStudy(p.id);
     addResourceToggle(content);
@@ -3818,7 +3837,7 @@ function openProject(id) {
     showSection('projectDetail');
     const slugs = {
       2:'camera-calibration',3:'clap-zero-shot',4:'flag-intelligence',
-      5:'python-cardgame',6:'monstage',7:'traffic-light-simulation'
+      5:'python-cardgame',6:'monstage',7:'traffic-light-simulation',8:'arduino-fire-fighting-robot'
     };
     const slug = slugs[p.id];
     history.replaceState(null, '', location.pathname + location.search + '#/projects/' + slug);
@@ -3957,7 +3976,7 @@ function showSection(id) {
   }
   if (id !== 'projectDetail') {
     document.querySelectorAll('#projectDetailContent video').forEach(video => video.pause());
-    if (/^#\/projects\/(fluoroscopy-instrument-segmentation|camera-calibration|clap-zero-shot|flag-intelligence|python-cardgame|monstage|traffic-light-simulation)$/.test(location.hash)) {
+    if (/^#\/projects\/(fluoroscopy-instrument-segmentation|camera-calibration|clap-zero-shot|flag-intelligence|python-cardgame|monstage|traffic-light-simulation|arduino-fire-fighting-robot)$/.test(location.hash)) {
       history.replaceState(null, '', location.pathname + location.search);
     }
   }
@@ -4120,7 +4139,8 @@ const projectDeepLinks = {
   '#/projects/flag-intelligence': 4,
   '#/projects/python-cardgame': 5,
   '#/projects/monstage': 6,
-  '#/projects/traffic-light-simulation': 7
+  '#/projects/traffic-light-simulation': 7,
+  '#/projects/arduino-fire-fighting-robot': 8
 };
 const privateArticleFrame=document.getElementById('privateArticleFrame');
 privateArticleFrame.addEventListener('load',()=>{

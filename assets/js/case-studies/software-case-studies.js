@@ -416,7 +416,33 @@
     metrics:[{key:'components',title:'Circuit components',body:table(['Component','Count'],[['Microcontroller','1'],['Signal LEDs','4'],['Seven-segment displays','2']],'<strong>Table 1.</strong> Components visible in Figure 1.')}]
   };
 
-  const studies={4:flag,5:card,6:monstage,7:traffic};
+  const robotPhoto = raw+'portfolio/main/assets/portfolio-images/fire-fighting-robot.jpg';
+  const award = raw+'portfolio/main/assets/credentials/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png';
+  const robot = {
+    slug:'arduino-fire-fighting-robot', prefix:'sc-robot', title:'Arduino Fire-Fighting Robot',
+    subtitle:'A mobile prototype that carries its own water supply.',
+    authors:'Bachelor’s project · Computer Science and Electronics · Kristu Jayanti College',
+    repository:host+'portfolio/tree/main/assets/portfolio-images', notebook:robotPhoto, sourceLabel:'Original prototype photo',
+    pdf:'arduino-fire-fighting-robot-case-study.pdf',downloadName:'Arduino-Fire-Fighting-Robot-Report.pdf',
+    keywords:['Arduino','Embedded systems','Mobile robotics','Hardware integration'],
+    projectInfo:[['Context','GALAXIA 2022 science exhibition, Kristu Jayanti College'],['My role','Team lead'],['Team','Three students'],['Duration','One month']],
+    glossary:[['Chassis','The frame carrying the wheels, electronics and water tank.'],['Arduino','The microcontroller platform used for this prototype.']],
+    summary:['I led a team of three students to build an Arduino fire-fighting robot for GALAXIA 2022. Over one month, we integrated a water reservoir, tubing and control electronics on a wheeled chassis. Our project placed third at the college science exhibition.'],
+    reportSections:[
+      {key:'intro',title:'1.0 Project context',body:'<p>We developed the robot during my Bachelor’s in Computer Science and Electronics. The exhibition gave us a concrete goal: bring a physical prototype that visitors and judges could inspect.</p>'},
+      {key:'objective',title:'2.0 Objective',body:'<p>Our objective was to carry a water supply and a forward-facing outlet on the same mobile platform as the controller.</p>'},
+      {key:'method',title:'3.0 Hardware integration',body:fig(robotPhoto,'<strong>Figure 1.</strong> The tank sits at the rear. The hose runs forward over the electronics to the outlet at the front of the chassis.','Completed wheeled Arduino prototype with tank, hose and wiring','sc-robot-r-photo')+
+        '<p>The photograph shows how the team arranged the water path around the limited space on the chassis. The controller and wiring occupy the centre, between the tank and the outlet.</p>'},
+      {key:'results',title:'4.0 Exhibition result',body:'<p>On 29 September 2022, the Computer Academy and Department of Computer Science awarded the project third place at GALAXIA.</p>'+
+        fig(award,'<strong>Figure 2.</strong> The original certificate records the project title, placement and exhibition date.','GALAXIA award certificate for the Arduino fire-fighting robot','sc-robot-r-award')}
+    ],
+    references:[{label:'Original project photograph.',url:robotPhoto,linkLabel:'View prototype'},{label:'Kristu Jayanti College. GALAXIA 2022 certificate of appreciation.',url:award,linkLabel:'View certificate'}],
+    figures:[{title:'Completed prototype',description:'Water tank, tubing, control electronics and wheeled chassis.',url:robotPhoto,kind:'figure',reportId:'sc-robot-r-photo'},{title:'GALAXIA competition result',description:'Third-place certificate dated 29 September 2022.',url:award,kind:'figure',reportId:'sc-robot-r-award'}],
+    metricsIntro:'Team size, project duration and exhibition result.',
+    metrics:[{key:'outcome',title:'Project at a glance',body:table(['Measure','Value'],[['Team size','3 students'],['Build duration','1 month'],['GALAXIA placement','3rd place']],'<strong>Table 1.</strong> Project and competition figures.')}]
+  };
+
+  const studies={4:flag,5:card,6:monstage,7:traffic,8:robot};
   if(typeof window.registerScientificCaseStudies!=='function'){
     throw new Error('Load scientific-case-studies.js before software-case-studies.js');
   }
