@@ -2096,8 +2096,10 @@ body:has(#home.active) .navbar .nav-links a{color:#10273c}
 .home-cn .cn-news-card:hover{transform:translateY(-2px);box-shadow:0 9px 23px rgba(8,32,58,.1)}
 .home-cn .cn-news-card img{
   width:100%;
-  height:clamp(210px,20vw,280px);
-  object-fit:contain;
+  height:auto;
+  aspect-ratio:8 / 5;
+  object-fit:cover;
+  flex:none;
   background:#fff;
   border-bottom:1px solid #dde4eb;
 }
@@ -2111,7 +2113,6 @@ body:has(#home.active) .navbar .nav-links a{color:#10273c}
 @media(max-width:490px){
   
   .home-cn .cn-news-list{grid-template-columns:minmax(0,1fr)}
-  .home-cn .cn-news-card img{height:230px}
 }
 
 
@@ -2670,7 +2671,9 @@ body:has(#about.active) .main-container {
   align-items:center;
   justify-content:center;
   width:100%;
-  height:clamp(210px,21vw,275px);
+  height:auto;
+  aspect-ratio:8 / 5;
+  flex:none;
   min-height:0;
   margin:0;
   padding:0;
@@ -2682,9 +2685,11 @@ body:has(#about.active) .main-container {
   display:block;
   width:100%;
   height:100%;
-  object-fit:contain;
+  object-fit:cover;
   object-position:center;
 }
+.home-cn .cn-news-card img[src$="/cardgame.jpg"],
+#projects .project-card-figure img[src$="/cardgame.jpg"] { object-position:center 59%; }
 #projects .project-card-copy {
   flex:1;
   padding:17px 18px 20px;
@@ -2751,7 +2756,6 @@ body:has(#about.active) .main-container {
 }
 @media(max-width:650px) {
   #projects .projects-grid { grid-template-columns:minmax(0,1fr);gap:16px; }
-  #projects .project-card-figure { height:clamp(210px,57vw,280px); }
   #projects .project-card-copy { min-height:0; }
 }
 @media(max-width:380px) {
