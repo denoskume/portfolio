@@ -2824,6 +2824,11 @@ body:has(#about.active) .main-container {
 .isdc-record p { margin-top: 12px; }
 @media(max-width:600px) { .cert-grid,.award-entry { grid-template-columns: 1fr; } .award-entry img { max-width: 230px; } }
 </style>
+<style>
+.traffic-project { margin: 18px 0 0; max-width: 520px; }
+.traffic-project img { display: block; width: 100%; height: auto; }
+.traffic-project figcaption { margin-top: 8px; color: #46586a; font-size: .9rem; }
+</style>
 </head>
 
 <body>
@@ -2932,7 +2937,7 @@ body:has(#about.active) .main-container {
           <h2>Recent Work</h2>
           <div class="cn-news-list">
             <a href="#" onclick="openProject(1);return false;" class="cn-news-card">
-              <img src="assets/case-studies/microcatheter-comparison.png" alt="Initial segmented fragments and reconstructed microcatheter trajectory on frame 291." loading="lazy" decoding="async">
+              <img src="assets/portfolio-images/fluoroscopy.jpg" alt="Predictions, manual annotations and error overlays for three fluoroscopy frames." loading="lazy" decoding="async">
               <h3>Microcatheter Segmentation</h3><p>Reconstructing a continuous microcatheter trajectory from fragmented predictions.</p>
             </a>
 <a href="#" onclick="openProject(2);return false;" class="cn-news-card">
@@ -2948,7 +2953,7 @@ body:has(#about.active) .main-container {
               <h3>Flag Intelligence</h3><p>Identify a flag, confirm ambiguous matches and explore sourced country facts.</p>
             </a>
             <a href="#" onclick="openProject(5);return false;" class="cn-news-card">
-              <img src="assets/case-studies/cardgame-observation.webp" alt="The red ace and two black aces during the original ALPRO observation round." loading="lazy" decoding="async">
+              <img src="assets/portfolio-images/cardgame.jpg" alt="Rouge Gagne, Noir Perd title screen and recent game results." loading="lazy" decoding="async">
               <h3>Python CardGame</h3><p>Follow the red ace through a timed shuffle, then pick its position in this Python memory game.</p>
             </a>
             <a href="#" onclick="openProject(6);return false;" class="cn-news-card">
@@ -2996,7 +3001,7 @@ body:has(#about.active) .main-container {
             <div class="about-portrait">
               <div class="about-photo">
 
-              <img src="https://avatars.githubusercontent.com/u/110854822?v=4" alt="Denos Kume GitHub profile photograph">
+              <img src="assets/portfolio-images/denos-kume.jpg" alt="Denos Kume">
 
             </div>
             </div>
@@ -3039,6 +3044,10 @@ body:has(#about.active) .main-container {
             <div class="org"><a href="https://kristujayanti.edu.in/" target="_blank" rel="noopener noreferrer">Kristu Jayanti University</a> · Bangalore, India</div>
             <p class="edu-exp-summary course-heading"><strong>Key coursework</strong></p>
             <div class="course-grid"><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-2-15-4 18"/></svg><h5>Computer Science</h5><ul><li>Programming (C, Java, PHP, Python)</li><li>Data Structures</li><li>Computer Graphics</li><li>Database Management</li><li>Software Engineering</li><li>Data Analysis</li><li>Internet Technology</li></ul></div><div class="course-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/></svg><h5>Electronics</h5><ul><li>Digital Electronics</li><li>Digital Signal Processing</li><li>Microprocessors</li><li>Microcontrollers</li><li>Communication Systems</li><li>Embedded Systems</li><li>Instrumentation</li></ul></div></div>
+            <figure class="traffic-project">
+              <a href="assets/portfolio-images/traffic-light.jpg" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="assets/portfolio-images/traffic-light.jpg" width="800" height="511" alt="Traffic and pedestrian signals wired to a microcontroller with two seven-segment countdown displays"></a>
+              <figcaption>Traffic light simulation with a pedestrian crossing and countdown displays.</figcaption>
+            </figure>
             
           </div>
 
@@ -3120,7 +3129,7 @@ body:has(#about.active) .main-container {
         </section>
         <section id="awards" class="cert-section" aria-labelledby="awards-title">
           <h3 id="awards-title">Awards</h3>
-          <article class="award-entry"><img loading="lazy" src="assets/credentials/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png" alt="GALAXIA certificate awarding third place for the Arduino fire-fighting robot">
+          <article class="award-entry"><img loading="lazy" src="assets/portfolio-images/fire-fighting-robot.jpg" alt="Arduino fire-fighting robot with its wheeled chassis, water tank and hose">
             <div><p>GALAXIA · 29 September 2022</p><h4>Arduino Fire-Fighting Robot — Third Place</h4>
             <p>I led a team of three to build an Arduino fire-fighting robot for the science exhibition at Kristu Jayanti College.</p>
             <div class="cert-links"><a href="assets/credentials/Fire_Fighting_Robot_GALAXIA_3rd_Place_2022.png" target="_blank" rel="noopener noreferrer">View award certificate</a></div></div>
@@ -3644,8 +3653,8 @@ const projectCardPreviews = {
     title: "Microcatheter Segmentation",
     type: "Master 1 Project",
     description: "Reconstructing a continuous microcatheter trajectory from fragmented predictions.",
-    image: "assets/case-studies/microcatheter-comparison.png",
-    alt: "Initial segmented fragments and reconstructed microcatheter trajectory on frame 291."
+    image: "assets/portfolio-images/fluoroscopy.jpg",
+    alt: "Predictions, manual annotations and error overlays for three fluoroscopy frames."
   },
   2: {
     title: "Camera Calibration",
@@ -3672,8 +3681,8 @@ const projectCardPreviews = {
     title: "Python CardGame",
     type: "Master 1 (S1) Project",
     description: "Follow the red ace through a timed shuffle, then pick its position in this Python memory game.",
-    image: "assets/case-studies/cardgame-observation.webp",
-    alt: "The red ace and two black aces during the original ALPRO observation round."
+    image: "assets/portfolio-images/cardgame.jpg",
+    alt: "Rouge Gagne, Noir Perd title screen and recent game results."
   },
   6: {
     title: "MonStage",
